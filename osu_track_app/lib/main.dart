@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Osu!'),
     );
   }
 }
@@ -30,8 +30,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() async{
-    var token = await getToken();
-    print(token['access_token']);
+    final token = await getToken();
+    //print(token['access_token']);
+    final user = await getUser(token['access_token'], 'Repentance');
+    print(user);
+    final user1 =  await getUser(token['access_token'], 'Sgooll');
+    print(user1);
   }
 
   @override
@@ -57,8 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+        child: const Icon(Icons.add)
+      )
     );
   }
 }
