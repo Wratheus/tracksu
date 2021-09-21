@@ -1,8 +1,7 @@
 # TMP-team-2-Osu-track
-Проектная группа#2 2-МДА-9 Павленко Александр Сергеевич, Фомичёв Виталий Артурович.
 
-Целью проекта является написание приложения на платформе Android и IOS с помощью Dart+Flutter с интуитивно понятным интерфейсом, 
-для отслеживания статистики игроков, предполагаюшее: 
+Целью проекта является написание приложения на платформе Android и IOS с помощью Dart+Flutter 
+с интуитивно понятным интерфейсом, для отслеживания статистики игроков, предполагаюшее: 
 
 Выбор мода игры(taiko, std, mania, fruits);
 
@@ -22,10 +21,8 @@
                               получаемой при успешном прохождении.)
 ____________________________________________________________________________________________________________________________________________
 
-Project group#2 2-MDA-9 Pavlenko Alexander Sergeevich, Fomichev Vitaly Arturovich.
-
-The goal of the project is to write an application using Dart + Flutter with an intuitive interface 
-to track player statistics, assuming:
+The goal of the project is to write an application using Dart + Flutter with an intuitive interface  <br />
+to track player statistics, assuming:  <br />
 
 Selecting a game mod (taiko, std, mania, fruits);
 
@@ -42,3 +39,9 @@ Beatmap information:
                              (map duration, difficulty, combo,
                               AR OD CS HP card characteristics and performance quantity,
                               obtained upon successful completion.) 
+
+____________________________________________________________________________________________________________________________________________
+
+Osu! API documentation - https://osu.ppy.sh/docs/index.html#introduction  <br />
+Osu! rythm game - https://osu.ppy.sh/ | https://github.com/ppy/osu  <br />
+PPY github - https://github.com/ppy/  <br />

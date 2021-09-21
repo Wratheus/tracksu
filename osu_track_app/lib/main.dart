@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'src/requests.dart';
+import 'src/user.dart' as user;
+
 void main() {
   runApp(const MyApp());
 }
@@ -32,11 +34,32 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() async{
     final token = await getToken();
     //print(token['access_token']);
-    final user = await getUser(token['access_token'], 'Repentance');
-    print(user);
-    final user1 =  await getUser(token['access_token'], 'Sgooll');
-    print(user1);
+    final player = await getUser(token['access_token'], 'Repentance');
+    print(player.avatarURL);
+    print(player.id);
+    print(player.isOnline);
+    print(player.userName);
+    print(player.coverURL);
+    print(player.joinDate);
+    print(player.country);
+    print(player.monthlyPlayCounts);
+    print(player.scoresFirstCount);
+    print(player.globalRank);
+    print(player.totalPP);
+    print(player.hitAccuracy);
+    print(player.playCount);
+    print(player.playTime);
+    print(player.maximumCombo);
+    print(player.replaysWatched);
+    print(player.amountOfSSH);
+    print(player.amountOfSS);
+    print(player.amountOfSh);
+    print(player.amountOfS);
+    print(player.amountOfA);
+    print(player.countryRank);
+    print(player.rankHistory);
   }
+
 
   @override
   Widget build(BuildContext context) {

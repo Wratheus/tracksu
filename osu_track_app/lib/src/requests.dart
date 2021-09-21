@@ -1,6 +1,9 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'authentication.dart' as auth;
+import 'package:flutter/material.dart';
+import 'user.dart' as user;
+
 //  Before you go, you need to create your own <authentication.dart> file in /src folder
 //  and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
 //  const clientSecret = 'your oAuth2 pass';
@@ -43,12 +46,12 @@ Future<Map<String, dynamic>> getToken() async{
   }
 }
 
-Future<Map<String, dynamic>> getUser(String token, String user) async{
+Future <user.User> getUser(String token, String username) async{
 
   final params = {
     'key': 'username'
   };
-  final Uri userUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$user', params);
+  final Uri userUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$username', params);
   final Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -61,8 +64,8 @@ Future<Map<String, dynamic>> getUser(String token, String user) async{
     // If the server did return a 200 CREATED response,
     // then parse the JSON.
     // print(tokenRequestResponse);
-    var user = convert.jsonDecode(userGetResponse.body) as Map<String, dynamic>;
-    return user;
+    // var user = convert.jsonDecode(userGetResponse.body) as Map<String, dynamic>;
+    return user.User.fromJson(convert.jsonDecode(userGetResponse.body));
   }
   else {
     // If the server did not return a 200 CREATED response,
