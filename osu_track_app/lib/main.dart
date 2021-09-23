@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'src/requests.dart';
 import 'src/user.dart' as user;
+import 'src/scores.dart' as scores;
 
 void main() {
   runApp(const MyApp());
@@ -33,9 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() async{
     final token = await getToken();
-    //print(token['access_token']);
+    print(token['access_token']);
     final player = await getUser(token['access_token'], 'Repentance');
-    print(player.avatarURL);
+    /*print(player.avatarURL);
     print(player.id);
     print(player.isOnline);
     print(player.userName);
@@ -57,8 +58,36 @@ class _MyHomePageState extends State<MyHomePage> {
     print(player.amountOfS);
     print(player.amountOfA);
     print(player.countryRank);
-    print(player.rankHistory);
+    print(player.rankHistory);*/
+    scores.Scores userScore = await getUserScore(token['access_token'], 'Mrekk', '1');
+    print(userScore.mapperId);
+    print(userScore.mapperName);
+    print(userScore.coversJPG);
+    print(userScore.artistName);
+    print(userScore.beatmapURL);
+    print(userScore.beatmapLength);
+    print(userScore.beatmapLength);
+    print(userScore.beatmapSetMapId);
+    print(userScore.beatmapSetId);
+    print(userScore.coversJPG);
+    print(userScore.difficultyName);
+    print(userScore.difficultyRating);
+    print(userScore.gainedPP);
+    print(userScore.bestScoreOnMapId);
+    print(userScore.dateOfScore);
+    print(userScore.mapRank);
+    print(userScore.mapStatistics);
+    print(userScore.maxCombo);
+    print(userScore.scorePoints);
+    print(userScore.scoreId);
+    print(userScore.AR);
+    print(userScore.CS);
+    print(userScore.HP);
+    print(userScore.OD);
+    print(userScore.BPM);
+    print(userScore.mapTitle);
   }
+
 
 
   @override
