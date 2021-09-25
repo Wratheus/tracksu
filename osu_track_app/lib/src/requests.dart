@@ -65,15 +65,15 @@ Future <user.User> getUser(String token, String username) async{
 
 
 // User Score list Request
-Future <List<dynamic>> getUserScore(String token, String username, String scoreNumber) async{
+Future <List<dynamic>> getUserScore(String token, String username, String numberOfRequesedScores) async{
   const scoresType = 'best';
-  if (int.parse(scoreNumber) > 100 || int.parse(scoreNumber) <= 0){ throw Exception('wrong ScoreNumber'); }
+  if (int.parse(numberOfRequesedScores) > 100 || int.parse(numberOfRequesedScores) <= 0){ throw Exception('wrong ScoreNumber'); }
   user.User player = await getUser(token, username);
   final userID = player.id;
   final params = {
     'include_fails': '1',
     'mode': 'osu',
-    'limit': '$scoreNumber',
+    'limit': numberOfRequesedScores,
     'offset': '1'
   };
 
@@ -84,13 +84,14 @@ Future <List<dynamic>> getUserScore(String token, String username, String scoreN
     "Authorization": "Bearer $token"
   };
   final http.Response userScoresUrlResponse = await http.get(userScoresUrl, headers: headers);
-
+  int scoreNumber = int.parse(numberOfRequesedScores);
   if (userScoresUrlResponse.statusCode == 200) {
       List<dynamic> myList = List.filled(100, 0, growable: false);
-      var Json = convert.jsonDecode(userScoresUrlResponse.body);
-      for (int i = 0; i < int.parse(scoreNumber); i++){
+      var json = convert.jsonDecode(userScoresUrlResponse.body);
+      if (json.length < 100) {scoreNumber = json.length;};
+      for (int i = 0; i < scoreNumber; i++){
         print(i);
-      myList[i] = scores.Scores.fromJson(Json[i]);
+      myList[i] = scores.Scores.fromJson(json[i]);
     }
       return myList;
   }

@@ -60,9 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
     print(player.amountOfA);
     print(player.countryRank);
     print(player.rankHistory);
-    List<dynamic> userScore = await getUserScore(token['access_token'], 'Repentance', '50');
-    for (int i = 0; i < 50; i++) {
+    List<dynamic> userScore = await getUserScore(token['access_token'], 'Sgooll', '100');
+    for (int i = 0; i < userScore.length; i++) {
+      if(userScore[i]==0) break;
       scores.Scores score = userScore[i];
+      print(score.mods);
       print(score.scoreId);
       print(score.mapperName);
       print(score.mapperId);
@@ -91,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print(score.OD);
       print(score.BPM);
       print(score.mapTitle);
+
     }
     news.News News = await getNews(token['access_token']);
     print(News.id);
