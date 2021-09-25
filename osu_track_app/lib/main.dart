@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'src/requests.dart';
 import 'src/user.dart' as user;
 import 'src/scores.dart' as scores;
+import 'src/news.dart' as news;
 
 void main() {
   runApp(const MyApp());
@@ -60,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print(player.countryRank);
     print(player.rankHistory);*/
     scores.Scores userScore = await getUserScore(token['access_token'], 'Mrekk', '1');
-    print(userScore.mapperId);
+    /*print(userScore.mapperId);
     print(userScore.mapperName);
     print(userScore.coversJPG);
     print(userScore.artistName);
@@ -84,8 +85,18 @@ class _MyHomePageState extends State<MyHomePage> {
     print(userScore.CS);
     print(userScore.HP);
     print(userScore.OD);
-    print(userScore.BPM);
+    print(userScore.BPM);*/
     print(userScore.mapTitle);
+    news.News News = await getNews(token['access_token']);
+    print(News.id);
+    print(News.author);
+    print(News.editURL);
+    print(News.firstImage);
+    print(News.publishedAt);
+    print(News.updatedAt);
+    print(News.slug);
+    print(News.title);
+    print(News.preview);
   }
 
 

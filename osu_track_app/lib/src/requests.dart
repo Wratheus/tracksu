@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'authentication.dart' as auth;
 import 'user.dart' as user;
 import 'scores.dart' as scores;
+import 'news.dart' as news;
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
 and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
 const clientSecret = 'your oAuth2 pass';
@@ -89,6 +90,24 @@ Future <scores.Scores> getUserScore(String token, String username, String scoreN
   else {
     // If the server did not return a 200 CREATED response,
     throw Exception('Failed to get USER SCORES response.');
+  }
+}
+
+Future <news.News> getNews(String token) async{
+  final Uri newsUrl = Uri.https('osu.ppy.sh', 'api/v2/news');
+  final Map<String, String> headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer $token"
+  };
+  final http.Response newsUrlResponse = await http.get(newsUrl, headers: headers);
+
+  if (newsUrlResponse.statusCode == 200) {
+    return news.News.fromJson(convert.jsonDecode(newsUrlResponse.body));
+  }
+  else {
+    // If the server did not return a 200 CREATED response,
+    throw Exception('Failed to get NEWS response.');
   }
 }
 
