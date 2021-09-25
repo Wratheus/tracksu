@@ -1,4 +1,5 @@
 import 'dart:convert' as convert;
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'authentication.dart' as auth;
 import 'user.dart' as user;
@@ -64,7 +65,7 @@ Future <user.User> getUser(String token, String username) async{
 
 
 // User Score list Request
-Future <scores.Scores> getUserScore(String token, String username, String scoreNumber) async{
+Future <List<dynamic>> getUserScore(String token, String username, String scoreNumber) async{
   const scoresType = 'best';
   if (int.parse(scoreNumber) > 100 || int.parse(scoreNumber) <= 0){ throw Exception('wrong ScoreNumber'); }
   user.User player = await getUser(token, username);
@@ -85,7 +86,16 @@ Future <scores.Scores> getUserScore(String token, String username, String scoreN
   final http.Response userScoresUrlResponse = await http.get(userScoresUrl, headers: headers);
 
   if (userScoresUrlResponse.statusCode == 200) {
-    return scores.Scores.fromJson(convert.jsonDecode(userScoresUrlResponse.body));
+      var ScoreList = [];
+      var Json = convert.jsonDecode(userScoresUrlResponse.body);
+      Json[1] = scores.Scores.fromJson(Json[1]);
+      for (int i = 0; i < int.parse(scoreNumber); i++){
+        /*print(i);
+        print(Json[i]);
+        Json[i] = scores.Scores.fromJson(Json[i]);
+        print(Json[i].scoreId);*/
+    }
+      return Json;
   }
   else {
     // If the server did not return a 200 CREATED response,

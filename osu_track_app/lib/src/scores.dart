@@ -8,14 +8,14 @@ class Scores{
   String?mapRank;
   String?dateOfScore;
   int?bestScoreOnMapId;
-  double?gainedPP;
+  int?gainedPP;
   int?beatmapSetId;
   int?beatmapSetMapId;
-  double?difficultyRating;
+  int?difficultyRating;
   int?beatmapLength;
   String?difficultyName;
   int?OD;
-  double?AR;
+  int?AR;
   int?BPM;
   int?CS;
   int?HP;
@@ -53,33 +53,33 @@ class Scores{
     required this.mapperName,
     required this.mapperId
   });
-  factory Scores.fromJson(List<dynamic> json){
+  factory Scores.fromJson(Map<String, dynamic> json){
     return Scores(
-      scoreId: json[0]['id'],
-      mods: json[0]['mods'],
-      scorePoints: json[0]['score'],
-      maxCombo: json[0]['max_combo'],
-      mapStatistics: json[0]['statistics'],
-      mapRank: json[0]['rank'],
-      dateOfScore: json[0]['created_at'],
-      bestScoreOnMapId: json[0]['best_id'],
-      gainedPP: json[0]['pp'],
-      difficultyName: json[0]['beatmap']['version'],
-      beatmapSetId: json[0]['beatmap']['beatmapset_id'],
-      difficultyRating: json[0]['beatmap']['difficulty_rating'],
-      beatmapSetMapId: json[0]['beatmap']['id'],
-      beatmapLength: json[0]['beatmap']['total_length'],
-      OD: json[0]['beatmap']['accuracy'],
-      AR: json[0]['beatmap']['ar'],
-      BPM: json[0]['beatmap']['bpm'],
-      CS: json[0]['beatmap']['cs'],
-      HP: json[0]['beatmap']['drain'],
-      beatmapURL: json[0]['beatmap']['url'],
-      artistName: json[0]['beatmapset']['artist'],
-      coversJPG: json[0]['beatmapset']['covers']['cover'],
-      mapTitle: json[0]['beatmapset']['title'],
-      mapperName: json[0]['beatmapset']['creator'],
-      mapperId: json[0]['beatmapset']['user_id'],
+      scoreId: json['id'],
+      mods: json['mods'],
+      scorePoints: json['score'],
+      maxCombo: json['max_combo'],
+      mapStatistics: json['statistics'],
+      mapRank: json['rank'],
+      dateOfScore: json['created_at'],
+      bestScoreOnMapId: json['best_id'],
+      gainedPP: json['pp'],
+      difficultyName: json['beatmap']['version'],
+      beatmapSetId: json['beatmap']['beatmapset_id'],
+      difficultyRating: json['beatmap']['difficulty_rating'],
+      beatmapSetMapId: json['beatmap']['id'],
+      beatmapLength: json['beatmap']['total_length'],
+      OD: json['beatmap']['accuracy'],
+      AR: json['beatmap']['ar'],
+      BPM: json['beatmap']['bpm'],
+      CS: json['beatmap']['cs'],
+      HP: json['beatmap']['drain'],
+      beatmapURL: json['beatmap']['url'],
+      artistName: json['beatmapset']['artist'],
+      coversJPG: json['beatmapset']['covers']['cover'],
+      mapTitle: json['beatmapset']['title'],
+      mapperName: json['beatmapset']['creator'],
+      mapperId: json['beatmapset']['user_id'],
     );
   }
 }
