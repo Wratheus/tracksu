@@ -2,23 +2,24 @@
 class Scores{
   int?scoreId;
   List<dynamic> mods = [];
-  int?scorePoints;
+  var scorePoints;
+  var accuracy;
   int?maxCombo;
   Map<String, dynamic>?mapStatistics;
   String?mapRank;
   String?dateOfScore;
   int?bestScoreOnMapId;
-  int?gainedPP;
+  var gainedPP;
   int?beatmapSetId;
   int?beatmapSetMapId;
-  int?difficultyRating;
-  int?beatmapLength;
+  var difficultyRating;
+  var beatmapLength;
   String?difficultyName;
-  int?OD;
-  int?AR;
-  int?BPM;
-  int?CS;
-  int?HP;
+  var OD;
+  var AR;
+  var BPM;
+  var CS;
+  var HP;
   String?beatmapURL;
   String?artistName;
   String?coversJPG;
@@ -28,6 +29,7 @@ class Scores{
 
   Scores({
     required this.scoreId,
+    required this.accuracy,
     required this.mods,
     required this.scorePoints,
     required this.maxCombo,
@@ -56,6 +58,7 @@ class Scores{
   factory Scores.fromJson(Map<String, dynamic> json){
     return Scores(
       scoreId: json['id'],
+      accuracy: json['accuracy'],
       mods: json['mods'],
       scorePoints: json['score'],
       maxCombo: json['max_combo'],

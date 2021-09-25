@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final token = await getToken();
     print(token['access_token']);
     final player = await getUser(token['access_token'], 'Repentance');
-    /*print(player.avatarURL);
+    print(player.avatarURL);
     print(player.id);
     print(player.isOnline);
     print(player.userName);
@@ -59,39 +59,39 @@ class _MyHomePageState extends State<MyHomePage> {
     print(player.amountOfS);
     print(player.amountOfA);
     print(player.countryRank);
-    print(player.rankHistory);*/
-    List<dynamic> userScore = await getUserScore(token['access_token'], 'Repentance', '12');
-    for (int i = 0; i < 100; i++) {
-      scores.Scores score = userScore[1];
+    print(player.rankHistory);
+    List<dynamic> userScore = await getUserScore(token['access_token'], 'Repentance', '50');
+    for (int i = 0; i < 50; i++) {
+      scores.Scores score = userScore[i];
+      print(score.scoreId);
+      print(score.mapperName);
+      print(score.mapperId);
+      print(score.mapperName);
+      print(score.coversJPG);
+      print(score.artistName);
+      print(score.beatmapURL);
+      print(score.beatmapLength);
+      print(score.beatmapLength);
+      print(score.beatmapSetMapId);
+      print(score.beatmapSetId);
+      print(score.coversJPG);
+      print(score.difficultyName);
+      print(score.difficultyRating);
+      print(score.gainedPP);
+      print(score.bestScoreOnMapId);
+      print(score.dateOfScore);
+      print(score.mapRank);
+      print(score.mapStatistics);
+      print(score.maxCombo);
+      print(score.scorePoints);
+      print(score.scoreId);
+      print(score.AR);
+      print(score.CS);
+      print(score.HP);
+      print(score.OD);
+      print(score.BPM);
+      print(score.mapTitle);
     }
-    print(score.scoreId);
-    print(score.mapperName);
-    /*print(userScore.mapperId);
-    print(userScore.mapperName);
-    print(userScore.coversJPG);
-    print(userScore.artistName);
-    print(userScore.beatmapURL);
-    print(userScore.beatmapLength);
-    print(userScore.beatmapLength);
-    print(userScore.beatmapSetMapId);
-    print(userScore.beatmapSetId);
-    print(userScore.coversJPG);
-    print(userScore.difficultyName);
-    print(userScore.difficultyRating);
-    print(userScore.gainedPP);
-    print(userScore.bestScoreOnMapId);
-    print(userScore.dateOfScore);
-    print(userScore.mapRank);
-    print(userScore.mapStatistics);
-    print(userScore.maxCombo);
-    print(userScore.scorePoints);
-    print(userScore.scoreId);
-    print(userScore.AR);
-    print(userScore.CS);
-    print(userScore.HP);
-    print(userScore.OD);
-    print(userScore.BPM);
-    print(userScore.mapTitle);
     news.News News = await getNews(token['access_token']);
     print(News.id);
     print(News.author);
@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print(News.updatedAt);
     print(News.slug);
     print(News.title);
-    print(News.preview);*/
+    print(News.preview);
   }
 
 

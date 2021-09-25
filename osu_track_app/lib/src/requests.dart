@@ -86,16 +86,13 @@ Future <List<dynamic>> getUserScore(String token, String username, String scoreN
   final http.Response userScoresUrlResponse = await http.get(userScoresUrl, headers: headers);
 
   if (userScoresUrlResponse.statusCode == 200) {
-      var ScoreList = [];
+      List<dynamic> myList = List.filled(100, 0, growable: false);
       var Json = convert.jsonDecode(userScoresUrlResponse.body);
-      Json[1] = scores.Scores.fromJson(Json[1]);
       for (int i = 0; i < int.parse(scoreNumber); i++){
-        /*print(i);
-        print(Json[i]);
-        Json[i] = scores.Scores.fromJson(Json[i]);
-        print(Json[i].scoreId);*/
+        print(i);
+      myList[i] = scores.Scores.fromJson(Json[i]);
     }
-      return Json;
+      return myList;
   }
   else {
     // If the server did not return a 200 CREATED response,
