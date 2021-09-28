@@ -1,10 +1,13 @@
 import 'dart:convert' as convert;
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'authentication.dart' as auth;
-import 'user.dart' as user;
-import 'scores.dart' as scores;
-import 'news.dart' as news;
+
+import '../authentication.dart' as auth;
+import '../objects/user.dart' as user;
+import '../objects/scores.dart' as scores;
+import '../objects/news.dart' as news;
+import '../objects/beatmap.dart' as beatmap;
+import '../objects/scoresbeatmap.dart' as beatmapScores;
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
 and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
 const clientSecret = 'your oAuth2 pass';
@@ -90,7 +93,6 @@ Future <List<dynamic>> getUserScore(String token, String username, String number
       var json = convert.jsonDecode(userScoresUrlResponse.body);
       if (json.length < 100) {scoreNumber = json.length;};
       for (int i = 0; i < scoreNumber; i++){
-        print(i);
       myList[i] = scores.Scores.fromJson(json[i]);
     }
       return myList;
@@ -101,6 +103,7 @@ Future <List<dynamic>> getUserScore(String token, String username, String number
   }
 }
 
+// News request
 Future <news.News> getNews(String token) async{
   final Uri newsUrl = Uri.https('osu.ppy.sh', 'api/v2/news');
   final Map<String, String> headers = {
@@ -119,5 +122,47 @@ Future <news.News> getNews(String token) async{
   }
 }
 
+// Beatmap request
+Future <beatmap.Beatmap> getBeatmap(String token, String beatmapID) async{
+  final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID');
+  final Map<String, String> headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer $token"
+  };
+  final http.Response beatmapUrlResponse = await http.get(beatmapUrl, headers: headers);
 
+  if (beatmapUrlResponse.statusCode == 200) {
+    return beatmap.Beatmap.fromJson(convert.jsonDecode(beatmapUrlResponse.body));
+  }
+  else {
+    // If the server did not return a 200 CREATED response,
+    throw Exception('Failed to get BEATMAP response.');
+  }
+}
+
+// Beatmap top-50 request
+
+Future <List<dynamic>> getBeatmapScores(String token, String beatmapID) async{
+  final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID/scores');
+  final Map<String, String> headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer $token"
+  };
+  final http.Response beatmapScoresUrlResponse = await http.get(beatmapUrl, headers: headers);
+
+  if (beatmapScoresUrlResponse.statusCode == 200) {
+    List<dynamic> myList = List.filled(100, 0, growable: false);
+    var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
+    for (int i = 0; i < json['scores'].length; i++){
+      myList[i] = beatmapScores.BeatmapScores.fromJson(json['scores'][i]);
+    }
+    return myList;
+  }
+  else {
+    // If the server did not return a 200 CREATED response,
+    throw Exception('Failed to get BEATMAP TOP - 50 SCORES response.');
+  }
+}
 

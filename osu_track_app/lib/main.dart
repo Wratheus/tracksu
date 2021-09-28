@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'src/requests.dart';
-import 'src/user.dart' as user;
-import 'src/scores.dart' as scores;
-import 'src/news.dart' as news;
+import 'src/requests/requests.dart';
+import 'src/objects/user.dart' as user;
+import 'src/objects/scores.dart' as scores;
+import 'src/objects/news.dart' as news;
+import 'src/objects/beatmap.dart' as beatmap;
 
 void main() {
   runApp(const MyApp());
@@ -37,74 +38,16 @@ class _MyHomePageState extends State<MyHomePage> {
     final token = await getToken();
     print(token['access_token']);
     final player = await getUser(token['access_token'], 'Repentance');
-    print(player.avatarURL);
     print(player.id);
-    print(player.isOnline);
-    print(player.userName);
-    print(player.coverURL);
-    print(player.joinDate);
-    print(player.country);
-    print(player.monthlyPlayCounts);
-    print(player.scoresFirstCount);
-    print(player.globalRank);
-    print(player.totalPP);
-    print(player.hitAccuracy);
-    print(player.playCount);
-    print(player.playTime);
-    print(player.maximumCombo);
-    print(player.replaysWatched);
-    print(player.amountOfSSH);
-    print(player.amountOfSS);
-    print(player.amountOfSh);
-    print(player.amountOfS);
-    print(player.amountOfA);
-    print(player.countryRank);
-    print(player.rankHistory);
     List<dynamic> userScore = await getUserScore(token['access_token'], 'Sgooll', '100');
-    for (int i = 0; i < userScore.length; i++) {
-      if(userScore[i]==0) break;
-      scores.Scores score = userScore[i];
-      print(score.mods);
-      print(score.scoreId);
-      print(score.mapperName);
-      print(score.mapperId);
-      print(score.mapperName);
-      print(score.coversJPG);
-      print(score.artistName);
-      print(score.beatmapURL);
-      print(score.beatmapLength);
-      print(score.beatmapLength);
-      print(score.beatmapSetMapId);
-      print(score.beatmapSetId);
-      print(score.coversJPG);
-      print(score.difficultyName);
-      print(score.difficultyRating);
-      print(score.gainedPP);
-      print(score.bestScoreOnMapId);
-      print(score.dateOfScore);
-      print(score.mapRank);
-      print(score.mapStatistics);
-      print(score.maxCombo);
-      print(score.scorePoints);
-      print(score.scoreId);
-      print(score.AR);
-      print(score.CS);
-      print(score.HP);
-      print(score.OD);
-      print(score.BPM);
-      print(score.mapTitle);
+    print(userScore);
+    news.News firstNew = await getNews(token['access_token']);
+    print(firstNew.id);
+    beatmap.Beatmap beatmapReq = await getBeatmap(token['access_token'], '2530810');
+    print(beatmapReq);
+    List<dynamic> beatmapScores = await getBeatmapScores(token['access_token'], '2530810');
+    print(beatmapScores);
 
-    }
-    news.News News = await getNews(token['access_token']);
-    print(News.id);
-    print(News.author);
-    print(News.editURL);
-    print(News.firstImage);
-    print(News.publishedAt);
-    print(News.updatedAt);
-    print(News.slug);
-    print(News.title);
-    print(News.preview);
   }
 
 
