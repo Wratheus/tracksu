@@ -38,16 +38,19 @@ class _MyHomePageState extends State<MyHomePage> {
     final token = await getToken();
     print(token['access_token']);
     final player = await getUser(token['access_token'], 'Repentance');
-    print(player.id);
+    //print(player.id);
     List<dynamic> userScore = await getUserScore(token['access_token'], 'Sgooll', '100');
-    print(userScore);
+    //print(userScore);
     news.News firstNew = await getNews(token['access_token']);
-    print(firstNew.id);
+    //print(firstNew.id);
     beatmap.Beatmap beatmapReq = await getBeatmap(token['access_token'], '2530810');
-    print(beatmapReq);
+    //print(beatmapReq);
     List<dynamic> beatmapScores = await getBeatmapScores(token['access_token'], '2530810');
-    print(beatmapScores);
-
+    //print(beatmapScores);
+    int count = 0;
+    List<String> mods = ['HD', 'DT'];
+    List<dynamic> beatmapScoresWithMods = await getBeatmapScoresWithMods(token['access_token'], '738063', mods);
+    print(beatmapScoresWithMods);
   }
 
 

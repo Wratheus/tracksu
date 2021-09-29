@@ -166,3 +166,40 @@ Future <List<dynamic>> getBeatmapScores(String token, String beatmapID) async{
   }
 }
 
+Future <List<dynamic>> getBeatmapScoresWithMods(String token, String beatmapID, List<String> mods) async{
+  int count = 0;
+  final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID/scores');
+  final Map<String, String> headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer $token"
+  };
+  final http.Response beatmapScoresUrlResponse = await http.get(beatmapUrl, headers: headers);
+
+  if (beatmapScoresUrlResponse.statusCode == 200) {
+    List<dynamic> myList = List.filled(100, 0, growable: true);
+    var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
+    for (int i = 0; i < json['scores'].length; i++){
+      beatmapScores.BeatmapScores tmp = beatmapScores.BeatmapScores.fromJson(json['scores'][i]);
+      if (tmp.mods.length == mods.length){
+        for (int j = 0; j < mods.length; j++){
+          if (mods[j] == tmp.mods[j])
+            count++;
+        }
+        if (count == mods.length) {
+          myList[i] = tmp;
+        }
+      }
+      count = 0;
+    }
+    int length = myList.length;
+    for (int i = 0; i < length; i++) {
+      myList.remove(0);
+    }
+    return myList;
+  }
+  else {
+    // If the server did not return a 200 CREATED response,
+    throw Exception('Failed to get BEATMAP TOP - 50 SCORES with mods response.');
+  }
+}
