@@ -46,10 +46,10 @@ class _MyHomePageState extends State<MyHomePage> {
     beatmap.Beatmap beatmapReq = await getBeatmap(token['access_token'], '2530810');
     //print(beatmapReq);
     List<dynamic> beatmapScores = await getBeatmapScores(token['access_token'], '2530810');
-    print(beatmapScores);
+    //print(beatmapScores);
     int count = 0;
     List<String> mods = ['HD', 'DT'];
-    List<dynamic> beatmapScoresWithMods = await getBeatmapScoresWithMods(token['access_token'], '738063', mods);
+    List<dynamic> beatmapScoresWithMods = await getBeatmapScores(token['access_token'], '738063');
     print(beatmapScoresWithMods);
   }
 

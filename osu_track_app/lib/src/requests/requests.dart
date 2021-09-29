@@ -1,5 +1,4 @@
 import 'dart:convert' as convert;
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 import '../authentication.dart' as auth;
@@ -143,30 +142,7 @@ Future <beatmap.Beatmap> getBeatmap(String token, String beatmapID) async{
 
 // Beatmap top-50 request
 
-Future <List<dynamic>> getBeatmapScores(String token, String beatmapID) async{
-  final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID/scores');
-  final Map<String, String> headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer $token"
-  };
-  final http.Response beatmapScoresUrlResponse = await http.get(beatmapUrl, headers: headers);
-
-  if (beatmapScoresUrlResponse.statusCode == 200) {
-    List<dynamic> myList = List.filled(100, 0, growable: false);
-    var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
-    for (int i = 0; i < json['scores'].length; i++){
-      myList[i] = beatmapScores.BeatmapScores.fromJson(json['scores'][i]);
-    }
-    return myList;
-  }
-  else {
-    // If the server did not return a 200 CREATED response,
-    throw Exception('Failed to get BEATMAP TOP - 50 SCORES response.');
-  }
-}
-
-Future <List<dynamic>> getBeatmapScoresWithMods(String token, String beatmapID, List<String> mods) async{
+Future <List<dynamic>> getBeatmapScores(String token, String beatmapID, [List<String>? mods]) async {
   int count = 0;
   final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID/scores');
   final Map<String, String> headers = {
@@ -174,32 +150,45 @@ Future <List<dynamic>> getBeatmapScoresWithMods(String token, String beatmapID, 
     "Accept": "application/json",
     "Authorization": "Bearer $token"
   };
-  final http.Response beatmapScoresUrlResponse = await http.get(beatmapUrl, headers: headers);
+  final http.Response beatmapScoresUrlResponse = await http.get(
+      beatmapUrl, headers: headers);
 
   if (beatmapScoresUrlResponse.statusCode == 200) {
-    List<dynamic> myList = List.filled(100, 0, growable: true);
-    var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
-    for (int i = 0; i < json['scores'].length; i++){
-      beatmapScores.BeatmapScores tmp = beatmapScores.BeatmapScores.fromJson(json['scores'][i]);
-      if (tmp.mods.length == mods.length){
-        for (int j = 0; j < mods.length; j++){
-          if (mods[j] == tmp.mods[j])
-            count++;
+    if (mods != null) {
+      List<dynamic> myList = List.filled(100, 0, growable: true);
+      var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
+      for (int i = 0; i < json['scores'].length; i++) {
+        beatmapScores.BeatmapScores tmp = beatmapScores.BeatmapScores.fromJson(
+            json['scores'][i]);
+        if (tmp.mods.length == mods.length) {
+          for (int j = 0; j < mods.length; j++) {
+            if (mods[j] == tmp.mods[j])
+              count++;
+          }
+          if (count == mods.length) {
+            myList[i] = tmp;
+          }
         }
-        if (count == mods.length) {
-          myList[i] = tmp;
-        }
+        count = 0;
       }
-      count = 0;
+      int length = myList.length;
+      for (int i = 0; i < length; i++) {
+        myList.remove(0);
+      }
+      return myList;
     }
-    int length = myList.length;
-    for (int i = 0; i < length; i++) {
-      myList.remove(0);
+    else {
+      List<dynamic> myList = List.filled(100, 0, growable: false);
+      var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
+      for (int i = 0; i < json['scores'].length; i++) {
+        myList[i] = beatmapScores.BeatmapScores.fromJson(json['scores'][i]);
+      }
+      return myList;
     }
-    return myList;
   }
   else {
     // If the server did not return a 200 CREATED response,
-    throw Exception('Failed to get BEATMAP TOP - 50 SCORES with mods response.');
+    throw Exception(
+        'Failed to get BEATMAP TOP - 50 SCORES with mods response.');
   }
 }
