@@ -1,6 +1,8 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
+import '../utils/url_launch.dart' as launchUrl;
 import '../authentication.dart' as auth;
 import '../objects/user.dart' as user;
 import '../objects/scores.dart' as scores;
@@ -12,14 +14,15 @@ and put there your personal Osu! API oAuth2 as listed below:  | (you can get oat
 const clientSecret = 'your oAuth2 pass';
 const client_id = 'your id'; */
 
-// Token Request
-Future<Map<String, dynamic>> getToken() async{
 
+// Token Request
+Future<Map<String, dynamic>> getToken(String? code) async{
   final String tokenRequestBody = convert.jsonEncode({
-    "grant_type": "client_credentials",
+    "grant_type": "authorization_code",
     "client_id": auth.client_id,
     "client_secret": auth.clientSecret,
-    "scope": "public"
+    "code": code,
+    "redirect_uri": 'https://github.com/Wratheus/OsuTrack/'
   });
   final Map<String, String> tokenRequestHeaders = {
     'Accept': 'application/json',
@@ -32,7 +35,7 @@ Future<Map<String, dynamic>> getToken() async{
   );
   if (tokenRequestResponse.statusCode == 200) {
     // If the server did return a 200 CREATED response,
-    final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
+    final token = await convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
     return token;
   }
   else {
