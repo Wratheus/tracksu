@@ -4,10 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 import '../requests/requests.dart';
-import '../objects/user.dart' as user;
-import '../objects/scores.dart' as scores;
-import '../objects/news.dart' as news;
-import '../objects/beatmap.dart' as beatmap;
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -56,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (url.startsWith('https://github.com/Wratheus/OsuTrack')) {
           RegExp regExp = RegExp("code=(.*)");
           this.token = regExp.firstMatch(url)?.group(1);
+          print(token);
           var myToken = await getToken(token);
           print(myToken['access_token']);
         };

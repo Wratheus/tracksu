@@ -15,7 +15,8 @@ const clientSecret = 'your oAuth2 pass';
 const client_id = 'your id'; */
 
 
-// Token Request
+// Token Request from user Auth
+// returns a token
 Future<Map<String, dynamic>> getToken(String? code) async{
   final String tokenRequestBody = convert.jsonEncode({
     "grant_type": "authorization_code",
@@ -35,16 +36,48 @@ Future<Map<String, dynamic>> getToken(String? code) async{
   );
   if (tokenRequestResponse.statusCode == 200) {
     // If the server did return a 200 CREATED response,
-    final token = await convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
+    final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
     return token;
   }
   else {
     // If the server did not return a 200 CREATED response,
-    throw Exception('Failed to get TOKEN response.');
+    var statusCode = tokenRequestResponse.statusCode;
+    throw Exception('Failed to get TOKEN response. $statusCode');
+  }
+}
+
+// getToken as owner of Application
+// returns a token
+Future<Map<String, dynamic>> getTokenAsOwner() async{
+  final String tokenRequestBody = convert.jsonEncode({
+    "grant_type": "client_credentials",
+    "client_id": auth.client_id,
+    "client_secret": auth.clientSecret,
+    "scope": "public"
+  });
+  final Map<String, String> tokenRequestHeaders = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  };
+  final http.Response tokenRequestResponse = await http.post(
+      Uri.https('osu.ppy.sh', '/oauth/token'),
+      headers: tokenRequestHeaders,
+      body: tokenRequestBody
+  );
+  if (tokenRequestResponse.statusCode == 200) {
+    // If the server did return a 200 CREATED response,
+    final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
+    return token;
+  }
+  else {
+    // If the server did not return a 200 CREATED response,
+    var statusCode = tokenRequestResponse.statusCode;
+    throw Exception('Failed to get TOKEN response. $statusCode');
   }
 }
 
 // User request
+// returns a user class object
 Future <user.User> getUser(String token, String username) async{
 
   final params = {
@@ -70,6 +103,7 @@ Future <user.User> getUser(String token, String username) async{
 
 
 // User Score list Request
+// returns a list with 100 (by default) user's scores-objects
 Future <List<dynamic>> getUserScore(String token, String username, String numberOfRequesedScores) async{
   const scoresType = 'best';
   if (int.parse(numberOfRequesedScores) > 100 || int.parse(numberOfRequesedScores) <= 0){ throw Exception('wrong ScoreNumber'); }
@@ -106,7 +140,8 @@ Future <List<dynamic>> getUserScore(String token, String username, String number
 }
 
 // News request
-Future <news.News> getNews(String token) async{
+// returns a list with News-objects
+Future <List<dynamic>> getNews(String token) async{
   final Uri newsUrl = Uri.https('osu.ppy.sh', 'api/v2/news');
   final Map<String, String> headers = {
     "Content-Type": "application/json",
@@ -116,7 +151,14 @@ Future <news.News> getNews(String token) async{
   final http.Response newsUrlResponse = await http.get(newsUrl, headers: headers);
 
   if (newsUrlResponse.statusCode == 200) {
-    return news.News.fromJson(convert.jsonDecode(newsUrlResponse.body));
+    List<dynamic> myList = List.filled(12, 0, growable: false);
+    var numberOfNews = 12;
+    var json = convert.jsonDecode(newsUrlResponse.body);
+    for (int i = 0; i < numberOfNews; i++){
+      myList[i] = news.News.fromJson(json["news_posts"][i]);
+      print(json["news_posts"][i]);
+    }
+    return myList;
   }
   else {
     // If the server did not return a 200 CREATED response,
@@ -125,6 +167,7 @@ Future <news.News> getNews(String token) async{
 }
 
 // Beatmap request
+// returns a beatmap object
 Future <beatmap.Beatmap> getBeatmap(String token, String beatmapID) async{
   final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID');
   final Map<String, String> headers = {
@@ -144,7 +187,7 @@ Future <beatmap.Beatmap> getBeatmap(String token, String beatmapID) async{
 }
 
 // Beatmap top-50 request
-
+// returns a list with beatmap top 50 best performance scores-objects
 Future <List<dynamic>> getBeatmapScores(String token, String beatmapID, [List<String>? mods]) async {
   int count = 0;
   final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID/scores');

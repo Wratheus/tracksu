@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:osu_track_app/src/pages/last_news_page.dart';
 
-import 'authorization.dart' as authorizationPage;
-import '../requests/requests.dart';
-import '../objects/user.dart' as user;
-import '../objects/scores.dart' as scores;
-import '../objects/news.dart' as news;
-import '../objects/beatmap.dart' as beatmap;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -15,12 +10,20 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.pink,
+        backgroundColor: const Color.fromRGBO(48,36,36, 0.96),
       ),
-      home: authorizationPage.LoginScreen());
-
+      home:
+      Scaffold(
+        appBar: AppBar(title: const Text(
+          'News Page',
+          style: TextStyle(color: Colors.white, fontFamily: 'Exo 2'),
+        )),
+        body: const LastNewsPage(),
+        backgroundColor: const Color.fromRGBO(48,36,36, 0.96),
+    ));
   }
 }
-
+// home: authorizationPage.LoginScreen());
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
