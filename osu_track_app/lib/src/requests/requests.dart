@@ -156,7 +156,6 @@ Future <List<dynamic>> getNews(String token) async{
     var json = convert.jsonDecode(newsUrlResponse.body);
     for (int i = 0; i < numberOfNews; i++){
       myList[i] = news.News.fromJson(json["news_posts"][i]);
-      print(json["news_posts"][i]);
     }
     return myList;
   }

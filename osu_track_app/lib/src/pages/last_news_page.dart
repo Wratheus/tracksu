@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '/src/pages/cubit/news_cubit.dart';
 import '/src/utils/url_launch.dart';
 import '../utils/load_news_image.dart';
+import '../utils/color_contrasts.dart' as myColors;
 
 class LastNewsPage extends StatelessWidget {
   const LastNewsPage({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _LastNewsPage extends StatelessWidget {
     return BlocBuilder<NewsCubit, NewsState>(builder: (context, state){
       if(state is NewsInitial){ // run Circular progress bar while news is loading state is newsInitial
         context.read<NewsCubit>().loadNews();
-        return const Center(child: CircularProgressIndicator(backgroundColor: Color.fromRGBO(48,36,36, 0.96)),);
+        return const Center(child: CircularProgressIndicator(backgroundColor: myColors.Palette.brown),);
       }
       if(state is NewsErrorState){ // Throw error if state is NewsError
         return Center(
@@ -57,9 +58,9 @@ class _LastNewsPage extends StatelessWidget {
               textAlign: TextAlign.left,
               overflow: TextOverflow.ellipsis,
             ),
-            tileColor: const Color.fromRGBO(48,36,36, 0.96),
+            tileColor: myColors.Palette.brown,
             trailing: const Icon(Icons.keyboard_arrow_right,
-              color: Color.fromRGBO(255, 255, 255, 1.0),
+              color: Colors.white,
               size: 20,),
             contentPadding: const EdgeInsets.all(5),
             onTap: () => launchUniversalLink(item.editURL!), // News.editURL !!!

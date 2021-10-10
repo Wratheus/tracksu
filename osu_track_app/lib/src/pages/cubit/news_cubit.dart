@@ -12,9 +12,7 @@ class NewsCubit extends Cubit<NewsState> {
   Future<void> loadNews() async {
     try{
       Map<String, dynamic> token = await getTokenAsOwner(); // receive news object
-      print(token['access_token']);
       var currenNews = await getNews(token['access_token']); // request news
-      print(currenNews);
       emit(NewsLoadedState(currenNews)); // activate newsLoaded state
     }catch (e){
       emit(NewsErrorState('Failed News Load'));

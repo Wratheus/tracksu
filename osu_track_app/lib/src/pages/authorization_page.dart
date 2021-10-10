@@ -1,7 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+
 
 import '../requests/requests.dart';
 
@@ -52,9 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (url.startsWith('https://github.com/Wratheus/OsuTrack')) {
           RegExp regExp = RegExp("code=(.*)");
           this.token = regExp.firstMatch(url)?.group(1);
-          print(token);
           var myToken = await getToken(token);
-          print(myToken['access_token']);
         };
         setState(() {
             //Navigator.of(context).pushNamedAndRemoveUntil(

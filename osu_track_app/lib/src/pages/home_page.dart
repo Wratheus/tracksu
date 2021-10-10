@@ -1,86 +1,89 @@
 import 'package:flutter/material.dart';
-import 'package:osu_track_app/src/pages/last_news_page.dart';
+import 'package:flutter/cupertino.dart';
+
+import '../widgets/navigation_bar/navigation_bar.dart' as navigationBar;
+import '../widgets/navigation_bar/tab_controller.dart' as controller;
+import '../widgets/navigation_bar/tab_model.dart';
+import '../utils/color_contrasts.dart' as myColors;
 
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-        backgroundColor: const Color.fromRGBO(48,36,36, 0.96),
+  State<HomePage> createState() => _HomePageState();
+}
+
+
+class _HomePageState extends State<HomePage> {
+
+  final _navigatorKeys = {
+    TabItem.News: GlobalKey<NavigatorState>(),
+    TabItem.OsuTrack: GlobalKey<NavigatorState>(),
+    TabItem.LeaderBoard: GlobalKey<NavigatorState>(),
+  };
+
+  var _currentTab = TabItem.News;
+
+  void _selectTab(TabItem tabItem) {
+    setState(() => _currentTab = tabItem);
+  }
+
+  Widget _buildOffstageNavigator(TabItem tabItem) {
+    return Offstage(
+      offstage: _currentTab != tabItem,
+      child: controller.TabController(
+        controllerKey: _navigatorKeys[tabItem]!,
+        tabItem: tabItem,
       ),
-      home:
-      Scaffold(
-        appBar: AppBar(title: const Text(
-          'News Page',
-          style: TextStyle(color: Colors.white, fontFamily: 'Exo 2'),
-        )),
-        body: const LastNewsPage(),
-        backgroundColor: const Color.fromRGBO(48,36,36, 0.96),
-    ));
-  }
-}
-// home: authorizationPage.LoginScreen());
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  void _incrementCounter() async{
-
-    //final token = await getToken();
-    //print(token['access_token']);
-    //final player = await getUser(token['access_token'], 'Repentance');
-    //print(player.id);
-    //List<dynamic> userScore = await getUserScore(token['access_token'], 'Sgooll', '100');
-    //print(userScore);
-    //news.News firstNew = await getNews(token['access_token']);
-    //print(firstNew.id);
-    //beatmap.Beatmap beatmapReq = await getBeatmap(token['access_token'], '2530810');
-    //print(beatmapReq);
-    //List<dynamic> beatmapScores = await getBeatmapScores(token['access_token'], '2530810');
-    //print(beatmapScores);
-    //int count = 0;
-    //List<String> mods = ['HD', 'DT'];
-    //List<dynamic> beatmapScoresWithMods = await getBeatmapScores(token['access_token'], '738063');
-    //print(beatmapScoresWithMods);
+    );
   }
 
+
+  // void _incrementCounter() async {
+  //   final token = await getToken();
+  //   print(token['access_token']);
+  //   final player = await getUser(token['access_token'], 'Repentance');
+  //   print(player.id);
+  //   List<dynamic> userScore = await getUserScore(token['access_token'], 'Sgooll', '100');
+  //   print(userScore);
+  //   news.News firstNew = await getNews(token['access_token']);
+  //   print(firstNew.id);
+  //   beatmap.Beatmap beatmapReq = await getBeatmap(token['access_token'], '2530810');
+  //   print(beatmapReq);
+  //   List<dynamic> beatmapScores = await getBeatmapScores(token['access_token'], '2530810');
+  //   print(beatmapScores);
+  //   int count = 0;
+  //   List<String> mods = ['HD', 'DT'];
+  //   List<dynamic> beatmapScoresWithMods = await getBeatmapScores(token['access_token'], '738063');
+  //   print(beatmapScoresWithMods);
+  // }
 
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () async {
+        if (_currentTab != TabItem.News) { _selectTab(TabItem.OsuTrack); }
+        else if (_currentTab == TabItem.OsuTrack) { _selectTab(TabItem.News); }
+        else { _selectTab(TabItem.LeaderBoard); }
+        return true;
+      },
+      child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          backgroundColor: myColors.Palette.pink,
+          title: const Text('osu News'),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '1',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ],
-          ),
+        body: Stack(children: <Widget>[
+          _buildOffstageNavigator(TabItem.News),
+          _buildOffstageNavigator(TabItem.OsuTrack),
+          _buildOffstageNavigator(TabItem.LeaderBoard),
+        ]),
+            bottomNavigationBar: navigationBar.NavigationBar(
+              currentTab: _currentTab,
+              onSelectTab: _selectTab,
         ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-            child: const Icon(Icons.add)
-        )
+      ),
     );
   }
 }
