@@ -9,6 +9,7 @@ import '../objects/scores.dart' as scores;
 import '../objects/news.dart' as news;
 import '../objects/beatmap.dart' as beatmap;
 import '../objects/scoresbeatmap.dart' as beatmapScores;
+import '../utils/secure_storage.dart';
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
 and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
 const clientSecret = 'your oAuth2 pass';
@@ -67,6 +68,7 @@ Future<Map<String, dynamic>> getTokenAsOwner() async{
   if (tokenRequestResponse.statusCode == 200) {
     // If the server did return a 200 CREATED response,
     final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
+    UserSecureStorage.setTokenInStorage(token['access_token']);
     return token;
   }
   else {
