@@ -39,27 +39,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
-  // void _incrementCounter() async {
-  //   final token = await getToken();
-  //   print(token['access_token']);
-  //   final player = await getUser(token['access_token'], 'Repentance');
-  //   print(player.id);
-  //   List<dynamic> userScore = await getUserScore(token['access_token'], 'Sgooll', '100');
-  //   print(userScore);
-  //   news.News firstNew = await getNews(token['access_token']);
-  //   print(firstNew.id);
-  //   beatmap.Beatmap beatmapReq = await getBeatmap(token['access_token'], '2530810');
-  //   print(beatmapReq);
-  //   List<dynamic> beatmapScores = await getBeatmapScores(token['access_token'], '2530810');
-  //   print(beatmapScores);
-  //   int count = 0;
-  //   List<String> mods = ['HD', 'DT'];
-  //   List<dynamic> beatmapScoresWithMods = await getBeatmapScores(token['access_token'], '738063');
-  //   print(beatmapScoresWithMods);
-  // }
-
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -72,7 +51,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: myColors.Palette.pink,
-          title: const Text('osu News'),
+          title: const Text("Osu News!"),
         ),
         body: Stack(children: <Widget>[
           _buildOffstageNavigator(TabItem.News),

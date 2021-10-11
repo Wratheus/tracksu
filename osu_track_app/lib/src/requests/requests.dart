@@ -1,13 +1,12 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
-import '../utils/url_launch.dart' as launchUrl;
 import '../authentication.dart' as auth;
 import '../objects/user.dart' as user;
 import '../objects/scores.dart' as scores;
 import '../objects/news.dart' as news;
 import '../objects/beatmap.dart' as beatmap;
+import '../objects/rankings.dart' as rankings;
 import '../objects/scoresbeatmap.dart' as beatmapScores;
 import '../utils/secure_storage.dart';
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
@@ -17,23 +16,23 @@ const client_id = 'your id'; */
 
 
 // Token Request from user Auth
-// returns a token
+// puts token to UserSecureStorage
 Future<Map<String, dynamic>> getToken(String? code) async{
-  final String tokenRequestBody = convert.jsonEncode({
+  final String body = convert.jsonEncode({
     "grant_type": "authorization_code",
     "client_id": auth.client_id,
     "client_secret": auth.clientSecret,
     "code": code,
     "redirect_uri": 'https://github.com/Wratheus/OsuTrack/'
   });
-  final Map<String, String> tokenRequestHeaders = {
+  final Map<String, String> headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   };
   final http.Response tokenRequestResponse = await http.post(
       Uri.https('osu.ppy.sh', '/oauth/token'),
-      headers: tokenRequestHeaders,
-      body: tokenRequestBody
+      headers: headers,
+      body: body
   );
   if (tokenRequestResponse.statusCode == 200) {
     // If the server did return a 200 CREATED response,
@@ -43,33 +42,32 @@ Future<Map<String, dynamic>> getToken(String? code) async{
   else {
     // If the server did not return a 200 CREATED response,
     var statusCode = tokenRequestResponse.statusCode;
-    throw Exception('Failed to get TOKEN response. $statusCode');
+    throw Exception('Failed to get TOKEN response. Status code = $statusCode');
   }
 }
 
 // getToken as owner of Application
-// returns a token
-Future<Map<String, dynamic>> getTokenAsOwner() async{
-  final String tokenRequestBody = convert.jsonEncode({
+// puts token to UserSecureStorage
+Future<void>getTokenAsOwner() async{
+  final String body = convert.jsonEncode({
     "grant_type": "client_credentials",
     "client_id": auth.client_id,
     "client_secret": auth.clientSecret,
     "scope": "public"
   });
-  final Map<String, String> tokenRequestHeaders = {
+  final Map<String, String> headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   };
   final http.Response tokenRequestResponse = await http.post(
       Uri.https('osu.ppy.sh', '/oauth/token'),
-      headers: tokenRequestHeaders,
-      body: tokenRequestBody
+      headers: headers,
+      body: body
   );
   if (tokenRequestResponse.statusCode == 200) {
     // If the server did return a 200 CREATED response,
     final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
     UserSecureStorage.setTokenInStorage(token['access_token']);
-    return token;
   }
   else {
     // If the server did not return a 200 CREATED response,
@@ -82,10 +80,10 @@ Future<Map<String, dynamic>> getTokenAsOwner() async{
 // returns a user class object
 Future <user.User> getUser(String token, String username) async{
 
-  final params = {
+  final body = {
     'key': 'username'
   };
-  final Uri userUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$username', params);
+  final Uri userUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$username', body);
   final Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -99,33 +97,32 @@ Future <user.User> getUser(String token, String username) async{
   }
   else {
     // If the server did not return a 200 CREATED response,
-    throw Exception('Failed to get USER response.');
+    var statusCode = userGetResponse.statusCode;
+    throw Exception('Failed to get USER response. Status code = $statusCode');
   }
 }
 
-
 // User Score list Request
 // returns a list with 100 (by default) user's scores-objects
-Future <List<dynamic>> getUserScore(String token, String username, String numberOfRequesedScores) async{
+Future <List<dynamic>> getUserScore(String token, String username, String numberOfRequestedScores) async{
   const scoresType = 'best';
-  if (int.parse(numberOfRequesedScores) > 100 || int.parse(numberOfRequesedScores) <= 0){ throw Exception('wrong ScoreNumber'); }
+  if (int.parse(numberOfRequestedScores) > 100 || int.parse(numberOfRequestedScores) <= 0){ throw Exception('wrong ScoreNumber'); }
   user.User player = await getUser(token, username);
   final userID = player.id;
-  final params = {
+  final body = {
     'include_fails': '1',
     'mode': 'osu',
-    'limit': numberOfRequesedScores,
+    'limit': numberOfRequestedScores,
     'offset': '1'
   };
-
-  final Uri userScoresUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$userID/scores/$scoresType', params);
+  final Uri userScoresUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$userID/scores/$scoresType', body);
   final Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
     "Authorization": "Bearer $token"
   };
   final http.Response userScoresUrlResponse = await http.get(userScoresUrl, headers: headers);
-  int scoreNumber = int.parse(numberOfRequesedScores);
+  int scoreNumber = int.parse(numberOfRequestedScores);
   if (userScoresUrlResponse.statusCode == 200) {
       List<dynamic> myList = List.filled(100, 0, growable: false);
       var json = convert.jsonDecode(userScoresUrlResponse.body);
@@ -137,7 +134,8 @@ Future <List<dynamic>> getUserScore(String token, String username, String number
   }
   else {
     // If the server did not return a 200 CREATED response,
-    throw Exception('Failed to get USER SCORES response.');
+    var statusCode = userScoresUrlResponse.statusCode;
+    throw Exception('Failed to get USER SCORES response. Status code = $statusCode');
   }
 }
 
@@ -163,7 +161,8 @@ Future <List<dynamic>> getNews(String token) async{
   }
   else {
     // If the server did not return a 200 CREATED response,
-    throw Exception('Failed to get NEWS response.');
+    var statusCode = newsUrlResponse.statusCode;
+    throw Exception('Failed to get NEWS response. Status code = $statusCode');
   }
 }
 
@@ -183,7 +182,8 @@ Future <beatmap.Beatmap> getBeatmap(String token, String beatmapID) async{
   }
   else {
     // If the server did not return a 200 CREATED response,
-    throw Exception('Failed to get BEATMAP response.');
+    var statusCode = beatmapUrlResponse.statusCode;
+    throw Exception('Failed to get BEATMAP response. Status code = $statusCode');
   }
 }
 
@@ -205,12 +205,13 @@ Future <List<dynamic>> getBeatmapScores(String token, String beatmapID, [List<St
       List<dynamic> myList = List.filled(100, 0, growable: true);
       var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
       for (int i = 0; i < json['scores'].length; i++) {
-        beatmapScores.BeatmapScores tmp = beatmapScores.BeatmapScores.fromJson(
+        beatmapScores.BeatmapScores tmp = beatmapScores.BeatmapScores.fromJson( // calculate scores with selected mods in response
             json['scores'][i]);
         if (tmp.mods.length == mods.length) {
           for (int j = 0; j < mods.length; j++) {
-            if (mods[j] == tmp.mods[j])
+            if (mods[j] == tmp.mods[j]) {
               count++;
+            }
           }
           if (count == mods.length) {
             myList[i] = tmp;
@@ -235,7 +236,41 @@ Future <List<dynamic>> getBeatmapScores(String token, String beatmapID, [List<St
   }
   else {
     // If the server did not return a 200 CREATED response,
-    throw Exception(
-        'Failed to get BEATMAP TOP - 50 SCORES with mods response.');
+    var statusCode = beatmapScoresUrlResponse.statusCode;
+    throw Exception('Failed to get BEATMAP SCORES response. Status code = $statusCode');
+  }
+}
+
+// Ranking request
+Future <List> getRanking(String token, [int country = 0, String mode = "osu",
+                          String type = "performance", String filter = "all"]) async {
+
+  final Map<String, String> headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer $token"
+  };
+  final Map<String, dynamic> body = {
+    "filter": filter
+  };
+  final Uri rankingsUrl = Uri.https('osu.ppy.sh', 'api/v2/rankings/$mode/$type', body);
+  final http.Response getRankingResponse = await http.get(rankingsUrl, headers: headers);
+
+  if (getRankingResponse.statusCode == 200) {
+    List myList = List.filled(50, 0, growable: false);
+    var numberOfPlayers = 50;
+    var json = convert.jsonDecode(getRankingResponse.body);
+    for (int i = 0; i < numberOfPlayers; i++){
+      myList[i] = rankings.Rankings.fromJson(json["ranking"][i]);
+      print(myList[i].PP);
+      print(myList[i]);
+    }
+    print(convert.jsonDecode(getRankingResponse.body));
+    return myList;
+  }
+  else {
+    // If the server did not return a 200 CREATED response,
+    var statusCode = getRankingResponse.statusCode;
+    throw Exception('Failed to get RANKINGS response. Status code = $statusCode');
   }
 }

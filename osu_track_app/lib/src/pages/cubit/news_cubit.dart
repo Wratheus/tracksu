@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../requests/requests.dart';
+import '../../utils/secure_storage.dart';
 
 part 'news_state.dart';
 
@@ -11,9 +12,10 @@ class NewsCubit extends Cubit<NewsState> {
 
   Future<void> loadNews() async {
     try{
-      Map<String, dynamic> token = await getTokenAsOwner(); // receive news object
-      var currenNews = await getNews(token['access_token']); // request news
-      emit(NewsLoadedState(currenNews)); // activate newsLoaded state
+      await getTokenAsOwner(); // receive news object
+      var currentNews = await getNews((await UserSecureStorage.getTokenFromStorage())!); // request news
+      getRanking((await UserSecureStorage.getTokenFromStorage())!);
+      emit(NewsLoadedState(currentNews)); // activate newsLoaded state
     }catch (e){
       emit(NewsErrorState('Failed News Load'));
     }

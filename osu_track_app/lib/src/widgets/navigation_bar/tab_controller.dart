@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'tab_model.dart';
 import '../../pages/last_news_page.dart';
-import '../../pages/authorization_page.dart';
+import '../../pages/authorizationpage.dart';
 
 class TabController extends StatelessWidget {
   TabController({required this.controllerKey, required this.tabItem});
