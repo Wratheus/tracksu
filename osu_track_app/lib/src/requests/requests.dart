@@ -257,15 +257,12 @@ Future <List> getRanking(String token, [int country = 0, String mode = "osu",
   final http.Response getRankingResponse = await http.get(rankingsUrl, headers: headers);
 
   if (getRankingResponse.statusCode == 200) {
-    List myList = List.filled(50, 0, growable: false);
+    final List myList = List.filled(50, 0, growable: false);
     var numberOfPlayers = 50;
     var json = convert.jsonDecode(getRankingResponse.body);
     for (int i = 0; i < numberOfPlayers; i++){
       myList[i] = rankings.Rankings.fromJson(json["ranking"][i]);
-      print(myList[i].PP);
-      print(myList[i]);
     }
-    print(convert.jsonDecode(getRankingResponse.body));
     return myList;
   }
   else {

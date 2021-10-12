@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/src/pages/cubit/news_cubit.dart';
@@ -30,9 +31,11 @@ class _LastNewsPage extends StatelessWidget {
       }
       if(state is NewsErrorState){ // Throw error if state is NewsError
         return Center(
-          child: Text(state.errorMessage, style: const TextStyle(
-            fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Exo 2'),
-          )
+          child: Scaffold(
+              body: Text(state.errorMessage, textAlign: TextAlign.center, style: const TextStyle(
+            fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Exo 2'),),
+            bottomNavigationBar: Image.asset('assets/error.jpg'),
+        ),
         );
       }
       if(state is NewsLoadedState){ // Reload News if state is NewsReload (wheel page down)
@@ -41,13 +44,16 @@ class _LastNewsPage extends StatelessWidget {
             onRefresh: () => context.read<NewsCubit>().reloadNews(),
         );
       }
-
       return Container();
     });
   }
 
-  Widget listBuilder(BuildContext context, NewsLoadedState state){ // News List appearance constructor
-    return ListView.builder(
+  Widget listBuilder(BuildContext context, NewsLoadedState state){ // News page appearance constructor
+    return Scaffold(
+      appBar: AppBar(backgroundColor: my_colors.Palette.pink,
+        title: const Text("Osu News!"), leading: Image.asset('assets/cloudLogo.png'),
+      ),
+      body: ListView.builder(
         itemCount: state.newsList.length,
         itemBuilder: (BuildContext context, int index) { // select one by one element from the List of News-objects from GetNewsRequest()
           final item = state.newsList[index];
@@ -64,9 +70,10 @@ class _LastNewsPage extends StatelessWidget {
               size: 20,),
             contentPadding: const EdgeInsets.all(5),
             onTap: () => launchUniversalLink(item.editURL!), // News.editURL
-            leading: ImageNewsWidget(urlImage: item.firstImage!),
-
+            leading: ImageNewsWidget(urlImage: item.firstImage!)
           );
-        });
+        })
+    );
   }
+
 }

@@ -12,10 +12,8 @@ class NewsCubit extends Cubit<NewsState> {
 
   Future<void> loadNews() async {
     try{
-      await getTokenAsOwner(); // receive news object
-      var currentNews = await getNews((await UserSecureStorage.getTokenFromStorage())!); // request news
-      getRanking((await UserSecureStorage.getTokenFromStorage())!);
-      emit(NewsLoadedState(currentNews)); // activate newsLoaded state
+      await getTokenAsOwner();
+      emit(NewsLoadedState(await getNews((await UserSecureStorage.getTokenFromStorage())!))); // request news
     }catch (e){
       emit(NewsErrorState('Failed News Load'));
     }

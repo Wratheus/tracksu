@@ -13,7 +13,7 @@ class ImageNewsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(padding: const EdgeInsets.all(0),
-      child: CachedNetworkImage(placeholder: (context, url) => Image.asset('assets/no-image.png'),
+      child: CachedNetworkImage(placeholder: (context, url) => Image.asset('assets/paintedLogo.png'),
       imageUrl: urlImage,
       height: height,
       width: width,

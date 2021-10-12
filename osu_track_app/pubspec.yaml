@@ -64,7 +64,9 @@ flutter:
 
 
   assets:
-     - assets/no-image.png
+     - assets/error.jpg
+     - assets/cloudLogo.png
+     - assets/paintedLogo.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -84,3 +86,6 @@ flutter:
          - asset: assets/Exo2-VariableFont_wght.ttf
          - asset: assets/Exo2-italic-VariableFont_wght.ttf
            style: italic
+     - family:  MyFlutterApp
+       fonts:
+         - asset: assets/icon_pack/MyFlutterApp.ttf

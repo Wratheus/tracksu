@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'tab_model.dart';
-import '../../utils/color_contrasts.dart' as myColors;
+import '../../utils/color_contrasts.dart' as my_colors;
+import '../../utils/icon_pack.dart' as my_icons;
 
 const Map<TabItem, TabModel> tabs = {
-  TabItem.News: TabModel(name: "News", icon: Icons.assignment_rounded),
-  TabItem.OsuTrack: TabModel(name: "Osu!", icon: Icons.circle),
-  TabItem.LeaderBoard: TabModel(name: "LB", icon: Icons.article_rounded)
+  TabItem.News: TabModel(name: "News", icon: my_icons.MyFlutterApp.rss_square),
+  TabItem.OsuTrack: TabModel(name: "Osu!", icon: my_icons.MyFlutterApp.user_circle),
+  TabItem.LeaderBoard: TabModel(name: "LB", icon: my_icons.MyFlutterApp.dice_d6)
 };
 
 class NavigationBar extends StatelessWidget {
@@ -20,10 +21,10 @@ class NavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        selectedItemColor: Colors.redAccent,
+        selectedItemColor: Colors.pinkAccent,
         unselectedItemColor: Colors.white,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: myColors.Palette.pink,
+        backgroundColor: my_colors.Palette.pink,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: currentTab.index,

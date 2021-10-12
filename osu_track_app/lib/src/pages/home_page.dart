@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import '../widgets/navigation_bar/navigation_bar.dart' as navigationBar;
 import '../widgets/navigation_bar/tab_controller.dart' as controller;
 import '../widgets/navigation_bar/tab_model.dart';
-import '../utils/color_contrasts.dart' as myColors;
+import '../utils/color_contrasts.dart' as my_colors;
 
 
 class HomePage extends StatefulWidget {
@@ -49,10 +49,7 @@ class _HomePageState extends State<HomePage> {
         return true;
       },
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: myColors.Palette.pink,
-          title: const Text("Osu News!"),
-        ),
+        backgroundColor: my_colors.Palette.brown,
         body: Stack(children: <Widget>[
           _buildOffstageNavigator(TabItem.News),
           _buildOffstageNavigator(TabItem.OsuTrack),

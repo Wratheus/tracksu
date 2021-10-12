@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
-
 import '../requests/requests.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -37,18 +36,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // Add a listener to on destroy WebView, so you can make came actions.
     onDestroy = flutterWebviewPlugin.onDestroy.listen((_) {
-      // print("destroy");
+       print("destroy");
     });
 
     _onStateChanged =
         flutterWebviewPlugin.onStateChanged.listen((WebViewStateChanged state) {
-          // print("onStateChanged: ${state.type} ${state.url}");
+           print("onStateChanged: ${state.type} ${state.url}");
         });
 
     // Add a listener to on url changed
     _onUrlChanged = flutterWebviewPlugin.onUrlChanged.listen((String url) async {
       if (mounted) {
-        // print("URL changed: $url");
+         print("URL changed: $url");
         if (url.startsWith('https://github.com/Wratheus/OsuTrack')) {
           RegExp regExp = RegExp("code=(.*)");
           this.token = regExp.firstMatch(url)?.group(1);
@@ -75,7 +74,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return WebviewScaffold(
         url: loginUrl,
         appBar: AppBar(
-          title: Text("Login to osu OAuth..."),
+          title: const Text("Login to osu OAuth..."),
+          leading: Image.asset('assets/cloudLogo.png'),
         ));
   }
 }
