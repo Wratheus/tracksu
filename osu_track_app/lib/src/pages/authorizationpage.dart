@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:osu_track_app/src/pages/home_page.dart';
+import '../pages/last_news_page.dart';
 
 import '../requests/requests.dart';
+import '../utils/secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -16,7 +19,8 @@ class _LoginScreenState extends State<LoginScreen> {
   late StreamSubscription<String> _onUrlChanged;
   late StreamSubscription<WebViewStateChanged> _onStateChanged;
 
-  late var token;
+  String? token = '0';
+
 
   @override
   void dispose() {
@@ -47,29 +51,32 @@ class _LoginScreenState extends State<LoginScreen> {
     // Add a listener to on url changed
     _onUrlChanged = flutterWebviewPlugin.onUrlChanged.listen((String url) async {
       if (mounted) {
-         print("URL changed: $url");
-        if (url.startsWith('https://github.com/Wratheus/OsuTrack')) {
+        print("URL changed: $url");
+        if (url.startsWith('https://wratheus.github.io/Liz-to-Aoi-Tori-web-page/')) {
           RegExp regExp = RegExp("code=(.*)");
           this.token = regExp.firstMatch(url)?.group(1);
           var myToken = await getToken(token);
-        };
-        setState(() {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              "/home", (Route<dynamic> route) => false);
-          flutterWebviewPlugin.close();
-
-        });
+          UserSecureStorage.setTokenInStorage(myToken['access_token']);
+          print(await UserSecureStorage.getTokenFromStorage());
+          if (this.token != '0') {
+            setState(() {
+              flutterWebviewPlugin.close();
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HomePage()));
+            });
+          }
+        }
       }
     });
   }
 
-  Future<void> authorizeUser() async{
+  //Future<void> authorizeUser() async{
 
-  }
+  //}
 
   @override
   Widget build(BuildContext context) {
-    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://github.com/Wratheus/OsuTrack&response_type=code";
+    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/Liz-to-Aoi-Tori-web-page/&response_type=code";
 
     return WebviewScaffold(
         url: loginUrl,

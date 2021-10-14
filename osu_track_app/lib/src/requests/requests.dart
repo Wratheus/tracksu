@@ -23,7 +23,7 @@ Future<Map<String, dynamic>> getToken(String? code) async{
     "client_id": auth.client_id,
     "client_secret": auth.clientSecret,
     "code": code,
-    "redirect_uri": 'https://github.com/Wratheus/OsuTrack/'
+    "redirect_uri": 'https://wratheus.github.io/Liz-to-Aoi-Tori-web-page/'
   });
   final Map<String, String> headers = {
     'Accept': 'application/json',

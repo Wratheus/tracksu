@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:osu_track_app/src/pages/authorizationpage.dart';
 import 'src/pages/last_news_page.dart';
 import 'src/pages/home_page.dart';
 import 'src/utils/color_contrasts.dart' as my_colors;
@@ -18,6 +19,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: my_colors.Palette.pink,
         backgroundColor: my_colors.Palette.brown,
       ),
-      home: const HomePage(),);
+      home: LoginScreen(),);
   }
 }
