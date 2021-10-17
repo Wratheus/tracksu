@@ -65,7 +65,7 @@ flutter:
 
   assets:
      - assets/error.jpg
-     - assets/cloudLogo.png
+     - assets/cloud_logo.png
      - assets/paintedLogo.png
 
 

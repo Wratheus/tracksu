@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:osu_track_app/src/pages/error_page.dart';
 import 'package:osu_track_app/src/pages/home_page.dart';
 import '../pages/last_news_page.dart';
 
@@ -62,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
             setState(() {
               flutterWebviewPlugin.close();
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomePage()));
+                  MaterialPageRoute(builder: (context) => ErrorPage()));
             });
           }
         }
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
         url: loginUrl,
         appBar: AppBar(
           title: const Text("Login to osu OAuth..."),
-          leading: Image.asset('assets/cloudLogo.png'),
+          leading: Image.asset('assets/cloud_logo.png'),
         ));
   }
 }

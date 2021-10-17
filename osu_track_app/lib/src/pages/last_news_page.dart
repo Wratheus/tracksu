@@ -51,7 +51,7 @@ class _LastNewsPage extends StatelessWidget {
   Widget listBuilder(BuildContext context, NewsLoadedState state){ // News page appearance constructor
     return Scaffold(
       appBar: AppBar(backgroundColor: my_colors.Palette.pink,
-        title: const Text("Osu News!"), leading: Image.asset('assets/cloudLogo.png'),
+        title: const Text("Osu News!"), leading: Image.asset('assets/cloud_logo.png'),
       ),
       body: ListView.builder(
         itemCount: state.newsList.length,
