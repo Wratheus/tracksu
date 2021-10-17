@@ -46,6 +46,21 @@ class Palette {
       900: Color(0xff000000),//100%
     },
   );
+  static const MaterialColor yellow = MaterialColor(
+    0xffd99d05, // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
+    <int, Color>{
+      50: Color(0xffc38d05),//10%
+      100: Color(0xffae7e04),//20%
+      200: Color(0xff986e04),//30%
+      300: Color(0xff825e03),//40%
+      400: Color(0xff6d4f03),//50%
+      500: Color(0xff573f02),//60%
+      600: Color(0xff412f01),//70%
+      700: Color(0xff2b1f01),//80%
+      800: Color(0xff161000),//90%
+      900: Color(0xff000000),//100%
+    },
+  );
 }
 
 

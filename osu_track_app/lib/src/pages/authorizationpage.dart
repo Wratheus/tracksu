@@ -7,6 +7,7 @@ import '../pages/last_news_page.dart';
 
 import '../requests/requests.dart';
 import '../utils/secure_storage.dart';
+import '../objects/rankings.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -58,12 +59,12 @@ class _LoginScreenState extends State<LoginScreen> {
           this.token = regExp.firstMatch(url)?.group(1);
           var myToken = await getToken(token);
           UserSecureStorage.setTokenInStorage(myToken['access_token']);
-          print(await UserSecureStorage.getTokenFromStorage());
+          print((await UserSecureStorage.getTokenFromStorage())!);
           if (this.token != '0') {
             setState(() {
               flutterWebviewPlugin.close();
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ErrorPage()));
+                  MaterialPageRoute(builder: (context) => HomePage()));
             });
           }
         }
@@ -77,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/Liz-to-Aoi-Tori-web-page/&response_type=code";
+    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/Liz-to-Aoi-Tori-web-page/&response_type=code&scope=public";
 
     return WebviewScaffold(
         url: loginUrl,

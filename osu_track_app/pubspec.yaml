@@ -39,6 +39,7 @@ dependencies:
   bloc: ^7.2.1
   flutter_bloc: ^7.3.0
   flutter_secure_storage: ^4.2.1
+  country_icons: ^2.0.2
 
 dev_dependencies:
   flutter_test:
@@ -66,7 +67,7 @@ flutter:
   assets:
      - assets/error.jpg
      - assets/cloud_logo.png
-     - assets/paintedLogo.png
+     - assets/painted_logo.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

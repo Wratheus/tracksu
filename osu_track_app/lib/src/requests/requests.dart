@@ -23,7 +23,7 @@ Future<Map<String, dynamic>> getToken(String? code) async{
     "client_id": auth.client_id,
     "client_secret": auth.clientSecret,
     "code": code,
-    "redirect_uri": 'https://wratheus.github.io/Liz-to-Aoi-Tori-web-page/'
+    "redirect_uri": 'https://wratheus.github.io/Liz-to-Aoi-Tori-web-page/',
   });
   final Map<String, String> headers = {
     'Accept': 'application/json',
@@ -242,7 +242,7 @@ Future <List<dynamic>> getBeatmapScores(String token, String beatmapID, [List<St
 }
 
 // Ranking request
-Future <List> getRanking(String token, [int country = 0, String mode = "osu",
+Future <List> getRankings(String token, [int country = 0, String mode = "osu",
                           String type = "performance", String filter = "all"]) async {
 
   final Map<String, String> headers = {
@@ -254,12 +254,12 @@ Future <List> getRanking(String token, [int country = 0, String mode = "osu",
     "filter": filter
   };
   final Uri rankingsUrl = Uri.https('osu.ppy.sh', 'api/v2/rankings/$mode/$type', body);
-  final http.Response getRankingResponse = await http.get(rankingsUrl, headers: headers);
+  final http.Response getRankingsResponse = await http.get(rankingsUrl, headers: headers);
 
-  if (getRankingResponse.statusCode == 200) {
+  if (getRankingsResponse.statusCode == 200) {
     final List myList = List.filled(50, 0, growable: false);
     var numberOfPlayers = 50;
-    var json = convert.jsonDecode(getRankingResponse.body);
+    var json = convert.jsonDecode(getRankingsResponse.body);
     for (int i = 0; i < numberOfPlayers; i++){
       myList[i] = rankings.Rankings.fromJson(json["ranking"][i]);
     }
@@ -267,7 +267,7 @@ Future <List> getRanking(String token, [int country = 0, String mode = "osu",
   }
   else {
     // If the server did not return a 200 CREATED response,
-    var statusCode = getRankingResponse.statusCode;
+    var statusCode = getRankingsResponse.statusCode;
     throw Exception('Failed to get RANKINGS response. Status code = $statusCode');
   }
 }

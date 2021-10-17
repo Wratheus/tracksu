@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'tab_model.dart';
 import '../../pages/last_news_page.dart';
 import '../../pages/authorizationpage.dart';
+import '../../pages/rankings_page.dart';
 
 class TabController extends StatelessWidget {
   TabController({required this.controllerKey, required this.tabItem});
@@ -16,7 +18,7 @@ class TabController extends StatelessWidget {
         Widget selectedPage;
         if (tabItem == TabItem.News) { selectedPage = const LastNewsPage();}
         else if (tabItem == TabItem.OsuTrack) { selectedPage = LoginScreen();}
-        else  { selectedPage = const LastNewsPage();}
+        else  { selectedPage = const RankingsPage();}
 
         return MaterialPageRoute(
           builder: (context) => selectedPage,

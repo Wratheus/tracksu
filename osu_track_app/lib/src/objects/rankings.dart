@@ -12,6 +12,8 @@ class Rankings{
   Map <String, dynamic>? gradeCounts;
   String username;
   String country;
+  String countryCode;
+  String avatarURL;
 
   Rankings({
     required this.globalRank,
@@ -26,6 +28,8 @@ class Rankings{
     required this.gradeCounts,
     required this.username,
     required this.country,
+    required this.avatarURL,
+    required this.countryCode,
   });
 
   factory Rankings.fromJson(Map<String, dynamic> json) {
@@ -42,6 +46,8 @@ class Rankings{
       gradeCounts: json['grade_counts'],
       username: json['user']['username'],
       country: json['user']['country']['name'],
+      avatarURL: json['user']['avatar_url'],
+      countryCode: json['user']['country_code']
     );
   }
 }

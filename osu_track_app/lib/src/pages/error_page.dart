@@ -18,10 +18,10 @@ class ErrorPage extends StatelessWidget {
               fontSize: 36, fontWeight: FontWeight.bold, fontFamily: 'Exo 2', )),
           const Text("Something went wrong!", style: TextStyle(color: Colors.white,
             fontSize: 36, fontWeight: FontWeight.bold, fontFamily: 'Exo 2', )),
-          Spacer(flex: 3),
-          ElevatedButton(onPressed: () => toMainScreen(context), child: Text("На главную страницу", style: TextStyle(color: Colors.white,
+          const Spacer(flex: 3),
+          ElevatedButton(onPressed: () => toMainScreen(context), child: const Text("To home page", style: TextStyle(color: Colors.white,
             fontSize: 36, fontWeight: FontWeight.bold, fontFamily: 'Exo 2', ))),
-          Spacer(flex: 2),
+          const Spacer(flex: 2),
 
         ]
       ),
