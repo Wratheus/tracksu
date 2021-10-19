@@ -1,4 +1,5 @@
 import 'dart:convert' as convert;
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../authentication.dart' as auth;
@@ -9,6 +10,7 @@ import '../objects/beatmap.dart' as beatmap;
 import '../objects/rankings.dart' as rankings;
 import '../objects/scoresbeatmap.dart' as beatmapScores;
 import '../utils/secure_storage.dart';
+import 'package:osu_track_app/src/pages/home_page.dart';
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
 and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
 const clientSecret = 'your oAuth2 pass';
@@ -23,7 +25,7 @@ Future<Map<String, dynamic>> getToken(String? code) async{
     "client_id": auth.client_id,
     "client_secret": auth.clientSecret,
     "code": code,
-    "redirect_uri": 'https://wratheus.github.io/Liz-to-Aoi-Tori-web-page/',
+    "redirect_uri": 'https://osu.ppy.sh/home',
   });
   final Map<String, String> headers = {
     'Accept': 'application/json',
@@ -44,6 +46,7 @@ Future<Map<String, dynamic>> getToken(String? code) async{
     var statusCode = tokenRequestResponse.statusCode;
     throw Exception('Failed to get TOKEN response. Status code = $statusCode');
   }
+
 }
 
 // getToken as owner of Application

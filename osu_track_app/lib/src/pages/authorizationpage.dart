@@ -54,7 +54,15 @@ class _LoginScreenState extends State<LoginScreen> {
     _onUrlChanged = flutterWebviewPlugin.onUrlChanged.listen((String url) async {
       if (mounted) {
         print("URL changed: $url");
-        if (url.startsWith('https://wratheus.github.io/Liz-to-Aoi-Tori-web-page/')) {
+        if (url.startsWith('https://osu.ppy.sh/home')) {
+          RegExp regExpError = RegExp("error=(.*)");
+          if (regExpError.hasMatch(url) == true) {
+            setState(() {
+              flutterWebviewPlugin.close();
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
+            });
+          }
           RegExp regExp = RegExp("code=(.*)");
           this.token = regExp.firstMatch(url)?.group(1);
           var myToken = await getToken(token);
@@ -78,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/Liz-to-Aoi-Tori-web-page/&response_type=code&scope=public";
+    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://osu.ppy.sh/home&response_type=code&scope=public";
 
     return WebviewScaffold(
         url: loginUrl,

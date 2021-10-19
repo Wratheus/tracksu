@@ -58,16 +58,49 @@ Widget listWidget(Rankings item) {
               ),
             ),
             Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("${item.PP}",
+                Text("pp:    ${item.PP}",
+                    textAlign: TextAlign.left,
                     style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2')
-              ),
+                ),
+                Text("Accuracy:    ${item.hitAccuracy}%",
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Exo 2')
+                ),
+                Text("Play count:    ${item.playCount}",
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                        color: my_colors.Palette.yellow,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Exo 2')
+                ),
+                Text("Maximum combo:    ${item.maximumCombo}",
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                        color: my_colors.Palette.yellow,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Exo 2')
+                ),
+                Text("replay count:    ${item.replaysWatchedByOthers}",
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                        color: my_colors.Palette.yellow,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Exo 2')
+                ),
               ]
           ),
         ]

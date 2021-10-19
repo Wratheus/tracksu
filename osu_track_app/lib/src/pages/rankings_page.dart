@@ -44,13 +44,18 @@ class _RankingsPage extends StatelessWidget {
       }
       if(state is RankingsLoadedState){ // Reload News if state is NewsReload (wheel page down)
         return RefreshIndicator(
-          child: ListView.builder(
+          child: Scaffold(
+            appBar: AppBar(backgroundColor: my_colors.Palette.pink,
+                title: const Text("Osu! Leaderboard"), leading: Image.asset('assets/cloud_logo.png')),
+            body: ListView.builder(
               itemCount: state.rankingsList.length,
               itemBuilder: (context, index){
             return InkWell(
             onTap: () {},
               child: listWidget(state.rankingsList[index])
             );}
+          ),
+            backgroundColor: my_colors.Palette.brown,
           ),
           onRefresh: () => context.read<RankingsCubit>().reloadRankings(),
         );

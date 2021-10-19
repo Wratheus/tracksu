@@ -6,6 +6,7 @@ import '/src/pages/cubit/news_cubit.dart';
 import '/src/utils/url_launch.dart';
 import '../utils/load_news_image.dart';
 import '../utils/color_contrasts.dart' as my_colors;
+import '../widgets/news_cards/news_widget.dart';
 
 class LastNewsPage extends StatelessWidget {
   const LastNewsPage({Key? key}) : super(key: key);
@@ -39,8 +40,20 @@ class _LastNewsPage extends StatelessWidget {
         );
       }
       if(state is NewsLoadedState){ // Reload News if state is NewsReload (wheel page down)
-        return RefreshIndicator(
-            child: listBuilder(context, state),
+        return RefreshIndicator(child:
+            Scaffold(
+              appBar: AppBar(backgroundColor: my_colors.Palette.pink,
+                  title: const Text("Osu News!"), leading: Image.asset('assets/cloud_logo.png')),
+              body: ListView.builder(
+                    itemCount: state.newsList.length,
+                    itemBuilder: (context, index){
+                      return InkWell(
+                        onTap: () => launchUniversalLink(state.newsList[index].editURL!),
+                        child: newsWidget(state.newsList[index], context, state)
+              );}
+              ),
+              backgroundColor: my_colors.Palette.brown,
+            ),
             onRefresh: () => context.read<NewsCubit>().reloadNews(),
         );
       }
