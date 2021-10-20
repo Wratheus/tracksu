@@ -8,10 +8,10 @@ import '../../utils/color_contrasts.dart' as my_colors;
 Widget listWidget(Rankings item) {
   return Card(
     color: my_colors.Palette.brown,
-    elevation: 2.0,
+    elevation: 25.0,
     margin: const EdgeInsets.only(bottom: 8.0),
     child: Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(5.0),
       child: Row(
         children: [
           Container(
@@ -36,7 +36,7 @@ Widget listWidget(Rankings item) {
               Text(
               "#${item.globalRank}",
                   style: const TextStyle(
-                      fontSize: 24.0,
+                      fontSize: 20.0,
                       color: my_colors.Palette.yellow,
                       fontFamily: 'Exo 2',
                       fontWeight: FontWeight.bold,
@@ -45,7 +45,7 @@ Widget listWidget(Rankings item) {
               Text(item.username,
                   style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Exo 2')
                   ),

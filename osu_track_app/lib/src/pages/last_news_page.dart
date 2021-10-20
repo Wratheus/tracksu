@@ -60,33 +60,4 @@ class _LastNewsPage extends StatelessWidget {
       return Container();
     });
   }
-
-  Widget listBuilder(BuildContext context, NewsLoadedState state){ // News page appearance constructor
-    return Scaffold(
-      appBar: AppBar(backgroundColor: my_colors.Palette.pink,
-        title: const Text("Osu News!"), leading: Image.asset('assets/cloud_logo.png'),
-      ),
-      body: ListView.builder(
-        itemCount: state.newsList.length,
-        itemBuilder: (BuildContext context, int index) { // select one by one element from the List of News-objects from GetNewsRequest()
-          final item = state.newsList[index];
-          return ListTile(
-            title: Text(item.title!, // News.title
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white, fontFamily: 'Exo 2'),
-              maxLines: 20,
-              textAlign: TextAlign.left,
-              overflow: TextOverflow.ellipsis,
-            ),
-            tileColor: my_colors.Palette.brown,
-            trailing: const Icon(Icons.keyboard_arrow_right,
-              color: Colors.white,
-              size: 20,),
-            contentPadding: const EdgeInsets.all(5),
-            onTap: () => launchUniversalLink(item.editURL!), // News.editURL
-            leading: ImageNewsWidget(urlImage: item.firstImage!)
-          );
-        })
-    );
-  }
-
 }
