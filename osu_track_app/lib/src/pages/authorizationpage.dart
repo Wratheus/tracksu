@@ -1,13 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:osu_track_app/src/pages/error_page.dart';
-import 'package:osu_track_app/src/pages/home_page.dart';
-import '../pages/last_news_page.dart';
 
+import '../pages/home_page.dart';
 import '../requests/requests.dart';
 import '../utils/secure_storage.dart';
-import '../objects/rankings.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -42,18 +39,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // Add a listener to on destroy WebView, so you can make came actions.
     onDestroy = flutterWebviewPlugin.onDestroy.listen((_) {
-       print("destroy");
+       // print("destroy");
     });
 
     _onStateChanged =
         flutterWebviewPlugin.onStateChanged.listen((WebViewStateChanged state) {
-           print("onStateChanged: ${state.type} ${state.url}");
+           // print("onStateChanged: ${state.type} ${state.url}");
         });
 
     // Add a listener to on url changed
     _onUrlChanged = flutterWebviewPlugin.onUrlChanged.listen((String url) async {
       if (mounted) {
-        print("URL changed: $url");
+        // print("URL changed: $url");
+        print('Authorization: caught URL change, receiving code');
         if (url.startsWith('https://osu.ppy.sh/home')) {
           RegExp regExpError = RegExp("error=(.*)");
           if (regExpError.hasMatch(url) == true) {
@@ -67,7 +65,6 @@ class _LoginScreenState extends State<LoginScreen> {
           this.token = regExp.firstMatch(url)?.group(1);
           var myToken = await getToken(token);
           UserSecureStorage.setTokenInStorage(myToken['access_token']);
-          print((await UserSecureStorage.getTokenFromStorage())!);
           if (this.token != '0') {
             setState(() {
               flutterWebviewPlugin.close();

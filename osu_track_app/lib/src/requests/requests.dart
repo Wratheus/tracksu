@@ -1,5 +1,4 @@
 import 'dart:convert' as convert;
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../authentication.dart' as auth;
@@ -10,7 +9,6 @@ import '../objects/beatmap.dart' as beatmap;
 import '../objects/rankings.dart' as rankings;
 import '../objects/scoresbeatmap.dart' as beatmapScores;
 import '../utils/secure_storage.dart';
-import 'package:osu_track_app/src/pages/home_page.dart';
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
 and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
 const clientSecret = 'your oAuth2 pass';

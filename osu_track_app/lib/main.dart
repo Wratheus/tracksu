@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'OsuTrackApp',
       theme: ThemeData(
-        primarySwatch: my_colors.Palette.pink,
+        primarySwatch:  my_colors.Palette.pink,
         backgroundColor: my_colors.Palette.brown,
       ),
       home: LoginScreen(),);

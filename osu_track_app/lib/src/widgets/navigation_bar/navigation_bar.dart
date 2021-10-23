@@ -5,8 +5,8 @@ import '../../utils/icon_pack.dart' as my_icons;
 
 const Map<TabItem, TabModel> tabs = {
   TabItem.News: TabModel(name: "News", icon: my_icons.MyFlutterApp.rss_square),
-  TabItem.OsuTrack: TabModel(name: "Osu!", icon: my_icons.MyFlutterApp.user_circle),
-  TabItem.LeaderBoard: TabModel(name: "LB", icon: my_icons.MyFlutterApp.dice_d6)
+  TabItem.OsuTrack: TabModel(name: "User", icon: my_icons.MyFlutterApp.user_circle),
+  TabItem.LeaderBoard: TabModel(name: "Rankings", icon: my_icons.MyFlutterApp.dice_d6)
 };
 
 class NavigationBar extends StatelessWidget {

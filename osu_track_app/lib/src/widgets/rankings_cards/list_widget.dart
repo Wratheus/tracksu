@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:country_icons/country_icons.dart';
 
 import'../../objects/rankings.dart';
 import '../../utils/color_contrasts.dart' as my_colors;

@@ -1,11 +1,11 @@
 class User{
-  String?avatarURL;
+  var avatarURL;
   int?id;
   bool?isOnline;
-  String?userName;
+  var username;
   String?coverURL;
   String?joinDate;
-  String?country;
+  var countryCode;
   List<dynamic>?monthlyPlayCounts;
   int?scoresFirstCount;
   int?globalRank;
@@ -27,10 +27,10 @@ class User{
     required this.avatarURL,
     required this.id,
     required this.isOnline,
-    required this.userName,
+    required this.username,
     required this.coverURL,
     required this.joinDate,
-    required this.country,
+    required this.countryCode,
     required this.monthlyPlayCounts,
     required this.scoresFirstCount,
     required this.globalRank,
@@ -54,10 +54,10 @@ class User{
       avatarURL: json['avatar_url'],
       id: json['id'],
       isOnline: json['is_online'],
-      userName: json['username'],
+      username: json['username'],
       coverURL: json['cover']['custom_url'],
       joinDate: json['join_date'],
-      country: json['country']['name'],
+      countryCode: json['country_code'],
       monthlyPlayCounts: json['monthly_playcounts'],
       scoresFirstCount: json['scores_first_count'],
       globalRank: json['statistics']['global_rank'],
