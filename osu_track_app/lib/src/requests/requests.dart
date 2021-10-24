@@ -23,7 +23,7 @@ Future<Map<String, dynamic>> getToken(String? code) async{
     "client_id": auth.client_id,
     "client_secret": auth.clientSecret,
     "code": code,
-    "redirect_uri": 'https://osu.ppy.sh/home',
+    "redirect_uri": 'https://github.com/Wratheus/OsuTrack',
   });
   final Map<String, String> headers = {
     'Accept': 'application/json',

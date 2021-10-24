@@ -31,8 +31,14 @@ class _UserPage extends StatelessWidget {
         return RefreshIndicator(child:
           Scaffold(
             appBar: AppBar(
-                backgroundColor: my_colors.Palette.pink,
-                title: const Text("User statistics"),
+                backgroundColor: my_colors.Palette.purple,
+                title: const Text("User statistics!",
+                  style: const TextStyle(
+                    fontSize: 24.0,
+                    color: Colors.white,
+                    fontFamily: 'Exo 2',
+                    fontWeight: FontWeight.bold,
+                  ),),
                 leading: Image.asset('assets/cloud_logo.png')),
             body: Container(
               child: Column(
@@ -43,52 +49,37 @@ class _UserPage extends StatelessWidget {
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        UserSearchWidget()
+                        UserSearchWidget() // search bar widget
                       ]
                   ),
                 ],
               ),
             ),
-            backgroundColor: my_colors.Palette.brown,
+            backgroundColor: my_colors.Palette.brown.shade100,
           ),
             onRefresh: () => context.read<UserCubit>().reloadUser(),
           );
       }
       if (state is UserErrorState) { // Throw error if state is UserError
-        return ErrorPage(exceptionPageName: UserPage());
+        return ErrorPage(exceptionPageName: UserPage(), errorMessage: state.errorMessage);
       }
       if (state is UserLoadedState) { // Reload News if state is UserReload (wheel page down)
         return RefreshIndicator(child:
           Scaffold(
+            backgroundColor: my_colors.Palette.brown.shade100,
             appBar: AppBar(
-                backgroundColor: my_colors.Palette.pink,
-                title: const Text("User statistics"),
+                backgroundColor: my_colors.Palette.purple,
+                title: const Text("User statistics",
+                  style: const TextStyle(
+                  fontSize: 20.0,
+                  color: my_colors.Palette.yellow,
+                  fontFamily: 'Exo 2',
+                  fontWeight: FontWeight.bold,
+                ),),
                 leading: Image.asset('assets/cloud_logo.png')),
             body: Container(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        UserSearchWidget()
-                      ]
-                  ),
-                  const SizedBox(
-                    height: 30.0,
-                  ),
-                  Container(
-                    width: 300,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), boxShadow: [BoxShadow(color: Colors.white, spreadRadius: 1)], color: my_colors.Palette.brown),
-                    child: UserInfoWidget(state.userInstance),
-                  ),
-                ]
-              ),
-            ),
-            backgroundColor: my_colors.Palette.brown,
+              child: UserInfoWidget(state.userInstance), //user panel Info widget and searchbar
+          ),
           ),
             onRefresh: () => context.read<UserCubit>().reloadUser(),
           );

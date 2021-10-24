@@ -5,8 +5,10 @@ import '../utils/color_contrasts.dart' as my_colors;
 
 class ErrorPage extends StatelessWidget {
   final Widget _exceptionPageName;
-  const ErrorPage({Key? key, required Widget exceptionPageName}):
+  final String _errorMessage;
+  const ErrorPage({Key? key, required Widget exceptionPageName, required String errorMessage}):
         _exceptionPageName = exceptionPageName,
+        _errorMessage = errorMessage,
         super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class ErrorPage extends StatelessWidget {
           Container(
             child: Image.asset('assets/error.jpg')),
             SizedBox(height: 100),
-            Expanded(child: Text("Oops!\nSomething went wrong with \n ${_exceptionPageName}",
+            Expanded(child: Text("Oops! \n Something went wrong with \n ${_exceptionPageName} \n ${_errorMessage}",
                 textAlign: TextAlign.center ,
                 style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',)),),
             SizedBox(height: 50),

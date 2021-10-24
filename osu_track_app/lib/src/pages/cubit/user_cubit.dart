@@ -18,9 +18,9 @@ class UserCubit extends Cubit<UserState> {
   Future<void> loadUser(String username) async {
     try {
       emit(UserLoadedState(await getUser((await UserSecureStorage.getTokenFromStorage())!, username)));
-      print('User loaded');
+      print('User $username loaded');
     }catch (e){
-      emit(UserErrorState('Failed User Load'));
+      emit(UserErrorState('Failed User Load $e'));
     }
   }
 

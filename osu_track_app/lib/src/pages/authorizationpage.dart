@@ -5,6 +5,8 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import '../pages/home_page.dart';
 import '../requests/requests.dart';
 import '../utils/secure_storage.dart';
+import '../utils/color_contrasts.dart' as my_colors;
+import '../utils/url_launch.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -39,56 +41,56 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // Add a listener to on destroy WebView, so you can make came actions.
     onDestroy = flutterWebviewPlugin.onDestroy.listen((_) {
-       // print("destroy");
+      // print("destroy");
     });
 
     _onStateChanged =
         flutterWebviewPlugin.onStateChanged.listen((WebViewStateChanged state) {
-           // print("onStateChanged: ${state.type} ${state.url}");
+          print("onStateChanged: ${state.type} ${state.url}");
         });
 
     // Add a listener to on url changed
-    _onUrlChanged = flutterWebviewPlugin.onUrlChanged.listen((String url) async {
-      if (mounted) {
-        // print("URL changed: $url");
-        print('Authorization: caught URL change, receiving code');
-        if (url.startsWith('https://osu.ppy.sh/home')) {
-          RegExp regExpError = RegExp("error=(.*)");
-          if (regExpError.hasMatch(url) == true) {
-            setState(() {
-              flutterWebviewPlugin.close();
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()));
-            });
-          }
-          RegExp regExp = RegExp("code=(.*)");
-          this.token = regExp.firstMatch(url)?.group(1);
-          var myToken = await getToken(token);
-          UserSecureStorage.setTokenInStorage(myToken['access_token']);
-          if (this.token != '0') {
-            setState(() {
-              flutterWebviewPlugin.close();
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomePage()));
-            });
-          }
+    _onUrlChanged =
+        flutterWebviewPlugin.onUrlChanged.listen((String url) async {
+          if (mounted) {
+            print("URL changed: $url");
+            print('Authorization: caught URL change');
+            if (url.startsWith('https://github.com/Wratheus/OsuTrack')) {
+              RegExp regExpError = RegExp("error=(.*)");
+              if (regExpError.hasMatch(url) == true) {
+                setState(() {
+                  flutterWebviewPlugin.close();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                });
+              }
+              if (url.startsWith('https://github.com/Wratheus/OsuTrack')) {
+                RegExp regExp = RegExp("code=(.*)");
+                this.token = regExp.firstMatch(url)?.group(1);
+                var myToken = await getToken(token);
+                UserSecureStorage.setTokenInStorage(myToken['access_token']);
+                if (this.token != '0') {
+                  setState(() {
+                    flutterWebviewPlugin.close();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  });
+                }
+              }
+            }
         }
-      }
-    });
+        });
   }
-
-  //Future<void> authorizeUser() async{
-
-  //}
 
   @override
   Widget build(BuildContext context) {
-    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://osu.ppy.sh/home&response_type=code&scope=public";
+    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://github.com/Wratheus/OsuTrack&response_type=code&scope=public";
 
     return WebviewScaffold(
         url: loginUrl,
         appBar: AppBar(
           title: const Text("Login to osu OAuth..."),
+          backgroundColor: my_colors.Palette.purple,
           leading: Image.asset('assets/cloud_logo.png'),
         ));
   }

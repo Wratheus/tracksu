@@ -18,7 +18,7 @@ class NewsCubit extends Cubit<NewsState> {
       emit(NewsLoadedState(await getNews((await UserSecureStorage.getTokenFromStorage())!))); // request news
       print('News loaded');
     }catch (e){
-      emit(NewsErrorState('Failed News Load'));
+      emit(NewsErrorState('Failed News Load $e'));
     }
   }
 

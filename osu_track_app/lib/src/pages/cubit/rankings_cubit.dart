@@ -19,7 +19,7 @@ class RankingsCubit extends Cubit<RankingsState> {
           (await UserSecureStorage.getTokenFromStorage())!))); // request news
       print('Rankings loaded');
     } catch (e) {
-      emit(RankingsErrorState('Failed Rankings Load'));
+      emit(RankingsErrorState('Failed Rankings Load $e'));
     }
   }
 

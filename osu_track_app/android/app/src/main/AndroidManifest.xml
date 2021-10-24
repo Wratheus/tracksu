@@ -11,8 +11,8 @@
     </queries>
 
    <application
-        android:label="osu_track_app"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Osu!track"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

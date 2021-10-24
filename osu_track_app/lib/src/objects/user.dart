@@ -1,26 +1,28 @@
 class User{
   var avatarURL;
-  int?id;
-  bool?isOnline;
+  var id;
+  var isOnline;
   var username;
-  String?coverURL;
-  String?joinDate;
+  var coverURL;
+  var joinDate;
   var countryCode;
   List<dynamic>?monthlyPlayCounts;
-  int?scoresFirstCount;
-  int?globalRank;
-  double?totalPP;
-  double?hitAccuracy;
-  int?playCount;
-  int?playTime;
-  int?maximumCombo;
-  int?replaysWatched;
-  int?amountOfSSH;
-  int?amountOfSS;
-  int?amountOfS;
-  int?amountOfSh;
-  int?amountOfA;
-  int?countryRank;
+  var scoresFirstCount;
+  var globalRank;
+  var rankedScore;
+  var totalPP;
+  var totalHits;
+  var hitAccuracy;
+  var playCount;
+  var playTime;
+  var maximumCombo;
+  var replaysWatched;
+  var amountOfSSH;
+  var amountOfSS;
+  var amountOfS;
+  var amountOfSh;
+  var amountOfA;
+  var countryRank;
   List<dynamic>?rankHistory;
 
   User({
@@ -34,7 +36,9 @@ class User{
     required this.monthlyPlayCounts,
     required this.scoresFirstCount,
     required this.globalRank,
+    required this.rankedScore,
     required this.totalPP,
+    required this.totalHits,
     required this.hitAccuracy,
     required this.playCount,
     required this.playTime,
@@ -61,8 +65,10 @@ class User{
       monthlyPlayCounts: json['monthly_playcounts'],
       scoresFirstCount: json['scores_first_count'],
       globalRank: json['statistics']['global_rank'],
+      rankedScore: json['statistics']['ranked_score'],
       totalPP: json['statistics']['pp'],
       hitAccuracy: json['statistics']['hit_accuracy'],
+      totalHits: json['statistics']['total_hits'],
       playCount: json['statistics']['play_count'],
       playTime: json['statistics']['play_time'],
       maximumCombo: json['statistics']['maximum_combo'],

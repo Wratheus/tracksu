@@ -9,7 +9,7 @@ import '../../pages/cubit/news_cubit.dart';
 
 Widget newsWidget(News item, BuildContext context, NewsLoadedState state) {
   return Card(
-      color: my_colors.Palette.brown,
+      color: my_colors.Palette.brown.shade100,
       elevation: 10.0,
       margin: const EdgeInsets.only(bottom: 15.0),
       child: Padding(

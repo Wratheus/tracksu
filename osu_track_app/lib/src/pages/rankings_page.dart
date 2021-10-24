@@ -34,13 +34,19 @@ class _RankingsPage extends StatelessWidget {
 
     };
       if(state is RankingsErrorState){ // Throw error if state is RankingsError
-        return ErrorPage(exceptionPageName: RankingsPage());
+        return ErrorPage(exceptionPageName: RankingsPage(), errorMessage: state.errorMessage,);
       }
       if(state is RankingsLoadedState){ // Reload rankings if state is RankingsReload (wheel page down)
         return RefreshIndicator(
           child: Scaffold(
-            appBar: AppBar(backgroundColor: my_colors.Palette.pink,
-                title: const Text("Osu! Leaderboard"), leading: Image.asset('assets/cloud_logo.png')),
+            appBar: AppBar(backgroundColor: my_colors.Palette.purple,
+                title: const Text("Osu! Leaderboard",
+                  style: const TextStyle(
+                  fontSize: 24.0,
+                  color: Colors.white,
+                  fontFamily: 'Exo 2',
+                  fontWeight: FontWeight.bold,
+                ),), leading: Image.asset('assets/cloud_logo.png')),
             body: ListView.builder(
               itemCount: state.rankingsList.length,
               itemBuilder: (context, index){
@@ -49,7 +55,7 @@ class _RankingsPage extends StatelessWidget {
                 child: listWidget(state.rankingsList[index])
             );}
           ),
-            backgroundColor: my_colors.Palette.brown,
+            backgroundColor: my_colors.Palette.brown.shade100,
           ),
           onRefresh: () => context.read<RankingsCubit>().reloadRankings(),
         );

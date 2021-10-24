@@ -3,8 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:osu_track_app/src/pages/error_page.dart';
 
-import '/src/pages/cubit/news_cubit.dart';
-import '/src/utils/url_launch.dart';
+import '../pages/cubit/news_cubit.dart';
+import '../utils/url_launch.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 import '../widgets/news_cards/news_widget.dart';
 
@@ -32,13 +32,19 @@ class _LastNewsPage extends StatelessWidget {
         return const Center(child: CircularProgressIndicator(backgroundColor: my_colors.Palette.brown),);
       }
       if(state is NewsErrorState){ // Throw error if state is NewsError
-        return ErrorPage(exceptionPageName: LastNewsPage());
+        return ErrorPage(exceptionPageName: LastNewsPage(), errorMessage: state.errorMessage,);
       }
       if(state is NewsLoadedState){ // Reload News if state is NewsReload (wheel page down)
         return RefreshIndicator(child:
             Scaffold(
-              appBar: AppBar(backgroundColor: my_colors.Palette.pink,
-                  title: const Text("Osu News!"), leading: Image.asset('assets/cloud_logo.png')),
+              appBar: AppBar(backgroundColor: my_colors.Palette.purple,
+                  title: const Text("Osu News!",
+                    style: const TextStyle(
+                    fontSize: 24.0,
+                    color: Colors.white,
+                    fontFamily: 'Exo 2',
+                    fontWeight: FontWeight.bold,
+                  ),), leading: Image.asset('assets/cloud_logo.png')),
               body: ListView.builder(
                     itemCount: state.newsList.length,
                     itemBuilder: (context, index){
@@ -47,7 +53,7 @@ class _LastNewsPage extends StatelessWidget {
                         child: newsWidget(state.newsList[index], context, state)
               );}
               ),
-              backgroundColor: my_colors.Palette.brown,
+              backgroundColor: my_colors.Palette.brown.shade200,
             ),
             onRefresh: () => context.read<NewsCubit>().reloadNews(),
         );
