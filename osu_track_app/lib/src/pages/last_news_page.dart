@@ -38,13 +38,13 @@ class _LastNewsPage extends StatelessWidget {
         return RefreshIndicator(child:
             Scaffold(
               appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                  title: const Text("Osu News!",
+                  title: const Text("Osu! News",
                     style: const TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
                     fontFamily: 'Exo 2',
                     fontWeight: FontWeight.bold,
-                  ),), leading: Image.asset('assets/cloud_logo.png')),
+                  ),), leading: Image.asset('assets/utils/cloud_logo.png')),
               body: ListView.builder(
                     itemCount: state.newsList.length,
                     itemBuilder: (context, index){

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import'../../objects/rankings.dart';
+import'../../models/rankings.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
 
 

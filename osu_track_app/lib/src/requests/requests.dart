@@ -2,12 +2,12 @@ import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
 import '../authentication.dart' as auth;
-import '../objects/user.dart' as user;
-import '../objects/scores.dart' as scores;
-import '../objects/news.dart' as news;
-import '../objects/beatmap.dart' as beatmap;
-import '../objects/rankings.dart' as rankings;
-import '../objects/scoresbeatmap.dart' as beatmapScores;
+import '../models/user.dart' as user;
+import '../models/scores.dart' as scores;
+import '../models/news.dart' as news;
+import '../models/beatmap.dart' as beatmap;
+import '../models/rankings.dart' as rankings;
+import '../models/scoresbeatmap.dart' as beatmapScores;
 import '../utils/secure_storage.dart';
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
 and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
@@ -104,7 +104,7 @@ Future <user.User> getUser(String token, String username) async{
 }
 
 // User Score list Request
-// returns a list with 100 (by default) user's scores-objects
+// returns a list with 100 (by default) user's scores-model
 Future <List<dynamic>> getUserScore(String token, String username, String numberOfRequestedScores) async{
   const scoresType = 'best';
   if (int.parse(numberOfRequestedScores) > 100 || int.parse(numberOfRequestedScores) <= 0){ throw Exception('wrong ScoreNumber'); }
@@ -141,7 +141,7 @@ Future <List<dynamic>> getUserScore(String token, String username, String number
 }
 
 // News request
-// returns a list with News-objects
+// returns a list with News-model
 Future <List<dynamic>> getNews(String token) async{
   final Uri newsUrl = Uri.https('osu.ppy.sh', 'api/v2/news');
   final Map<String, String> headers = {
@@ -189,7 +189,7 @@ Future <beatmap.Beatmap> getBeatmap(String token, String beatmapID) async{
 }
 
 // Beatmap top-50 request
-// returns a list with beatmap top 50 best performance scores-objects
+// returns a list with beatmap top 50 best performance scores-models
 Future <List<dynamic>> getBeatmapScores(String token, String beatmapID, [List<String>? mods]) async {
   int count = 0;
   final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID/scores');

@@ -1,26 +1,26 @@
 // Score includes beatmap class to avoid beatmap request
 class BeatmapScores{
-  int?scoreId;
+  int? scoreId;
   List<dynamic> mods = [];
   var scorePoints;
   var accuracy;
-  int?maxCombo;
+  int? maxCombo;
   Map<String, dynamic>?mapStatistics;
-  String?mapRank;
-  String?dateOfScore;
-  int?bestScoreOnMapId;
+  String? mapRank;
+  String? dateOfScore;
+  int? bestScoreOnMapId;
   var gainedPP;
-  int?beatmapSetId;
-  int?beatmapSetMapId;
+  int? beatmapSetId;
+  int? beatmapSetMapId;
   var difficultyRating;
   var beatmapLength;
-  String?difficultyName;
+  String? difficultyName;
   var OD;
   var AR;
   var BPM;
   var CS;
   var HP;
-  String?beatmapURL;
+  String? beatmapURL;
 
   BeatmapScores({
     required this.scoreId,

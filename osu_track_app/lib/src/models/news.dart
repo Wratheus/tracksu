@@ -1,13 +1,13 @@
 class News{
-  int?id;
-  String?author;
-  String?editURL;
-  String?firstImage;
-  String?publishedAt;
-  String?updatedAt;
-  String?slug;
-  String?title;
-  String?preview;
+  int? id;
+  String? author;
+  String? editURL;
+  String? firstImage;
+  String? publishedAt;
+  String? updatedAt;
+  String? slug;
+  String? title;
+  String? preview;
 
   News({
     required this.id,

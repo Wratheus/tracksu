@@ -39,9 +39,7 @@ flutter:
     - assets/icon_mods/
     - assets/icon_pack/
     - assets/icon_score_types/
-    - assets/error.jpg
-    - assets/cloud_logo.png
-    - assets/painted_logo.png
+    - assets/utils/
 
   fonts:
     - family: Exo 2

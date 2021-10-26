@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 
 import '../../requests/requests.dart';
 import '../../utils/secure_storage.dart';
+import '../../pages/user_page.dart';
 
 part 'rankings_state.dart';
 
@@ -26,5 +28,11 @@ class RankingsCubit extends Cubit<RankingsState> {
   Future<void> reloadRankings() async {
     emit(RankingsInitial());
   }
-}
 
+  Future<void> loadUserFromRankings(String username,
+      BuildContext context) async {
+    Navigator.push(context,
+        MaterialPageRoute(
+            builder: (context) => UserPage(username: username)));
+  }
+}

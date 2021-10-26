@@ -1,33 +1,33 @@
 class Beatmap{
-  int?beatmapID;
-  int?beatmapSetID;
+  int? beatmapID;
+  int? beatmapSetID;
   var difficultyRating;
   var OD;
   var AR;
   var CS;
   var HP;
   var BPM;
-  int?maxCombo;
-  int?countCircles;
-  int?countSliders;
-  int?countSpinners;
+  int? maxCombo;
+  int? countCircles;
+  int? countSliders;
+  int? countSpinners;
   var beatmapLength;
-  String?difficultyName;
-  int?playCount;
-  int?passCount;
-  String?rankedStatus;
-  String?mode;
-  String?beatmapURL;
-  String?artistName;
-  String?coversJPG;
-  String?mapTitle;
-  String?mapperName;
-  int?mapperId;
-  int?favouriteCount;
-  String?rankedDate;
-  String?submittedDate;
-  String?beatmapTags;
-  Map<String, dynamic>?failCounts;
+  String? difficultyName;
+  int? playCount;
+  int? passCount;
+  String? rankedStatus;
+  String? mode;
+  String? beatmapURL;
+  String? artistName;
+  String? coversJPG;
+  String? mapTitle;
+  String? mapperName;
+  int? mapperId;
+  int? favouriteCount;
+  String? rankedDate;
+  String? submittedDate;
+  String? beatmapTags;
+  Map<String, dynamic>? failCounts;
 
   Beatmap({
     required this.beatmapID,

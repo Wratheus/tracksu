@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 
 import '../../requests/requests.dart';
 import '../../utils/secure_storage.dart';
-import '../../objects/user.dart';
+import '../../models/user.dart';
 
 part 'user_state.dart';
 
@@ -27,5 +28,4 @@ class UserCubit extends Cubit<UserState> {
   Future<void> reloadUser() async {
     emit(UserInitial());
   }
-
 }

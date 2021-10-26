@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:osu_track_app/src/pages/home_page.dart';
 
 import '../utils/color_contrasts.dart' as my_colors;
 
@@ -14,13 +15,13 @@ class ErrorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: my_colors.Palette.pink,
-        title: Text("Exception in ${_exceptionPageName}!"), leading: Image.asset('assets/cloud_logo.png')),
+        title: Text("Exception in ${_exceptionPageName}!"), leading: Image.asset('assets/utils/cloud_logo.png')),
       backgroundColor:my_colors.Palette.brown,
       body: Center(
         child: Column(
         children: [
           Container(
-            child: Image.asset('assets/error.jpg')),
+            child: Image.asset('assets/utils/error.jpg')),
             SizedBox(height: 100),
             Expanded(child: Text("Oops! \n Something went wrong with \n ${_exceptionPageName} \n ${_errorMessage}",
                 textAlign: TextAlign.center ,
@@ -38,6 +39,5 @@ class ErrorPage extends StatelessWidget {
 
 Future<void> toMainScreen(context, Widget exceptionPage) async {
   Navigator.push(context,
-      MaterialPageRoute(builder: (context) => exceptionPage));
-
+      MaterialPageRoute(builder: (context) => HomePage()));
 }

@@ -6,7 +6,6 @@ import '../pages/home_page.dart';
 import '../requests/requests.dart';
 import '../utils/secure_storage.dart';
 import '../utils/color_contrasts.dart' as my_colors;
-import '../utils/url_launch.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -91,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: AppBar(
           title: const Text("Login to osu OAuth..."),
           backgroundColor: my_colors.Palette.purple,
-          leading: Image.asset('assets/cloud_logo.png'),
+          leading: Image.asset('assets/utils/cloud_logo.png'),
         ));
   }
 }

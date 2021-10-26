@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:country_icons/country_icons.dart';
-import 'package:osu_track_app/src/objects/news.dart';
+import '../../models/news.dart';
 
-import'../../objects/rankings.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
 import '../../pages/cubit/news_cubit.dart';
 

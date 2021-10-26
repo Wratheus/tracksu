@@ -33,7 +33,7 @@ class UserSearchWidget extends StatelessWidget {
                 fontFamily: 'Exo 2',
                 color: Colors.white),
             prefixIcon: Icon(Icons.search, size: 35, color: Colors.white),
-            hintText: "Input username",
+            hintText: "Enter username",
             hintStyle: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

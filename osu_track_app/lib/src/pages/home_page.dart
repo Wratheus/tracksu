@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../widgets/navigation_bar/navigation_bar.dart' as navigationBar;
-import '../widgets/navigation_bar/tab_controller.dart' as controller;
-import '../widgets/navigation_bar/tab_model.dart';
 import '../utils/color_contrasts.dart' as my_colors;
+import '../utils/icon_pack.dart' as my_icons;
+import '../pages/last_news_page.dart';
+import '../pages/rankings_page.dart';
+import '../pages/user_page.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -17,50 +18,37 @@ class HomePage extends StatefulWidget {
 
 
 class _HomePageState extends State<HomePage> {
-
-  final _navigatorKeys = {
-    TabItem.News: GlobalKey<NavigatorState>(),
-    TabItem.OsuTrack: GlobalKey<NavigatorState>(),
-    TabItem.LeaderBoard: GlobalKey<NavigatorState>(),
-  };
-
-  var _currentTab = TabItem.News;
-
-  void _selectTab(TabItem tabItem) {
-    setState(() => _currentTab = tabItem);
-  }
-
-  Widget _buildOffstageNavigator(TabItem tabItem) {
-    return Offstage(
-      offstage: _currentTab != tabItem,
-      child: controller.TabController(
-        controllerKey: _navigatorKeys[tabItem]!,
-        tabItem: tabItem,
-      ),
-    );
-  }
-
+  int pageIndex = 0;
+  List<Widget> pageList = <Widget>[
+    LastNewsPage(),
+    UserPage(),
+    RankingsPage(),
+  ];
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        if (_currentTab != TabItem.News) { _selectTab(TabItem.OsuTrack); }
-        else if (_currentTab == TabItem.OsuTrack) { _selectTab(TabItem.News); }
-        else { _selectTab(TabItem.LeaderBoard); }
-        return true;
-      },
-      child: Scaffold(
-        backgroundColor: my_colors.Palette.brown,
-        body: Stack(children: <Widget>[
-          _buildOffstageNavigator(TabItem.News),
-          _buildOffstageNavigator(TabItem.OsuTrack),
-          _buildOffstageNavigator(TabItem.LeaderBoard),
-        ]),
-            bottomNavigationBar: navigationBar.NavigationBar(
-              currentTab: _currentTab,
-              onSelectTab: _selectTab,
-        ),
-      ),
+    return Scaffold(
+      backgroundColor: my_colors.Palette.brown,
+    body: pageList[pageIndex],
+        bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: my_colors.Palette.yellow,
+            unselectedItemColor: Colors.white,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: my_colors.Palette.purple,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            onTap: (value){
+               setState(() {
+                 pageIndex = value;
+            });
+
+          },
+          currentIndex: pageIndex,
+          items: [
+            BottomNavigationBarItem(icon: Icon(my_icons.MyFlutterApp.rss), label: "News"),
+            BottomNavigationBarItem(icon: Icon(my_icons.MyFlutterApp.user), label: "Users"),
+            BottomNavigationBarItem(icon: Icon(my_icons.MyFlutterApp.star), label: "Leaderboard")
+        ]
+      )
     );
   }
-}
+  }

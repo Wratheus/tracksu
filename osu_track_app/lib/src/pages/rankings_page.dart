@@ -8,7 +8,6 @@ import '../utils/color_contrasts.dart' as my_colors;
 import '../widgets/rankings_cards/list_widget.dart';
 
 
-
 class RankingsPage extends StatelessWidget {
   const RankingsPage({Key? key}) : super(key: key);
 
@@ -33,10 +32,10 @@ class _RankingsPage extends StatelessWidget {
         return const Center(child: CircularProgressIndicator(backgroundColor: my_colors.Palette.brown),);
 
     };
-      if(state is RankingsErrorState){ // Throw error if state is RankingsError
+      if(state is RankingsErrorState){ //// Throw error if state is RankingsError
         return ErrorPage(exceptionPageName: RankingsPage(), errorMessage: state.errorMessage,);
       }
-      if(state is RankingsLoadedState){ // Reload rankings if state is RankingsReload (wheel page down)
+      if(state is RankingsLoadedState){ //// Reload rankings if state is RankingsReload (wheel page down)
         return RefreshIndicator(
           child: Scaffold(
             appBar: AppBar(backgroundColor: my_colors.Palette.purple,
@@ -46,12 +45,12 @@ class _RankingsPage extends StatelessWidget {
                   color: Colors.white,
                   fontFamily: 'Exo 2',
                   fontWeight: FontWeight.bold,
-                ),), leading: Image.asset('assets/cloud_logo.png')),
+                ),), leading: Image.asset('assets/utils/cloud_logo.png')),
             body: ListView.builder(
               itemCount: state.rankingsList.length,
               itemBuilder: (context, index){
               return InkWell(
-                onTap: () {},
+                onTap: () => context.read<RankingsCubit>().loadUserFromRankings(state.rankingsList[index].username, context),
                 child: listWidget(state.rankingsList[index])
             );}
           ),
