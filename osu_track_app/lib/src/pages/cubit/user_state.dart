@@ -10,8 +10,9 @@ class UserInitial extends UserState {
 
 class UserLoadedState extends UserState {
   final User userInstance;
+  final List<dynamic> scoresInstance;
 
-  UserLoadedState(this.userInstance);
+  UserLoadedState(this.userInstance, this.scoresInstance);
 }
 
 class UserErrorState extends UserState {

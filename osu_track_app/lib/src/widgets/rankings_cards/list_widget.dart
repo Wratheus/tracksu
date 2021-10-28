@@ -107,7 +107,7 @@ Widget listWidget(Rankings item) {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text("${(item.PP).ceil()}",
+                Text("${(item.PP).round()}",
                     textAlign: TextAlign.left,
                     style: const TextStyle(
                         color: Colors.white,

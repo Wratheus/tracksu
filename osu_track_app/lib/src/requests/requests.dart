@@ -105,7 +105,7 @@ Future <user.User> getUser(String token, String username) async{
 
 // User Score list Request
 // returns a list with 100 (by default) user's scores-model
-Future <List<dynamic>> getUserScore(String token, String username, String numberOfRequestedScores) async{
+Future <dynamic> getUserScore(String token, String username, String numberOfRequestedScores) async{
   const scoresType = 'best';
   if (int.parse(numberOfRequestedScores) > 100 || int.parse(numberOfRequestedScores) <= 0){ throw Exception('wrong ScoreNumber'); }
   user.User player = await getUser(token, username);
@@ -114,7 +114,7 @@ Future <List<dynamic>> getUserScore(String token, String username, String number
     'include_fails': '1',
     'mode': 'osu',
     'limit': numberOfRequestedScores,
-    'offset': '1'
+    'offset': '0'
   };
   final Uri userScoresUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$userID/scores/$scoresType', body);
   final Map<String, String> headers = {
@@ -125,9 +125,11 @@ Future <List<dynamic>> getUserScore(String token, String username, String number
   final http.Response userScoresUrlResponse = await http.get(userScoresUrl, headers: headers);
   int scoreNumber = int.parse(numberOfRequestedScores);
   if (userScoresUrlResponse.statusCode == 200) {
-      List<dynamic> myList = List.filled(100, 0, growable: false);
       var json = convert.jsonDecode(userScoresUrlResponse.body);
-      if (json.length < 100) {scoreNumber = json.length;};
+      List<dynamic> myList = List.filled(json.length, 0, growable: false);
+      if (json.length < 100) {
+        scoreNumber = json.length;
+      };
       for (int i = 0; i < scoreNumber; i++){
       myList[i] = scores.Scores.fromJson(json[i]);
     }

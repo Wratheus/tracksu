@@ -25,7 +25,7 @@ class ErrorPage extends StatelessWidget {
             SizedBox(height: 100),
             Expanded(child: Text("Oops! \n Something went wrong with \n ${_exceptionPageName} \n ${_errorMessage}",
                 textAlign: TextAlign.center ,
-                style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',)),),
+                style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',)),),
             SizedBox(height: 50),
             ElevatedButton(onPressed: () => toMainScreen(context, _exceptionPageName),
                 child: const Text("Return",
