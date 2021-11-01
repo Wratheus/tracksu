@@ -15,8 +15,6 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-
-
 class _HomePageState extends State<HomePage> {
   int pageIndex = 0;
   List<Widget> pageList = <Widget>[
@@ -26,29 +24,29 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: my_colors.Palette.brown,
-    body: pageList[pageIndex],
-        bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor: my_colors.Palette.yellow,
-            unselectedItemColor: Colors.white,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: my_colors.Palette.purple,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            onTap: (value){
-               setState(() {
-                 pageIndex = value;
-            });
+      return Scaffold(
+        backgroundColor: my_colors.Palette.brown,
+      body: pageList[pageIndex],
+          bottomNavigationBar: BottomNavigationBar(
+              selectedItemColor: my_colors.Palette.yellow,
+              unselectedItemColor: Colors.white,
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: my_colors.Palette.purple,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              onTap: (value){
+                 setState(() {
+                   pageIndex = value;
+              });
 
-          },
-          currentIndex: pageIndex,
-          items: [
-            BottomNavigationBarItem(icon: Icon(my_icons.MyFlutterApp.rss), label: "News"),
-            BottomNavigationBarItem(icon: Icon(my_icons.MyFlutterApp.user), label: "Users"),
-            BottomNavigationBarItem(icon: Icon(my_icons.MyFlutterApp.star), label: "Leaderboard")
-        ]
-      )
-    );
-  }
+            },
+            currentIndex: pageIndex,
+            items: [
+              BottomNavigationBarItem(icon: Icon(my_icons.MyFlutterApp.rss), label: "News"),
+              BottomNavigationBarItem(icon: Icon(my_icons.MyFlutterApp.user), label: "Users"),
+              BottomNavigationBarItem(icon: Icon(my_icons.MyFlutterApp.star), label: "Leaderboard")
+          ]
+        )
+      );
+    }
   }

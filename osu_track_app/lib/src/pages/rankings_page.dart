@@ -5,7 +5,7 @@ import 'package:osu_track_app/src/pages/error_page.dart';
 
 import '../pages/cubit/rankings_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;
-import '../widgets/rankings_cards/list_widget.dart';
+import '../widgets/rankings_widgets/list_widget.dart';
 
 
 class RankingsPage extends StatelessWidget {

@@ -68,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 this.token = regExp.firstMatch(url)?.group(1);
                 var myToken = await getToken(token);
                 UserSecureStorage.setTokenInStorage(myToken['access_token']);
+                print(myToken['access_token']);
                 if (this.token != '0') {
                   setState(() {
                     flutterWebviewPlugin.close();

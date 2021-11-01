@@ -105,8 +105,7 @@ Future <user.User> getUser(String token, String username) async{
 
 // User Score list Request
 // returns a list with 100 (by default) user's scores-model
-Future <dynamic> getUserScore(String token, String username, String numberOfRequestedScores) async{
-  const scoresType = 'best';
+Future <dynamic> getUserScore(String token, String username, String numberOfRequestedScores, String offset, String scoresType) async{
   if (int.parse(numberOfRequestedScores) > 100 || int.parse(numberOfRequestedScores) <= 0){ throw Exception('wrong ScoreNumber'); }
   user.User player = await getUser(token, username);
   final userID = player.id;
@@ -114,7 +113,7 @@ Future <dynamic> getUserScore(String token, String username, String numberOfRequ
     'include_fails': '1',
     'mode': 'osu',
     'limit': numberOfRequestedScores,
-    'offset': '0'
+    'offset': offset
   };
   final Uri userScoresUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$userID/scores/$scoresType', body);
   final Map<String, String> headers = {

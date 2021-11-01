@@ -79,7 +79,7 @@ class Scores{
       HP: json['beatmap']['drain'],
       beatmapURL: json['beatmap']['url'],
       artistName: json['beatmapset']['artist'],
-      coversJPG: json['beatmapset']['covers']['cover'],
+      coversJPG: json['beatmapset']['covers']['cover@2x'],
       mapTitle: json['beatmapset']['title'],
       mapperName: json['beatmapset']['creator'],
       mapperId: json['beatmapset']['user_id'],

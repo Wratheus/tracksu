@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../models/user.dart';
-import '../../models/scores.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
 import 'user_search_widget.dart';
-import '../user_cards/user_score_widget.dart';
 
   Widget UserInfoWidget(context, User user) {
     return Column(
@@ -284,7 +282,7 @@ import '../user_cards/user_score_widget.dart';
               SizedBox(width: 10,),
               Column(children: [
                 Container(child: Image.asset(
-                    'assets/icon_score_types/grade_ss.png'),),
+                    'assets/icon_score_types/grade_x.png'),),
                 SizedBox(height: 5,),
                 Text("${user.amountOfSS}",
                     textAlign: TextAlign.right,

@@ -6,7 +6,7 @@ import 'package:osu_track_app/src/pages/error_page.dart';
 import '../pages/cubit/news_cubit.dart';
 import '../utils/url_launch.dart';
 import '../utils/color_contrasts.dart' as my_colors;
-import '../widgets/news_cards/news_widget.dart';
+import '../widgets/news_widgets/news_widget.dart';
 
 class LastNewsPage extends StatelessWidget {
   const LastNewsPage({Key? key}) : super(key: key);
@@ -25,6 +25,7 @@ class _LastNewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocBuilder<NewsCubit, NewsState>(builder: (context, state){
       if(state is NewsInitial){
       context.read<NewsCubit>().informInitial();
