@@ -51,7 +51,7 @@ class _LastNewsPage extends StatelessWidget {
                     itemBuilder: (context, index){
                       return InkWell(
                         onTap: () => launchUniversalLink(state.newsList[index].editURL!),
-                        child: newsWidget(state.newsList[index], context, state)
+                        child: newsWidget(item: state.newsList[index])
               );}
               ),
               backgroundColor: my_colors.Palette.brown.shade200,

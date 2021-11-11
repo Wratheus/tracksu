@@ -1,104 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:osu_track_app/src/pages/cubit/user_cubit.dart';
+import 'package:provider/src/provider.dart';
 
 import 'user_score_card.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
 
+class UserBestScoresList extends StatelessWidget {
 
-Widget UserBestScoresList(List<dynamic> userBestScoresInstance, context) {
-  return Container(
-    child:
-      Column(
-        children: [
-          Row(
-            children: [
-              SizedBox(width: 20,),
-              Container(
-                height: 20,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                          color: my_colors.Palette.hotPink, spreadRadius: 1)
-                    ],
-                    color: my_colors.Palette.brown.shade200),
-                alignment: Alignment.center,),
-              SizedBox(width: 10,),
-              Text("Best Performance",
-                  style:TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Exo 2',
-                  )
-              ),
-              SizedBox(height: 50,)
-            ],
-          ),
-        ListView.builder(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            physics: ClampingScrollPhysics(),
-            itemCount: userBestScoresInstance.length-5,
-            itemBuilder: (context, index){
-              while(index<5) {
-                print("best scores $index");
-                return InkWell(
-                    onTap: () => {},
-                    child: ScoreCardWidget(
-                        userBestScoresInstance[index], context)
-                );
-              }
-              return Container();
-            }),
-        ExpansionTile(
-          iconColor: my_colors.Palette.pink,
-          collapsedIconColor: my_colors.Palette.pink,
-          title: Row(
-            children: [
-              Text("Show more scores",
-                  style:TextStyle(
-                    fontSize: 16.0,
-                    color: my_colors.Palette.pink,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Exo 2',
-                  )
-              ),
-              SizedBox(height: 50,)
-            ],
-          ),
-          children: [
-            SizedBox(height: 10),
-            ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                itemCount: userBestScoresInstance.length-5,
-                itemBuilder: (context, index){
-                  index+=5;
-                  return InkWell(
-                      onTap: () => {},
-                      child: ScoreCardWidget(userBestScoresInstance[index], context)
-                  );
-                }
-            ),
-          ],
-        )
-      ],
-    ),
-  );
-}
+  final List<dynamic> _userBestScoresInstance;
 
+  const UserBestScoresList({Key? key, required List<dynamic> userBestScoresInstance}):
+        _userBestScoresInstance = userBestScoresInstance,
+        super(key: key);
 
-Widget UserFirstScoresList(List<dynamic> userFirstScoresInstance, context) {
-  // check if user have first place scores
-  if (userFirstScoresInstance.isEmpty == true) {
-    print(userFirstScoresInstance);
-    return Container();
-  }
-  else {
-    // if user have more than 5 first place scores
-    if (userFirstScoresInstance.length > 5) {
-      print(userFirstScoresInstance);
+  @override
+  Widget build(BuildContext context) {
+    if (_userBestScoresInstance.length < 5) {
       return Container(
         child:
         Column(
@@ -117,7 +34,7 @@ Widget UserFirstScoresList(List<dynamic> userFirstScoresInstance, context) {
                       color: my_colors.Palette.brown.shade200),
                   alignment: Alignment.center,),
                 SizedBox(width: 10,),
-                Text("First Place Ranks",
+                Text("Best Performance",
                     style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.white,
@@ -132,19 +49,64 @@ Widget UserFirstScoresList(List<dynamic> userFirstScoresInstance, context) {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: ClampingScrollPhysics(),
-                itemCount: userFirstScoresInstance.length-3,
-                itemBuilder: (context, index){
-                  while(index<3) {
-                    print("best scores $index");
+                itemCount: _userBestScoresInstance.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                      onTap: () => context.read<UserCubit>().loadUserFromRankings(_userBestScoresInstance[index], context),
+                      child: ScoreCardWidget(
+                          item: _userBestScoresInstance[index])
+                  );
+                }
+            )
+          ],
+        ),
+      );
+    }
+    else {
+      return Container(
+        child:
+        Column(
+          children: [
+            Row(
+              children: [
+                SizedBox(width: 20,),
+                Container(
+                  height: 20,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                            color: my_colors.Palette.hotPink, spreadRadius: 1)
+                      ],
+                      color: my_colors.Palette.brown.shade200),
+                  alignment: Alignment.center,),
+                SizedBox(width: 10,),
+                Text("Best Performance",
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Exo 2',
+                    )
+                ),
+                SizedBox(height: 50,)
+              ],
+            ),
+            ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                itemCount: _userBestScoresInstance.length - 5,
+                itemBuilder: (context, index) {
+                  while (index < 5) {
                     return InkWell(
-                        onTap: () => {},
+                        onTap: () => context.read<UserCubit>().loadUserFromRankings(_userBestScoresInstance[index], context),
                         child: ScoreCardWidget(
-                            userFirstScoresInstance[index], context)
+                            item: _userBestScoresInstance[index])
                     );
                   }
                   return Container();
                 }),
-
             ExpansionTile(
               iconColor: my_colors.Palette.pink,
               collapsedIconColor: my_colors.Palette.pink,
@@ -167,25 +129,42 @@ Widget UserFirstScoresList(List<dynamic> userFirstScoresInstance, context) {
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
-                    itemCount: userFirstScoresInstance.length - 3,
+                    itemCount: _userBestScoresInstance.length - 5,
                     itemBuilder: (context, index) {
-                      index += 3;
+                      index += 5;
                       return InkWell(
-                          onTap: () => {},
+                          onTap: () => context.read<UserCubit>().loadUserFromRankings(_userBestScoresInstance[index], context),
                           child: ScoreCardWidget(
-                              userFirstScoresInstance[index], context)
+                              item: _userBestScoresInstance[index])
                       );
-                    }),
+                    }
+                ),
               ],
             )
           ],
         ),
       );
     }
-    // if user have less than 5 scores
+  }
+}
+
+  class UserFirstScoresList extends StatelessWidget {
+
+  final List<dynamic> _userFirstScoresInstance;
+
+  const UserFirstScoresList({Key? key, required List<dynamic> userFirstScoresInstance}):
+    _userFirstScoresInstance = userFirstScoresInstance,
+    super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (_userFirstScoresInstance.isEmpty == true) {
+      return Container();
+    }
     else {
-      return
-        Container(
+      // if user have more than 5 first place scores
+      if (_userFirstScoresInstance.length > 5) {
+        return Container(
           child:
           Column(
             children: [
@@ -218,20 +197,103 @@ Widget UserFirstScoresList(List<dynamic> userFirstScoresInstance, context) {
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   physics: ClampingScrollPhysics(),
-                  itemCount: userFirstScoresInstance.length,
+                  itemCount: _userFirstScoresInstance.length - 3,
                   itemBuilder: (context, index) {
-                    while (index < userFirstScoresInstance.length) {
+                    while (index < 3) {
                       return InkWell(
-                          onTap: () => {},
-                          child: ScoreCardWidget(
-                              userFirstScoresInstance[index], context)
+                          onTap: () => context.read<UserCubit>().loadUserFromRankings(_userFirstScoresInstance[index], context),
+                          child: ScoreCardWidget(item: _userFirstScoresInstance[index])
                       );
                     }
                     return Container();
                   }),
+
+              ExpansionTile(
+                iconColor: my_colors.Palette.pink,
+                collapsedIconColor: my_colors.Palette.pink,
+                title: Row(
+                  children: [
+                    Text("Show more scores",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: my_colors.Palette.pink,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Exo 2',
+                        )
+                    ),
+                    SizedBox(height: 50,)
+                  ],
+                ),
+                children: [
+                  SizedBox(height: 10),
+                  ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      itemCount: _userFirstScoresInstance.length - 3,
+                      itemBuilder: (context, index) {
+                        index += 3;
+                        return InkWell(
+                            onTap: () => context.read<UserCubit>().loadUserFromRankings(_userFirstScoresInstance[index], context),
+                            child: ScoreCardWidget(item: _userFirstScoresInstance[index])
+                        );
+                      }),
+                ],
+              )
             ],
           ),
         );
       }
+      // if user have less than 5 scores
+      else {
+        return
+          Container(
+            child:
+            Column(
+              children: [
+                Row(
+                  children: [
+                    SizedBox(width: 20,),
+                    Container(
+                      height: 20,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                                color: my_colors.Palette.hotPink, spreadRadius: 1)
+                          ],
+                          color: my_colors.Palette.brown.shade200),
+                      alignment: Alignment.center,),
+                    SizedBox(width: 10,),
+                    Text("First Place Ranks",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Exo 2',
+                        )
+                    ),
+                    SizedBox(height: 50,)
+                  ],
+                ),
+                ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    itemCount: _userFirstScoresInstance.length,
+                    itemBuilder: (context, index) {
+                      while (index < _userFirstScoresInstance.length) {
+                        return InkWell(
+                            onTap: () => context.read<UserCubit>().loadUserFromRankings(_userFirstScoresInstance[index], context),
+                            child: ScoreCardWidget(item: _userFirstScoresInstance[index])
+                        );
+                      }
+                      return Container();
+                    }),
+              ],
+            ),
+          );
+      }
     }
   }
+}

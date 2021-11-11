@@ -27,7 +27,7 @@ class ErrorPage extends StatelessWidget {
                 textAlign: TextAlign.center ,
                 style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',)),),
             SizedBox(height: 50),
-            ElevatedButton(onPressed: () => toMainScreen(context, _exceptionPageName),
+            ElevatedButton(onPressed: () => toMainScreen(context),
                 child: const Text("Return",
                                   style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',))),
         ]
@@ -37,7 +37,8 @@ class ErrorPage extends StatelessWidget {
   }
 }
 
-Future<void> toMainScreen(context, Widget exceptionPage) async {
+Future<void> toMainScreen(context) async {
+  Navigator.pop(context, ErrorPage(exceptionPageName: Container(), errorMessage: " "));
   Navigator.push(context,
       MaterialPageRoute(builder: (context) => HomePage()));
 }

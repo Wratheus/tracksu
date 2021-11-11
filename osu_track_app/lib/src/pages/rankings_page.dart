@@ -51,7 +51,7 @@ class _RankingsPage extends StatelessWidget {
               itemBuilder: (context, index){
               return InkWell(
                 onTap: () => context.read<RankingsCubit>().loadUserFromRankings(state.rankingsList[index].username, context),
-                child: listWidget(state.rankingsList[index])
+                child: listWidget(item: state.rankingsList[index])
             );}
           ),
             backgroundColor: my_colors.Palette.brown.shade100,

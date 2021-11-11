@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import '../../requests/requests.dart';
 import '../../utils/secure_storage.dart';
 import '../../models/user.dart';
+import '../beatmap_page.dart';
+import '../../models/scores.dart';
 
 part 'user_state.dart';
 
@@ -30,5 +32,13 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> reloadUser() async {
     emit(UserInitial());
+  }
+
+  Future<void> loadUserFromRankings(Scores item,
+      BuildContext context) async {
+    print(item);
+    Navigator.push(context,
+        MaterialPageRoute(
+            builder: (context) => BeatmapPage(item: item)));
   }
 }

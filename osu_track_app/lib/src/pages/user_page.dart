@@ -89,9 +89,9 @@ class _UserPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      UserInfoWidget(context, state.userInstance),
-                      UserBestScoresList(state.userBestScoresInstance, context),
-                      UserFirstScoresList(state.userFirstScoresInstance, context),
+                      UserInfoWidget(user: state.userInstance),
+                      UserBestScoresList(userBestScoresInstance: state.userBestScoresInstance),
+                      UserFirstScoresList(userFirstScoresInstance: state.userFirstScoresInstance),
                     ],
                   ),
                 ), //user panel Info widget and searchbar

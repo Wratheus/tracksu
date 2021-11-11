@@ -10,17 +10,6 @@ class BeatmapScores{
   String? dateOfScore;
   int? bestScoreOnMapId;
   var gainedPP;
-  int? beatmapSetId;
-  int? beatmapSetMapId;
-  var difficultyRating;
-  var beatmapLength;
-  String? difficultyName;
-  var OD;
-  var AR;
-  var BPM;
-  var CS;
-  var HP;
-  String? beatmapURL;
 
   BeatmapScores({
     required this.scoreId,
@@ -33,17 +22,6 @@ class BeatmapScores{
     required this.dateOfScore,
     required this.bestScoreOnMapId,
     required this.gainedPP,
-    required this.beatmapSetId,
-    required this.beatmapSetMapId,
-    required this.difficultyRating,
-    required this.beatmapLength,
-    required this.difficultyName,
-    required this.OD,
-    required this.AR,
-    required this.BPM,
-    required this.CS,
-    required this.HP,
-    required this.beatmapURL,
   });
   factory BeatmapScores.fromJson(Map<String, dynamic> json){
     return BeatmapScores(
@@ -57,17 +35,6 @@ class BeatmapScores{
       dateOfScore: json['created_at'],
       bestScoreOnMapId: json['best_id'],
       gainedPP: json['pp'],
-      difficultyName: json['beatmap']['version'],
-      beatmapSetId: json['beatmap']['beatmapset_id'],
-      difficultyRating: json['beatmap']['difficulty_rating'],
-      beatmapSetMapId: json['beatmap']['id'],
-      beatmapLength: json['beatmap']['total_length'],
-      OD: json['beatmap']['accuracy'],
-      AR: json['beatmap']['ar'],
-      BPM: json['beatmap']['bpm'],
-      CS: json['beatmap']['cs'],
-      HP: json['beatmap']['drain'],
-      beatmapURL: json['beatmap']['url'],
     );
   }
 }

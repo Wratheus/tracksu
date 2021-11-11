@@ -4,7 +4,16 @@ import '../../models/user.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
 import 'user_search_widget.dart';
 
-  Widget UserInfoWidget(context, User user) {
+class UserInfoWidget extends StatelessWidget {
+
+  final User _user;
+
+  const UserInfoWidget({Key? key, required User user}):
+        _user = user,
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
         children: [
           const SizedBox(height: 20.0,),
@@ -29,7 +38,7 @@ import 'user_search_widget.dart';
                     height: 100.0,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(user.avatarURL),
+                        image: NetworkImage(_user.avatarURL),
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
@@ -43,7 +52,7 @@ import 'user_search_widget.dart';
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${user.username}",
+                          "${_user.username}",
                           style: const TextStyle(
                             fontSize: 22.0,
                             color: Colors.white,
@@ -52,7 +61,7 @@ import 'user_search_widget.dart';
                           ),
                         ),
                         const SizedBox(height: 10.0,),
-                        Text("#${user.globalRank}",
+                        Text("#${_user.globalRank}",
                             style: const TextStyle(
                                 color: my_colors.Palette.yellow,
                                 fontSize: 18.0,
@@ -60,7 +69,7 @@ import 'user_search_widget.dart';
                                 fontFamily: 'Exo 2')
                         ),
                         const SizedBox(height: 10.0,),
-                        Image.asset('icons/flags/png/${user.countryCode
+                        Image.asset('icons/flags/png/${_user.countryCode
                             .toLowerCase()}.png', package: 'country_icons',
                             scale: 2),
                       ]
@@ -139,7 +148,7 @@ import 'user_search_widget.dart';
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text("${user.rankedScore}",
+                    Text("${_user.rankedScore}",
                         textAlign: TextAlign.right,
                         style: const TextStyle(
                             color: Colors.white,
@@ -147,7 +156,7 @@ import 'user_search_widget.dart';
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Exo 2')
                     ),
-                    Text("${user.hitAccuracy}".substring(0, 5) + "%",
+                    Text("${_user.hitAccuracy}".substring(0, 5) + "%",
                         textAlign: TextAlign.right,
                         style: const TextStyle(
                             color: Colors.white,
@@ -155,7 +164,7 @@ import 'user_search_widget.dart';
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Exo 2')
                     ),
-                    Text("${user.playCount}",
+                    Text("${_user.playCount}",
                         textAlign: TextAlign.right,
                         style: const TextStyle(
                             color: my_colors.Palette.yellow,
@@ -163,7 +172,7 @@ import 'user_search_widget.dart';
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Exo 2')
                     ),
-                    Text("${user.totalHits}",
+                    Text("${_user.totalHits}",
                         textAlign: TextAlign.right,
                         style: const TextStyle(
                             color: my_colors.Palette.yellow,
@@ -171,7 +180,7 @@ import 'user_search_widget.dart';
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Exo 2')
                     ),
-                    Text("${user.maximumCombo}",
+                    Text("${_user.maximumCombo}",
                         textAlign: TextAlign.right,
                         style: const TextStyle(
                             color: my_colors.Palette.yellow,
@@ -179,7 +188,7 @@ import 'user_search_widget.dart';
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Exo 2')
                     ),
-                    Text("${user.replaysWatched}",
+                    Text("${_user.replaysWatched}",
                         textAlign: TextAlign.right,
                         style: const TextStyle(
                             color: my_colors.Palette.yellow,
@@ -218,7 +227,7 @@ import 'user_search_widget.dart';
                         fontFamily: 'Exo 2')
                 ),
                 SizedBox(height: 5,),
-                Text("${(user.playTime / 3600).ceil()} hours",
+                Text("${(_user.playTime / 3600).ceil()} hours",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: Colors.white,
@@ -249,7 +258,7 @@ import 'user_search_widget.dart';
                         fontFamily: 'Exo 2')
                 ),
                 SizedBox(height: 5,),
-                Text("${(user.totalPP).ceil()}",
+                Text("${(_user.totalPP).round()}",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: Colors.white,
@@ -270,7 +279,7 @@ import 'user_search_widget.dart';
                 Container(child: Image.asset(
                     'assets/icon_score_types/grade_xh.png'),),
                 SizedBox(height: 5,),
-                Text("${user.amountOfSSH}",
+                Text("${_user.amountOfSSH}",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: Colors.white,
@@ -284,7 +293,7 @@ import 'user_search_widget.dart';
                 Container(child: Image.asset(
                     'assets/icon_score_types/grade_x.png'),),
                 SizedBox(height: 5,),
-                Text("${user.amountOfSS}",
+                Text("${_user.amountOfSS}",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: Colors.white,
@@ -298,7 +307,7 @@ import 'user_search_widget.dart';
                 Container(child: Image.asset(
                     'assets/icon_score_types/grade_sh.png'),),
                 SizedBox(height: 5,),
-                Text("${user.amountOfSh}",
+                Text("${_user.amountOfSh}",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: Colors.white,
@@ -312,7 +321,7 @@ import 'user_search_widget.dart';
                 Container(
                   child: Image.asset('assets/icon_score_types/grade_s.png'),),
                 SizedBox(height: 5,),
-                Text("${user.amountOfS}",
+                Text("${_user.amountOfS}",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: Colors.white,
@@ -326,7 +335,7 @@ import 'user_search_widget.dart';
                 Container(
                   child: Image.asset('assets/icon_score_types/grade_a.png'),),
                 SizedBox(height: 5,),
-                Text("${user.amountOfA}",
+                Text("${_user.amountOfA}",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: Colors.white,
@@ -364,7 +373,7 @@ import 'user_search_widget.dart';
                         fontFamily: 'Exo 2')
                 ),
                 SizedBox(height: 5,),
-                Text("#${user.globalRank}",
+                Text("#${_user.globalRank}",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: my_colors.Palette.yellow,
@@ -395,7 +404,7 @@ import 'user_search_widget.dart';
                         fontFamily: 'Exo 2')
                 ),
                 SizedBox(height: 5,),
-                Text("#${user.countryRank}",
+                Text("#${_user.countryRank}",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: my_colors.Palette.yellow,
@@ -410,3 +419,4 @@ import 'user_search_widget.dart';
         ]
     );
   }
+}
