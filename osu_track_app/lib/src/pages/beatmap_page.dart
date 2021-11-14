@@ -34,7 +34,10 @@ class _BeatmapPage extends StatelessWidget {
 
     return BlocBuilder<BeatmapCubit, BeatmapState>(builder: (context, state) {
       if (state is BeatmapInitial) {
-          context.read<BeatmapCubit>().loadBeatmap(_item.beatmapSetMapId, _item.mapTitle);
+          context.read<BeatmapCubit>().loadBeatmap(_item.beatmapSetMapId, _item.mapTitle, _item.mapperName);
+          return Scaffold(
+              body: const Center(child: CircularProgressIndicator()),
+          backgroundColor: my_colors.Palette.brown.shade100,);
         }
         if (state is BeatmapErrorState) { // Throw error if state is UserError
           return ErrorPage(
@@ -42,26 +45,24 @@ class _BeatmapPage extends StatelessWidget {
               errorMessage: state.errorMessage);
         }
         if (state is BeatmapLoadedState) { // Reload News if state is UserReload (wheel page down)
-          return Scaffold(
-              appBar: AppBar(backgroundColor: my_colors.Palette.pink,
-                  title: Text("Beatmap loaded successful"), leading: Image.asset('assets/utils/cloud_logo.png')),
-              backgroundColor:my_colors.Palette.brown,
-              body: Center(
-                child: Column(
-                    children: [
-                      Container(
-                          child: Image.asset('assets/utils/error.jpg')),
-                      SizedBox(height: 100),
-                      Expanded(child: Text("in development",
-                          textAlign: TextAlign.center ,
-                          style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',)),),
-                      SizedBox(height: 50),
-                      ElevatedButton(onPressed: () => toMainScreen(context),
-                          child: const Text("Return",
-                              style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',))),
-                    ]
-                ),
-              )
+          return RefreshIndicator(
+            backgroundColor: my_colors.Palette.brown.shade100,
+            child: Scaffold(
+                appBar: AppBar(backgroundColor: my_colors.Palette.purple,
+                    title: Text("Beatmap loaded successful"), leading: Image.asset('assets/utils/cloud_logo.png')),
+                backgroundColor:my_colors.Palette.brown.shade100,
+                body: Center(
+                  child: Column(
+                      children: [
+                        BeatmapInfoWidget(beatmap: state.beatmapInstance, mapperInstance: state.mapperInstance,),
+                        ElevatedButton(onPressed: () => toMainScreen(context),
+                            child: const Text("Return",
+                                style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',))),
+                      ]
+                  ),
+                )
+            ),
+            onRefresh: () => context.read<BeatmapCubit>().loadBeatmap(_item.beatmapSetMapId, _item.mapTitle, _item.mapperName),
           );
         }
         else return Container();

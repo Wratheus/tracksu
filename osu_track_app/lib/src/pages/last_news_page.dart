@@ -30,13 +30,15 @@ class _LastNewsPage extends StatelessWidget {
       if(state is NewsInitial){
       context.read<NewsCubit>().informInitial();
         context.read<NewsCubit>().loadNews(); // run Circular progress bar while news is loading
-        return const Center(child: CircularProgressIndicator(backgroundColor: my_colors.Palette.brown),);
+        return const Center(child: CircularProgressIndicator(),);
       }
       if(state is NewsErrorState){ // Throw error if state is NewsError
         return ErrorPage(exceptionPageName: LastNewsPage(), errorMessage: state.errorMessage,);
       }
       if(state is NewsLoadedState){ // Reload News if state is NewsReload (wheel page down)
-        return RefreshIndicator(child:
+        return RefreshIndicator(
+          backgroundColor: my_colors.Palette.brown.shade100,
+          child:
             Scaffold(
               appBar: AppBar(backgroundColor: my_colors.Palette.purple,
                   title: const Text("Osu! News",

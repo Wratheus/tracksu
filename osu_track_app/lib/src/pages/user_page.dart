@@ -72,7 +72,9 @@ class _UserPage extends StatelessWidget {
               exceptionPageName: UserPage(), errorMessage: state.errorMessage);
         }
         if (state is UserLoadedState) {// Reload News if state is UserReload (wheel page down)
-          return RefreshIndicator(child:
+          return RefreshIndicator(
+            backgroundColor: my_colors.Palette.brown.shade100,
+            child:
             Scaffold(
               backgroundColor: my_colors.Palette.brown.shade100,
               appBar: AppBar(

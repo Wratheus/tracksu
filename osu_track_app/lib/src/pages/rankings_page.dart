@@ -29,7 +29,7 @@ class _RankingsPage extends StatelessWidget {
       if(state is RankingsInitial){ // run Circular progress bar while rankings is loading
         context.read<RankingsCubit>().informInitial();
         context.read<RankingsCubit>().loadRankings();
-        return const Center(child: CircularProgressIndicator(backgroundColor: my_colors.Palette.brown),);
+        return const Center(child: CircularProgressIndicator(),);
 
     };
       if(state is RankingsErrorState){ //// Throw error if state is RankingsError
@@ -37,6 +37,7 @@ class _RankingsPage extends StatelessWidget {
       }
       if(state is RankingsLoadedState){ //// Reload rankings if state is RankingsReload (wheel page down)
         return RefreshIndicator(
+          backgroundColor: my_colors.Palette.brown.shade100,
           child: Scaffold(
             appBar: AppBar(backgroundColor: my_colors.Palette.purple,
                 title: const Text("Osu! Leaderboard",

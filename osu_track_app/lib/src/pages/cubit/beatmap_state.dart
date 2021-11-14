@@ -9,10 +9,11 @@ class BeatmapInitial extends BeatmapState {
 }
 
 class BeatmapLoadedState extends BeatmapState {
+  final User mapperInstance;
   final Beatmap beatmapInstance;
   final List<dynamic> beatmapLeaderboard;
 
-  BeatmapLoadedState(this.beatmapInstance, this.beatmapLeaderboard);
+  BeatmapLoadedState(this.beatmapInstance, this.beatmapLeaderboard, this.mapperInstance);
 }
 
 class BeatmapErrorState extends BeatmapState {
