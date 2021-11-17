@@ -2,12 +2,12 @@ import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
 import '../authentication.dart' as auth;
-import '../models/user.dart' as user;
-import '../models/scores.dart' as scores;
-import '../models/news.dart' as news;
-import '../models/beatmap.dart' as beatmap;
-import '../models/rankings.dart' as rankings;
-import '../models/scoresbeatmap.dart' as beatmapScores;
+import '../models/user.dart';
+import '../models/scores.dart';
+import '../models/news.dart';
+import '../models/beatmap.dart';
+import '../models/rankings.dart';
+import '../models/scoresbeatmap.dart';
 import '../utils/secure_storage.dart';
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
 and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
@@ -17,13 +17,13 @@ const client_id = 'your id'; */
 
 // Token Request from user Auth
 // puts token to UserSecureStorage
-Future<Map<String, dynamic>> getToken(String? code) async{
+Future<void> getToken(String? code) async{
   final String body = convert.jsonEncode({
     "grant_type": "authorization_code",
     "client_id": auth.client_id,
     "client_secret": auth.clientSecret,
     "code": code,
-    "redirect_uri": 'https://github.com/Wratheus/OsuTrack',
+    "redirect_uri": 'https://wratheus.github.io/gfkglskdsdf',
   });
   final Map<String, String> headers = {
     'Accept': 'application/json',
@@ -37,7 +37,7 @@ Future<Map<String, dynamic>> getToken(String? code) async{
   if (tokenRequestResponse.statusCode == 200) {
     // If the server did return a 200 CREATED response,
     final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
-    return token;
+    UserSecureStorage.setTokenInStorage(token['access_token']!);
   }
   else {
     // If the server did not return a 200 CREATED response,
@@ -68,7 +68,7 @@ Future<void>getTokenAsOwner() async{
   if (tokenRequestResponse.statusCode == 200) {
     // If the server did return a 200 CREATED response,
     final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
-    UserSecureStorage.setTokenInStorage(token['access_token']);
+    UserSecureStorage.setTokenInStorage(token['access_token']!);
   }
   else {
     // If the server did not return a 200 CREATED response,
@@ -79,7 +79,7 @@ Future<void>getTokenAsOwner() async{
 
 // User request
 // returns a user class object
-Future <user.User> getUser(String token, String username) async{
+Future <User> getUser(String token, String username) async{
 
   final body = {
     'key': 'username'
@@ -94,7 +94,7 @@ Future <user.User> getUser(String token, String username) async{
 
   if (userGetResponse.statusCode == 200) {
     // If the server did return a 200 CREATED response,
-    return user.User.fromJson(convert.jsonDecode(userGetResponse.body));
+    return User.fromJson(convert.jsonDecode(userGetResponse.body));
   }
   else {
     // If the server did not return a 200 CREATED response,
@@ -105,9 +105,10 @@ Future <user.User> getUser(String token, String username) async{
 
 // User Score list Request
 // returns a list with 100 (by default) user's scores-model
-Future <dynamic> getUserScore(String token, String username, String numberOfRequestedScores, String offset, String scoresType) async{
+Future <List <Scores>> getUserScore(String token, String username, String numberOfRequestedScores, String offset, String scoresType) async{
+
   if (int.parse(numberOfRequestedScores) > 100 || int.parse(numberOfRequestedScores) <= 0){ throw Exception('wrong ScoreNumber'); }
-  user.User player = await getUser(token, username);
+  User player = await getUser(token, username);
   final userID = player.id;
   final body = {
     'include_fails': '1',
@@ -125,12 +126,12 @@ Future <dynamic> getUserScore(String token, String username, String numberOfRequ
   int scoreNumber = int.parse(numberOfRequestedScores);
   if (userScoresUrlResponse.statusCode == 200) {
       var json = convert.jsonDecode(userScoresUrlResponse.body);
-      List<dynamic> myList = List.filled(json.length, 0, growable: false);
+      List<Scores>  myList = List.empty(growable: true);
       if (json.length < 100) {
         scoreNumber = json.length;
       };
       for (int i = 0; i < scoreNumber; i++){
-      myList[i] = scores.Scores.fromJson(json[i]);
+      myList.add(Scores.fromJson(json[i]));
     }
       return myList;
   }
@@ -143,7 +144,7 @@ Future <dynamic> getUserScore(String token, String username, String numberOfRequ
 
 // News request
 // returns a list with News-model
-Future <List<dynamic>> getNews(String token) async{
+Future <List<News>> getNews(String token) async{
   final Uri newsUrl = Uri.https('osu.ppy.sh', 'api/v2/news');
   final Map<String, String> headers = {
     "Content-Type": "application/json",
@@ -153,11 +154,11 @@ Future <List<dynamic>> getNews(String token) async{
   final http.Response newsUrlResponse = await http.get(newsUrl, headers: headers);
 
   if (newsUrlResponse.statusCode == 200) {
-    List<dynamic> myList = List.filled(12, 0, growable: false);
+    List<News> myList = List.empty(growable: true);
     var numberOfNews = 12;
     var json = convert.jsonDecode(newsUrlResponse.body);
     for (int i = 0; i < numberOfNews; i++){
-      myList[i] = news.News.fromJson(json["news_posts"][i]);
+      myList.add(News.fromJson(json["news_posts"][i]));
     }
     return myList;
   }
@@ -170,7 +171,7 @@ Future <List<dynamic>> getNews(String token) async{
 
 // Beatmap request
 // returns a beatmap object
-Future <beatmap.Beatmap> getBeatmap(String token, String beatmapID) async{
+Future <Beatmap> getBeatmap(String token, String beatmapID) async{
   final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID');
   final Map<String, String> headers = {
     "Content-Type": "application/json",
@@ -180,7 +181,7 @@ Future <beatmap.Beatmap> getBeatmap(String token, String beatmapID) async{
   final http.Response beatmapUrlResponse = await http.get(beatmapUrl, headers: headers);
 
   if (beatmapUrlResponse.statusCode == 200) {
-    return beatmap.Beatmap.fromJson(convert.jsonDecode(beatmapUrlResponse.body));
+    return Beatmap.fromJson(convert.jsonDecode(beatmapUrlResponse.body));
   }
   else {
     // If the server did not return a 200 CREATED response,
@@ -191,7 +192,7 @@ Future <beatmap.Beatmap> getBeatmap(String token, String beatmapID) async{
 
 // Beatmap top-50 request
 // returns a list with beatmap top 50 best performance scores-models
-Future <List<dynamic>> getBeatmapScores(String token, String beatmapID, [List<String>? mods]) async {
+Future <List<BeatmapScores>> getBeatmapScores(String token, String beatmapID, [List<String>? mods]) async {
   int count = 0;
   final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID/scores');
   final Map<String, String> headers = {
@@ -204,11 +205,10 @@ Future <List<dynamic>> getBeatmapScores(String token, String beatmapID, [List<St
 
   if (beatmapScoresUrlResponse.statusCode == 200) {
     if (mods != null) {
-      List<dynamic> myList = List.filled(100, 0, growable: true);
+      List<BeatmapScores> myList = List.empty(growable: true);
       var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
       for (int i = 0; i < json['scores'].length; i++) {
-        beatmapScores.BeatmapScores tmp = beatmapScores.BeatmapScores.fromJson( // calculate scores with selected mods in response
-            json['scores'][i]);
+        BeatmapScores tmp = BeatmapScores.fromJson(json['scores'][i]); // calculate scores with selected mods in response
         if (tmp.mods.length == mods.length) {
           for (int j = 0; j < mods.length; j++) {
             if (mods[j] == tmp.mods[j]) {
@@ -221,17 +221,13 @@ Future <List<dynamic>> getBeatmapScores(String token, String beatmapID, [List<St
         }
         count = 0;
       }
-      int length = myList.length;
-      for (int i = 0; i < length; i++) {
-        myList.remove(0);
-      }
       return myList;
     }
     else {
-      List<dynamic> myList = List.filled(100, 0, growable: false);
+      List<BeatmapScores> myList = List.empty(growable: true);
       var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
       for (int i = 0; i < json['scores'].length; i++) {
-        myList[i] = beatmapScores.BeatmapScores.fromJson(json['scores'][i]);
+        myList.add(BeatmapScores.fromJson(json['scores'][i]));
       }
       return myList;
     }
@@ -244,7 +240,7 @@ Future <List<dynamic>> getBeatmapScores(String token, String beatmapID, [List<St
 }
 
 // Ranking request
-Future <List> getRankings(String token, [int country = 0, String mode = "osu",
+Future <List<Rankings>> getRankings(String token, [int country = 0, String mode = "osu",
                           String type = "performance", String filter = "all"]) async {
 
   final Map<String, String> headers = {
@@ -259,11 +255,11 @@ Future <List> getRankings(String token, [int country = 0, String mode = "osu",
   final http.Response getRankingsResponse = await http.get(rankingsUrl, headers: headers);
 
   if (getRankingsResponse.statusCode == 200) {
-    final List myList = List.filled(50, 0, growable: false);
+    final List<Rankings> myList = List.empty(growable: true);
     var numberOfPlayers = 50;
     var json = convert.jsonDecode(getRankingsResponse.body);
     for (int i = 0; i < numberOfPlayers; i++){
-      myList[i] = rankings.Rankings.fromJson(json["ranking"][i]);
+      myList.add(Rankings.fromJson(json["ranking"][i]));
     }
     return myList;
   }

@@ -6,7 +6,7 @@ abstract class NewsState {} // abstract states class
 class NewsInitial extends NewsState {}
 
 class NewsLoadedState extends NewsState {
-  final List newsList;
+  final List<News> newsList;
 
   NewsLoadedState(this.newsList);
 }

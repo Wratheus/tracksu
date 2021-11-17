@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../requests/requests.dart';
 import '../../utils/secure_storage.dart';
 import '../../pages/user_page.dart';
+import '../../models/rankings.dart';
 
 part 'rankings_state.dart';
 
@@ -29,8 +30,7 @@ class RankingsCubit extends Cubit<RankingsState> {
     emit(RankingsInitial());
   }
 
-  Future<void> loadUserFromRankings(String username,
-      BuildContext context) async {
+  Future<void> loadUserFromRankings(String username, context) async {
     Navigator.push(context,
         MaterialPageRoute(
             builder: (context) => UserPage(username: username)));

@@ -30,7 +30,18 @@ class _LastNewsPage extends StatelessWidget {
       if(state is NewsInitial){
       context.read<NewsCubit>().informInitial();
         context.read<NewsCubit>().loadNews(); // run Circular progress bar while news is loading
-        return const Center(child: CircularProgressIndicator(),);
+        return Scaffold(
+            appBar: AppBar(backgroundColor: my_colors.Palette.purple,
+                title: const Text("Osu! News",
+                  style: const TextStyle(
+                    fontSize: 24.0,
+                    color: Colors.white,
+                    fontFamily: 'Exo 2',
+                    fontWeight: FontWeight.bold,
+                  ),), leading: Image.asset('assets/utils/cloud_logo.png')),
+            backgroundColor: my_colors.Palette.brown.shade200,
+            body: const Center(child: CircularProgressIndicator())
+        );
       }
       if(state is NewsErrorState){ // Throw error if state is NewsError
         return ErrorPage(exceptionPageName: LastNewsPage(), errorMessage: state.errorMessage,);

@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (mounted) {
             print("URL changed: $url");
             print('Authorization: caught URL change');
-            if (url.startsWith('https://github.com/Wratheus/OsuTrack')) {
+            if (url.startsWith('https://wratheus.github.io/gfkglskdsdf')) {
               RegExp regExpError = RegExp("error=(.*)");
               if (regExpError.hasMatch(url) == true) {
                 setState(() {
@@ -63,12 +63,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       MaterialPageRoute(builder: (context) => LoginScreen()));
                 });
               }
-              if (url.startsWith('https://github.com/Wratheus/OsuTrack')) {
+              if (url.startsWith('https://wratheus.github.io/gfkglskdsdf')) {
                 RegExp regExp = RegExp("code=(.*)");
                 this.token = regExp.firstMatch(url)?.group(1);
-                var myToken = await getToken(token);
-                UserSecureStorage.setTokenInStorage(myToken['access_token']);
-                print(myToken['access_token']);
+                await getToken(token);
                 if (this.token != '0') {
                   setState(() {
                     flutterWebviewPlugin.close();
@@ -85,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://github.com/Wratheus/OsuTrack&response_type=code&scope=public";
+    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/gfkglskdsdf&response_type=code&scope=public";
 
     return WebviewScaffold(
         url: loginUrl,
@@ -93,6 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
           title: const Text("Login to osu OAuth..."),
           backgroundColor: my_colors.Palette.purple,
           leading: Image.asset('assets/utils/cloud_logo.png'),
-        ));
+      )
+    );
   }
 }

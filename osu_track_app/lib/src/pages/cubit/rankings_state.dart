@@ -6,7 +6,7 @@ abstract class RankingsState {}
 class RankingsInitial extends RankingsState {}
 
 class RankingsLoadedState extends RankingsState {
-  final List rankingsList;
+  final List<Rankings> rankingsList;
 
   RankingsLoadedState(this.rankingsList);
 }

@@ -14,6 +14,14 @@ class UserInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(_user.globalRank == null){
+      _user.globalRank = "Inactive";
+      _user.countryRank = "Inactive";
+    }
+    else{
+      _user.globalRank = "#" + "${_user.globalRank}";
+      _user.countryRank = "#" + "${_user.countryRank}";
+    }
     return Column(
         children: [
           const SizedBox(height: 20.0,),
@@ -61,7 +69,7 @@ class UserInfoWidget extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 10.0,),
-                        Text("#${_user.globalRank}",
+                        Text("${_user.globalRank}",
                             style: const TextStyle(
                                 color: my_colors.Palette.yellow,
                                 fontSize: 18.0,
@@ -373,7 +381,7 @@ class UserInfoWidget extends StatelessWidget {
                         fontFamily: 'Exo 2')
                 ),
                 SizedBox(height: 5,),
-                Text("#${_user.globalRank}",
+                Text("${_user.globalRank}",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: my_colors.Palette.yellow,
@@ -404,7 +412,7 @@ class UserInfoWidget extends StatelessWidget {
                         fontFamily: 'Exo 2')
                 ),
                 SizedBox(height: 5,),
-                Text("#${_user.countryRank}",
+                Text("${_user.countryRank}",
                     textAlign: TextAlign.right,
                     style: const TextStyle(
                         color: my_colors.Palette.yellow,

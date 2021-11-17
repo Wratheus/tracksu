@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:osu_track_app/src/pages/cubit/beatmap_cubit.dart';
+import 'package:provider/src/provider.dart';
 
 import '../../models/beatmap.dart';
 import '../../models/user.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
-import '../../utils/secure_storage.dart';
+
 
 class BeatmapInfoWidget extends StatelessWidget {
 
@@ -73,61 +75,65 @@ class BeatmapInfoWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         SizedBox(height: height / 21,),
-                        Container(
-                          height: 60,
-                          child: Row(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                width:  50.0,
-                                height: 50.0,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(_mapperInstance.avatarURL),
-                                    fit: BoxFit.cover,
+                        InkWell(
+                          onTap: () => context.read<BeatmapCubit>().loadUserFromBeatmap(_beatmap.mapperName!, context),
+                          child: Container(
+                            height: 60,
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  width:  50.0,
+                                  height: 50.0,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(_mapperInstance.avatarURL),
+                                      fit: BoxFit.cover,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                              ),
-                              SizedBox(width: 6,),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Submitted ${_beatmap.submittedDate}".substring(0, 20),
-                                      textAlign: TextAlign.left,
-                                      style: const TextStyle(
-                                        fontSize: 11.0,
-                                        color: Colors.white,
-                                        fontFamily: 'Exo 2',
-                                        fontWeight: FontWeight.bold,
+                                SizedBox(width: 6,),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Submitted ${_beatmap.submittedDate}".substring(0, 20),
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
+                                          fontSize: 11.0,
+                                          color: Colors.white,
+                                          fontFamily: 'Exo 2',
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "${_beatmap.rankedStatus}: " + "${_beatmap.rankedDate}".substring(0, 10),
-                                      textAlign: TextAlign.left,
-                                      style: const TextStyle(
-                                        fontSize: 11.0,
-                                        color: Colors.white,
-                                        fontFamily: 'Exo 2',
-                                        fontWeight: FontWeight.bold,
+                                      Text(
+                                        "${_beatmap.rankedStatus}: " + "${_beatmap.rankedDate}".substring(0, 10),
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
+                                          fontSize: 11.0,
+                                          color: Colors.white,
+                                          fontFamily: 'Exo 2',
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "mapped by ${_beatmap.mapperName}",
-                                      textAlign: TextAlign.left,
-                                      style: const TextStyle(
-                                        fontSize: 12.0,
-                                        color: Colors.white,
-                                        fontFamily: 'Exo 2',
-                                        fontWeight: FontWeight.bold,
+                                      Text(
+                                        "mapped by ${_beatmap.mapperName}",
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
+                                          fontSize: 12.0,
+                                          color: Colors.white,
+                                          fontFamily: 'Exo 2',
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(height: 10,)

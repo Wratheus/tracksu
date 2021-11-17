@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 
 import '../../requests/requests.dart';
 import '../../utils/secure_storage.dart';
+import '../../models/news.dart';
 
 part 'news_state.dart';
 

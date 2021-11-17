@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,9 +56,19 @@ class _BeatmapPage extends StatelessWidget {
                   child: Column(
                       children: [
                         BeatmapInfoWidget(beatmap: state.beatmapInstance, mapperInstance: state.mapperInstance,),
-                        ElevatedButton(onPressed: () => toMainScreen(context),
-                            child: const Text("Return",
-                                style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',))),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 30,
+                          width: 90,
+                          alignment: Alignment.center,
+                          child: ElevatedButton(
+                              onPressed: () => toMainScreen(context),
+                              child: Text("Return",
+                                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',),
+                                textAlign: TextAlign.center,
+                              )
+                          ),
+                        ),
                       ]
                   ),
                 )

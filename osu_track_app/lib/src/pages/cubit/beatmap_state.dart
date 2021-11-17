@@ -11,7 +11,7 @@ class BeatmapInitial extends BeatmapState {
 class BeatmapLoadedState extends BeatmapState {
   final User mapperInstance;
   final Beatmap beatmapInstance;
-  final List<dynamic> beatmapLeaderboard;
+  final List<BeatmapScores> beatmapLeaderboard;
 
   BeatmapLoadedState(this.beatmapInstance, this.beatmapLeaderboard, this.mapperInstance);
 }
