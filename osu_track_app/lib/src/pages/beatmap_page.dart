@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:osu_track_app/src/models/beatmap_score.dart';
 
 import '../pages/cubit/beatmap_cubit.dart';
 import '../pages/error_page.dart';
@@ -51,25 +52,26 @@ class _BeatmapPage extends StatelessWidget {
             child: Scaffold(
                 appBar: AppBar(backgroundColor: my_colors.Palette.purple,
                     title: Text("Beatmap loaded successful"), leading: Image.asset('assets/utils/cloud_logo.png')),
-                backgroundColor:my_colors.Palette.brown.shade100,
+                backgroundColor:my_colors.Palette.brown.shade200,
                 body: Center(
-                  child: Column(
-                      children: [
-                        BeatmapInfoWidget(beatmap: state.beatmapInstance, mapperInstance: state.mapperInstance,),
-                        SizedBox(height: 10),
-                        Container(
-                          height: 30,
-                          width: 90,
-                          alignment: Alignment.center,
-                          child: ElevatedButton(
-                              onPressed: () => toMainScreen(context),
-                              child: Text("Return",
-                                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',),
-                                textAlign: TextAlign.center,
-                              )
+                  child: SingleChildScrollView(
+                    child: Column(
+                        children: [
+                          BeatmapInfoWidget(beatmap: state.beatmapInstance, mapperInstance: state.mapperInstance,),
+                          SizedBox(height: 5,),
+                          ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: state.beatmapLeaderboard.length,
+                              itemBuilder: (context, index){
+                                return InkWell(
+                                    onTap: () => context.read<BeatmapCubit>().loadUserFromBeatmap(state.beatmapLeaderboard[index].username, context),
+                                    child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
+                                );}
                           ),
-                        ),
-                      ]
+                        ]
+                    ),
                   ),
                 )
             ),

@@ -5,7 +5,7 @@ import 'package:osu_track_app/src/pages/error_page.dart';
 
 import '../pages/cubit/rankings_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;
-import '../widgets/rankings_widgets/list_widget.dart';
+import '../widgets/rankings_widgets/rankings_widget.dart';
 
 
 class RankingsPage extends StatelessWidget {
@@ -52,10 +52,10 @@ class _RankingsPage extends StatelessWidget {
               itemBuilder: (context, index){
               return InkWell(
                 onTap: () => context.read<RankingsCubit>().loadUserFromRankings(state.rankingsList[index].username, context),
-                child: listWidget(item: state.rankingsList[index])
+                child: RankingsWidget(item: state.rankingsList[index])
             );}
           ),
-            backgroundColor: my_colors.Palette.brown.shade100,
+            backgroundColor: my_colors.Palette.brown.shade200,
           ),
           onRefresh: () => context.read<RankingsCubit>().reloadRankings(),
         );

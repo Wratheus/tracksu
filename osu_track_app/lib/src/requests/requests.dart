@@ -7,7 +7,7 @@ import '../models/scores.dart';
 import '../models/news.dart';
 import '../models/beatmap.dart';
 import '../models/rankings.dart';
-import '../models/scoresbeatmap.dart';
+import '../models/beatmap_score.dart';
 import '../utils/secure_storage.dart';
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
 and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
@@ -23,7 +23,7 @@ Future<void> getToken(String? code) async{
     "client_id": auth.client_id,
     "client_secret": auth.clientSecret,
     "code": code,
-    "redirect_uri": 'https://wratheus.github.io/gfkglskdsdf',
+    "redirect_uri": 'https://wratheus.github.io/OsuTrack',
   });
   final Map<String, String> headers = {
     'Accept': 'application/json',
@@ -192,7 +192,7 @@ Future <Beatmap> getBeatmap(String token, String beatmapID) async{
 
 // Beatmap top-50 request
 // returns a list with beatmap top 50 best performance scores-models
-Future <List<BeatmapScores>> getBeatmapScores(String token, String beatmapID, [List<String>? mods]) async {
+Future <List<BeatmapScore>> getBeatmapScores(String token, String beatmapID, [List<String>? mods]) async {
   int count = 0;
   final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID/scores');
   final Map<String, String> headers = {
@@ -205,10 +205,10 @@ Future <List<BeatmapScores>> getBeatmapScores(String token, String beatmapID, [L
 
   if (beatmapScoresUrlResponse.statusCode == 200) {
     if (mods != null) {
-      List<BeatmapScores> myList = List.empty(growable: true);
+      List<BeatmapScore> myList = List.empty(growable: true);
       var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
       for (int i = 0; i < json['scores'].length; i++) {
-        BeatmapScores tmp = BeatmapScores.fromJson(json['scores'][i]); // calculate scores with selected mods in response
+        BeatmapScore tmp = BeatmapScore.fromJson(json['scores'][i]); // calculate scores with selected mods in response
         if (tmp.mods.length == mods.length) {
           for (int j = 0; j < mods.length; j++) {
             if (mods[j] == tmp.mods[j]) {
@@ -224,10 +224,10 @@ Future <List<BeatmapScores>> getBeatmapScores(String token, String beatmapID, [L
       return myList;
     }
     else {
-      List<BeatmapScores> myList = List.empty(growable: true);
+      List<BeatmapScore> myList = List.empty(growable: true);
       var json = convert.jsonDecode(beatmapScoresUrlResponse.body);
       for (int i = 0; i < json['scores'].length; i++) {
-        myList.add(BeatmapScores.fromJson(json['scores'][i]));
+        myList.add(BeatmapScore.fromJson(json['scores'][i]));
       }
       return myList;
     }

@@ -6,11 +6,11 @@ import '../../pages/cubit/news_cubit.dart';
 
 
 //Widget newsWidget(News item, BuildContext context, NewsLoadedState state) {
-class newsWidget extends StatelessWidget {
+class NewsWidget extends StatelessWidget {
 
   final News _item;
 
-  const newsWidget({Key? key, required News item}):
+  const NewsWidget({Key? key, required News item}):
         _item = item,
         super(key: key);
 

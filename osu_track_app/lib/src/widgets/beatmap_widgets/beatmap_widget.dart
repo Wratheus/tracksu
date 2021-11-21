@@ -58,6 +58,7 @@ class BeatmapInfoWidget extends StatelessWidget {
         Container(
             height: height / 6.0,
             decoration: BoxDecoration(
+            color: my_colors.Palette.brown.shade100,
             image: DecorationImage(
             image: NetworkImage("${_beatmap.coversJPG}"),
               fit: BoxFit.fill,
@@ -78,11 +79,9 @@ class BeatmapInfoWidget extends StatelessWidget {
                         InkWell(
                           onTap: () => context.read<BeatmapCubit>().loadUserFromBeatmap(_beatmap.mapperName!, context),
                           child: Container(
-                            height: 60,
                             child: Row(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.all(10),
                                   width:  50.0,
                                   height: 50.0,
                                   decoration: BoxDecoration(
@@ -96,11 +95,12 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 SizedBox(width: 6,),
                                 Expanded(
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
+                                      SizedBox(height: 10,),
                                       Text(
-                                        "Submitted ${_beatmap.submittedDate}".substring(0, 20),
+                                        "Submitted: ${_beatmap.submittedDate}".substring(0, 20),
                                         textAlign: TextAlign.left,
                                         style: const TextStyle(
                                           fontSize: 11.0,
@@ -156,7 +156,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                             "${_beatmap.rankedStatus}".toUpperCase(),
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              fontSize: 16.0,
+                              fontSize: 14.0,
                               color: Colors.white,
                               fontFamily: 'Exo 2',
                               fontWeight: FontWeight.bold,
@@ -192,7 +192,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                             Text(
                               "${_beatmap.difficultyRating}",
                               style: const TextStyle(
-                                fontSize: 16.0,
+                                fontSize: 14.0,
                                 color: Colors.white,
                                 fontFamily: 'Exo 2',
                                 fontWeight: FontWeight.bold,
@@ -212,7 +212,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                             Text(
                               "${_beatmap.favouriteCount}",
                               style: const TextStyle(
-                                fontSize: 16.0,
+                                fontSize: 14.0,
                                 color: Colors.white,
                                 fontFamily: 'Exo 2',
                                 fontWeight: FontWeight.bold,
@@ -232,7 +232,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                             Text(
                               "${_beatmap.playCount}",
                               style: const TextStyle(
-                                fontSize: 16.0,
+                                fontSize: 14.0,
                                 color: Colors.white,
                                 fontFamily: 'Exo 2',
                                 fontWeight: FontWeight.bold,
@@ -248,15 +248,13 @@ class BeatmapInfoWidget extends StatelessWidget {
                 ],
           ),
     ),
-              SizedBox(height: 10),
+              SizedBox(height: 5,),
               Container(
-                width: width / 1.2,
-                height: 100,
-                padding: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                    boxShadow: [BoxShadow(color: Colors.white, spreadRadius: 1)],
-                    color: my_colors.Palette.brown.shade200),
+                width: width,
+                height: 90,
+                padding: EdgeInsets.all(5.0),
                 alignment: Alignment.center,
+                color: my_colors.Palette.brown.shade100,
                 child: Column(
                   children: [
                     Row(
@@ -269,7 +267,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: my_colors.Palette.red,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -277,7 +275,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -290,7 +288,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: my_colors.Palette.red,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -298,7 +296,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -311,7 +309,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: my_colors.Palette.red,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -319,7 +317,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -332,7 +330,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: my_colors.Palette.red,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -340,7 +338,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -354,7 +352,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: my_colors.Palette.red,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -362,7 +360,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -383,7 +381,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: my_colors.Palette.yellow,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -391,7 +389,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -404,7 +402,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: my_colors.Palette.yellow,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -412,7 +410,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -425,7 +423,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: my_colors.Palette.yellow,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -433,7 +431,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -446,7 +444,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: my_colors.Palette.yellow,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),
@@ -454,7 +452,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Exo 2')
                             ),

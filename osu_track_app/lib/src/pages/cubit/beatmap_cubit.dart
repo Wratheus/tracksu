@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
-import 'package:osu_track_app/src/models/scoresbeatmap.dart';
+import 'package:osu_track_app/src/models/beatmap_score.dart';
 
 import '../../requests/requests.dart';
 import '../../utils/secure_storage.dart';

@@ -4,19 +4,24 @@ import'../../models/rankings.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
 
 
-class listWidget extends StatelessWidget {
+class RankingsWidget extends StatelessWidget {
 
   final Rankings _item;
 
-  const listWidget({Key? key, required Rankings item})
+  const RankingsWidget({Key? key, required Rankings item})
       :
         _item = item,
         super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
+    String accuracy = "${_item.hitAccuracy}";
+    if ("${_item.hitAccuracy}".length != 100){
+      accuracy = "${(_item.hitAccuracy)}".substring(0,5);
+    }
     return Card(
-      color: my_colors.Palette.brown.shade100,
+      color: my_colors.Palette.brown.shade200,
       elevation: 25.0,
       margin: const EdgeInsets.only(bottom: 10.0),
       child: Padding(
@@ -39,7 +44,7 @@ class listWidget extends StatelessWidget {
                   ]),
               const SizedBox(width: 5.0,),
               Expanded(child:
-              Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -67,7 +72,7 @@ class listWidget extends StatelessWidget {
                   ]
               ),
               ),
-              Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -128,7 +133,7 @@ class listWidget extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Exo 2')
                       ),
-                      Text("${_item.hitAccuracy}".substring(0, 5) + "%",
+                      Text(accuracy+"%",
                           textAlign: TextAlign.left,
                           style: const TextStyle(
                               color: Colors.white,

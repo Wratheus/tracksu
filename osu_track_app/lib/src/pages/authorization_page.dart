@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (mounted) {
             print("URL changed: $url");
             print('Authorization: caught URL change');
-            if (url.startsWith('https://wratheus.github.io/gfkglskdsdf')) {
+            if (url.startsWith('https://wratheus.github.io/OsuTrack')) {
               RegExp regExpError = RegExp("error=(.*)");
               if (regExpError.hasMatch(url) == true) {
                 setState(() {
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       MaterialPageRoute(builder: (context) => LoginScreen()));
                 });
               }
-              if (url.startsWith('https://wratheus.github.io/gfkglskdsdf')) {
+              if (url.startsWith('https://wratheus.github.io/OsuTrack')) {
                 RegExp regExp = RegExp("code=(.*)");
                 this.token = regExp.firstMatch(url)?.group(1);
                 await getToken(token);
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/gfkglskdsdf&response_type=code&scope=public";
+    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/OsuTrack&response_type=code&scope=public";
 
     return WebviewScaffold(
         url: loginUrl,

@@ -69,16 +69,10 @@ class ScoreCardWidget extends StatelessWidget {
                         children: [
                           Column(
                             children: [
-                              Container(
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      'assets/icon_score_types/grade_' +
-                                          "${_item.mapRank}".toLowerCase() +
-                                          ".png", scale: 0.75,),
-                                  ],
-                                ),
-                              ),
+                              Image.asset(
+                                'assets/icon_score_types/grade_' +
+                                    "${_item.mapRank}".toLowerCase() +
+                                    ".png", scale: 0.75,),
                             ],
                           ),
                           SizedBox(width: 5,),
