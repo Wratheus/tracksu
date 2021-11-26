@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:osu_track_app/src/pages/error_page.dart';
+import 'package:osu_track_app/src/widgets/rankings_widgets/rankings_search_by_page_widget.dart';
 
 import '../pages/cubit/rankings_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;
@@ -28,7 +29,7 @@ class _RankingsPage extends StatelessWidget {
     return BlocBuilder<RankingsCubit, RankingsState>(builder: (context, state){
       if(state is RankingsInitial){ // run Circular progress bar while rankings is loading
         context.read<RankingsCubit>().informInitial();
-        context.read<RankingsCubit>().loadRankings();
+        context.read<RankingsCubit>().loadRankings("1");
         return const Center(child: CircularProgressIndicator(),);
 
     };
@@ -47,14 +48,25 @@ class _RankingsPage extends StatelessWidget {
                   fontFamily: 'Exo 2',
                   fontWeight: FontWeight.bold,
                 ),), leading: Image.asset('assets/utils/cloud_logo.png')),
-            body: ListView.builder(
-              itemCount: state.rankingsList.length,
-              itemBuilder: (context, index){
-              return InkWell(
-                onTap: () => context.read<RankingsCubit>().loadUserFromRankings(state.rankingsList[index].username, context),
-                child: RankingsWidget(item: state.rankingsList[index])
-            );}
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 10,),
+                  RankingsSearchByPageWidget(),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: state.rankingsList.length,
+                    itemBuilder: (context, index){
+                    return InkWell(
+                      onTap: () => context.read<RankingsCubit>().loadUserFromRankings(state.rankingsList[index].username, context),
+                      child: RankingsWidget(item: state.rankingsList[index])
+                  );}
           ),
+                ],
+              ),
+            ),
             backgroundColor: my_colors.Palette.brown.shade200,
           ),
           onRefresh: () => context.read<RankingsCubit>().reloadRankings(),

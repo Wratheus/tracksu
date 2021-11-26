@@ -14,13 +14,16 @@ class UserInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if ("${_user.hitAccuracy}".length > 5) {
+      _user.hitAccuracy = "${_user.hitAccuracy}".substring(0,5);
+    }
     if(_user.globalRank == null){
       _user.globalRank = "Inactive";
       _user.countryRank = "Inactive";
     }
-    else{
-      _user.globalRank = "#" + "${_user.globalRank}";
-      _user.countryRank = "#" + "${_user.countryRank}";
+    else if ("${_user.globalRank}"[0] != "#") {
+      _user.globalRank = "#${_user.globalRank}";
+      _user.countryRank = "#${_user.countryRank}";
     }
     return Column(
         children: [
@@ -77,9 +80,13 @@ class UserInfoWidget extends StatelessWidget {
                                 fontFamily: 'Exo 2')
                         ),
                         const SizedBox(height: 10.0,),
-                        Image.asset('icons/flags/png/${_user.countryCode
-                            .toLowerCase()}.png', package: 'country_icons',
-                            scale: 2),
+                        Container(
+                          height: 25,
+                          width: 41.66,
+                          child: Image.asset('icons/flags/png/${_user.countryCode
+                              .toLowerCase()}.png', package: 'country_icons', fit: BoxFit.fill,
+                              scale: 2),
+                        ),
                       ]
                   ),
                 ),
@@ -164,7 +171,7 @@ class UserInfoWidget extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Exo 2')
                     ),
-                    Text("${_user.hitAccuracy}".substring(0, 5) + "%",
+                    Text("${_user.hitAccuracy}%",
                         textAlign: TextAlign.right,
                         style: const TextStyle(
                             color: Colors.white,

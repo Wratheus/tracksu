@@ -17,8 +17,8 @@ class RankingsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String accuracy = "${_item.hitAccuracy}";
-    if ("${_item.hitAccuracy}".length != 100){
-      accuracy = "${(_item.hitAccuracy)}".substring(0,5);
+    if (accuracy.length > 5) {
+      accuracy = accuracy.substring(0, 5);
     }
     return Card(
       color: my_colors.Palette.brown.shade200,
@@ -51,7 +51,7 @@ class RankingsWidget extends StatelessWidget {
                     Text(
                       "#${_item.globalRank}",
                       style: const TextStyle(
-                        fontSize: 16.0,
+                        fontSize: 14.0,
                         color: my_colors.Palette.yellow,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
@@ -60,14 +60,18 @@ class RankingsWidget extends StatelessWidget {
                     Text(_item.username,
                         style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 16.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Exo 2')
                     ),
                     const SizedBox(height: 15.0,),
-                    Image.asset('icons/flags/png/${_item.countryCode
-                        .toLowerCase()}.png', package: 'country_icons',
-                        scale: 2.5),
+                    Container(
+                      height: 18,
+                      width: 30,
+                      child: Image.asset('icons/flags/png/${_item.countryCode
+                          .toLowerCase()}.png', package: 'country_icons', fit: BoxFit.fill,
+                          scale: 2.5),
+                    ),
 
                   ]
               ),

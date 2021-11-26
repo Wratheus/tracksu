@@ -240,8 +240,11 @@ Future <List<BeatmapScore>> getBeatmapScores(String token, String beatmapID, [Li
 }
 
 // Ranking request
-Future <List<Rankings>> getRankings(String token, [int country = 0, String mode = "osu",
+Future <List<Rankings>> getRankings(String token,  String page, [int country = 0, String mode = "osu",
                           String type = "performance", String filter = "all"]) async {
+  if (int.parse(page) > 200 || int.parse(page) < 1) {
+    throw Exception('Failed to get RANKINGS response. Wrong page');
+  }
 
   final Map<String, String> headers = {
     "Content-Type": "application/json",
@@ -249,7 +252,8 @@ Future <List<Rankings>> getRankings(String token, [int country = 0, String mode 
     "Authorization": "Bearer $token"
   };
   final Map<String, dynamic> body = {
-    "filter": filter
+    "filter": filter,
+    "cursor[page]": "${page}"
   };
   final Uri rankingsUrl = Uri.https('osu.ppy.sh', 'api/v2/rankings/$mode/$type', body);
   final http.Response getRankingsResponse = await http.get(rankingsUrl, headers: headers);

@@ -16,10 +16,10 @@ class RankingsCubit extends Cubit<RankingsState> {
     print('RankingsPage loading');
   }
 
-  Future<void> loadRankings() async {
+  Future<void> loadRankings(page) async {
     try {
       emit(RankingsLoadedState(await getRankings(
-          (await UserSecureStorage.getTokenFromStorage())!))); // request news
+          (await UserSecureStorage.getTokenFromStorage())!, page))); // request news
       print('Rankings loaded');
     } catch (e) {
       emit(RankingsErrorState('Failed Rankings Load $e'));
