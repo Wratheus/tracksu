@@ -1,4 +1,4 @@
-#Osu!Track
+## Osu!Track
 
 <p align="center">
   <img src="https://i.imgur.com/kwUChmG.png" alt="logo" width="400" />
