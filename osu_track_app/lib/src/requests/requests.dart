@@ -103,6 +103,29 @@ Future <User> getUser(String token, String username) async{
   }
 }
 
+// User request
+// returns a self user class object for logged user
+Future <User> getUserMe(String token) async{
+
+  final Uri userUrl = Uri.https('osu.ppy.sh', 'api/v2/me/osu');
+  final Map<String, String> headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer $token"
+  };
+  final http.Response userGetResponse = await http.get(userUrl, headers: headers);
+
+  if (userGetResponse.statusCode == 200) {
+    // If the server did return a 200 CREATED response,
+    return User.fromJson(convert.jsonDecode(userGetResponse.body));
+  }
+  else {
+    // If the server did not return a 200 CREATED response,
+    var statusCode = userGetResponse.statusCode;
+    throw Exception('Failed to get USER response. Status code = $statusCode');
+  }
+}
+
 // User Score list Request
 // returns a list with 100 (by default) user's scores-model
 Future <List <Scores>> getUserScore(String token, String username, String numberOfRequestedScores, String offset, String scoresType) async{
@@ -145,7 +168,11 @@ Future <List <Scores>> getUserScore(String token, String username, String number
 // News request
 // returns a list with News-model
 Future <List<News>> getNews(String token) async{
-  final Uri newsUrl = Uri.https('osu.ppy.sh', 'api/v2/news');
+  String numberOfNews = "21";
+  final body = {
+    "limit": numberOfNews,
+  };
+  final Uri newsUrl = Uri.https('osu.ppy.sh', 'api/v2/news', body);
   final Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -155,9 +182,8 @@ Future <List<News>> getNews(String token) async{
 
   if (newsUrlResponse.statusCode == 200) {
     List<News> myList = List.empty(growable: true);
-    var numberOfNews = 12;
     var json = convert.jsonDecode(newsUrlResponse.body);
-    for (int i = 0; i < numberOfNews; i++){
+    for (int i = 0; i < int.parse(numberOfNews); i++){
       myList.add(News.fromJson(json["news_posts"][i]));
     }
     return myList;

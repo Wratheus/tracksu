@@ -27,7 +27,7 @@ class UserInfoWidget extends StatelessWidget {
     }
     return Column(
         children: [
-          const SizedBox(height: 20.0,),
+          const SizedBox(height: 10.0,),
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -35,7 +35,7 @@ class UserInfoWidget extends StatelessWidget {
               ]
           ),
           // User avatar rank and country bloc
-          const SizedBox(height: 30.0,),
+          const SizedBox(height: 10.0,),
           Container(
             width: 350,
             alignment: Alignment.center,

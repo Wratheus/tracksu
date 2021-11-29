@@ -7,6 +7,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/cloud_logo" />
+            android:src="@mipmap/cloud_logo" />
     </item>
 </layer-list>

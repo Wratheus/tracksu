@@ -31,6 +31,19 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
+  Future<void> loadUserMe() async {
+    try {
+      emit(UserLoadingState());
+      final user = await getUserMe((await UserSecureStorage.getTokenFromStorage())!);
+      final userBestScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, user.username, '100', '0', 'best');
+      final userFirstScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, user.username, '100', '0', 'firsts');
+      emit(UserLoadedState(user, userBestScores, userFirstScores));
+      print('User ME(${user.username}) loaded');
+    } catch (e){
+      emit(UserErrorState('Failed User Load $e'));
+    }
+  }
+
   Future<void> reloadUser() async {
     emit(UserInitial());
   }

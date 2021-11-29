@@ -39,7 +39,7 @@ class _LastNewsPage extends StatelessWidget {
                     fontFamily: 'Exo 2',
                     fontWeight: FontWeight.bold,
                   ),), leading: Image.asset('assets/utils/cloud_logo.png')),
-            backgroundColor: my_colors.Palette.brown.shade200,
+            backgroundColor: my_colors.Palette.brown.shade100,
             body: const Center(child: CircularProgressIndicator())
         );
       }

@@ -10,6 +10,8 @@ class UserSearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: 300,
+        height: 45,
+        margin: EdgeInsets.all(5),
         child: TextField(
           textAlign: TextAlign.left,
           decoration: InputDecoration(
@@ -28,20 +30,20 @@ class UserSearchWidget extends StatelessWidget {
             ),
             labelText: "Username",
             labelStyle: const TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Exo 2',
                 color: Colors.white),
-            prefixIcon: Icon(Icons.search, size: 35, color: Colors.white),
+            prefixIcon: Icon(Icons.search, size: 25, color: Colors.white),
             hintText: "Enter username",
             hintStyle: const TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Exo 2',
                 color: Colors.white54),
           ),
           style: const TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: FontWeight.bold,
               fontFamily: 'Exo 2',
               color: Colors.white),

@@ -30,8 +30,18 @@ class _RankingsPage extends StatelessWidget {
       if(state is RankingsInitial){ // run Circular progress bar while rankings is loading
         context.read<RankingsCubit>().informInitial();
         context.read<RankingsCubit>().loadRankings("1");
-        return const Center(child: CircularProgressIndicator(),);
-
+        return Scaffold(
+            appBar: AppBar(backgroundColor: my_colors.Palette.purple,
+                title: const Text("Osu! Leaderboard",
+                  style: const TextStyle(
+                    fontSize: 24.0,
+                    color: Colors.white,
+                    fontFamily: 'Exo 2',
+                    fontWeight: FontWeight.bold,
+                  ),), leading: Image.asset('assets/utils/cloud_logo.png')),
+            body: Center(child: CircularProgressIndicator(),),
+            backgroundColor: my_colors.Palette.brown.shade100
+        );
     };
       if(state is RankingsErrorState){ //// Throw error if state is RankingsError
         return ErrorPage(exceptionPageName: RankingsPage(), errorMessage: state.errorMessage,);
@@ -48,6 +58,7 @@ class _RankingsPage extends StatelessWidget {
                   fontFamily: 'Exo 2',
                   fontWeight: FontWeight.bold,
                 ),), leading: Image.asset('assets/utils/cloud_logo.png')),
+            backgroundColor: my_colors.Palette.brown.shade200,
             body: SingleChildScrollView(
               child: Column(
                 children: [
@@ -63,11 +74,10 @@ class _RankingsPage extends StatelessWidget {
                       onTap: () => context.read<RankingsCubit>().loadUserFromRankings(state.rankingsList[index].username, context),
                       child: RankingsWidget(item: state.rankingsList[index])
                   );}
-          ),
+                ),
                 ],
               ),
             ),
-            backgroundColor: my_colors.Palette.brown.shade200,
           ),
           onRefresh: () => context.read<RankingsCubit>().reloadRankings(),
         );

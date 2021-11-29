@@ -39,7 +39,7 @@ class _UserPage extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
                 backgroundColor: my_colors.Palette.purple,
-                title: const Text("User statistics!",
+                title: const Text("Osu! User stats",
                   style: const TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
@@ -53,12 +53,12 @@ class _UserPage extends StatelessWidget {
           );
         }
         else {
-          context.read<UserCubit>().informInitial();
+          context.read<UserCubit>().loadUserMe();
           return RefreshIndicator(child:
             Scaffold(
               appBar: AppBar(
                   backgroundColor: my_colors.Palette.purple,
-                  title: const Text("User statistics!",
+                  title: const Text("Osu! User stats",
                     style: const TextStyle(
                       fontSize: 24.0,
                       color: Colors.white,
@@ -66,19 +66,8 @@ class _UserPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),),
                   leading: Image.asset('assets/utils/cloud_logo.png')),
-              body: Column(
-                children: [
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        UserSearchWidget() // search bar widget
-                      ]
-                  ),
-                ],
-              ),
+              body: Center(
+                  child: CircularProgressIndicator()),
               backgroundColor: my_colors.Palette.brown.shade100,
             ),
             onRefresh: () => context.read<UserCubit>().reloadUser(),
@@ -95,7 +84,7 @@ class _UserPage extends StatelessWidget {
           Scaffold(
             appBar: AppBar(
                 backgroundColor: my_colors.Palette.purple,
-                title: const Text("User statistics!",
+                title: const Text("Osu! User stats",
                   style: const TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
