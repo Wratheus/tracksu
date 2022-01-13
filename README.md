@@ -3,6 +3,8 @@
 <p align="center">
   <img src="https://i.imgur.com/kwUChmG.png" alt="logo" width="400" />
 </p>
+
+# [Now is available in Play Market ](https://play.google.com/store/apps/details?id=com.osutrack.osu_tracker&hl=ru&gl=US)
 ____________________________________________________________________________________________________________________________________________
 
 The goal of the project is to write an application using Dart + Flutter to visualise info provided by Osu! API
