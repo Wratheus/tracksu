@@ -23,7 +23,8 @@ class RankingsWidget extends StatelessWidget {
     return Card(
       color: my_colors.Palette.brown.shade200,
       elevation: 25.0,
-      margin: const EdgeInsets.only(bottom: 10.0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+      margin: const EdgeInsets.only(bottom: 8.0, left: 10.0, right: 10.0),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(

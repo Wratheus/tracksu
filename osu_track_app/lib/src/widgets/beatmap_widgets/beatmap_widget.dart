@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:osu_track_app/src/pages/cubit/beatmap_cubit.dart';
 import 'package:provider/src/provider.dart';
 
@@ -38,38 +39,49 @@ class BeatmapInfoWidget extends StatelessWidget {
           "${_beatmap.mapTitle}",
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontSize: 16.0,
+            fontSize: 14.0,
             color: Colors.white,
             fontFamily: 'Exo 2',
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
+          "[${_beatmap.difficultyName}]",
+          textAlign: TextAlign.right,
+          style: const TextStyle(
+            fontSize: 12.0,
+            color: my_colors.Palette.yellow,
+            fontFamily: 'Exo 2',
+            fontWeight: FontWeight.bold,
+          ),),
+        Text(
           "by ${_beatmap.artistName}",
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontSize: 14.0,
+            fontSize: 12.0,
             color: my_colors.Palette.red,
             fontFamily: 'Exo 2',
             fontWeight: FontWeight.bold,
           ),
         ),
+
         SizedBox(height: 7,),
         Container(
+            margin: EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(10.0),
             height: height / 6.0,
             decoration: BoxDecoration(
             color: my_colors.Palette.brown.shade100,
             image: DecorationImage(
-            image: NetworkImage("${_beatmap.coversJPG}"),
+              image: NetworkImage("${_beatmap.coversJPG}"),
               fit: BoxFit.fill,
               colorFilter: ColorFilter.mode(
                   Colors.white.withOpacity(0.24), BlendMode.dstATop),
             ),
-        borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(8.0),
             ),
           child: Row(
                 children: [
-                  SizedBox(width: 10,),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -82,8 +94,8 @@ class BeatmapInfoWidget extends StatelessWidget {
                             child: Row(
                               children: [
                                 Container(
-                                  width:  50.0,
-                                  height: 50.0,
+                                  width:  45.0,
+                                  height: 45.0,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: NetworkImage(_mapperInstance.avatarURL),
@@ -103,7 +115,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                         "Submitted: ${_beatmap.submittedDate}".substring(0, 20),
                                         textAlign: TextAlign.left,
                                         style: const TextStyle(
-                                          fontSize: 11.0,
+                                          fontSize: 10.0,
                                           color: Colors.white,
                                           fontFamily: 'Exo 2',
                                           fontWeight: FontWeight.bold,
@@ -113,7 +125,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                         "${_beatmap.rankedStatus}: " + "${_beatmap.rankedDate}".substring(0, 10),
                                         textAlign: TextAlign.left,
                                         style: const TextStyle(
-                                          fontSize: 11.0,
+                                          fontSize: 10.0,
                                           color: Colors.white,
                                           fontFamily: 'Exo 2',
                                           fontWeight: FontWeight.bold,
@@ -123,7 +135,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                         "mapped by ${_beatmap.mapperName}",
                                         textAlign: TextAlign.left,
                                         style: const TextStyle(
-                                          fontSize: 12.0,
+                                          fontSize: 11.0,
                                           color: Colors.white,
                                           fontFamily: 'Exo 2',
                                           fontWeight: FontWeight.bold,
@@ -136,7 +148,6 @@ class BeatmapInfoWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 10,)
                       ]
                     ),
                   ),
@@ -145,9 +156,8 @@ class BeatmapInfoWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        SizedBox(height: 5,),
                         Container(
-                          width: 100,
+                          width: 80,
                           padding: EdgeInsets.only(top: 2, bottom: 2),
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
                             boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.30), spreadRadius: 1)],
@@ -156,29 +166,12 @@ class BeatmapInfoWidget extends StatelessWidget {
                             "${_beatmap.rankedStatus}".toUpperCase(),
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              fontSize: 14.0,
+                              fontSize: 12.0,
                               color: Colors.white,
                               fontFamily: 'Exo 2',
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                        SizedBox(height: 5,),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "[${_beatmap.difficultyName}]",
-                                textAlign: TextAlign.right,
-                                style: const TextStyle(
-                                  fontSize: 12.0,
-                                  color: my_colors.Palette.yellow,
-                                  fontFamily: 'Exo 2',
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
                         ),
                         Spacer(),
                         Row(
@@ -187,12 +180,12 @@ class BeatmapInfoWidget extends StatelessWidget {
                             Image.asset(
                                 'assets/utils/yellow_star.png',
                                 color: my_colors.Palette.yellow,
-                                scale: 30),
+                                scale: 42),
                             SizedBox(width: 5,),
                             Text(
                               "${_beatmap.difficultyRating}",
                               style: const TextStyle(
-                                fontSize: 14.0,
+                                fontSize: 12.0,
                                 color: Colors.white,
                                 fontFamily: 'Exo 2',
                                 fontWeight: FontWeight.bold,
@@ -207,12 +200,12 @@ class BeatmapInfoWidget extends StatelessWidget {
                             Image.asset(
                                 'assets/utils/heart-solid.png',
                                 color: my_colors.Palette.hotPink,
-                                scale: 30),
+                                scale: 42),
                             SizedBox(width: 5,),
                             Text(
                               "${_beatmap.favouriteCount}",
                               style: const TextStyle(
-                                fontSize: 14.0,
+                                fontSize: 12.0,
                                 color: Colors.white,
                                 fontFamily: 'Exo 2',
                                 fontWeight: FontWeight.bold,
@@ -227,12 +220,12 @@ class BeatmapInfoWidget extends StatelessWidget {
                             Image.asset(
                                 'assets/utils/play-circle-solid.png',
                                 color: my_colors.Palette.yellow,
-                                scale: 30),
+                                scale: 42),
                             SizedBox(width: 5,),
                             Text(
                               "${_beatmap.playCount}",
                               style: const TextStyle(
-                                fontSize: 14.0,
+                                fontSize: 12.0,
                                 color: Colors.white,
                                 fontFamily: 'Exo 2',
                                 fontWeight: FontWeight.bold,
@@ -240,11 +233,9 @@ class BeatmapInfoWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,)
                       ],
                     ),
                   ),
-                  SizedBox(width: 10,)
                 ],
           ),
     ),
@@ -252,9 +243,13 @@ class BeatmapInfoWidget extends StatelessWidget {
               Container(
                 width: width,
                 height: 90,
+                margin: EdgeInsets.only(left:10.0, right: 10.0, bottom: 5.0),
                 padding: EdgeInsets.all(5.0),
                 alignment: Alignment.center,
-                color: my_colors.Palette.brown.shade100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  color: my_colors.Palette.brown.shade100,
+                ),
                 child: Column(
                   children: [
                     Row(

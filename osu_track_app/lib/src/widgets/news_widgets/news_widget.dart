@@ -27,8 +27,9 @@ class NewsWidget extends StatelessWidget {
 
     return Card(
       color: my_colors.Palette.brown.shade100,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
       elevation: 6,
-      margin: const EdgeInsets.only(bottom: 15.0),
+      margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 8.0),
       child: Padding(
         padding: const EdgeInsets.only(top: 2, bottom: 8, left: 8, right: 8),
         child: Column(
@@ -39,7 +40,7 @@ class NewsWidget extends StatelessWidget {
                     Text("${_item.publishedAt}".substring(0, 10),
                         style: const TextStyle(
                             color: my_colors.Palette.yellow,
-                            fontSize: 18,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Exo 2')
                     )
@@ -75,7 +76,7 @@ class NewsWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Exo 2')
                     ),
@@ -91,7 +92,7 @@ class NewsWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: my_colors.Palette.yellow,
-                          fontSize: 16,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Exo 2')
                   ),
@@ -99,7 +100,7 @@ class NewsWidget extends StatelessWidget {
 
                 ],
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(height: 5,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -108,7 +109,7 @@ class NewsWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Exo 2')
                   ),

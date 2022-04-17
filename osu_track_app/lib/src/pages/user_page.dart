@@ -39,7 +39,7 @@ class _UserPage extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
                 backgroundColor: my_colors.Palette.purple,
-                title: const Text("Osu! User stats",
+                title: const Text("User stats",
                   style: const TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
@@ -58,7 +58,7 @@ class _UserPage extends StatelessWidget {
             Scaffold(
               appBar: AppBar(
                   backgroundColor: my_colors.Palette.purple,
-                  title: const Text("Osu! User stats",
+                  title: const Text("User stats",
                     style: const TextStyle(
                       fontSize: 24.0,
                       color: Colors.white,
@@ -84,7 +84,7 @@ class _UserPage extends StatelessWidget {
           Scaffold(
             appBar: AppBar(
                 backgroundColor: my_colors.Palette.purple,
-                title: const Text("Osu! User stats",
+                title: const Text("User stats",
                   style: const TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,

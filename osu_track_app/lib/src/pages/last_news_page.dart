@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:osu_track_app/src/pages/error_page.dart';
 
@@ -32,7 +31,7 @@ class _LastNewsPage extends StatelessWidget {
         context.read<NewsCubit>().loadNews(); // run Circular progress bar while news is loading
         return Scaffold(
             appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                title: const Text("Osu! News",
+                title: const Text("News",
                   style: const TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
@@ -52,20 +51,30 @@ class _LastNewsPage extends StatelessWidget {
           child:
             Scaffold(
               appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                  title: const Text("Osu! News",
+                  title: const Text("News",
                     style: const TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
                     fontFamily: 'Exo 2',
                     fontWeight: FontWeight.bold,
                   ),), leading: Image.asset('assets/utils/cloud_logo.png')),
-              body: ListView.builder(
-                    itemCount: state.newsList.length,
-                    itemBuilder: (context, index){
-                      return InkWell(
-                        onTap: () => launchUniversalLink(state.newsList[index].editURL!),
-                        child: NewsWidget(item: state.newsList[index])
-              );}
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 8),
+                    ListView.builder(
+                          itemCount: state.newsList.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index){
+                            return InkWell(
+                              onTap: () => launchUniversalLink(state.newsList[index].editURL!),
+                              child: NewsWidget(item: state.newsList[index])
+                    );}
+                    ),
+                  ],
+                ),
               ),
               backgroundColor: my_colors.Palette.brown.shade200,
             ),

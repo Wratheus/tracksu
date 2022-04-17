@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:osu_track_app/src/models/beatmap_score.dart';
 
 import '../pages/cubit/beatmap_cubit.dart';
 import '../pages/error_page.dart';
@@ -51,7 +48,7 @@ class _BeatmapPage extends StatelessWidget {
             backgroundColor: my_colors.Palette.brown.shade100,
             child: Scaffold(
                 appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                    title: Text("Beatmap loaded successful"), leading: Image.asset('assets/utils/cloud_logo.png')),
+                    title: Text((state.beatmapInstance.mapTitle)!), leading: Image.asset('assets/utils/cloud_logo.png')),
                 backgroundColor:my_colors.Palette.brown.shade200,
                 body: Center(
                   child: SingleChildScrollView(
