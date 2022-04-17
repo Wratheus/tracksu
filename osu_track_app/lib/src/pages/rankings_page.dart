@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:osu_track_app/src/pages/error_page.dart';
 import 'package:osu_track_app/src/widgets/rankings_widgets/rankings_search_by_page_widget.dart';
@@ -32,7 +31,7 @@ class _RankingsPage extends StatelessWidget {
         context.read<RankingsCubit>().loadRankings("1");
         return Scaffold(
             appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                title: const Text("Osu! Leaderboard",
+                title: const Text("Leaderboard",
                   style: const TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
@@ -51,7 +50,7 @@ class _RankingsPage extends StatelessWidget {
           backgroundColor: my_colors.Palette.brown.shade100,
           child: Scaffold(
             appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                title: const Text("Osu! Leaderboard",
+                title: const Text("Leaderboard",
                   style: const TextStyle(
                   fontSize: 24.0,
                   color: Colors.white,

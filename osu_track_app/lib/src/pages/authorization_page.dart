@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
    return Scaffold(
        backgroundColor: my_colors.Palette.brown.shade200,
       appBar: AppBar(
-        title: const Text("Login to osu OAuth..."),
+        title: const Text("Login to osu!..."),
         backgroundColor: my_colors.Palette.purple,
         leading: Image.asset('assets/utils/cloud_logo.png'),
       ),

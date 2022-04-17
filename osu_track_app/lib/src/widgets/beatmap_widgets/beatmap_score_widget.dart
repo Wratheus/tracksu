@@ -48,10 +48,10 @@ class BeatmapScoreWidget extends StatelessWidget {
     }
     return Card(
       color: my_colors.Palette.brown.shade100,
-      elevation: 15.0,
-      margin: const EdgeInsets.only(bottom: 5.0),
+      elevation: 5.0,
+      margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
       child: Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(3.5),
         child: Column(
           children: [
             Column(
@@ -61,7 +61,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                       Text(
                       "${_index}",
                         style: const TextStyle(
-                          fontSize: 12.0,
+                          fontSize: 11.0,
                           color: my_colors.Palette.red,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Exo 2',
@@ -124,7 +124,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                                       ".png", scale: 1.25,),
                               ],
                             ),
-                            SizedBox(width: 15,),
+                            SizedBox(width: 10,),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,7 +172,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                       ),
                           ],
                         ),
-                      const SizedBox(width: 35.0,),
+                      const SizedBox(width: 15.0,),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
