@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+  import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../pages/cubit/user_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;
@@ -119,6 +118,7 @@ class _UserPage extends StatelessWidget {
         );
       }
       if (state is UserLoadedState) {// Reload News if state is UserReload (wheel page down)
+        print(state.userInstance);
         return RefreshIndicator(
           backgroundColor: my_colors.Palette.brown.shade100,
           child:

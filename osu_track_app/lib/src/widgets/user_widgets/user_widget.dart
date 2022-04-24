@@ -37,6 +37,14 @@ class UserInfoWidget extends StatelessWidget {
           // User avatar rank and country bloc
           const SizedBox(height: 10.0,),
           Container(
+            // decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+            //   color: my_colors.Palette.brown.shade200,
+            //   image: DecorationImage(
+            //     image: NetworkImage("${_user.coverURL}"),
+            //     fit: BoxFit.fill,
+            //     colorFilter: ColorFilter.mode(
+            //         Colors.white.withOpacity(0.24), BlendMode.dstATop),
+            //   ),),
             width: 350,
             alignment: Alignment.center,
             //decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), boxShadow: [BoxShadow(color: Colors.white, spreadRadius: 1)], color: my_colors.Palette.brown.shade200),
@@ -99,8 +107,13 @@ class UserInfoWidget extends StatelessWidget {
             width: 350,
             padding: EdgeInsets.all(10.0),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                boxShadow: [BoxShadow(color: Colors.white, spreadRadius: 1)],
-                color: my_colors.Palette.brown.shade200),
+                color: my_colors.Palette.brown.shade200,
+                image: DecorationImage(
+                image: NetworkImage("${_user.coverURL}"),
+                fit: BoxFit.fill,
+                colorFilter: ColorFilter.mode(
+                Colors.white.withOpacity(0.24), BlendMode.dstATop),
+                ),),
             alignment: Alignment.center,
             child: Row(
               children: [

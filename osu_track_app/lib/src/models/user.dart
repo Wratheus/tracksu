@@ -1,7 +1,12 @@
 class User{
   var avatarURL;
+  var defaultGroup;
   var id;
   var isOnline;
+  var isActive;
+  var isBot;
+  var isDeleted;
+  var isSupporter;
   var username;
   var coverURL;
   var joinDate;
@@ -24,9 +29,37 @@ class User{
   var amountOfA;
   var countryRank;
   List<dynamic>?rankHistory;
+  var kudosu;
+  var cover;
+  var lastVisit;
+  var isRestricted;
+  var discord;
+  var twitter;
+  var hasSupported;
+  var interests;
+  var location;
+  var mainPlaymode;
+  var playstyle;
+  var postCount;
+  var title;
+  var badges;
+  var favouriteBeatmapsCount;
+  var followersCount;
+  var graveyardBeatmapsCount;
+  var lovedBeatmapsCount;
+  var pendingBeatmapsCount;
+  var userGroup;
+  var userPage;
+  var previousUsernames;
+  var levelStatistics;
+  var supportLevel;
+  var userAchievments;
+  var pmFriendsOnly;
+
 
   User({
     required this.avatarURL,
+    required this.defaultGroup,
     required this.id,
     required this.isOnline,
     required this.username,
@@ -50,7 +83,34 @@ class User{
     required this.amountOfS,
     required this.amountOfA,
     required this.countryRank,
-    required this.rankHistory
+    required this.hasSupported,
+    required this.rankHistory,
+    required this.kudosu,
+    required this.cover,
+    required this.lastVisit,
+    required this.postCount,
+    required this.isRestricted,
+    required this.isSupporter,
+    required this.badges,
+    required this.favouriteBeatmapsCount,
+    required this.followersCount,
+    required this.graveyardBeatmapsCount,
+    required this.lovedBeatmapsCount,
+    required this.pendingBeatmapsCount,
+    required this.userGroup,
+    required this.userPage,
+    required this.previousUsernames,
+    required this.levelStatistics,
+    required this.supportLevel,
+    required this.userAchievments,
+    required this.pmFriendsOnly,
+    required this.discord,
+    required this.twitter,
+    required this.interests,
+    required this.location,
+    required this.mainPlaymode,
+    required this.playstyle,
+
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -80,6 +140,34 @@ class User{
       amountOfA: json['statistics']['grade_counts']['a'],
       countryRank: json['statistics']['country_rank'],
       rankHistory: json['rankHistory']['data'],
+      kudosu: json['kudosu']['total'],
+      cover: json['cover_url'],
+      lastVisit: json['last_visit'],
+      postCount: json['post_count'],
+      isRestricted: json['is_restricted'],
+      badges: json['badges'],
+      favouriteBeatmapsCount: json['favourite_beatmapset_count'],
+      followersCount: json['followers_count'],
+      graveyardBeatmapsCount: json['graveyard_beatmapset_count'],
+      lovedBeatmapsCount: json['loved_beatmapset_count'],
+      pendingBeatmapsCount: json['pending_beatmapset_count'],
+      defaultGroup: json['default_group'],
+      userGroup: json['group'],
+      userPage: json['page'],
+      previousUsernames: json['previous_usernames'],
+      levelStatistics: json['statistics']['level'],
+      supportLevel: json['support_level'],
+      userAchievments: json['user_achievments'],
+      isSupporter: json['is_supporter'],
+      hasSupported: json['has_supported'],
+      pmFriendsOnly: json['pm_friends_only'],
+      discord: json['discord'],
+      twitter: json['twitter'],
+      interests: json['interests'],
+      location: json['location'],
+      mainPlaymode: json['playmode'],
+      playstyle: json['playstyle']
+
     );
   }
 }

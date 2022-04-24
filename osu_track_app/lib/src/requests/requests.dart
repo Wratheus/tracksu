@@ -38,6 +38,7 @@ Future<void> getToken(String? code) async{
     // If the server did return a 200 CREATED response,
     final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
     UserSecureStorage.setTokenInStorage(token['access_token']!);
+    print(token['access_token']);
   }
   else {
     // If the server did not return a 200 CREATED response,
@@ -266,8 +267,8 @@ Future <List<BeatmapScore>> getBeatmapScores(String token, String beatmapID, [Li
 }
 
 // Ranking request
-Future <List<Rankings>> getRankings(String token,  String page, [int country = 0, String mode = "osu",
-                          String type = "performance", String filter = "all"]) async {
+Future <List<Rankings>> getRankings(String token,  String page, String filter,
+    [int country = 0, String mode = "osu", String type = "performance"]) async {
   if (int.parse(page) > 200 || int.parse(page) < 1) {
     throw Exception('Failed to get RANKINGS response. Wrong page');
   }
@@ -285,14 +286,13 @@ Future <List<Rankings>> getRankings(String token,  String page, [int country = 0
   final http.Response getRankingsResponse = await http.get(rankingsUrl, headers: headers);
 
   if (getRankingsResponse.statusCode == 200) {
-    final List<Rankings> myList = List.empty(growable: true);
-    var numberOfPlayers = 50;
-    var json = convert.jsonDecode(getRankingsResponse.body);
-    for (int i = 0; i < numberOfPlayers; i++){
-      myList.add(Rankings.fromJson(json["ranking"][i]));
+      final List<Rankings> myList = List.empty(growable: true);
+      var json = convert.jsonDecode(getRankingsResponse.body);
+      for (int i = 0; i < json["ranking"].length-1; i++) {
+        myList.add(Rankings.fromJson(json["ranking"][i]));
+      }
+      return myList;
     }
-    return myList;
-  }
   else {
     // If the server did not return a 200 CREATED response,
     var statusCode = getRankingsResponse.statusCode;
