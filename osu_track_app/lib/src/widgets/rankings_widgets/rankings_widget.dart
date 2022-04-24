@@ -20,6 +20,13 @@ class RankingsWidget extends StatelessWidget {
     if (accuracy.length > 5) {
       accuracy = accuracy.substring(0, 5);
     }
+
+    if(_item.globalRank == null){
+      _item.globalRank = "Inactive";
+    }
+    else if ("${_item.globalRank}"[0] != "#") { if
+    (_item.globalRank != "Inactive") {_item.globalRank = "#${_item.globalRank}";}
+    }
     return Card(
       color: my_colors.Palette.brown.shade200,
       elevation: 25.0,
@@ -50,7 +57,7 @@ class RankingsWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "#${_item.globalRank}",
+                      "${_item.globalRank}",
                       style: const TextStyle(
                         fontSize: 14.0,
                         color: my_colors.Palette.yellow,

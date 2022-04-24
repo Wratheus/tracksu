@@ -1,5 +1,5 @@
 class Rankings{
-  int? globalRank;
+  var globalRank;
   var PP;
   var rankedScore;
   var hitAccuracy;

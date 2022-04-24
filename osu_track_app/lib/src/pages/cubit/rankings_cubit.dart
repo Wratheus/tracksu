@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 
 import '../../requests/requests.dart';
@@ -10,24 +9,29 @@ import '../../models/rankings.dart';
 part 'rankings_state.dart';
 
 class RankingsCubit extends Cubit<RankingsState> {
-  RankingsCubit() : super(RankingsInitial());
+  RankingsCubit() : super(RankingsInitial("all", false, "1"));
 
   Future<void> informInitial() async {
     print('RankingsPage loading');
   }
 
-  Future<void> loadRankings(page) async {
+  Future<void> loadRankings(filter, filterFriendsValue, page) async {
+    if (filterFriendsValue == true) {filter = "friends";};
+    if (filterFriendsValue == false) {filter = "all";};
     try {
       emit(RankingsLoadedState(await getRankings(
-          (await UserSecureStorage.getTokenFromStorage())!, page))); // request news
+          (await UserSecureStorage.getTokenFromStorage())!, page, filter),
+          filter,
+          filterFriendsValue,
+          page));
       print('Rankings loaded');
     } catch (e) {
       emit(RankingsErrorState('Failed Rankings Load $e'));
     }
   }
 
-  Future<void> reloadRankings() async {
-    emit(RankingsInitial());
+  Future<void> reloadRankings(filter, filterFriendsValue, page) async {
+    emit(RankingsInitial(filter, filterFriendsValue, page));
   }
 
   Future<void> loadUserFromRankings(String username, context) async {

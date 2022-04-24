@@ -28,12 +28,12 @@ class _RankingsPage extends StatelessWidget {
     return BlocBuilder<RankingsCubit, RankingsState>(builder: (context, state){
       if(state is RankingsInitial){ // run Circular progress bar while rankings is loading
         context.read<RankingsCubit>().informInitial();
-        context.read<RankingsCubit>().loadRankings("1");
+        context.read<RankingsCubit>().loadRankings(state.filter, state.filterFriendsValue, state.page);
         return Scaffold(
             appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                title: const Text("Leaderboard",
+                title: Text("Leaderboard",
                   style: const TextStyle(
-                    fontSize: 24.0,
+                    fontSize: 22.0,
                     color: Colors.white,
                     fontFamily: 'Exo 2',
                     fontWeight: FontWeight.bold,
@@ -42,15 +42,16 @@ class _RankingsPage extends StatelessWidget {
             backgroundColor: my_colors.Palette.brown.shade100
         );
     };
+
       if(state is RankingsErrorState){ //// Throw error if state is RankingsError
-        return ErrorPage(exceptionPageName: RankingsPage(), errorMessage: state.errorMessage,);
+        return ErrorPage(exceptionPageName: RankingsPage(), errorMessage: state.errorMessage);
       }
       if(state is RankingsLoadedState){ //// Reload rankings if state is RankingsReload (wheel page down)
         return RefreshIndicator(
           backgroundColor: my_colors.Palette.brown.shade100,
           child: Scaffold(
             appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                title: const Text("Leaderboard",
+                title: Text("Leaderboard",
                   style: const TextStyle(
                   fontSize: 24.0,
                   color: Colors.white,
@@ -62,7 +63,7 @@ class _RankingsPage extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 10,),
-                  RankingsSearchByPageWidget(),
+                  RankingsSearchByPageWidget(state.filter, state.filterFriendsValue),
                   ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
@@ -78,7 +79,7 @@ class _RankingsPage extends StatelessWidget {
               ),
             ),
           ),
-          onRefresh: () => context.read<RankingsCubit>().reloadRankings(),
+          onRefresh: () => context.read<RankingsCubit>().reloadRankings(state.filter, state.filterFriendsValue, state.page),
         );
       }
       return Container();

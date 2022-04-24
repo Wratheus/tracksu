@@ -12,7 +12,7 @@ class UserBestScoresList extends StatelessWidget {
   const UserBestScoresList({Key? key, required List<dynamic> userBestScoresInstance}):
         _userBestScoresInstance = userBestScoresInstance,
         super(key: key);
-
+// commented code makes 5 scores from best performance and first-places scores to be unwrapped by default
   @override
   Widget build(BuildContext context) {
     if (_userBestScoresInstance.length < 5) {
@@ -92,27 +92,27 @@ class UserBestScoresList extends StatelessWidget {
                 SizedBox(height: 50,)
               ],
             ),
-            ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                itemCount: _userBestScoresInstance.length - 5,
-                itemBuilder: (context, index) {
-                  while (index < 5) {
-                    return InkWell(
-                        onTap: () => context.read<UserCubit>().loadUserFromRankings(_userBestScoresInstance[index], context),
-                        child: ScoreCardWidget(
-                            item: _userBestScoresInstance[index])
-                    );
-                  }
-                  return Container();
-                }),
+            // ListView.builder(
+            //     scrollDirection: Axis.vertical,
+            //     shrinkWrap: true,
+            //     physics: ClampingScrollPhysics(),
+            //     itemCount: _userBestScoresInstance.length - 5,
+            //     itemBuilder: (context, index) {
+            //       while (index < 5) {
+            //         return InkWell(
+            //             onTap: () => context.read<UserCubit>().loadUserFromRankings(_userBestScoresInstance[index], context),
+            //             child: ScoreCardWidget(
+            //                 item: _userBestScoresInstance[index])
+            //         );
+            //       }
+            //       return Container();
+            //     }),
             ExpansionTile(
               iconColor: my_colors.Palette.pink,
               collapsedIconColor: my_colors.Palette.pink,
               title: Row(
                 children: [
-                  Text("Show more scores",
+                  Text("Show best performance scores",
                       style: TextStyle(
                         fontSize: 16.0,
                         color: my_colors.Palette.pink,
@@ -129,9 +129,11 @@ class UserBestScoresList extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
-                    itemCount: _userBestScoresInstance.length - 5,
+                    // itemCount: _userBestScoresInstance.length - 5,
+                    itemCount: _userBestScoresInstance.length,
                     itemBuilder: (context, index) {
-                      index += 5;
+                      // index += 5;
+                      index += 0;
                       return InkWell(
                           onTap: () => context.read<UserCubit>().loadUserFromRankings(_userBestScoresInstance[index], context),
                           child: ScoreCardWidget(
@@ -182,7 +184,7 @@ class UserBestScoresList extends StatelessWidget {
                         color: my_colors.Palette.brown.shade200),
                     alignment: Alignment.center,),
                   SizedBox(width: 10,),
-                  Text("First Place Ranks",
+                  Text("Show first-place scores",
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.white,
@@ -192,21 +194,22 @@ class UserBestScoresList extends StatelessWidget {
                   ),
                   SizedBox(height: 50,)
                 ],
-              ),
-              ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                  itemCount: _userFirstScoresInstance.length - 3,
-                  itemBuilder: (context, index) {
-                    while (index < 3) {
-                      return InkWell(
-                          onTap: () => context.read<UserCubit>().loadUserFromRankings(_userFirstScoresInstance[index], context),
-                          child: ScoreCardWidget(item: _userFirstScoresInstance[index])
-                      );
-                    }
-                    return Container();
-                  }),
+                ),
+
+/*                ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    itemCount: _userFirstScoresInstance.length - 3,
+                    itemBuilder: (context, index) {
+                      while (index < 3) {
+                        return InkWell(
+                            onTap: () => context.read<UserCubit>().loadUserFromRankings(_userFirstScoresInstance[index], context),
+                            child: ScoreCardWidget(item: _userFirstScoresInstance[index])
+                        );
+                      }
+                      return Container();
+                    }),*/
 
               ExpansionTile(
                 iconColor: my_colors.Palette.pink,
@@ -230,9 +233,11 @@ class UserBestScoresList extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: ClampingScrollPhysics(),
-                      itemCount: _userFirstScoresInstance.length - 3,
+                      // itemCount: _userFirstScoresInstance.length - 3,
+                      itemCount: _userFirstScoresInstance.length,
                       itemBuilder: (context, index) {
-                        index += 3;
+                        // index += 3;
+                        index += 0;
                         return InkWell(
                             onTap: () => context.read<UserCubit>().loadUserFromRankings(_userFirstScoresInstance[index], context),
                             child: ScoreCardWidget(item: _userFirstScoresInstance[index])
