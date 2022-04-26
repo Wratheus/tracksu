@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 
 import '../../requests/requests.dart';
@@ -18,12 +17,12 @@ class UserCubit extends Cubit<UserState> {
     print('UserPage loaded');
   }
 
-  Future<void> loadUser(String username) async {
+  Future<void> loadUser(String username, [String mode="osu!"]) async {
     try {
       emit(UserLoadingState());
-      final user = await getUser((await UserSecureStorage.getTokenFromStorage())!, username);
-      final userBestScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, username, '100', '0', 'best');
-      final userFirstScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, username, '100', '0', 'firsts');
+      final user = await getUser((await UserSecureStorage.getTokenFromStorage())!, username, mode);
+      final userBestScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, username, '100', '0', 'best', mode);
+      final userFirstScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, username, '100', '0', 'firsts', mode);
       emit(UserLoadedState(user, userBestScores, userFirstScores));
       print('User $username loaded');
     } catch (e){
@@ -31,12 +30,12 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  Future<void> loadUserMe() async {
+  Future<void> loadUserMe([String mode="osu!"]) async {
     try {
       emit(UserLoadingState());
-      final user = await getUserMe((await UserSecureStorage.getTokenFromStorage())!);
-      final userBestScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, user.username, '100', '0', 'best');
-      final userFirstScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, user.username, '100', '0', 'firsts');
+      final user = await getUserMe((await UserSecureStorage.getTokenFromStorage())!, mode);
+      final userBestScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, user.username, '100', '0', 'best', mode);
+      final userFirstScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, user.username, '100', '0', 'firsts', mode);
       emit(UserLoadedState(user, userBestScores, userFirstScores));
       print('User ME(${user.username}) loaded');
     } catch (e){
@@ -48,7 +47,7 @@ class UserCubit extends Cubit<UserState> {
     emit(UserInitial());
   }
 
-  Future<void> loadUserFromRankings(Scores item,
+  Future<void> loadBeatmapFromUser(Scores item,
       BuildContext context) async {
     print(item);
     Navigator.push(context,

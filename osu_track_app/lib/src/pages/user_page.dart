@@ -9,62 +9,40 @@ import '../widgets/user_widgets/user_widget.dart';
 import '../widgets/user_widgets/user_score_list.dart';
 
 class UserPage extends StatelessWidget {
-  final String? username;
-  const UserPage({Key? key, this.username}) :super(key: key);
+  final username;
+  final String? mode;
+  const UserPage({Key? key, this.username, this.mode})
+      :super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => UserCubit(),
-      child: new _UserPage(username: username),);
+      child: new _UserPage(username: username, mode: mode));
   }
 }
 
 class _UserPage extends StatelessWidget {
-  final String? username;
-  const _UserPage({Key? key, this.username}) : super(key: key);
+  final username;
+  final String? mode;
+  const _UserPage({Key? key, this.username, this.mode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    return BlocBuilder<UserCubit, UserState>(builder: (context, state) {
-      final double height = MediaQuery
-          .of(context)
-          .size
-          .height;
+  return BlocBuilder<UserCubit, UserState>(builder: (context, state) {
       if (state is UserInitial) {
         if (username != null) {
-          context.read<UserCubit>().loadUser(username!);
+          context.read<UserCubit>().loadUser(username!, mode!);
           return Scaffold(
-            appBar: AppBar(
-                backgroundColor: my_colors.Palette.purple,
-                title: const Text("User stats",
-                  style: const TextStyle(
-                    fontSize: 24.0,
-                    color: Colors.white,
-                    fontFamily: 'Exo 2',
-                    fontWeight: FontWeight.bold,
-                  ),),
-                leading: Image.asset('assets/utils/cloud_logo.png')),
             body: Center(
                 child: CircularProgressIndicator()),
             backgroundColor: my_colors.Palette.brown.shade100,
           );
         }
         else {
-          context.read<UserCubit>().loadUserMe();
+          context.read<UserCubit>().loadUserMe(mode!);
           return RefreshIndicator(child:
             Scaffold(
-              appBar: AppBar(
-                  backgroundColor: my_colors.Palette.purple,
-                  title: const Text("User stats",
-                    style: const TextStyle(
-                      fontSize: 24.0,
-                      color: Colors.white,
-                      fontFamily: 'Exo 2',
-                      fontWeight: FontWeight.bold,
-                    ),),
-                  leading: Image.asset('assets/utils/cloud_logo.png')),
               body: Center(
                   child: CircularProgressIndicator()),
               backgroundColor: my_colors.Palette.brown.shade100,
@@ -79,74 +57,43 @@ class _UserPage extends StatelessWidget {
       }
       if (state is UserLoadingState) {
         print("Loading User");
-        return RefreshIndicator(child:
-          Scaffold(
-            appBar: AppBar(
-                backgroundColor: my_colors.Palette.purple,
-                title: const Text("User stats",
-                  style: const TextStyle(
-                    fontSize: 24.0,
-                    color: Colors.white,
-                    fontFamily: 'Exo 2',
-                    fontWeight: FontWeight.bold,
-                  ),),
-                leading: Image.asset('assets/utils/cloud_logo.png')),
-            body: Column(
-              children: [
-                Container(
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            UserSearchWidget() // search bar widget
-                          ]
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: height / 3),
-                CircularProgressIndicator(),
-              ],
-            ),
-            backgroundColor: my_colors.Palette.brown.shade100,
-          ),
-          onRefresh: () => context.read<UserCubit>().reloadUser(),
+        return Scaffold(
+          body: Center(
+              child: CircularProgressIndicator()),
+          backgroundColor: my_colors.Palette.brown.shade100,
         );
       }
       if (state is UserLoadedState) {// Reload News if state is UserReload (wheel page down)
         print(state.userInstance);
-        return RefreshIndicator(
-          backgroundColor: my_colors.Palette.brown.shade100,
-          child:
-          Scaffold(
+        return DefaultTabController(
+          length: 4,
+          child: RefreshIndicator(
             backgroundColor: my_colors.Palette.brown.shade100,
-            appBar: AppBar(
-                backgroundColor: my_colors.Palette.purple,
-                title: Text(state.userInstance.username,
-                  style: const TextStyle(
-                    fontSize: 24.0,
-                    color: Colors.white,
-                    fontFamily: 'Exo 2',
-                    fontWeight: FontWeight.bold,
-                  ),),
-                leading: Image.asset('assets/utils/cloud_logo.png')),
-            body: Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    UserInfoWidget(user: state.userInstance),
-                    UserBestScoresList(userBestScoresInstance: state.userBestScoresInstance),
-                    UserFirstScoresList(userFirstScoresInstance: state.userFirstScoresInstance),
-                  ],
-                ),
-              ), //user panel Info widget and searchbar
+            child:
+            Scaffold(
+              backgroundColor: my_colors.Palette.brown.shade100,
+              body: Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 15.0,),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(width: 30,),
+                            UserSearchWidget()
+                          ]
+                      ),
+                      UserInfoWidget(user: state.userInstance),
+                      UserBestScoresList(userBestScoresInstance: state.userBestScoresInstance),
+                      UserFirstScoresList(userFirstScoresInstance: state.userFirstScoresInstance),
+                    ],
+                  ),
+                ), //user panel Info widget and searchbar
+              ),
             ),
+            onRefresh: () => context.read<UserCubit>().reloadUser(),
           ),
-          onRefresh: () => context.read<UserCubit>().reloadUser(),
         );
       }
       else

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../models/news.dart';
 
 import '../../utils/color_contrasts.dart' as my_colors;
-import '../../pages/cubit/news_cubit.dart';
 
 
 //Widget newsWidget(News item, BuildContext context, NewsLoadedState state) {

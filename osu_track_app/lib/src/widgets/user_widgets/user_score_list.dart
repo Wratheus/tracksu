@@ -52,7 +52,7 @@ class UserBestScoresList extends StatelessWidget {
                 itemCount: _userBestScoresInstance.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                      onTap: () => context.read<UserCubit>().loadUserFromRankings(_userBestScoresInstance[index], context),
+                      onTap: () => context.read<UserCubit>().loadBeatmapFromUser(_userBestScoresInstance[index], context),
                       child: ScoreCardWidget(
                           item: _userBestScoresInstance[index])
                   );
@@ -135,7 +135,7 @@ class UserBestScoresList extends StatelessWidget {
                       // index += 5;
                       index += 0;
                       return InkWell(
-                          onTap: () => context.read<UserCubit>().loadUserFromRankings(_userBestScoresInstance[index], context),
+                          onTap: () => context.read<UserCubit>().loadBeatmapFromUser(_userBestScoresInstance[index], context),
                           child: ScoreCardWidget(
                               item: _userBestScoresInstance[index])
                       );
@@ -239,7 +239,7 @@ class UserBestScoresList extends StatelessWidget {
                         // index += 3;
                         index += 0;
                         return InkWell(
-                            onTap: () => context.read<UserCubit>().loadUserFromRankings(_userFirstScoresInstance[index], context),
+                            onTap: () => context.read<UserCubit>().loadBeatmapFromUser(_userFirstScoresInstance[index], context),
                             child: ScoreCardWidget(item: _userFirstScoresInstance[index])
                         );
                       }),
@@ -289,7 +289,7 @@ class UserBestScoresList extends StatelessWidget {
                     itemBuilder: (context, index) {
                       while (index < _userFirstScoresInstance.length) {
                         return InkWell(
-                            onTap: () => context.read<UserCubit>().loadUserFromRankings(_userFirstScoresInstance[index], context),
+                            onTap: () => context.read<UserCubit>().loadBeatmapFromUser(_userFirstScoresInstance[index], context),
                             child: ScoreCardWidget(item: _userFirstScoresInstance[index])
                         );
                       }

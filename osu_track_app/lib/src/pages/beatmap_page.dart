@@ -7,6 +7,7 @@ import '../models/scores.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 import '../widgets/beatmap_widgets/beatmap_score_widget.dart';
 import '../widgets/beatmap_widgets/beatmap_widget.dart';
+import '../pages/user_tab_page.dart';
 
 class BeatmapPage extends StatelessWidget {
   final Scores _item; // UserScore from UserPage contains information about map ID and map Name for future requests
@@ -63,7 +64,7 @@ class _BeatmapPage extends StatelessWidget {
                               itemCount: state.beatmapLeaderboard.length,
                               itemBuilder: (context, index){
                                 return InkWell(
-                                    onTap: () => context.read<BeatmapCubit>().loadUserFromBeatmap(state.beatmapLeaderboard[index].username, context),
+                                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.beatmapLeaderboard[index].username))),
                                     child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
                                 );}
                           ),
