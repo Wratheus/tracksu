@@ -8,7 +8,8 @@ class User{
   var isDeleted;
   var isSupporter;
   var username;
-  var coverURL;
+  var customCoverURL;
+  var defaultCoverURL;
   var joinDate;
   var countryCode;
   List<dynamic>?monthlyPlayCounts;
@@ -30,7 +31,6 @@ class User{
   var countryRank;
   List<dynamic>?rankHistory;
   var kudosu;
-  var cover;
   var lastVisit;
   var isRestricted;
   var discord;
@@ -63,7 +63,8 @@ class User{
     required this.id,
     required this.isOnline,
     required this.username,
-    required this.coverURL,
+    required this.customCoverURL,
+    required this.defaultCoverURL,
     required this.joinDate,
     required this.countryCode,
     required this.monthlyPlayCounts,
@@ -86,7 +87,6 @@ class User{
     required this.hasSupported,
     required this.rankHistory,
     required this.kudosu,
-    required this.cover,
     required this.lastVisit,
     required this.postCount,
     required this.isRestricted,
@@ -119,7 +119,8 @@ class User{
       id: json['id'],
       isOnline: json['is_online'],
       username: json['username'],
-      coverURL: json['cover']['custom_url'],
+      defaultCoverURL: json['cover']["url"],
+      customCoverURL: json['cover']['custom_url'],
       joinDate: json['join_date'],
       countryCode: json['country_code'],
       monthlyPlayCounts: json['monthly_playcounts'],
@@ -141,7 +142,6 @@ class User{
       countryRank: json['statistics']['country_rank'],
       rankHistory: json['rankHistory']['data'],
       kudosu: json['kudosu']['total'],
-      cover: json['cover_url'],
       lastVisit: json['last_visit'],
       postCount: json['post_count'],
       isRestricted: json['is_restricted'],

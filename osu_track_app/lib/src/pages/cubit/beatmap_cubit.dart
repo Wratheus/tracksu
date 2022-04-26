@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 import 'package:osu_track_app/src/models/beatmap_score.dart';
 
@@ -25,22 +24,26 @@ class BeatmapCubit extends Cubit<BeatmapState> {
     print("in LoadBeatmap : ${itemMapperName}");
     try {
       emit(BeatmapLoadedState(
-          await getBeatmap((await UserSecureStorage.getTokenFromStorage())!, "${itemBeatmapId}"),
-          await getBeatmapScores((await UserSecureStorage.getTokenFromStorage())!, "${itemBeatmapId}"),
-          await getUser((await UserSecureStorage.getTokenFromStorage())!, "${itemMapperName}"),));
+          await getBeatmap((await UserSecureStorage.getTokenFromStorage())!,
+              "${itemBeatmapId}"),
+          await getBeatmapScores(
+              (await UserSecureStorage.getTokenFromStorage())!,
+              "${itemBeatmapId}"),
+          await getUser((await UserSecureStorage.getTokenFromStorage())!,
+              "${itemMapperName}", 'osu')));
       print('beatmap $itemBeatmapName loaded');
-    }catch (e){
+    } catch (e) {
       emit(BeatmapErrorState('Failed Beatmap Load $e'));
     }
-  }
 
-  Future<void> reloadBeatmap() async {
-    emit(BeatmapInitial());
-  }
+    Future<void> reloadBeatmap() async {
+      emit(BeatmapInitial());
+    }
 
-  Future<void> loadUserFromBeatmap(String username, context) async {
-    Navigator.push(context,
-        MaterialPageRoute(
-            builder: (context) => UserPage(username: username)));
+    Future<void> loadUserFromBeatmap(String username, context) async {
+      Navigator.push(context,
+          MaterialPageRoute(
+              builder: (context) => UserPage(username: username)));
+    }
   }
 }

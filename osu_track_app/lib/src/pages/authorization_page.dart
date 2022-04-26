@@ -4,7 +4,6 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../pages/home_page.dart';
 import '../requests/requests.dart';
-import '../utils/secure_storage.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 
 
@@ -14,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/OsuTrack&response_type=code&scope=public";
+  String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/osu-Track&response_type=code&scope=public";
   late WebViewController _webViewController;
   String? token = '0';
 
@@ -31,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (currentUrl != loginUrl){
       if (mounted) {
         // error redirect if, restart login url
-        if (currentUrl.startsWith('https://wratheus.github.io/OsuTrack')) {
+        if (currentUrl.startsWith('https://wratheus.github.io/osu-Track')) {
           RegExp regExpError = RegExp("error=(.*)");
           if (regExpError.hasMatch(currentUrl) == true) {
             setState(() {
@@ -42,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         }
         // success login redirect
-        if (currentUrl.startsWith('https://wratheus.github.io/OsuTrack')) {
+        if (currentUrl.startsWith('https://wratheus.github.io/osu-Track')) {
           RegExp regExp = RegExp("code=(.*)");
           this.token = regExp.firstMatch(currentUrl)?.group(1);
           await getToken(token);
@@ -59,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   @override
   Widget build(BuildContext context) {
-    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/OsuTrack&response_type=code&scope=public";
+    String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/osu-Track&response_type=code&scope=public";
    return Scaffold(
        backgroundColor: my_colors.Palette.brown.shade200,
       appBar: AppBar(

@@ -6,7 +6,7 @@ import 'package:osu_track_app/src/widgets/rankings_widgets/rankings_search_by_pa
 import '../pages/cubit/rankings_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 import '../widgets/rankings_widgets/rankings_widget.dart';
-
+import '../pages/user_tab_page.dart';
 
 class RankingsPage extends StatelessWidget {
   const RankingsPage({Key? key}) : super(key: key);
@@ -71,7 +71,7 @@ class _RankingsPage extends StatelessWidget {
                     itemCount: state.rankingsList.length,
                     itemBuilder: (context, index){
                     return InkWell(
-                      onTap: () => context.read<RankingsCubit>().loadUserFromRankings(state.rankingsList[index].username, context),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.rankingsList[index].username))),
                       child: RankingsWidget(item: state.rankingsList[index])
                   );}
                 ),
