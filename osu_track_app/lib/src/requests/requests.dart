@@ -23,7 +23,7 @@ Future<void> getToken(String? code) async{
     "client_id": auth.client_id,
     "client_secret": auth.clientSecret,
     "code": code,
-    "redirect_uri": 'https://wratheus.github.io/OsuTrack',
+    "redirect_uri": 'https://wratheus.github.io/osu-Track',
   });
   final Map<String, String> headers = {
     'Accept': 'application/json',
@@ -80,12 +80,12 @@ Future<void>getTokenAsOwner() async{
 
 // User request
 // returns a user class object
-Future <User> getUser(String token, String username) async{
+Future <User> getUser(String token, String username, String mode) async{
 
   final body = {
     'key': 'username'
   };
-  final Uri userUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$username', body);
+  final Uri userUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$username/$mode', body);
   final Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -106,9 +106,9 @@ Future <User> getUser(String token, String username) async{
 
 // User request
 // returns a self user class object for logged user
-Future <User> getUserMe(String token) async{
+Future <User> getUserMe(String token, String mode) async{
 
-  final Uri userUrl = Uri.https('osu.ppy.sh', 'api/v2/me/osu');
+  final Uri userUrl = Uri.https('osu.ppy.sh', 'api/v2/me/$mode');
   final Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -129,14 +129,14 @@ Future <User> getUserMe(String token) async{
 
 // User Score list Request
 // returns a list with 100 (by default) user's scores-model
-Future <List <Scores>> getUserScore(String token, String username, String numberOfRequestedScores, String offset, String scoresType) async{
+Future <List <Scores>> getUserScore(String token, String username, String numberOfRequestedScores, String offset, String scoresType, String mode) async{
 
   if (int.parse(numberOfRequestedScores) > 100 || int.parse(numberOfRequestedScores) <= 0){ throw Exception('wrong ScoreNumber'); }
-  User player = await getUser(token, username);
+  User player = await getUser(token, username, mode);
   final userID = player.id;
   final body = {
     'include_fails': '1',
-    'mode': 'osu',
+    'mode': mode,
     'limit': numberOfRequestedScores,
     'offset': offset
   };

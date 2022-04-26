@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../models/user.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
-import 'user_search_widget.dart';
 
 class UserInfoWidget extends StatelessWidget {
 
@@ -27,27 +26,11 @@ class UserInfoWidget extends StatelessWidget {
     }
     return Column(
         children: [
-          const SizedBox(height: 10.0,),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                UserSearchWidget()
-              ]
-          ),
+          const SizedBox(height: 15.0,),
           // User avatar rank and country bloc
-          const SizedBox(height: 10.0,),
           Container(
-            // decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-            //   color: my_colors.Palette.brown.shade200,
-            //   image: DecorationImage(
-            //     image: NetworkImage("${_user.coverURL}"),
-            //     fit: BoxFit.fill,
-            //     colorFilter: ColorFilter.mode(
-            //         Colors.white.withOpacity(0.24), BlendMode.dstATop),
-            //   ),),
             width: 350,
             alignment: Alignment.center,
-            //decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), boxShadow: [BoxShadow(color: Colors.white, spreadRadius: 1)], color: my_colors.Palette.brown.shade200),
             child:
             Row(
               children: [
@@ -105,15 +88,17 @@ class UserInfoWidget extends StatelessWidget {
           const SizedBox(height: 15.0,),
           Container(
             width: 350,
+            height: 135,
             padding: EdgeInsets.all(10.0),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
                 color: my_colors.Palette.brown.shade200,
                 image: DecorationImage(
-                image: NetworkImage("${_user.coverURL}"),
+                image: (_user.customCoverURL == null) ? NetworkImage("${_user.defaultCoverURL}") : NetworkImage("${_user.customCoverURL}"),
                 fit: BoxFit.fill,
                 colorFilter: ColorFilter.mode(
                 Colors.white.withOpacity(0.24), BlendMode.dstATop),
-                ),),
+                ),
+            ),
             alignment: Alignment.center,
             child: Row(
               children: [

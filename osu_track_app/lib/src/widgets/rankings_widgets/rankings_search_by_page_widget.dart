@@ -5,6 +5,7 @@ import 'package:provider/src/provider.dart';
 import '../../pages/cubit/rankings_cubit.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
 
+// ignore: must_be_immutable
 class RankingsSearchByPageWidget extends StatefulWidget {
 
   final String _filter;

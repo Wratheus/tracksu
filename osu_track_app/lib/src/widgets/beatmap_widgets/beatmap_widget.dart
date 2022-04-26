@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:osu_track_app/src/pages/cubit/beatmap_cubit.dart';
-import 'package:provider/src/provider.dart';
 
 import '../../models/beatmap.dart';
 import '../../models/user.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
-
+import '../../pages/user_tab_page.dart';
 
 class BeatmapInfoWidget extends StatelessWidget {
 
@@ -89,7 +86,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                       children: [
                         SizedBox(height: height / 21,),
                         InkWell(
-                          onTap: () => context.read<BeatmapCubit>().loadUserFromBeatmap(_beatmap.mapperName!, context),
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: _beatmap.mapperName!))),
                           child: Container(
                             child: Row(
                               children: [
