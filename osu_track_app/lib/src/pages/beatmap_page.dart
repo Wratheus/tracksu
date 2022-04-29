@@ -31,7 +31,6 @@ class _BeatmapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<BeatmapCubit, BeatmapState>(builder: (context, state) {
       if (state is BeatmapInitial) {
           context.read<BeatmapCubit>().loadBeatmap(_item.beatmapSetMapId, _item.mapTitle, _item.mapperName);

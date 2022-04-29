@@ -1,9 +1,13 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:osu_track_app/src/widgets/beatmap_widgets/beatmap_play_widget.dart';
 
 import '../../models/beatmap.dart';
 import '../../models/user.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
 import '../../pages/user_tab_page.dart';
+import '../../pages/cubit/beatmap_cubit.dart';
 
 class BeatmapInfoWidget extends StatelessWidget {
 
@@ -63,6 +67,7 @@ class BeatmapInfoWidget extends StatelessWidget {
         ),
 
         SizedBox(height: 7,),
+        BeatmapPlayWidget(beatmap: _beatmap),
         Container(
             margin: EdgeInsets.all(10.0),
             padding: EdgeInsets.all(10.0),

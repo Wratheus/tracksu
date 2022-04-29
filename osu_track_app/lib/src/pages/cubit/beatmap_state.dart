@@ -12,8 +12,9 @@ class BeatmapLoadedState extends BeatmapState {
   final User mapperInstance;
   final Beatmap beatmapInstance;
   final List<BeatmapScore> beatmapLeaderboard;
+  final bool isPlay;
 
-  BeatmapLoadedState(this.beatmapInstance, this.beatmapLeaderboard, this.mapperInstance);
+  BeatmapLoadedState(this.beatmapInstance, this.beatmapLeaderboard, this.mapperInstance, this.isPlay);
 }
 
 class BeatmapErrorState extends BeatmapState {

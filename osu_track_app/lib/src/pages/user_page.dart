@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-  import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../pages/cubit/user_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;

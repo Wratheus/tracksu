@@ -30,7 +30,7 @@ class BeatmapCubit extends Cubit<BeatmapState> {
               (await UserSecureStorage.getTokenFromStorage())!,
               "${itemBeatmapId}"),
           await getUser((await UserSecureStorage.getTokenFromStorage())!,
-              "${itemMapperName}", 'osu')));
+              "${itemMapperName}", 'osu'), false));
       print('beatmap $itemBeatmapName loaded');
     } catch (e) {
       emit(BeatmapErrorState('Failed Beatmap Load $e'));

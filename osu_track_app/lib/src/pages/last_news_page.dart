@@ -24,7 +24,6 @@ class _LastNewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<NewsCubit, NewsState>(builder: (context, state){
       if(state is NewsInitial){
       context.read<NewsCubit>().informInitial();
