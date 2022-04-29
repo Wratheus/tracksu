@@ -17,7 +17,7 @@ class UserCubit extends Cubit<UserState> {
     print('UserPage loaded');
   }
 
-  Future<void> loadUser(String username, [String mode="osu!"]) async {
+  Future<void> loadUser(String username, mode) async {
     try {
       emit(UserLoadingState());
       final user = await getUser((await UserSecureStorage.getTokenFromStorage())!, username, mode);

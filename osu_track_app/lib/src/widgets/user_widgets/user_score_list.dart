@@ -15,7 +15,7 @@ class UserBestScoresList extends StatelessWidget {
 // commented code makes 5 scores from best performance and first-places scores to be unwrapped by default
   @override
   Widget build(BuildContext context) {
-    if (_userBestScoresInstance.length < 5) {
+/*    if (_userBestScoresInstance.length < 5) {
       return Container(
         child:
         Column(
@@ -40,6 +40,13 @@ class UserBestScoresList extends StatelessWidget {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
                     )
                 ),
                 SizedBox(height: 50,)
@@ -62,7 +69,7 @@ class UserBestScoresList extends StatelessWidget {
         ),
       );
     }
-    else {
+    else {*/
       return Container(
         child:
         Column(
@@ -87,6 +94,13 @@ class UserBestScoresList extends StatelessWidget {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
                     )
                 ),
                 SizedBox(height: 50,)
@@ -118,6 +132,13 @@ class UserBestScoresList extends StatelessWidget {
                         color: my_colors.Palette.pink,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
+                        shadows: [
+                          Shadow(
+                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                            offset: Offset(7, 5),
+                            blurRadius: 10,
+                          )
+                        ],
                       )
                   ),
                   SizedBox(height: 50,)
@@ -148,24 +169,23 @@ class UserBestScoresList extends StatelessWidget {
       );
     }
   }
-}
 
   class UserFirstScoresList extends StatelessWidget {
 
-  final List<dynamic> _userFirstScoresInstance;
+    final List<dynamic> _userFirstScoresInstance;
 
-  const UserFirstScoresList({Key? key, required List<dynamic> userFirstScoresInstance}):
-    _userFirstScoresInstance = userFirstScoresInstance,
-    super(key: key);
+    const UserFirstScoresList(
+        {Key? key, required List<dynamic> userFirstScoresInstance})
+        :
+          _userFirstScoresInstance = userFirstScoresInstance,
+          super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    if (_userFirstScoresInstance.isEmpty == true) {
-      return Container();
-    }
-    else {
-      // if user have more than 5 first place scores
-      if (_userFirstScoresInstance.length > 5) {
+    @override
+    Widget build(BuildContext context) {
+      if (_userFirstScoresInstance.isEmpty == true) {
+        return Container();
+      }
+      else {
         return Container(
           child:
           Column(
@@ -190,11 +210,20 @@ class UserBestScoresList extends StatelessWidget {
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
+                        shadows: [
+                          Shadow(
+                            color: my_colors.Palette.hotPink.shade900
+                                .withOpacity(
+                                0.25),
+                            offset: Offset(7, 5),
+                            blurRadius: 10,
+                          )
+                        ],
                       )
                   ),
                   SizedBox(height: 50,)
                 ],
-                ),
+              ),
 
 /*                ListView.builder(
                     scrollDirection: Axis.vertical,
@@ -222,6 +251,14 @@ class UserBestScoresList extends StatelessWidget {
                           color: my_colors.Palette.pink,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900
+                                  .withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
                         )
                     ),
                     SizedBox(height: 50,)
@@ -239,8 +276,11 @@ class UserBestScoresList extends StatelessWidget {
                         // index += 3;
                         index += 0;
                         return InkWell(
-                            onTap: () => context.read<UserCubit>().loadBeatmapFromUser(_userFirstScoresInstance[index], context),
-                            child: ScoreCardWidget(item: _userFirstScoresInstance[index])
+                            onTap: () =>
+                                context.read<UserCubit>().loadBeatmapFromUser(
+                                    _userFirstScoresInstance[index], context),
+                            child: ScoreCardWidget(
+                                item: _userFirstScoresInstance[index])
                         );
                       }),
                 ],
@@ -249,7 +289,8 @@ class UserBestScoresList extends StatelessWidget {
           ),
         );
       }
-      // if user have less than 5 scores
+    }
+  /* // if user have less than 5 scores
       else {
         return
           Container(
@@ -276,6 +317,13 @@ class UserBestScoresList extends StatelessWidget {
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
                         )
                     ),
                     SizedBox(height: 50,)
@@ -301,4 +349,5 @@ class UserBestScoresList extends StatelessWidget {
       }
     }
   }
-}
+}*/
+  }

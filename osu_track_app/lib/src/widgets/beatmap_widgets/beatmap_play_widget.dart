@@ -1,14 +1,9 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:osu_track_app/src/pages/cubit/beatmap_play_cubit.dart';
 
 import '../../models/beatmap.dart';
-import '../../models/user.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
-import '../../pages/user_tab_page.dart';
-import '../../pages/cubit/beatmap_cubit.dart';
-
 
 class BeatmapPlayWidget extends StatelessWidget {
   final Beatmap _beatmap;

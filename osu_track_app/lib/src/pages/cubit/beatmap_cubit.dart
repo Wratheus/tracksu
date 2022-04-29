@@ -1,12 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:osu_track_app/src/models/beatmap_score.dart';
 
+import '../../models/beatmap_score.dart';
 import '../../requests/requests.dart';
 import '../../utils/secure_storage.dart';
 import '../../models/beatmap.dart';
 import '../../models/user.dart';
-import '../user_page.dart';
 
 part 'beatmap_state.dart';
 
@@ -30,20 +29,13 @@ class BeatmapCubit extends Cubit<BeatmapState> {
               (await UserSecureStorage.getTokenFromStorage())!,
               "${itemBeatmapId}"),
           await getUser((await UserSecureStorage.getTokenFromStorage())!,
-              "${itemMapperName}", 'osu'), false));
+              "${itemMapperName}", 'osu')));
       print('beatmap $itemBeatmapName loaded');
     } catch (e) {
       emit(BeatmapErrorState('Failed Beatmap Load $e'));
     }
-
-    Future<void> reloadBeatmap() async {
-      emit(BeatmapInitial());
-    }
-
-    Future<void> loadUserFromBeatmap(String username, context) async {
-      Navigator.push(context,
-          MaterialPageRoute(
-              builder: (context) => UserPage(username: username)));
-    }
+  }
+  Future<void> reloadBeatmap() async {
+    emit(BeatmapInitial());
   }
 }

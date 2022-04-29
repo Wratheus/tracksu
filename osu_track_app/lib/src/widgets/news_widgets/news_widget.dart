@@ -37,11 +37,19 @@ class NewsWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("${_item.publishedAt}".substring(0, 10),
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: my_colors.Palette.yellow,
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     )
                   ]
               ),
@@ -58,6 +66,14 @@ class NewsWidget extends StatelessWidget {
                           image: NetworkImage("${_item.firstImage}"),
                           fit: BoxFit.cover,
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+                            offset: Offset(7, 5),
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                          )
+                        ],
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
@@ -73,11 +89,19 @@ class NewsWidget extends StatelessWidget {
                     Expanded(child:
                     Text("${_item.title}",
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     ),
                   ]
@@ -89,11 +113,19 @@ class NewsWidget extends StatelessWidget {
                   Expanded(child:
                   Text("${_item.author}",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: my_colors.Palette.yellow,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'Exo 2')
+                          fontFamily: 'Exo 2',
+                        shadows: [
+                          Shadow(
+                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                            offset: Offset(7, 5),
+                            blurRadius: 10,
+                          )
+                        ],
+                      )
                   ),
                   ),
 
@@ -106,11 +138,19 @@ class NewsWidget extends StatelessWidget {
                   Expanded(child:
                   Text("${_item.preview}",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'Exo 2')
+                          fontFamily: 'Exo 2',
+                        shadows: [
+                          Shadow(
+                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                            offset: Offset(7, 5),
+                            blurRadius: 10,
+                          )
+                        ],
+                      )
                   ),
                   ),
                   const SizedBox(height: 20,),

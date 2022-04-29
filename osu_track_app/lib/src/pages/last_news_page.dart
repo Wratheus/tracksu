@@ -30,12 +30,19 @@ class _LastNewsPage extends StatelessWidget {
         context.read<NewsCubit>().loadNews(); // run Circular progress bar while news is loading
         return Scaffold(
             appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                title: const Text("News",
-                  style: const TextStyle(
+                title: Text("News",
+                  style: TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
                     fontFamily: 'Exo 2',
                     fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        blurRadius: 10,
+                      )
+                    ],
                   ),), leading: Image.asset('assets/utils/cloud_logo.png')),
             backgroundColor: my_colors.Palette.brown.shade100,
             body: const Center(child: CircularProgressIndicator())
@@ -50,12 +57,19 @@ class _LastNewsPage extends StatelessWidget {
           child:
             Scaffold(
               appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                  title: const Text("News",
-                    style: const TextStyle(
+                  title: Text("News",
+                    style: TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
                     fontFamily: 'Exo 2',
                     fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
                   ),), leading: Image.asset('assets/utils/cloud_logo.png')),
               body: SingleChildScrollView(
                 child: Column(

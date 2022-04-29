@@ -43,6 +43,14 @@ class UserInfoWidget extends StatelessWidget {
                         image: NetworkImage(_user.avatarURL),
                         fit: BoxFit.cover,
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          spreadRadius: 2,
+                          blurRadius: 3,
+                        )
+                      ],
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
@@ -55,8 +63,15 @@ class UserInfoWidget extends StatelessWidget {
                       children: [
                         Text(
                           "${_user.username}",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 22.0,
+                            shadows: [
+                              Shadow(
+                                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                offset: Offset(7, 5),
+                                blurRadius: 10,
+                              )
+                            ],
                             color: Colors.white,
                             fontFamily: 'Exo 2',
                             fontWeight: FontWeight.bold,
@@ -64,14 +79,32 @@ class UserInfoWidget extends StatelessWidget {
                         ),
                         const SizedBox(height: 10.0,),
                         Text("${_user.globalRank}",
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: my_colors.Palette.yellow,
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Exo 2')
+                                fontFamily: 'Exo 2',
+                              shadows: [
+                                Shadow(
+                                  color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                  offset: Offset(7, 5),
+                                  blurRadius: 10,
+                                )
+                              ],
+                            )
                         ),
                         const SizedBox(height: 10.0,),
                         Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                offset: Offset(7, 5),
+                                spreadRadius: 2,
+                                blurRadius: 3,
+                              )
+                            ],
+                          ),
                           height: 25,
                           width: 41.66,
                           child: Image.asset('icons/flags/png/${_user.countryCode
@@ -98,6 +131,14 @@ class UserInfoWidget extends StatelessWidget {
                 colorFilter: ColorFilter.mode(
                 Colors.white.withOpacity(0.24), BlendMode.dstATop),
                 ),
+              boxShadow: [
+                BoxShadow(
+                  color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                  offset: Offset(7, 5),
+                  spreadRadius: 2,
+                  blurRadius: 3,
+                )
+              ],
             ),
             alignment: Alignment.center,
             child: Row(
@@ -108,51 +149,99 @@ class UserInfoWidget extends StatelessWidget {
                   children: [
                     Text("Ranked Score:",
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     Text("Hit Accuracy:",
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     Text("Play Count:",
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: my_colors.Palette.yellow,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     Text("Total Hits:",
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: my_colors.Palette.yellow,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     Text("Maximum Combo:",
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: my_colors.Palette.yellow,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     Text("Replay count:",
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: my_colors.Palette.yellow,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                   ],
                 ),
@@ -163,51 +252,99 @@ class UserInfoWidget extends StatelessWidget {
                   children: [
                     Text("${_user.rankedScore}",
                         textAlign: TextAlign.right,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     Text("${_user.hitAccuracy}%",
                         textAlign: TextAlign.right,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     Text("${_user.playCount}",
                         textAlign: TextAlign.right,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: my_colors.Palette.yellow,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     Text("${_user.totalHits}",
                         textAlign: TextAlign.right,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: my_colors.Palette.yellow,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     Text("${_user.maximumCombo}",
                         textAlign: TextAlign.right,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: my_colors.Palette.yellow,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     Text("${_user.replaysWatched}",
                         textAlign: TextAlign.right,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: my_colors.Palette.yellow,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                   ],
                 ),
@@ -222,62 +359,108 @@ class UserInfoWidget extends StatelessWidget {
               Column(children: [
                 Container(
                   width: 150,
+                  height: 1,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
+                      color: my_colors.Palette.hotPink,
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
-                            color: my_colors.Palette.hotPink, spreadRadius: 1)
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          spreadRadius: 2,
+                          blurRadius: 3,
+                        )
                       ],
-                      color: my_colors.Palette.brown.shade200),
-                  alignment: Alignment.center,),
+                  ),
+                ),
                 SizedBox(height: 5,),
                 Text("Total Play Time",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
                 SizedBox(height: 5,),
                 Text("${(_user.playTime / 3600).ceil()} hours",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
               ]),
               SizedBox(width: 20,),
               Column(children: [
                 Container(
                   width: 150,
+                  height: 1,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(color: my_colors.Palette.red.shade300,
-                            spreadRadius: 1)
-                      ],
-                      color: my_colors.Palette.brown.shade200),
-                  alignment: Alignment.center,),
+                    color: my_colors.Palette.red.shade300,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        spreadRadius: 2,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                ),
                 SizedBox(height: 5,),
                 Text("Performance Points",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
                 SizedBox(height: 5,),
                 Text("${(_user.totalPP).round()}",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
               ]),
             ],
@@ -289,72 +472,164 @@ class UserInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Column(children: [
-                Container(child: Image.asset(
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+                        offset: Offset(7, 5),
+                        spreadRadius: 1,
+                        blurRadius: 2,
+                      )
+                    ],
+                  ),
+                  child: Image.asset(
                     'assets/icon_score_types/grade_xh.png'),),
                 SizedBox(height: 5,),
                 Text("${_user.amountOfSSH}",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
               ]),
               SizedBox(width: 10,),
               Column(children: [
-                Container(child: Image.asset(
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+                        offset: Offset(7, 5),
+                        spreadRadius: 1,
+                        blurRadius: 2,
+                      )
+                    ],
+                  ),
+                  child: Image.asset(
                     'assets/icon_score_types/grade_x.png'),),
                 SizedBox(height: 5,),
                 Text("${_user.amountOfSS}",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
               ]),
               SizedBox(width: 10,),
               Column(children: [
-                Container(child: Image.asset(
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+                        offset: Offset(7, 5),
+                        spreadRadius: 1,
+                        blurRadius: 2,
+                      )
+                    ],
+                  ),
+                  child: Image.asset(
                     'assets/icon_score_types/grade_sh.png'),),
                 SizedBox(height: 5,),
                 Text("${_user.amountOfSh}",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
               ]),
               SizedBox(width: 10,),
               Column(children: [
                 Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+                        offset: Offset(7, 5),
+                        spreadRadius: 1,
+                        blurRadius: 2,
+                      )
+                    ],
+                  ),
                   child: Image.asset('assets/icon_score_types/grade_s.png'),),
                 SizedBox(height: 5,),
                 Text("${_user.amountOfS}",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
               ]),
               SizedBox(width: 10,),
               Column(children: [
                 Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+                        offset: Offset(7, 5),
+                        spreadRadius: 1,
+                        blurRadius: 2,
+                      )
+                    ],
+                  ),
                   child: Image.asset('assets/icon_score_types/grade_a.png'),),
                 SizedBox(height: 5,),
                 Text("${_user.amountOfA}",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],)
                 ),
               ]),
             ],
@@ -369,61 +644,108 @@ class UserInfoWidget extends StatelessWidget {
               Column(children: [
                 Container(
                   width: 150,
+                  height: 1,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(color: Colors.cyanAccent, spreadRadius: 1)
-                      ],
-                      color: my_colors.Palette.brown.shade200),
-                  alignment: Alignment.center,),
+                    color: Colors.cyanAccent,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        spreadRadius: 2,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                ),
                 SizedBox(height: 5,),
                 Text("World rank",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
                 SizedBox(height: 5,),
                 Text("${_user.globalRank}",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: my_colors.Palette.yellow,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
               ]),
               SizedBox(width: 20,),
               Column(children: [
                 Container(
                   width: 150,
+                  height: 1,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.lightGreenAccent, spreadRadius: 1)
-                      ],
-                      color: my_colors.Palette.brown.shade200),
-                  alignment: Alignment.center,),
+                    color: Colors.lightGreenAccent,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        spreadRadius: 2,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                ),
                 SizedBox(height: 5,),
                 Text("Country rank",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
                 SizedBox(height: 5,),
                 Text("${_user.countryRank}",
                     textAlign: TextAlign.right,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: my_colors.Palette.yellow,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2')
+                        fontFamily: 'Exo 2',
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    )
                 ),
               ]),
             ],
