@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/beatmap_widgets/beatmap_play_widget.dart';
 import '../../models/beatmap.dart';
 import '../../models/user.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
@@ -35,37 +36,56 @@ class BeatmapInfoWidget extends StatelessWidget {
         Text(
           "${_beatmap.mapTitle}",
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 14.0,
             color: Colors.white,
             fontFamily: 'Exo 2',
             fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                offset: Offset(7, 5),
+                blurRadius: 10,
+              )
+            ],
           ),
         ),
         Text(
           "[${_beatmap.difficultyName}]",
           textAlign: TextAlign.right,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 12.0,
             color: my_colors.Palette.yellow,
             fontFamily: 'Exo 2',
             fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                offset: Offset(7, 5),
+                blurRadius: 10,
+              )
+            ],
           ),),
         Text(
           "by ${_beatmap.artistName}",
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 12.0,
             color: my_colors.Palette.red,
             fontFamily: 'Exo 2',
             fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                offset: Offset(7, 5),
+                blurRadius: 10,
+              )
+            ],
           ),
         ),
-
-        SizedBox(height: 7,),
         Container(
             margin: EdgeInsets.all(10.0),
-            padding: EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(5.0),
             height: height / 6.0,
             decoration: BoxDecoration(
             color: my_colors.Palette.brown.shade100,
@@ -76,15 +96,24 @@ class BeatmapInfoWidget extends StatelessWidget {
                   Colors.white.withOpacity(0.24), BlendMode.dstATop),
             ),
               borderRadius: BorderRadius.circular(8.0),
+              boxShadow: [
+                BoxShadow(
+                  color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                  offset: Offset(7, 5),
+                  spreadRadius: 2,
+                  blurRadius: 3,
+                )
+              ],
             ),
           child: Row(
                 children: [
                   Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: height / 21,),
+                        BeatmapPlayWidget(beatmap: _beatmap),
+                        Spacer(),
                         InkWell(
                           onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: _beatmap.mapperName!))),
                           child: Container(
@@ -94,11 +123,20 @@ class BeatmapInfoWidget extends StatelessWidget {
                                   width:  45.0,
                                   height: 45.0,
                                   decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                        offset: Offset(7, 5),
+                                        spreadRadius: 2,
+                                        blurRadius: 3,
+                                      )
+                                    ],
                                     image: DecorationImage(
                                       image: NetworkImage(_mapperInstance.avatarURL),
                                       fit: BoxFit.cover,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
+
                                   ),
                                 ),
                                 SizedBox(width: 6,),
@@ -111,31 +149,52 @@ class BeatmapInfoWidget extends StatelessWidget {
                                       Text(
                                         "Submitted: ${_beatmap.submittedDate}".substring(0, 20),
                                         textAlign: TextAlign.left,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           fontSize: 10.0,
                                           color: Colors.white,
                                           fontFamily: 'Exo 2',
                                           fontWeight: FontWeight.bold,
+                                          shadows: [
+                                            Shadow(
+                                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                              offset: Offset(7, 5),
+                                              blurRadius: 10,
+                                            )
+                                          ],
                                         ),
                                       ),
                                       Text(
                                         "${_beatmap.rankedStatus}: " + "${_beatmap.rankedDate}".substring(0, 10),
                                         textAlign: TextAlign.left,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           fontSize: 10.0,
                                           color: Colors.white,
                                           fontFamily: 'Exo 2',
                                           fontWeight: FontWeight.bold,
+                                        shadows: [
+                                          Shadow(
+                                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                            offset: Offset(7, 5),
+                                            blurRadius: 10,
+                                          )
+                                        ],
                                         ),
                                       ),
                                       Text(
                                         "mapped by ${_beatmap.mapperName}",
                                         textAlign: TextAlign.left,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           fontSize: 11.0,
                                           color: Colors.white,
                                           fontFamily: 'Exo 2',
                                           fontWeight: FontWeight.bold,
+                                          shadows: [
+                                            Shadow(
+                                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                              offset: Offset(7, 5),
+                                              blurRadius: 10,
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ],
@@ -162,11 +221,18 @@ class BeatmapInfoWidget extends StatelessWidget {
                           child: Text(
                             "${_beatmap.rankedStatus}".toUpperCase(),
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 12.0,
                               color: Colors.white,
                               fontFamily: 'Exo 2',
                               fontWeight: FontWeight.bold,
+                              shadows: [
+                                Shadow(
+                                  color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                  offset: Offset(7, 5),
+                                  blurRadius: 10,
+                                )
+                              ],
                             ),
                           ),
                         ),
@@ -181,11 +247,18 @@ class BeatmapInfoWidget extends StatelessWidget {
                             SizedBox(width: 5,),
                             Text(
                               "${_beatmap.difficultyRating}",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 12.0,
                                 color: Colors.white,
                                 fontFamily: 'Exo 2',
                                 fontWeight: FontWeight.bold,
+                                shadows: [
+                                  Shadow(
+                                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                    offset: Offset(7, 5),
+                                    blurRadius: 10,
+                                  )
+                                ],
                               ),
                             ),
                           ],
@@ -201,11 +274,18 @@ class BeatmapInfoWidget extends StatelessWidget {
                             SizedBox(width: 5,),
                             Text(
                               "${_beatmap.favouriteCount}",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 12.0,
                                 color: Colors.white,
                                 fontFamily: 'Exo 2',
                                 fontWeight: FontWeight.bold,
+                                shadows: [
+                                  Shadow(
+                                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                    offset: Offset(7, 5),
+                                    blurRadius: 10,
+                                  )
+                                ],
                               ),
                             ),
                         ],
@@ -221,11 +301,18 @@ class BeatmapInfoWidget extends StatelessWidget {
                             SizedBox(width: 5,),
                             Text(
                               "${_beatmap.playCount}",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 12.0,
                                 color: Colors.white,
                                 fontFamily: 'Exo 2',
                                 fontWeight: FontWeight.bold,
+                                shadows: [
+                                  Shadow(
+                                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                    offset: Offset(7, 5),
+                                    blurRadius: 10,
+                                  )
+                                ],
                               ),
                             ),
                           ],
@@ -246,6 +333,14 @@ class BeatmapInfoWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   color: my_colors.Palette.brown.shade100,
+                  boxShadow: [
+                    BoxShadow(
+                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                      offset: Offset(7, 5),
+                      spreadRadius: 2,
+                      blurRadius: 3,
+                    )
+                  ],
                 ),
                 child: Column(
                   children: [
@@ -257,19 +352,35 @@ class BeatmapInfoWidget extends StatelessWidget {
                           children: [
                             Text("Length",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: my_colors.Palette.red,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                             Text("${_timeStr}",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                           ],
                         ),
@@ -278,19 +389,35 @@ class BeatmapInfoWidget extends StatelessWidget {
                           children: [
                             Text("BPM",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: my_colors.Palette.red,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                             Text("${_beatmap.BPM.round()}",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                           ],
                         ),
@@ -299,19 +426,35 @@ class BeatmapInfoWidget extends StatelessWidget {
                           children: [
                             Text("Circles",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: my_colors.Palette.red,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                             Text("${_beatmap.countCircles}",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                           ],
                         ),
@@ -320,19 +463,35 @@ class BeatmapInfoWidget extends StatelessWidget {
                           children: [
                             Text("Sliders",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: my_colors.Palette.red,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                             Text("${_beatmap.countSliders}",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
 
                       ],
@@ -342,19 +501,34 @@ class BeatmapInfoWidget extends StatelessWidget {
                           children: [
                             Text("Spinners",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: my_colors.Palette.red,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],)
                             ),
                             Text("${_beatmap.countSpinners}",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                  Shadow(
+                                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                    offset: Offset(7, 5),
+                                    blurRadius: 10,
+                                  )
+                                ],
+                                )
                             ),
 
                           ],
@@ -371,19 +545,34 @@ class BeatmapInfoWidget extends StatelessWidget {
                           children: [
                             Text("CS",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: my_colors.Palette.yellow,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],)
                             ),
                             Text("${_beatmap.CS}",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                           ],
                         ),
@@ -392,19 +581,33 @@ class BeatmapInfoWidget extends StatelessWidget {
                           children: [
                             Text("HP",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: my_colors.Palette.yellow,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],)
                             ),
                             Text("${_beatmap.HP}",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],)
                             ),
                           ],
                         ),
@@ -413,19 +616,35 @@ class BeatmapInfoWidget extends StatelessWidget {
                           children: [
                             Text("OD",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: my_colors.Palette.yellow,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                             Text("${_beatmap.OD}",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                           ],
                         ),
@@ -434,19 +653,35 @@ class BeatmapInfoWidget extends StatelessWidget {
                           children: [
                             Text("AR",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: my_colors.Palette.yellow,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
                             Text("${_beatmap.AR}",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2')
+                                    fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                )
                             ),
 
                           ],

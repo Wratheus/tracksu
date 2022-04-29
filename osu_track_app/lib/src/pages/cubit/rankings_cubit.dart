@@ -14,12 +14,12 @@ class RankingsCubit extends Cubit<RankingsState> {
     print('RankingsPage loading');
   }
 
-  Future<void> loadRankings(filter, filterFriendsValue, page) async {
+  Future<void> loadRankings(filter, filterFriendsValue, page, mode) async {
     if (filterFriendsValue == true) {filter = "friends";};
     if (filterFriendsValue == false) {filter = "all";};
     try {
       emit(RankingsLoadedState(await getRankings(
-          (await UserSecureStorage.getTokenFromStorage())!, page, filter),
+          (await UserSecureStorage.getTokenFromStorage())!, page, filter, mode),
           filter,
           filterFriendsValue,
           page));
@@ -29,7 +29,7 @@ class RankingsCubit extends Cubit<RankingsState> {
     }
   }
 
-  Future<void> reloadRankings(filter, filterFriendsValue, page) async {
+  Future<void> reloadRankings(filter, filterFriendsValue, page, mode) async {
     emit(RankingsInitial(filter, filterFriendsValue, page));
   }
 

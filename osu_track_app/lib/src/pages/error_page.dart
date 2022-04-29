@@ -17,7 +17,23 @@ class ErrorPage extends StatelessWidget {
     if ("${_errorMessage}".contains("Failed User Load Exception: Failed to get USER")) {_errorMessage = "Wrong username or requested user is restricted/unfound";};
     return Scaffold(
       appBar: AppBar(backgroundColor: my_colors.Palette.pink,
-        title: Text("Exception in ${_exceptionPageName}!"), leading: Image.asset('assets/utils/cloud_logo.png')),
+        title: Text(
+          "Exception in ${_exceptionPageName}!",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Exo 2',
+            shadows: [
+              Shadow(
+                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                offset: Offset(7, 5),
+                blurRadius: 10,
+              )
+            ],
+          ),
+        ),
+          leading: Image.asset('assets/utils/cloud_logo.png')),
       backgroundColor:my_colors.Palette.brown,
       body: Column(
       children: [
@@ -26,10 +42,37 @@ class ErrorPage extends StatelessWidget {
           SizedBox(height: 50),
           Expanded(child: Text("Oops! \n ${_errorMessage}",
               textAlign: TextAlign.center ,
-              style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',)),),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Exo 2',
+                shadows: [
+                Shadow(
+                  color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                  offset: Offset(7, 5),
+                  blurRadius: 10,
+                )
+              ],
+            ),
+          ),
+        ),
           ElevatedButton(onPressed: () => toMainScreen(context),
-              child: const Text("Return",
-                                style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Exo 2',))),
+              child: Text("Return",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24, fontWeight: FontWeight.bold,
+                                  fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                ),
+                              ),
+          ),
       ]
       )
     );

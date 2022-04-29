@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../pages/user_tab_page.dart';
+import '../../utils/color_contrasts.dart' as my_colors;
 
 class UserSearchWidget extends StatelessWidget {
 
@@ -8,6 +9,16 @@ class UserSearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+            offset: Offset(7, 5),
+            spreadRadius: 5,
+            blurRadius: 10,
+          )
+        ],
+      ),
         width: 225,
         height: 35,
         child: TextField(

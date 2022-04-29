@@ -46,6 +46,14 @@ class ScoreCardWidget extends StatelessWidget {
             colorFilter: ColorFilter.mode(
                 Colors.white.withOpacity(0.24), BlendMode.dstATop),
           ),
+          boxShadow: [
+            BoxShadow(
+            color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+            offset: Offset(7, 5),
+            spreadRadius: 1,
+            blurRadius: 2,
+            )
+          ],
           borderRadius: BorderRadius.circular(8.0),
         ),
 
@@ -58,11 +66,19 @@ class ScoreCardWidget extends StatelessWidget {
                     children: [
                       Text("${(_item.mapTitle)} by ${(_item.artistName)}",
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.white,
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'Exo 2')
+                              fontFamily: 'Exo 2',
+                            shadows: [
+                              Shadow(
+                                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                offset: Offset(7, 5),
+                                blurRadius: 10,
+                              )
+                            ],
+                          )
                       ),
                       Spacer(),
                       Row(
@@ -83,11 +99,19 @@ class ScoreCardWidget extends StatelessWidget {
                               children: [
                                 Text("[${(_item.difficultyName)}]",
                                     textAlign: TextAlign.center,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         color: my_colors.Palette.yellow,
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: 'Exo 2')
+                                        fontFamily: 'Exo 2',
+                                      shadows: [
+                                        Shadow(
+                                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                          offset: Offset(7, 5),
+                                          blurRadius: 10,
+                                        )
+                                      ],
+                                    )
                                 ),
                                 Row(
                                     children: [
@@ -97,11 +121,19 @@ class ScoreCardWidget extends StatelessWidget {
                                         color: my_colors.Palette.yellow,),
                                       Text("${(_item.difficultyRating)}",
                                           textAlign: TextAlign.center,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                               color: my_colors.Palette.yellow,
                                               fontSize: 12,
                                               fontWeight: FontWeight.bold,
-                                              fontFamily: 'Exo 2')
+                                              fontFamily: 'Exo 2',
+                                            shadows: [
+                                              Shadow(
+                                                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                                offset: Offset(7, 5),
+                                                blurRadius: 10,
+                                              )
+                                            ],
+                                          )
                                       ),
                                     ]
                                 ),
@@ -110,30 +142,54 @@ class ScoreCardWidget extends StatelessWidget {
                           ),
                           Text("${(_item.dateOfScore)}".substring(0, 10),
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   color: my_colors.Palette.yellow,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'Exo 2')
+                                  fontFamily: 'Exo 2',
+                                shadows: [
+                                  Shadow(
+                                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                    offset: Offset(7, 5),
+                                    blurRadius: 10,
+                                  )
+                                ],
+                              )
                           ),
                           SizedBox(width: 20,),
                           Text("${(_item.accuracy * 100).round()}%",
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   color: my_colors.Palette.yellow,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'Exo 2')
+                                  fontFamily: 'Exo 2',
+                                shadows: [
+                                  Shadow(
+                                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                    offset: Offset(7, 5),
+                                    blurRadius: 10,
+                                  )
+                                ],
+                              )
                           ),
                           SizedBox(height: 10,),
                           SizedBox(width: 20,),
                           Text("${(_item.gainedPP).round()}pp",
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   color: my_colors.Palette.hotPink,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'Exo 2')
+                                  fontFamily: 'Exo 2',
+                                shadows: [
+                                  Shadow(
+                                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                    offset: Offset(7, 5),
+                                    blurRadius: 10,
+                                  )
+                                ],
+                              )
                           ),
                         ],
                       ),

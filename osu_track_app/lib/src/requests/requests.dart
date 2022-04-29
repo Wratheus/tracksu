@@ -80,7 +80,7 @@ Future<void>getTokenAsOwner() async{
 
 // User request
 // returns a user class object
-Future <User> getUser(String token, String username, String mode) async{
+Future <User> getUser(String token, String username, [String mode = 'osu']) async{
 
   final body = {
     'key': 'username'
@@ -268,7 +268,7 @@ Future <List<BeatmapScore>> getBeatmapScores(String token, String beatmapID, [Li
 
 // Ranking request
 Future <List<Rankings>> getRankings(String token,  String page, String filter,
-    [int country = 0, String mode = "osu", String type = "performance"]) async {
+    [String mode = "osu", int country = 0, String type = "performance"]) async {
   if (int.parse(page) > 200 || int.parse(page) < 1) {
     throw Exception('Failed to get RANKINGS response. Wrong page');
   }

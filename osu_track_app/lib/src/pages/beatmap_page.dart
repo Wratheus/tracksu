@@ -31,7 +31,6 @@ class _BeatmapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<BeatmapCubit, BeatmapState>(builder: (context, state) {
       if (state is BeatmapInitial) {
           context.read<BeatmapCubit>().loadBeatmap(_item.beatmapSetMapId, _item.mapTitle, _item.mapperName);
@@ -49,7 +48,23 @@ class _BeatmapPage extends StatelessWidget {
             backgroundColor: my_colors.Palette.brown.shade100,
             child: Scaffold(
                 appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                    title: Text((state.beatmapInstance.mapTitle)!), leading: Image.asset('assets/utils/cloud_logo.png')),
+                    title: Text((
+                        state.beatmapInstance.mapTitle)!,
+                      style: TextStyle(
+                      fontSize: 22.0,
+                      color: Colors.white,
+                      fontFamily: 'Exo 2',
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    ),
+                ),
+                leading: Image.asset('assets/utils/cloud_logo.png')),
                 backgroundColor:my_colors.Palette.brown.shade200,
                 body: Center(
                   child: SingleChildScrollView(
@@ -73,7 +88,7 @@ class _BeatmapPage extends StatelessWidget {
                   ),
                 )
             ),
-            onRefresh: () => context.read<BeatmapCubit>().loadBeatmap(_item.beatmapSetMapId, _item.mapTitle, _item.mapperName),
+            onRefresh: () => context.read<BeatmapCubit>().reloadBeatmap(),
           );
         }
         else return Container();

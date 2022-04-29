@@ -46,6 +46,14 @@ class RankingsWidget extends StatelessWidget {
                           image: NetworkImage(_item.avatarURL),
                           fit: BoxFit.cover,
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                            offset: Offset(7, 5),
+                            spreadRadius: 2,
+                            blurRadius: 3,
+                          )
+                        ],
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
@@ -58,24 +66,49 @@ class RankingsWidget extends StatelessWidget {
                   children: [
                     Text(
                       "${_item.globalRank}",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 14.0,
                         color: my_colors.Palette.yellow,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
+                        shadows: [
+                          Shadow(
+                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                            offset: Offset(7, 5),
+                            blurRadius: 10,
+                          )
+                        ],
                       ),
                     ),
                     Text(_item.username,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
+                            fontFamily: 'Exo 2',
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        )
                     ),
                     const SizedBox(height: 15.0,),
                     Container(
                       height: 18,
                       width: 30,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                            offset: Offset(7, 5),
+                            spreadRadius: 2,
+                            blurRadius: 3,
+                          )
+                        ],
+                      ),
                       child: Image.asset('icons/flags/png/${_item.countryCode
                           .toLowerCase()}.png', package: 'country_icons', fit: BoxFit.fill,
                           scale: 2.5),

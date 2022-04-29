@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:osu_track_app/src/pages/rankings_tab_page.dart';
 import 'package:osu_track_app/src/pages/user_tab_page.dart';
 
 import '../utils/color_contrasts.dart' as my_colors;
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> pageList = <Widget>[
     LastNewsPage(),
     UserTabPage(),
-    RankingsPage(),
+    RankingsTabPage(),
   ];
   @override
   Widget build(BuildContext context) {
