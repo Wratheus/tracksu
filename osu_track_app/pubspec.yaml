@@ -3,7 +3,7 @@ description: Flutter project disgned for tracking and analyzing osu! statisics p
 
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.2.0+2
 
 environment:
   sdk: ">=2.12.0 <=3.2.0"
