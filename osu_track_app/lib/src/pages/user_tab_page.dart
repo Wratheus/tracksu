@@ -44,7 +44,8 @@ class UserTabPage extends StatelessWidget {
                     blurRadius: 10,
                   )
                 ],
-              ),),
+              ),
+            ),
             leading: Image.asset('assets/utils/cloud_logo.png')
         ),
           backgroundColor: my_colors.Palette.brown.shade100,

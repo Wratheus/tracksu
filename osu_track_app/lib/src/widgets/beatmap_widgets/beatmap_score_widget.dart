@@ -96,6 +96,14 @@ class BeatmapScoreWidget extends StatelessWidget {
                                         image: NetworkImage(_item.avatarURL),
                                         fit: BoxFit.cover,
                                       ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+                                          offset: Offset(7, 5),
+                                          spreadRadius: 1,
+                                          blurRadius: 2,
+                                        )
+                                      ],
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
@@ -127,9 +135,21 @@ class BeatmapScoreWidget extends StatelessWidget {
                               const SizedBox(height: 5.0,),
                               Row(
                                 children: [
-                                  Image.asset('icons/flags/png/${_item.countryCode
-                                      .toLowerCase()}.png', package: 'country_icons',
-                                      scale: 4.5),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+                                          offset: Offset(7, 5),
+                                          spreadRadius: 1,
+                                          blurRadius: 2,
+                                        )
+                                      ],
+                                    ),
+                                    child: Image.asset('icons/flags/png/${_item.countryCode
+                                        .toLowerCase()}.png', package: 'country_icons',
+                                        scale: 4.5),
+                                  ),
                                   const SizedBox(width: 10.0,),
                                 ],
                               ),
