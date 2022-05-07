@@ -20,7 +20,7 @@ const client_id = 'your id'; */
 Future<void> getToken(String? code) async{
   final String body = convert.jsonEncode({
     "grant_type": "authorization_code",
-    "client_id": auth.client_id,
+    "client_id": auth.clientId,
     "client_secret": auth.clientSecret,
     "code": code,
     "redirect_uri": 'https://wratheus.github.io/osu-Track',
@@ -35,17 +35,13 @@ Future<void> getToken(String? code) async{
       body: body
   );
   if (tokenRequestResponse.statusCode == 200) {
-    // If the server did return a 200 CREATED response,
     final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
     UserSecureStorage.setTokenInStorage(token['access_token']!);
-    print(token['access_token']);
   }
   else {
-    // If the server did not return a 200 CREATED response,
     var statusCode = tokenRequestResponse.statusCode;
     throw Exception('Failed to get TOKEN response. Status code = $statusCode');
   }
-
 }
 
 // getToken as owner of Application
@@ -53,7 +49,7 @@ Future<void> getToken(String? code) async{
 Future<void>getTokenAsOwner() async{
   final String body = convert.jsonEncode({
     "grant_type": "client_credentials",
-    "client_id": auth.client_id,
+    "client_id": auth.clientId,
     "client_secret": auth.clientSecret,
     "scope": "public"
   });
