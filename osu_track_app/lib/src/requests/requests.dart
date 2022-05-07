@@ -14,20 +14,13 @@ and put there your personal Osu! API oAuth2 as listed below:  | (you can get oat
 const clientSecret = 'your oAuth2 pass';
 const client_id = 'your id'; */
 
-
 // Token Request from user Auth
 // puts token to UserSecureStorage
 Future<void> getToken(String? code) async{
-  final String body = convert.jsonEncode({
-    "grant_type": "authorization_code",
-    "client_id": auth.clientId,
-    "client_secret": auth.clientSecret,
-    "code": code,
-    "redirect_uri": 'https://wratheus.github.io/osu-Track',
-  });
+  final String body = "grant_type=authorization_code&client_id=${auth.clientId}&client_secret=${auth.clientSecret}&code=${code}&redirect_uri=https://wratheus.github.io/osu-Track";
   final Map<String, String> headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
   };
   final http.Response tokenRequestResponse = await http.post(
       Uri.https('osu.ppy.sh', '/oauth/token'),
@@ -47,15 +40,10 @@ Future<void> getToken(String? code) async{
 // getToken as owner of Application
 // puts token to UserSecureStorage
 Future<void>getTokenAsOwner() async{
-  final String body = convert.jsonEncode({
-    "grant_type": "client_credentials",
-    "client_id": auth.clientId,
-    "client_secret": auth.clientSecret,
-    "scope": "public"
-  });
+  final String body = "grant_type=client_credentials&client_id=${auth.clientId}&client_secret=${auth.clientSecret}&scope=public";
   final Map<String, String> headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
   };
   final http.Response tokenRequestResponse = await http.post(
       Uri.https('osu.ppy.sh', '/oauth/token'),
