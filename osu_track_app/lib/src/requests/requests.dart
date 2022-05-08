@@ -16,7 +16,7 @@ const client_id = 'your id'; */
 
 // Token Request from user Auth
 // puts token to UserSecureStorage
-Future<void> getToken(String? code) async{
+Future<bool> getTokenAsAuthorize(String? code) async{
   final String body = "grant_type=authorization_code&client_id=${auth.clientId}&client_secret=${auth.clientSecret}&code=${code}&redirect_uri=https://wratheus.github.io/osu-Track";
   final Map<String, String> headers = {
     'Accept': 'application/json',
@@ -30,10 +30,13 @@ Future<void> getToken(String? code) async{
   if (tokenRequestResponse.statusCode == 200) {
     final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
     UserSecureStorage.setTokenInStorage(token['access_token']!);
+    return true;
   }
   else {
     var statusCode = tokenRequestResponse.statusCode;
-    throw Exception('Failed to get TOKEN response. Status code = $statusCode');
+    print('Failed to get TOKEN response. Status code = $statusCode');
+    print(tokenRequestResponse.body);
+    return false;
   }
 }
 
