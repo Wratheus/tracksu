@@ -47,44 +47,50 @@ class _BeatmapPage extends StatelessWidget {
           return RefreshIndicator(
             backgroundColor: my_colors.Palette.brown.shade100,
             child: Scaffold(
-                appBar: AppBar(backgroundColor: my_colors.Palette.purple,
-                    title: Text((
-                        state.beatmapInstance.mapTitle)!,
-                      style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.white,
-                      fontFamily: 'Exo 2',
-                      fontWeight: FontWeight.bold,
-                      shadows: [
-                        Shadow(
-                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                          offset: Offset(7, 5),
-                          blurRadius: 10,
-                        )
-                      ],
-                    ),
-                ),
-                leading: Image.asset('assets/utils/cloud_logo.png')),
                 backgroundColor:my_colors.Palette.brown.shade200,
                 body: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                        children: [
-                          BeatmapInfoWidget(beatmap: state.beatmapInstance, mapperInstance: state.mapperInstance,),
-                          SizedBox(height: 5,),
-                          ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: state.beatmapLeaderboard.length,
-                              itemBuilder: (context, index){
-                                return InkWell(
-                                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.beatmapLeaderboard[index].username))),
-                                    child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
-                                );}
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverAppBar(
+                        floating: true,
+                        leading: Image.asset('assets/utils/cloud_logo.png'),
+                        title: Text((state.beatmapInstance.mapTitle)!,
+                          style: TextStyle(
+                            fontSize: 24.0,
+                            color: Colors.white,
+                            fontFamily: 'Exo 2',
+                            fontWeight: FontWeight.bold,
+                            shadows: [
+                              Shadow(
+                                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                offset: Offset(7, 5),
+                                blurRadius: 10,
+                              )
+                            ],
                           ),
-                        ]
-                    ),
+                        ),
+                        backgroundColor: my_colors.Palette.purple,
+                      ),
+                      SliverToBoxAdapter(
+                        child: Column(
+                          children: [
+                            BeatmapInfoWidget(beatmap: state.beatmapInstance, mapperInstance: state.mapperInstance,),
+                            SizedBox(height: 5,),
+                            ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                itemCount: state.beatmapLeaderboard.length,
+                                itemBuilder: (context, index){
+                                  return InkWell(
+                                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.beatmapLeaderboard[index].username))),
+                                      child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
+                                  );}
+                            ),
+                          ]
+                        ),
+                      )
+                    ],
                   ),
                 )
             ),
