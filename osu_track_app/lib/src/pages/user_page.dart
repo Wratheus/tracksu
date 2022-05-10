@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../pages/user_tab_page.dart';
 import '../pages/cubit/user_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 import '../pages/error_page.dart';
@@ -53,7 +54,7 @@ class _UserPage extends StatelessWidget {
       }
       if (state is UserErrorState) { // Throw error if state is UserError
         return ErrorPage(
-            exceptionPageName: UserPage(), errorMessage: state.errorMessage);
+            exceptionPageName: UserTabPage(), errorMessage: state.errorMessage);
       }
       if (state is UserLoadingState) {
         print("Loading User");
