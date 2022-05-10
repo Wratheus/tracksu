@@ -14,13 +14,20 @@ and put there your personal Osu! API oAuth2 as listed below:  | (you can get oat
 const clientSecret = 'your oAuth2 pass';
 const client_id = 'your id'; */
 
+
 // Token Request from user Auth
 // puts token to UserSecureStorage
-Future<bool> getTokenAsAuthorize(String? code) async{
-  final String body = "grant_type=authorization_code&client_id=${auth.clientId}&client_secret=${auth.clientSecret}&code=${code}&redirect_uri=https://wratheus.github.io/osu-Track";
+Future<void> getTokenAsAuthorize(String? code) async{
+  final String body = convert.jsonEncode({
+    "grant_type": "authorization_code",
+    "client_id": auth.clientId,
+    "client_secret": auth.clientSecret,
+    "code": code,
+    "redirect_uri": 'https://wratheus.github.io/osu-Track',
+  });
   final Map<String, String> headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/json',
   };
   final http.Response tokenRequestResponse = await http.post(
       Uri.https('osu.ppy.sh', '/oauth/token'),
@@ -28,25 +35,31 @@ Future<bool> getTokenAsAuthorize(String? code) async{
       body: body
   );
   if (tokenRequestResponse.statusCode == 200) {
+    // If the server did return a 200 CREATED response,
     final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
     UserSecureStorage.setTokenInStorage(token['access_token']!);
-    return true;
+    print(token['access_token']);
   }
   else {
+    // If the server did not return a 200 CREATED response,
     var statusCode = tokenRequestResponse.statusCode;
-    print('Failed to get TOKEN response. Status code = $statusCode');
-    print(tokenRequestResponse.body);
-    return false;
+    throw Exception('Failed to get TOKEN response. Status code = $statusCode');
   }
+
 }
 
 // getToken as owner of Application
 // puts token to UserSecureStorage
 Future<void>getTokenAsOwner() async{
-  final String body = "grant_type=client_credentials&client_id=${auth.clientId}&client_secret=${auth.clientSecret}&scope=public";
+  final String body = convert.jsonEncode({
+    "grant_type": "client_credentials",
+    "client_id": auth.clientId,
+    "client_secret": auth.clientSecret,
+    "scope": "public"
+  });
   final Map<String, String> headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/json',
   };
   final http.Response tokenRequestResponse = await http.post(
       Uri.https('osu.ppy.sh', '/oauth/token'),

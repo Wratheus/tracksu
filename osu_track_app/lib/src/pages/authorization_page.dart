@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:osu_track_app/src/requests/requests.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../utils/secure_storage.dart';
 import '../pages/home_page.dart';
-import '../requests/requests.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 
 
@@ -57,7 +57,9 @@ class _LoginScreenState extends State<LoginScreen> {
           else {
             print("requesting new token");
             UserSecureStorage.setCodeInStorage(this.code!);
-            await getTokenAsAuthorize(code);
+            print(this.code);
+            print(code);
+            await getTokenAsAuthorize(this.code);
             setState(() {
               Navigator.pop(context, LoginScreen());
               Navigator.push(context,

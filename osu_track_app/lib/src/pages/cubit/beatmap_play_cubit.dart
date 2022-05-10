@@ -3,13 +3,6 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:osu_track_app/src/models/beatmap_score.dart';
-
-import '../../requests/requests.dart';
-import '../../utils/secure_storage.dart';
-import '../../models/beatmap.dart';
-import '../../models/user.dart';
-import '../user_page.dart';
 
 part 'beatmap_play_state.dart';
 
