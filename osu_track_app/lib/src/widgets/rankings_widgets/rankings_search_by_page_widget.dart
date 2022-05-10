@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:osu_track_app/src/utils/color_contrasts.dart';
 import 'package:provider/src/provider.dart';
 
 import '../../pages/cubit/rankings_cubit.dart';

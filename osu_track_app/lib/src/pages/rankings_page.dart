@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:osu_track_app/src/pages/error_page.dart';
-import 'package:osu_track_app/src/widgets/rankings_widgets/rankings_search_by_page_widget.dart';
 
+import '../pages/error_page.dart';
+import '../pages/rankings_tab_page.dart';
+import '../widgets/rankings_widgets/rankings_search_by_page_widget.dart';
 import '../pages/cubit/rankings_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 import '../widgets/rankings_widgets/rankings_widget.dart';
@@ -40,7 +41,7 @@ class _RankingsPage extends StatelessWidget {
     };
 
       if(state is RankingsErrorState){ //// Throw error if state is RankingsError
-        return ErrorPage(exceptionPageName: RankingsPage(), errorMessage: state.errorMessage);
+        return ErrorPage(exceptionPageName: RankingsTabPage(), errorMessage: state.errorMessage);
       }
       if(state is RankingsLoadedState){ //// Reload rankings if state is RankingsReload (wheel page down)
         return RefreshIndicator(
