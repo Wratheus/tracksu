@@ -92,7 +92,7 @@ class _LastNewsPage extends StatelessWidget {
                               shrinkWrap: true,
                               itemBuilder: (context, index){
                                 return InkWell(
-                                    onTap: () => launchUniversalLink(state.newsList[index].editURL!),
+                                    onTap: () => launchUniversalLink(Uri.parse(state.newsList[index].editURL!)),
                                     child: NewsWidget(item: state.newsList[index])
                                 );}
                           ),

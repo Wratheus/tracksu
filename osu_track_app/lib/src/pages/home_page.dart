@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: my_colors.Palette.brown.shade100,
         body: pageList.elementAt(pageIndex),
           bottomNavigationBar: CurvedNavigationBar(
-            height: 44,
+            height: 50,
             key: bottomNavigationKey,
             backgroundColor: Colors.transparent,
             buttonBackgroundColor: my_colors.Palette.hotPink,

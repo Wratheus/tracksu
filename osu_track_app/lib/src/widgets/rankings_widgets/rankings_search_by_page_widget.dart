@@ -108,7 +108,7 @@ class _RankingsSearchByPageWidgetState extends State<RankingsSearchByPageWidget>
               ),
               keyboardType: TextInputType.text,
               controller: _textController,
-              onSubmitted: (_) => context.read<RankingsCubit>().loadRankings(widget._filter, widget._filterFriendsValue, _textController.text, widget._mode), // filter by page
+              onSubmitted: (_) => context.read<RankingsCubit>().loadRankings(widget._filter, widget._filterFriendsValue, _textController.text.trim(), widget._mode), // filter by page
             )),
         SizedBox(width: 10,),
       ],

@@ -24,5 +24,3 @@ class UserErrorState extends UserState {
 class UserLoadingState extends UserState{
 
 }
-
-

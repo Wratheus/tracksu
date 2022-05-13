@@ -60,7 +60,7 @@ class UserSearchWidget extends StatelessWidget {
           keyboardType: TextInputType.text,
           controller: textController,
           // onSubmitted: (_) => context.read<UserCubit>().loadUser(textController.text, 'osu'),
-          onSubmitted: (_) => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: textController.text))),
+          onSubmitted: (_) => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: textController.text.trim()))),
         ));
 
   }

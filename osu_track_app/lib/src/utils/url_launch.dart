@@ -1,11 +1,11 @@
 import 'package:url_launcher/url_launcher.dart';
 
-Future<void> launchUniversalLink(String url) async {
-  if (await canLaunch(url)) {
+Future<void> launchUniversalLink(Uri url) async {
+  if (await canLaunchUrl(url)) {
     final bool nativeAppLaunch =
-    await launch(url, forceSafariVC: false, universalLinksOnly: true);
+    await launchUrl(url);
     if (!nativeAppLaunch) {
-      await launch(url, forceSafariVC: false);
+      await launchUrl(url);
     }
   }
 }

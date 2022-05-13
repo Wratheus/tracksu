@@ -12,24 +12,19 @@ import '../utils/secure_storage.dart';
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
 and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
 const clientSecret = 'your oAuth2 pass';
-const client_id = 'your id'; */
+const clientId = 'your id'; */
 
 
 // Token Request from user Auth
 // puts token to UserSecureStorage
-Future<void> getTokenAsAuthorize(String? code) async{
-  final String body = convert.jsonEncode({
-    "grant_type": "authorization_code",
-    "client_id": auth.clientId,
-    "client_secret": auth.clientSecret,
-    "code": code,
-    "redirect_uri": 'https://wratheus.github.io/osu-Track',
-  });
-  final Map<String, String> headers = {
+Future<bool> getTokenAsAuthorize(String? code) async{
+  String body = "grant_type=authorization_code&client_id=${auth.clientId}&client_secret=${auth.clientSecret}&code=${code}&redirect_uri=https://wratheus.github.io/osu-Track";
+  Map<String, String> headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Access-Control-Allow-Origin': '*' // http://osu.ppy.sh
   };
-  final http.Response tokenRequestResponse = await http.post(
+  http.Response tokenRequestResponse = await http.post(
       Uri.https('osu.ppy.sh', '/oauth/token'),
       headers: headers,
       body: body
@@ -37,47 +32,44 @@ Future<void> getTokenAsAuthorize(String? code) async{
   if (tokenRequestResponse.statusCode == 200) {
     // If the server did return a 200 CREATED response,
     final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
-    UserSecureStorage.setTokenInStorage(token['access_token']!);
+    await UserSecureStorage.setTokenInStorage(token['access_token']!);
+    await UserSecureStorage.setRefreshTokenFromStorage(token['refresh_token']!);
     print(token['access_token']);
+    print(token['refresh_token']);
+    return true;
   }
+   if(tokenRequestResponse.statusCode == 400){
+     print("Token request response code = ${tokenRequestResponse.statusCode}, trying to request new token with refresh token");
+      //refresh token
+      try {
+
+        String body = "grant_type=refresh_token&refresh_token=${await UserSecureStorage
+            .getRefreshTokenFromStorage()}&client_id=${auth.clientId}&client_secret=${auth.clientSecret}";
+        http.Response tokenRequestResponse = await http.post(
+            Uri.https('osu.ppy.sh', '/oauth/token'),
+            headers: headers,
+            body: body
+        );
+        final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
+        print('old token');
+        print(await UserSecureStorage.getTokenFromStorage());
+        await UserSecureStorage.setTokenInStorage(token['access_token']);
+        await UserSecureStorage.setRefreshTokenFromStorage(token['refresh_token']);
+        print('new token and refresh:');
+        print(await UserSecureStorage.getTokenFromStorage());
+        print(await UserSecureStorage.getRefreshTokenFromStorage());
+
+        return true;
+      }catch(e) {
+        throw Exception("Error requesting new Token with refresh token (${await UserSecureStorage.getRefreshTokenFromStorage()})");
+      }
+    }
   else {
     // If the server did not return a 200 CREATED response,
     var statusCode = tokenRequestResponse.statusCode;
     throw Exception('Failed to get TOKEN response. Status code = $statusCode');
   }
-
 }
-
-// getToken as owner of Application
-// puts token to UserSecureStorage
-Future<void>getTokenAsOwner() async{
-  final String body = convert.jsonEncode({
-    "grant_type": "client_credentials",
-    "client_id": auth.clientId,
-    "client_secret": auth.clientSecret,
-    "scope": "public"
-  });
-  final Map<String, String> headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  };
-  final http.Response tokenRequestResponse = await http.post(
-      Uri.https('osu.ppy.sh', '/oauth/token'),
-      headers: headers,
-      body: body
-  );
-  if (tokenRequestResponse.statusCode == 200) {
-    // If the server did return a 200 CREATED response,
-    final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
-    UserSecureStorage.setTokenInStorage(token['access_token']!);
-  }
-  else {
-    // If the server did not return a 200 CREATED response,
-    var statusCode = tokenRequestResponse.statusCode;
-    throw Exception('Failed to get TOKEN response. $statusCode');
-  }
-}
-
 // User request
 // returns a user class object
 Future <User> getUser(String token, String username, [String mode = 'osu']) async{

@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.4
-  url_launcher: ^6.1.0
+  url_launcher: ^6.1.2
   cupertino_icons: ^1.0.4
   cached_network_image: ^3.2.0
   bloc: ^8.0.3
@@ -20,13 +20,13 @@ dependencies:
   flutter_secure_storage: ^5.0.2
   country_icons: ^2.0.2
   flutter_launcher_icons: ^0.9.2
-  webview_flutter: ^3.0.2
+  webview_flutter: ^3.0.4
   audioplayers: ^0.20.1
   curved_navigation_bar: ^1.0.3
 
 flutter_icons:
   android: "launcher_icon"
-  ios: true
+  ios: false
   image_path: "assets/painted_logo.png"
 
 dev_dependencies:
@@ -40,6 +40,7 @@ flutter:
   assets:
     - assets/icon_mods/
     - assets/icon_pack/
+    - assets/icon_country_flags/
     - assets/icon_score_types/
     - assets/utils/
 
