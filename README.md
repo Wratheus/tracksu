@@ -22,7 +22,7 @@ Rankings stats: users top by PP, top by friends, you can select pages and chose 
 </p>      
 
 <p align="center">
-  <img src="https://i.imgur.com/igLVQAL.png" alt="application" width="1000" />
+  <img src="https://i.imgur.com/gh8LdYv.png" alt="application" width="1000" />
 </p>
 
 # Update log:
@@ -33,7 +33,7 @@ Rankings stats: users top by PP, top by friends, you can select pages and chose 
 <li>Also on the user's page, you can view same statistics in different mods;
 <li>Added a music player to the maps;
 <li>Fixed the white screen on the authorization page;
-<li>Fixed all (or almost all) labels and texts where there was [i]osu![/i] with a capital letter;
+<li>Fixed all (or almost all) labels and texts where there was osu! with a capital letter;
 <li>Added beautiful shadows to widgets and text :) ;
 </ul>
 <b>What we will do in the near future:</b>
