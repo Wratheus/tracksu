@@ -146,9 +146,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                                         )
                                       ],
                                     ),
-                                    child: Image.asset('icons/flags/png/${_item.countryCode
-                                        .toLowerCase()}.png', package: 'country_icons',
-                                        scale: 4.5),
+                                    child: Image.asset('assets/icon_country_flags/${_item.countryCode}.png',scale: 5.5),
                                   ),
                                   const SizedBox(width: 10.0,),
                                 ],
@@ -309,13 +307,13 @@ class BeatmapScoreWidget extends StatelessWidget {
                                         )
                                       ],)
                                 ),
-                                Text("(${_beatmapItem.maxCombo}x)",
+                                _beatmapItem.maxCombo == null ? Container() : Text("(${_beatmapItem.maxCombo}x)",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                        color: my_colors.Palette.red,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Exo 2',
+                                      color: my_colors.Palette.red,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Exo 2',
                                       shadows: [
                                         Shadow(
                                           color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),

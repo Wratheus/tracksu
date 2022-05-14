@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: my_colors.Palette.brown.shade100,
         body: pageList.elementAt(pageIndex),
           bottomNavigationBar: CurvedNavigationBar(
-            height: 44,
+            height: 50,
             key: bottomNavigationKey,
             backgroundColor: Colors.transparent,
             buttonBackgroundColor: my_colors.Palette.hotPink,
@@ -44,9 +44,10 @@ class _HomePageState extends State<HomePage> {
                  pageIndex = value;});},
             index: pageIndex,
             items: [
-              Icon((my_icons.MyFlutterApp.rss), semanticLabel: "News", color: Colors.white, size: 25,),
-              Icon((my_icons.MyFlutterApp.user), semanticLabel: "Users", color: Colors.white, size: 25,),
-              Icon((my_icons.MyFlutterApp.star), semanticLabel: "Leaderboard", color: Colors.white, size: 25,)          ]
+              Image.asset("assets/icon_utils/news.png", scale: 15, color: Colors.white),
+              Image.asset("assets/icon_utils/user.png", scale: 15, color: Colors.white),
+              Image.asset("assets/icon_utils/ranking.png", scale: 15, color: Colors.white),
+            ]
         )
       );
     }

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:osu_track_app/src/pages/authorization_page.dart';
 import 'src/utils/color_contrasts.dart' as my_colors;
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override

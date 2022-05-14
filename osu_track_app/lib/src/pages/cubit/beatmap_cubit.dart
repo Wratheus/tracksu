@@ -22,20 +22,26 @@ class BeatmapCubit extends Cubit<BeatmapState> {
     print("in LoadBeatmap : ${itemBeatmapName}");
     print("in LoadBeatmap : ${itemMapperName}");
     try {
-      emit(BeatmapLoadedState(
-          await getBeatmap((await UserSecureStorage.getTokenFromStorage())!,
-              "${itemBeatmapId}"),
-          await getBeatmapScores(
-              (await UserSecureStorage.getTokenFromStorage())!,
-              "${itemBeatmapId}"),
-          await getUser((await UserSecureStorage.getTokenFromStorage())!,
-              "${itemMapperName}", 'osu')));
+      if (isClosed == false) {
+        emit(BeatmapLoadedState(
+            await getBeatmap((await UserSecureStorage.getTokenFromStorage())!,
+                "${itemBeatmapId}"),
+            await getBeatmapScores(
+                (await UserSecureStorage.getTokenFromStorage())!,
+                "${itemBeatmapId}"),
+            await getUser((await UserSecureStorage.getTokenFromStorage())!,
+                "${itemMapperName}", 'osu')));
+      }
       print('beatmap $itemBeatmapName loaded');
     } catch (e) {
-      emit(BeatmapErrorState('Failed Beatmap Load $e'));
+      if (isClosed == false) {
+        emit(BeatmapErrorState('Failed Beatmap Load $e'));
+      }
     }
   }
   Future<void> reloadBeatmap() async {
-    emit(BeatmapInitial());
+    if (isClosed == false) {
+      emit(BeatmapInitial());
+    }
   }
 }

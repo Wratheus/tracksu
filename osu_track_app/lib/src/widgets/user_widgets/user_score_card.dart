@@ -117,7 +117,7 @@ class ScoreCardWidget extends StatelessWidget {
                                     children: [
                                       Image.asset(
                                           'assets/utils/yellow_star.png',
-                                          scale: 30,
+                                          scale: 3,
                                         color: my_colors.Palette.yellow,),
                                       Text("${(_item.difficultyRating)}",
                                           textAlign: TextAlign.center,
