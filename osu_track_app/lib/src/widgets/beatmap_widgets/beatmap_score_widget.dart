@@ -307,13 +307,13 @@ class BeatmapScoreWidget extends StatelessWidget {
                                         )
                                       ],)
                                 ),
-                                Text("(${_beatmapItem.maxCombo}x)",
+                                _beatmapItem.maxCombo == null ? Container() : Text("(${_beatmapItem.maxCombo}x)",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                        color: my_colors.Palette.red,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Exo 2',
+                                      color: my_colors.Palette.red,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Exo 2',
                                       shadows: [
                                         Shadow(
                                           color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),

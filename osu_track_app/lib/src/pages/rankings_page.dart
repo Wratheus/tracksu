@@ -51,7 +51,6 @@ class _RankingsPage extends StatelessWidget {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(height: 10,),
                   RankingsSearchByPageWidget(state.filter, state.filterValue, mode),
                   ListView.builder(
                     shrinkWrap: true,

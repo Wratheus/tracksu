@@ -243,7 +243,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                             Image.asset(
                                 'assets/utils/yellow_star.png',
                                 color: my_colors.Palette.yellow,
-                                scale: 42),
+                                scale: 2.9),
                             SizedBox(width: 5,),
                             Text(
                               "${_beatmap.difficultyRating}",

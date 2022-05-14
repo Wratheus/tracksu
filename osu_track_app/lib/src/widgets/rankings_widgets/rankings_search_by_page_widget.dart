@@ -23,7 +23,6 @@ class RankingsSearchByPageWidget extends StatefulWidget {
 }
 
 class _RankingsSearchByPageWidgetState extends State<RankingsSearchByPageWidget> {
-  @override
   final _textController = TextEditingController();
 
   @override

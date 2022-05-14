@@ -17,7 +17,7 @@ class RankingsTabPage extends StatelessWidget {
                 floating: true,
                 pinned: false,
                 leading: Image.asset('assets/utils/cloud_logo.png'),
-                title: Text("User page",
+                title: Text("Leaderboard",
                   style: TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
@@ -48,7 +48,10 @@ class RankingsTabPage extends StatelessWidget {
                     ],
                   ),
                   indicatorColor: my_colors.Palette.hotPink.shade100,
-                  tabs: [Tab(text: "osu!",), Tab(text: "taiko"), Tab(text: "catch",), Tab(text: "mania", )],
+                  tabs: [Tab(text: "osu!", icon: Image.asset('assets/icon_game_mods/mode_osu.png',  scale: 10), iconMargin: EdgeInsets.only(bottom: 0)),
+                    Tab(text: "taiko", icon: Image.asset('assets/icon_game_mods/mode_taiko.png', scale: 10), iconMargin: EdgeInsets.only(bottom: 0) ),
+                    Tab(text: "catch", icon: Image.asset('assets/icon_game_mods/mode_fruits.png',  scale: 10), iconMargin: EdgeInsets.only(bottom: 0)),
+                    Tab(text: "mania", icon: Image.asset('assets/icon_game_mods/mode_mania.png',  scale: 10), iconMargin: EdgeInsets.only(bottom: 0))],
                 ),
               )
             ];
