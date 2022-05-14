@@ -105,9 +105,7 @@ class UserInfoWidget extends StatelessWidget {
                               )
                             ],
                           ),
-                          height: 25,
-                          width: 41.66,
-                          child: Image.asset('icon_country_flags/${_user.countryCode}.png', scale: 2,)
+                          child: Image.asset('assets/icon_country_flags/${_user.countryCode}.png',scale: 3)
 /*                          Image.asset('icons/flags/png/${_user.countryCode
                               .toLowerCase()}.png', package: 'country_icons', fit: BoxFit.fill,
                               scale: 2),*/

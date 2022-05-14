@@ -146,9 +146,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                                         )
                                       ],
                                     ),
-                                    child: Image.asset('icons/flags/png/${_item.countryCode
-                                        .toLowerCase()}.png', package: 'country_icons',
-                                        scale: 4.5),
+                                    child: Image.asset('assets/icon_country_flags/${_item.countryCode}.png',scale: 5.5),
                                   ),
                                   const SizedBox(width: 10.0,),
                                 ],

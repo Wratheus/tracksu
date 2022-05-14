@@ -16,15 +16,22 @@ class NewsCubit extends Cubit<NewsState> {
 
   Future<void> loadNews() async {
     try{
-      emit(NewsLoadedState(await getNews((await UserSecureStorage.getTokenFromStorage())!))); // request news
+      if (isClosed == false) {
+        emit(NewsLoadedState(await getNews((await UserSecureStorage
+            .getTokenFromStorage())!)));
+      } // request news
       print('News loaded');
     }catch (e){
-      emit(NewsErrorState('Failed News Load $e'));
+      if (isClosed == false) {
+        emit(NewsErrorState('Failed News Load $e'));
+      }
     }
   }
 
   Future<void> reloadNews() async {
-    emit(NewsInitial());
+    if (isClosed == false) {
+      emit(NewsInitial());
+    }
   }
 
 }

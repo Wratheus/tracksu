@@ -97,8 +97,6 @@ class RankingsWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 15.0,),
                     Container(
-                      height: 18,
-                      width: 30,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -109,9 +107,7 @@ class RankingsWidget extends StatelessWidget {
                           )
                         ],
                       ),
-                      child: Image.asset('icons/flags/png/${_item.countryCode
-                          .toLowerCase()}.png', package: 'country_icons', fit: BoxFit.fill,
-                          scale: 2.5),
+                      child: Image.asset('assets/icon_country_flags/${_item.countryCode}.png',scale: 3.5),
                     ),
 
                   ]

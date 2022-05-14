@@ -19,32 +19,46 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> loadUser(String username, mode) async {
     try {
-      emit(UserLoadingState());
+      if (isClosed == false) {
+        emit(UserLoadingState());
+      }
       final user = await getUser((await UserSecureStorage.getTokenFromStorage())!, username, mode);
       final userBestScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, username, '100', '0', 'best', mode);
       final userFirstScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, username, '100', '0', 'firsts', mode);
-      emit(UserLoadedState(user, userBestScores, userFirstScores));
+      if (isClosed == false) {
+        emit(UserLoadedState(user, userBestScores, userFirstScores));
+      }
       print('User $username loaded');
     } catch (e){
-      emit(UserErrorState('Failed User Load $e'));
+      if (isClosed == false) {
+        emit(UserErrorState('Failed User Load $e'));
+      }
     }
   }
 
   Future<void> loadUserMe([String mode="osu!"]) async {
     try {
-      emit(UserLoadingState());
+      if (isClosed == false) {
+        emit(UserLoadingState());
+      }
       final user = await getUserMe((await UserSecureStorage.getTokenFromStorage())!, mode);
       final userBestScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, user.username, '100', '0', 'best', mode);
       final userFirstScores = await getUserScore((await UserSecureStorage.getTokenFromStorage())!, user.username, '100', '0', 'firsts', mode);
-      emit(UserLoadedState(user, userBestScores, userFirstScores));
+      if (isClosed == false) {
+        emit(UserLoadedState(user, userBestScores, userFirstScores));
+      }
       print('User ME(${user.username}) loaded');
     } catch (e){
-      emit(UserErrorState('Failed User Load $e'));
+      if (isClosed == false) {
+        emit(UserErrorState('Failed User Load $e'));
+      }
     }
   }
 
   Future<void> reloadUser() async {
-    emit(UserInitial());
+    if (isClosed == false) {
+      emit(UserInitial());
+    }
   }
 
   Future<void> loadBeatmapFromUser(Scores item,

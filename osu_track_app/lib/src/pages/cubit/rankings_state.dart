@@ -5,18 +5,18 @@ abstract class RankingsState {}
 
 class RankingsInitial extends RankingsState {
   final String filter;
-  final bool filterFriendsValue;
+  final String filterValue;
   final String page;
 
-  RankingsInitial(this.filter, this.filterFriendsValue, this.page);
+  RankingsInitial(this.filter, this.filterValue, this.page);
 }
 
 class RankingsLoadedState extends RankingsState {
   final List<Rankings> rankingsList;
   final String filter;
-  final bool filterFriendsValue;
+  final String filterValue;
   final String page;
-  RankingsLoadedState(this.rankingsList, this.filter, this.filterFriendsValue, this.page);
+  RankingsLoadedState(this.rankingsList, this.filter, this.filterValue, this.page);
 }
 
 class RankingsErrorState extends RankingsState {

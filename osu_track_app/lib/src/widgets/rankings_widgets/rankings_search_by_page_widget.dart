@@ -9,12 +9,13 @@ class RankingsSearchByPageWidget extends StatefulWidget {
 
   final String _filter;
   final String? _mode;
-  bool _filterFriendsValue;
+  String _filterValue;
+  Object? _dropdownValue;
 
-  RankingsSearchByPageWidget(String filter, bool filterFriendsValue, String? mode)
+  RankingsSearchByPageWidget(String filter, String filterValue, String? mode)
       :
         _filter = filter,
-        _filterFriendsValue = filterFriendsValue,
+        _filterValue = filterValue,
         _mode = mode;
 
   @override
@@ -22,14 +23,16 @@ class RankingsSearchByPageWidget extends StatefulWidget {
 }
 
 class _RankingsSearchByPageWidgetState extends State<RankingsSearchByPageWidget> {
+  @override
   final _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    widget._dropdownValue = widget._filterValue;
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text("friends LB", style: TextStyle(
+        Text("Filter: ", style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
             fontFamily: 'Exo 2',
@@ -41,10 +44,46 @@ class _RankingsSearchByPageWidgetState extends State<RankingsSearchByPageWidget>
               )
             ],
             color: Colors.white),),
-        Switch.adaptive(value: widget._filterFriendsValue, onChanged:
-            (value) {setState(() => widget._filterFriendsValue = value);
-          context.read<RankingsCubit>().loadRankings(widget._filter, widget._filterFriendsValue, "1", widget._mode);
-        }, activeColor: my_colors.Palette.pink, inactiveThumbColor: my_colors.Palette.purple ), // friends filter
+        SizedBox(width: 10,),
+        DropdownButton(
+          dropdownColor: my_colors.Palette.brown,
+            value: widget._dropdownValue,
+            items: [
+              DropdownMenuItem(child: Text("Default", style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Exo 2',
+                  shadows: [
+                    Shadow(
+                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                      offset: Offset(7, 5),
+                      blurRadius: 10,
+                    )
+                  ],
+                  color: Colors.white)), value: "default",),
+              DropdownMenuItem(child: Text("Friends", style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Exo 2',
+                  shadows: [
+                    Shadow(
+                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                      offset: Offset(7, 5),
+                      blurRadius: 10,
+                    )
+                  ],
+                  color: Colors.white)), value: "friends",),
+           ],
+            onChanged: (value) => setState(() {
+              widget._dropdownValue = value;
+              widget._filterValue = "$value";
+              context.read<RankingsCubit>().loadRankings(widget._filter, widget._filterValue, "1", widget._mode);
+            })),
+       /* Switch.adaptive(value: widget._filterValue, onChanged:
+            (value) {setState(() => widget._filterValue = value);
+          context.read<RankingsCubit>().loadRankings(widget._filter, widget._filterValue, "1", widget._mode);
+        }, activeColor: my_colors.Palette.pink, inactiveThumbColor: my_colors.Palette.purple ), // friends filter*/
+        SizedBox(width: 10,),
         Text("Select page", style:  TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -108,7 +147,7 @@ class _RankingsSearchByPageWidgetState extends State<RankingsSearchByPageWidget>
               ),
               keyboardType: TextInputType.text,
               controller: _textController,
-              onSubmitted: (_) => context.read<RankingsCubit>().loadRankings(widget._filter, widget._filterFriendsValue, _textController.text.trim(), widget._mode), // filter by page
+              onSubmitted: (_) => context.read<RankingsCubit>().loadRankings(widget._filter, widget._filterValue, _textController.text.trim(), widget._mode), // filter by page
             )),
         SizedBox(width: 10,),
       ],
