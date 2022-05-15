@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../pages/error_page.dart';
 import '../pages/rankings_tab_page.dart';
-import '../widgets/rankings_widgets/rankings_search_by_page_widget.dart';
+import '../widgets/rankings_widgets/rankings_search_filters.dart';
 import '../pages/cubit/rankings_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 import '../widgets/rankings_widgets/rankings_widget.dart';
@@ -33,7 +33,7 @@ class _RankingsPage extends StatelessWidget {
     return BlocBuilder<RankingsCubit, RankingsState>(builder: (context, state){
       if(state is RankingsInitial){ // run Circular progress bar while rankings is loading
         context.read<RankingsCubit>().informInitial();
-        context.read<RankingsCubit>().loadRankings(state.filter, state.filterValue, state.page, mode!);
+        context.read<RankingsCubit>().loadRankings(state.countryValue, state.filter, state.filterValue, state.page, mode);
         return Scaffold(
             body: Center(child: CircularProgressIndicator(),),
             backgroundColor: my_colors.Palette.brown.shade100
@@ -51,7 +51,7 @@ class _RankingsPage extends StatelessWidget {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  RankingsSearchByPageWidget(state.filter, state.filterValue, mode),
+                  RankingsSearchFiltersWidget(state.filter, state.filterValue, mode, state.countryList, state.countryValue),
                   ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
@@ -67,7 +67,7 @@ class _RankingsPage extends StatelessWidget {
               ),
             ),
           ),
-          onRefresh: () => context.read<RankingsCubit>().reloadRankings(state.filter, state.filterValue, state.page, mode),
+          onRefresh: () => context.read<RankingsCubit>().reloadRankings(state.filter, state.filterValue, state.page, mode!, state.countryValue),
         );
       }
       return Container();

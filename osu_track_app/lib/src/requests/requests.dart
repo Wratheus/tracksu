@@ -1,5 +1,6 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart';
 
 import '../authentication.dart' as auth;
 import '../models/user.dart';
@@ -8,6 +9,7 @@ import '../models/news.dart';
 import '../models/beatmap.dart';
 import '../models/rankings.dart';
 import '../models/beatmap_score.dart';
+import '../models/country.dart';
 import '../utils/secure_storage.dart';
 /*  Before you go, you need to create your own <authentication.dart> file in /src folder
 and put there your personal Osu! API oAuth2 as listed below:  | (you can get oath2 data here https://osu.ppy.sh/home/account/edit)
@@ -34,8 +36,8 @@ Future<bool> getTokenAsAuthorize(String? code) async{
     final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
     await UserSecureStorage.setTokenInStorage(token['access_token']!);
     await UserSecureStorage.setRefreshTokenFromStorage(token['refresh_token']!);
-    print(token['access_token']);
-    print(token['refresh_token']);
+    print('new request token = ' + token['access_token']);
+    print('new refresh token = ' + token['refresh_token']);
     return true;
   }
    if(tokenRequestResponse.statusCode == 400){
@@ -51,13 +53,11 @@ Future<bool> getTokenAsAuthorize(String? code) async{
             body: body
         );
         final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
-        print('old token');
-        print(await UserSecureStorage.getTokenFromStorage());
+        print('old token =' + (await UserSecureStorage.getTokenFromStorage())!);
         await UserSecureStorage.setTokenInStorage(token['access_token']);
         await UserSecureStorage.setRefreshTokenFromStorage(token['refresh_token']);
-        print('new token and refresh:');
-        print(await UserSecureStorage.getTokenFromStorage());
-        print(await UserSecureStorage.getRefreshTokenFromStorage());
+        print('updated token = ' + (await UserSecureStorage.getTokenFromStorage())!);
+        print('updated refresh token = ' + (await UserSecureStorage.getRefreshTokenFromStorage())!);
 
         return true;
       }catch(e) {
@@ -257,23 +257,41 @@ Future <List<BeatmapScore>> getBeatmapScores(String token, String beatmapID, [Li
     throw Exception('Failed to get BEATMAP SCORES response. Status code = $statusCode');
   }
 }
-
+// Country asset list request
+Future<List<Country>> generateCountriesList() async {
+  final String response = await rootBundle.loadString('assets/models/countries.json');
+  final data = await convert.json.decode(response);
+  List<Country>  countryList = List.empty(growable: true);
+  for (int i = 0; i < data.length; i++){
+    countryList.add(Country.fromJson(data[i]));
+  }
+  return countryList;
+}
 // Ranking request
 Future <List<Rankings>> getRankings(String token,  String page, String filter,
-    [String mode = "osu", int country = 0, String type = "performance"]) async {
+    [String? mode = "osu", Country? country, String type = "performance"]) async {
   if (int.parse(page) > 200 || int.parse(page) < 1) {
     throw Exception('Failed to get RANKINGS response. Wrong page');
   }
-
+  final Map<String, dynamic> body;
   final Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
     "Authorization": "Bearer $token"
   };
-  final Map<String, dynamic> body = {
-    "filter": filter,
-    "cursor[page]": "${page}"
-  };
+  if (country == null){
+    body = {
+      "filter": filter,
+      "cursor[page]": "${page}",
+    };
+  }
+  else {
+    body = {
+      "filter": filter,
+      "cursor[page]": "${page}",
+      "country": country.code
+    };
+  }
   final Uri rankingsUrl = Uri.https('osu.ppy.sh', 'api/v2/rankings/$mode/$type', body);
   final http.Response getRankingsResponse = await http.get(rankingsUrl, headers: headers);
 
