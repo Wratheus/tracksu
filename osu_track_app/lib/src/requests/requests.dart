@@ -268,7 +268,7 @@ Future<List<Country>> generateCountriesList() async {
   return countryList;
 }
 // Ranking request
-Future <List<Rankings>> getRankings(String token,  String page, String filter,
+Future <List<Rankings>> getRankings(String token,  String filter, String page,
     [String? mode = "osu", Country? country, String type = "performance"]) async {
   if (int.parse(page) > 200 || int.parse(page) < 1) {
     throw Exception('Failed to get RANKINGS response. Wrong page');

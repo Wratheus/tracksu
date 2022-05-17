@@ -33,7 +33,7 @@ class _RankingsPage extends StatelessWidget {
     return BlocBuilder<RankingsCubit, RankingsState>(builder: (context, state){
       if(state is RankingsInitial){ // run Circular progress bar while rankings is loading
         context.read<RankingsCubit>().informInitial();
-        context.read<RankingsCubit>().loadRankings(state.countryValue, state.filter, state.filterValue, state.page, mode);
+        context.read<RankingsCubit>().loadRankings(state.countryValue, state.filterValue, state.page, mode);
         return Scaffold(
             body: Center(child: CircularProgressIndicator(),),
             backgroundColor: my_colors.Palette.brown.shade100
@@ -51,7 +51,7 @@ class _RankingsPage extends StatelessWidget {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  RankingsSearchFiltersWidget(state.filter, state.filterValue, mode, state.countryList, state.countryValue),
+                  RankingsSearchFiltersWidget(state.filterValue, mode, state.countryList, state.countryValue),
                   ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
@@ -67,7 +67,7 @@ class _RankingsPage extends StatelessWidget {
               ),
             ),
           ),
-          onRefresh: () => context.read<RankingsCubit>().reloadRankings(state.filter, state.filterValue, state.page, mode!, state.countryValue),
+          onRefresh: () => context.read<RankingsCubit>().reloadRankings(state.filterValue, state.page, mode!, state.countryValue),
         );
       }
       return Container();

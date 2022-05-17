@@ -7,17 +7,14 @@ import '../../utils/color_contrasts.dart' as my_colors;
 
 // ignore: must_be_immutable
 class RankingsSearchFiltersWidget extends StatefulWidget {
-
-  final String _filter;
   String? _mode = "osu";
   String _filterValue;
   Object? _dropdownValue;
   Country? _dropdownCountryValue;
   List<Country> _countryList;
 
-  RankingsSearchFiltersWidget(String filter, String filterValue, String? mode, List<Country> countryList, Country? countryValue)
+  RankingsSearchFiltersWidget(String filterValue, String? mode, List<Country> countryList, Country? countryValue)
       :
-        _filter = filter,
         _filterValue = filterValue,
         _mode = mode,
         _countryList = countryList;
@@ -81,7 +78,8 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                   ).toList(),
                   onChanged: (value) => setState(() {
                     widget._dropdownCountryValue = value as Country?;
-                    context.read<RankingsCubit>().loadRankings(widget._dropdownCountryValue!, widget._filter, widget._filterValue, "1", widget._mode);
+                    print("selected : ${widget._dropdownCountryValue!.name}");
+                    context.read<RankingsCubit>().loadRankings(widget._dropdownCountryValue, widget._filterValue, "1", widget._mode);
                   })
               ),
               SizedBox(width: 10,),
@@ -101,7 +99,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                 dropdownColor: my_colors.Palette.brown,
                   value: widget._dropdownValue,
                   items: [
-                    DropdownMenuItem(child: Text("Default", style: TextStyle(
+                    DropdownMenuItem(child: Text("All", style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
@@ -112,7 +110,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                             blurRadius: 10,
                           )
                         ],
-                        color: Colors.white)), value: "default",),
+                        color: Colors.white)), value: "all",),
                     DropdownMenuItem(child: Text("Friends", style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -129,7 +127,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                   onChanged: (value) => setState(() {
                     widget._dropdownValue = value;
                     widget._filterValue = "$value";
-                    context.read<RankingsCubit>().loadRankings(widget._dropdownCountryValue!, widget._filter, widget._filterValue, "1", widget._mode);
+                    context.read<RankingsCubit>().loadRankings(widget._dropdownCountryValue, widget._filterValue, "1", widget._mode);
                   })),
             ],
           ),
@@ -199,7 +197,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                     ),
                     keyboardType: TextInputType.text,
                     controller: _textController,
-                    onSubmitted: (_) => context.read<RankingsCubit>().loadRankings(widget._dropdownCountryValue!, widget._filter, widget._filterValue, _textController.text.trim(), widget._mode), // filter by page
+                    onSubmitted: (_) => context.read<RankingsCubit>().loadRankings(widget._dropdownCountryValue, widget._filterValue, _textController.text.trim(), widget._mode), // filter by page
                   )),
               SizedBox(width: 10,),
             ],
