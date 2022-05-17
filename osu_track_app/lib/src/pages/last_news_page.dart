@@ -86,6 +86,7 @@ class _LastNewsPage extends StatelessWidget {
                       child: Column(
                         children: [
                           ListView.builder(
+                              padding: EdgeInsets.all(0.0),
                               itemCount: state.newsList.length,
                               physics: NeverScrollableScrollPhysics(),
                               scrollDirection: Axis.vertical,
