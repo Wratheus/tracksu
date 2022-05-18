@@ -309,3 +309,52 @@ Future <List<Rankings>> getRankings(String token,  String filter, String page,
     throw Exception('Failed to get RANKINGS response. Status code = $statusCode');
   }
 }
+
+Future <List<Beatmap>> getUserBeatmaps(String token, String userID, String type) async {
+  final Uri userScoresUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$userID/beatmapsets/$type');
+  final Map<String, String> headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer $token"
+  };
+  final http.Response userBeatmapsUrlResponse = await http.get(userScoresUrl, headers: headers);
+  if (userBeatmapsUrlResponse.statusCode == 200) {
+    var json = convert.jsonDecode(userBeatmapsUrlResponse.body);
+    List<Beatmap>  myList = List.empty(growable: true);
+      int beatmapsNumber = json.length;
+    for (int i = 0; i < beatmapsNumber; i++){
+      myList.add(Beatmap.fromJson(json[i]));
+      print(Beatmap.fromJson(json[i]));
+    }
+    print(myList);
+    return myList;
+  }
+  else {
+    // If the server did not return a 200 CREATED response,
+    var statusCode = userBeatmapsUrlResponse.statusCode;
+    throw Exception('Failed to get $type BEATMAPS response. Status code = $statusCode');
+  }
+}
+
+/*
+// For future changelog requests;
+Future <List<Changelog>> getChangelogOsu(String token) async {
+  final Uri ChangelogUrl = Uri.https('osu.ppy.sh', 'api/v2/changelog');
+  final Map<String, String> headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer $token"
+  };
+  final http.Response changelogUrlResponse = await http.get(ChangelogUrl, headers: headers);
+  if (changelogUrlResponse.statusCode == 200) {
+    var json = convert.jsonDecode(changelogUrlResponse.body);
+    ChangelogInstance = Changelog.fromJson(json);
+    print(ChangelogInstance);
+    return ChangelogInstance;
+  }
+  else {
+    // If the server did not return a 200 CREATED response,
+    var statusCode = changelogUrlResponse.statusCode;
+    throw Exception('Failed to get changelog response. Status code = $statusCode');
+  }
+}*/
