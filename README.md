@@ -22,7 +22,7 @@ Rankings stats: users top by PP, top by friends, you can select pages and chose 
 </p>      
 
 <p align="center">
-  <img src="https://i.imgur.com/gh8LdYv.png" alt="application" width="1000" />
+  <img src="https://i.imgur.com/aXik5nt.png" alt="application" width="1000" />
 </p>
 
 # Update log:
@@ -38,19 +38,19 @@ Rankings stats: users top by PP, top by friends, you can select pages and chose 
 </ul>
 <b>What we will do in the near future:</b>
 <ul>
-<li>Fix bugs that have appeared in different mods : ) ;
-<li>Add info for mappers and created/graveyard/ranked maps, kudosu in profile;
+<li><s>Fix bugs that have appeared in different mods : ) ;</s>
+<li><s>Add info for mappers and created/graveyard/ranked maps, kudosu in profile;</s>
 <li>Add the display information that the user shows about himself in the profile: social networks, interests, a block with his custom info, etc.;
-<li>Try to optimize the user's loading;
-<li>Add a filter by country to the rankings;
-<li>Add diffs switch to the beatmap page;
+<li><s>Try to optimize the user's loading;</s>
+<li><s>Add a filter by country to the rankings;</s>
 </ul>
 <b>We going to try:</b>
 <ul>
 <li>Implementing a map search;
 <li>Adding the playcount and rank charts to the profile;
-<li>Describing most of the errors and replace them with a dialog box, not a separate page.;
+<li><s>Describing most of the errors and replace them with a dialog box, not a separate page.;</s>
 <li>Adding a performance score counter.
+<li>Adding beatmaps difficulties
 </ul>
 </p>
 
