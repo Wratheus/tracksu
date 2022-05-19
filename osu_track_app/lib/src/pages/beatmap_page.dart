@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../models/beatmap.dart';
 import '../pages/cubit/beatmap_cubit.dart';
 import '../pages/error_page.dart';
 import '../models/scores.dart';
@@ -10,7 +11,7 @@ import '../widgets/beatmap_widgets/beatmap_widget.dart';
 import '../pages/user_tab_page.dart';
 
 class BeatmapPage extends StatelessWidget {
-  final Scores _item; // UserScore from UserPage contains information about map ID and map Name for future requests
+  final Object _item; // [Score or Beatmap] object from UserPage contains information about map ID and map Name for future requests
   const BeatmapPage({Key? key, required item}):
         _item = item,
         super(key: key);
@@ -24,7 +25,7 @@ class BeatmapPage extends StatelessWidget {
 }
 
 class _BeatmapPage extends StatelessWidget {
-  final Scores _item;
+  final Object _item;
   const _BeatmapPage({Key? key, required item}) :
         _item = item,
         super(key: key);
@@ -32,12 +33,20 @@ class _BeatmapPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BeatmapCubit, BeatmapState>(builder: (context, state) {
-      if (state is BeatmapInitial) {
-          context.read<BeatmapCubit>().loadBeatmap(_item.beatmapSetMapId, _item.mapTitle, _item.mapperName);
-          return Scaffold(
+      if (state is BeatmapInitial) { // test if Object is Score-class or Beatmap
+          try {
+            context.read<BeatmapCubit>().loadBeatmap(
+                (_item as Beatmap).beatmapSetMapID,
+                (_item as Beatmap).mapTitle);
+          }catch(e){
+            context.read<BeatmapCubit>().loadBeatmap(
+                (_item as Scores).beatmapSetMapID,
+                (_item as Scores).mapTitle);
+          }
+            return Scaffold(
               body: const Center(child: CircularProgressIndicator()),
-          backgroundColor: my_colors.Palette.brown.shade100,);
-        }
+              backgroundColor: my_colors.Palette.brown.shade100,);
+          }
         if (state is BeatmapErrorState) { // Throw error if state is UserError
           return ErrorPage(
               exceptionPageName: BeatmapPage(item: _item),
@@ -54,7 +63,7 @@ class _BeatmapPage extends StatelessWidget {
                       SliverAppBar(
                         floating: true,
                         leading: Image.asset('assets/utils/cloud_logo.png'),
-                        title: Text((state.beatmapInstance.mapTitle)!,
+                        title: Text("Beatmap",
                           style: TextStyle(
                             fontSize: 24.0,
                             color: Colors.white,
@@ -74,9 +83,10 @@ class _BeatmapPage extends StatelessWidget {
                       SliverToBoxAdapter(
                         child: Column(
                           children: [
-                            BeatmapInfoWidget(beatmap: state.beatmapInstance, mapperInstance: state.mapperInstance,),
+                            BeatmapInfoWidget(beatmap: state.beatmapInstance),
                             SizedBox(height: 5,),
                             ListView.builder(
+                                padding: EdgeInsets.all(0.0),
                                 physics: NeverScrollableScrollPhysics(),
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
@@ -86,7 +96,7 @@ class _BeatmapPage extends StatelessWidget {
                                       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.beatmapLeaderboard[index].username))),
                                       child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
                                   );}
-                            ),
+                            )
                           ]
                         ),
                       )

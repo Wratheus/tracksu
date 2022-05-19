@@ -68,7 +68,7 @@ class ScoreCardWidget extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 12,
+                              fontSize: 10,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Exo 2',
                             shadows: [
@@ -98,10 +98,10 @@ class ScoreCardWidget extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("[${(_item.difficultyName)}]",
-                                    textAlign: TextAlign.center,
+                                    textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: my_colors.Palette.yellow,
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Exo 2',
                                       shadows: [

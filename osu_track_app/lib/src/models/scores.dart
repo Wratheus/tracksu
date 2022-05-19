@@ -8,10 +8,10 @@ class Scores{
   Map<String, dynamic>?mapStatistics;
   String? mapRank;
   String? dateOfScore;
-  int? bestScoreOnMapId;
+  int? bestScoreOnMapID;
   var gainedPP;
-  int? beatmapSetId;
-  int? beatmapSetMapId;
+  int? beatmapSetID;
+  int? beatmapSetMapID;
   var difficultyRating;
   var beatmapLength;
   String? difficultyName;
@@ -36,10 +36,10 @@ class Scores{
     required this.mapStatistics,
     required this.mapRank,
     required this.dateOfScore,
-    required this.bestScoreOnMapId,
+    required this.bestScoreOnMapID,
     required this.gainedPP,
-    required this.beatmapSetId,
-    required this.beatmapSetMapId,
+    required this.beatmapSetID,
+    required this.beatmapSetMapID,
     required this.difficultyRating,
     required this.beatmapLength,
     required this.difficultyName,
@@ -65,12 +65,12 @@ class Scores{
       mapStatistics: json['statistics'],
       mapRank: json['rank'],
       dateOfScore: json['created_at'],
-      bestScoreOnMapId: json['best_id'],
+      bestScoreOnMapID: json['best_id'],
       gainedPP: json['pp'],
       difficultyName: json['beatmap']['version'],
-      beatmapSetId: json['beatmap']['beatmapset_id'],
+      beatmapSetID: json['beatmap']['beatmapset_id'],
       difficultyRating: json['beatmap']['difficulty_rating'],
-      beatmapSetMapId: json['beatmap']['id'],
+      beatmapSetMapID: json['beatmap']['id'],
       beatmapLength: json['beatmap']['total_length'],
       OD: json['beatmap']['accuracy'],
       AR: json['beatmap']['ar'],

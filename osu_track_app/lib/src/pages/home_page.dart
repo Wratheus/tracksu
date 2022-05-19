@@ -4,7 +4,6 @@ import 'package:osu_track_app/src/pages/user_tab_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // add animated navigation bar
 
 import '../utils/color_contrasts.dart' as my_colors;
-import '../utils/icon_pack.dart' as my_icons;
 import '../pages/last_news_page.dart';
 
 // Home page is navigation bar(News tab selected by default

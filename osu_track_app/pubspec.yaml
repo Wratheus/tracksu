@@ -44,6 +44,7 @@ flutter:
     - assets/icon_country_flags/
     - assets/icon_score_types/
     - assets/utils/
+    - assets/models/
 
   fonts:
     - family: Exo 2

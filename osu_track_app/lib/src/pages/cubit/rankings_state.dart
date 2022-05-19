@@ -4,19 +4,21 @@ part of 'rankings_cubit.dart';
 abstract class RankingsState {}
 
 class RankingsInitial extends RankingsState {
-  final String filter;
   final String filterValue;
-  final String page;
+  final String page;  final Country? countryValue;
 
-  RankingsInitial(this.filter, this.filterValue, this.page);
+
+  RankingsInitial(this.filterValue, this.page, this.countryValue);
 }
 
 class RankingsLoadedState extends RankingsState {
   final List<Rankings> rankingsList;
-  final String filter;
+  final List<Country> countryList;
   final String filterValue;
   final String page;
-  RankingsLoadedState(this.rankingsList, this.filter, this.filterValue, this.page);
+  final Country? countryValue;
+
+  RankingsLoadedState(this.rankingsList, this.filterValue, this.page, this.countryValue, this.countryList);
 }
 
 class RankingsErrorState extends RankingsState {
