@@ -9,10 +9,7 @@ class UserInitial extends UserState {
 
 class UserLoadedState extends UserState {
   final User userInstance;
-  final List<Scores> userBestScoresInstance;
-  final List<Scores> userFirstScoresInstance;
-
-  UserLoadedState(this.userInstance, this.userBestScoresInstance, this.userFirstScoresInstance);
+  UserLoadedState(this.userInstance);
 }
 
 class UserErrorState extends UserState {

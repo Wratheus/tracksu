@@ -72,7 +72,7 @@ Future<bool> getTokenAsAuthorize(String? code) async{
 }
 // User request
 // returns a user class object
-Future <User> getUser(String token, String username, [String mode = 'osu']) async{
+Future <User> getUser(String token, String username, [String mode = 'osu', bool mapper = false]) async{
 
   final body = {
     'key': 'username'
@@ -87,6 +87,7 @@ Future <User> getUser(String token, String username, [String mode = 'osu']) asyn
 
   if (userGetResponse.statusCode == 200) {
     // If the server did return a 200 CREATED response,
+    if (mapper == true) {return User.fromMapperFromJson(convert.jsonDecode(userGetResponse.body)); } // short version
     return User.fromJson(convert.jsonDecode(userGetResponse.body));
   }
   else {
@@ -200,7 +201,9 @@ Future <Beatmap> getBeatmap(String token, String beatmapID) async{
   final http.Response beatmapUrlResponse = await http.get(beatmapUrl, headers: headers);
 
   if (beatmapUrlResponse.statusCode == 200) {
-    return Beatmap.fromJson(convert.jsonDecode(beatmapUrlResponse.body));
+    Beatmap BeatmapObject = Beatmap.fromJson(convert.jsonDecode(beatmapUrlResponse.body));
+    BeatmapObject.mapper = await getUser((await UserSecureStorage.getTokenFromStorage())!, "${BeatmapObject.mapper}", 'osu', true);
+    return BeatmapObject;
   }
   else {
     // If the server did not return a 200 CREATED response,
@@ -310,8 +313,11 @@ Future <List<Rankings>> getRankings(String token,  String filter, String page,
   }
 }
 
-Future <List<Beatmap>> getUserBeatmaps(String token, String userID, String type) async {
-  final Uri userScoresUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$userID/beatmapsets/$type');
+Future <List<Beatmap>> getUserBeatmaps(String token, int userID, String type) async {
+  final body = {
+    "limit": "10",
+  };
+  final Uri userScoresUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$userID/beatmapsets/$type', body);
   final Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -321,12 +327,11 @@ Future <List<Beatmap>> getUserBeatmaps(String token, String userID, String type)
   if (userBeatmapsUrlResponse.statusCode == 200) {
     var json = convert.jsonDecode(userBeatmapsUrlResponse.body);
     List<Beatmap>  myList = List.empty(growable: true);
-      int beatmapsNumber = json.length;
-    for (int i = 0; i < beatmapsNumber; i++){
-      myList.add(Beatmap.fromJson(json[i]));
-      print(Beatmap.fromJson(json[i]));
+    for (int i = 0; i < json.length; i++){
+      Beatmap BeatmapObject = Beatmap.fromUserFromJson(json[i]);
+      BeatmapObject.mapper = await getUser((await UserSecureStorage.getTokenFromStorage())!, "${BeatmapObject.mapper}", 'osu', true);
+      myList.add(BeatmapObject);
     }
-    print(myList);
     return myList;
   }
   else {

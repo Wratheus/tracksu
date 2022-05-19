@@ -7,7 +7,7 @@ import '../utils/color_contrasts.dart' as my_colors;
 import '../pages/error_page.dart';
 import '../widgets/user_widgets/user_search_widget.dart';
 import '../widgets/user_widgets/user_widget.dart';
-import '../widgets/user_widgets/user_score_list.dart';
+import '../widgets/user_widgets/user_list_tile_elements.dart';
 
 class UserPage extends StatelessWidget {
   final username;
@@ -86,8 +86,7 @@ class _UserPage extends StatelessWidget {
                           ]
                       ),
                       UserInfoWidget(user: state.userInstance),
-                      UserBestScoresList(userBestScoresInstance: state.userBestScoresInstance),
-                      UserFirstScoresList(userFirstScoresInstance: state.userFirstScoresInstance),
+                      UserListTilesElements(userInstance: state.userInstance, mode: mode!),
                     ],
                   ),
                 ), //user panel Info widget and searchbar

@@ -34,6 +34,7 @@ class _BeatmapPlayWidget extends StatelessWidget {
     return BlocBuilder<BeatmapPlayCubit, BeatmapPlayState>(builder: (context, state) {
       if (state is BeatmapPlayInitial) {
         return FloatingActionButton(
+          heroTag: "${_beatmap.beatmapSetMapID}",
           mini: true,
         backgroundColor: my_colors.Palette.pink,
         onPressed: () => context.read<BeatmapPlayCubit>().playBeatmap("${_beatmap.beatmapSetID}"),
@@ -52,6 +53,7 @@ class _BeatmapPlayWidget extends StatelessWidget {
       };
       if (state is BeatmapRunState) {
         return FloatingActionButton(
+          heroTag: "${_beatmap.beatmapSetID}",
           mini: true,
           backgroundColor: my_colors.Palette.pink,
             onPressed: () => context.read<BeatmapPlayCubit>().pauseBeatmap(),
@@ -70,6 +72,7 @@ class _BeatmapPlayWidget extends StatelessWidget {
       };
       if (state is BeatmapPauseState){
         return FloatingActionButton(
+          heroTag: "${_beatmap.mapper.username}",
           mini: true,
             backgroundColor: my_colors.Palette.pink,
             onPressed: () => context.read<BeatmapPlayCubit>().playBeatmap("${_beatmap.beatmapSetID}"),

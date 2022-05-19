@@ -1,6 +1,6 @@
 // Score includes beatmap class to avoid beatmap request
 class BeatmapScore{
-  int? scoreId;
+  int? scoreID;
   List<dynamic> mods = [];
   var scorePoints;
   var accuracy;
@@ -8,16 +8,16 @@ class BeatmapScore{
   Map<dynamic, dynamic>? mapStatistics;
   String? mapRank;
   String? dateOfScore;
-  int? bestScoreOnMapId;
+  int? bestScoreOnMapID;
   var gainedPP;
   var avatarURL;
-  var userId;
+  var userID;
   var username;
   var coverURL;
   var countryCode;
 
   BeatmapScore({
-    required this.scoreId,
+    required this.scoreID,
     required this.accuracy,
     required this.mods,
     required this.scorePoints,
@@ -25,17 +25,17 @@ class BeatmapScore{
     required this.mapStatistics,
     required this.mapRank,
     required this.dateOfScore,
-    required this.bestScoreOnMapId,
+    required this.bestScoreOnMapID,
     required this.gainedPP,
     required this.avatarURL,
-    required this.userId,
+    required this.userID,
     required this.username,
     required this.coverURL,
     required this.countryCode,
   });
   factory BeatmapScore.fromJson(Map<String, dynamic> json){
     return BeatmapScore(
-      scoreId: json['id'],
+      scoreID: json['id'],
       accuracy: json['accuracy'],
       mods: json['mods'],
       scorePoints: json['score'],
@@ -43,9 +43,9 @@ class BeatmapScore{
       mapStatistics: json['statistics'],
       mapRank: json['rank'],
       dateOfScore: json['created_at'],
-      bestScoreOnMapId: json['best_id'],
+      bestScoreOnMapID: json['best_id'],
       gainedPP: json['pp'],
-      userId: json['user_id'],
+      userID: json['user_id'],
       avatarURL: json['user']['avatar_url'],
       username: json['user']['username'],
       coverURL: json['user']['cover']['url'],

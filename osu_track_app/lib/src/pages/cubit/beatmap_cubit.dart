@@ -5,7 +5,6 @@ import '../../models/beatmap_score.dart';
 import '../../requests/requests.dart';
 import '../../utils/secure_storage.dart';
 import '../../models/beatmap.dart';
-import '../../models/user.dart';
 
 part 'beatmap_state.dart';
 
@@ -17,20 +16,15 @@ class BeatmapCubit extends Cubit<BeatmapState> {
     print('BeatmapPage loaded');
   }
 
-  Future<void> loadBeatmap(int? itemBeatmapId, String? itemBeatmapName, String? itemMapperName) async {
+  Future<void> loadBeatmap(int? itemBeatmapId, String? itemBeatmapName) async {
     print("in LoadBeatmap : ${itemBeatmapId}");
     print("in LoadBeatmap : ${itemBeatmapName}");
-    print("in LoadBeatmap : ${itemMapperName}");
     try {
       if (isClosed == false) {
         emit(BeatmapLoadedState(
-            await getBeatmap((await UserSecureStorage.getTokenFromStorage())!,
-                "${itemBeatmapId}"),
-            await getBeatmapScores(
-                (await UserSecureStorage.getTokenFromStorage())!,
-                "${itemBeatmapId}"),
-            await getUser((await UserSecureStorage.getTokenFromStorage())!,
-                "${itemMapperName}", 'osu')));
+            await getBeatmap((await UserSecureStorage.getTokenFromStorage())!, "${itemBeatmapId}"),
+            await getBeatmapScores((await UserSecureStorage.getTokenFromStorage())!, "${itemBeatmapId}")
+        ));
       }
       print('beatmap $itemBeatmapName loaded');
     } catch (e) {

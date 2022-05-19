@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/beatmap_widgets/beatmap_play_widget.dart';
 import '../../models/beatmap.dart';
-import '../../models/user.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
 import '../../pages/user_tab_page.dart';
 
 class BeatmapInfoWidget extends StatelessWidget {
 
   final Beatmap _beatmap;
-  final User _mapperInstance;
 
-  const BeatmapInfoWidget({Key? key, required Beatmap beatmap, required User mapperInstance})
+  const BeatmapInfoWidget({Key? key, required Beatmap beatmap})
       :
         _beatmap = beatmap,
-        _mapperInstance = mapperInstance,
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String shortRankedStatus = "${_beatmap.rankedStatus}";
+    Color colorOfRankedStatus = _beatmap.rankedStatus == 'ranked' ? Colors.greenAccent : _beatmap.rankedStatus == "loved" ? my_colors.Palette.hotPink : _beatmap.rankedStatus == "graveyard" ? Colors.black54 : _beatmap.rankedStatus == "pending" ? Colors.yellow : _beatmap.rankedStatus == "wip" ? Colors.yellow : _beatmap.rankedStatus == "approved" ? Colors.yellow : _beatmap.rankedStatus == "qualified" ? Colors.green : Colors.black54;
+    if (_beatmap.rankedDate != null){
+      _beatmap.rankedStatus  = "${_beatmap.rankedStatus}: " + "${_beatmap.rankedDate}".substring(0, 10);
+    }
     var minuteStr = (_beatmap.beatmapLength ~/ 60).toString().padLeft(2, '0');
     var secondStr = (_beatmap.beatmapLength % 60).toString().padLeft(2, '0');
     var _timeStr = '$minuteStr:$secondStr';
@@ -115,7 +117,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                         BeatmapPlayWidget(beatmap: _beatmap),
                         Spacer(),
                         InkWell(
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: _beatmap.mapperName!))),
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: _beatmap.mapper.username!))),
                           child: Container(
                             child: Row(
                               children: [
@@ -132,7 +134,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                       )
                                     ],
                                     image: DecorationImage(
-                                      image: NetworkImage(_mapperInstance.avatarURL),
+                                      image: NetworkImage(_beatmap.mapper.avatarURL),
                                       fit: BoxFit.cover,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
@@ -164,7 +166,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "${_beatmap.rankedStatus}: " + "${_beatmap.rankedDate}".substring(0, 10),
+                                        "${_beatmap.rankedStatus}",
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
                                           fontSize: 10.0,
@@ -181,7 +183,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "mapped by ${_beatmap.mapperName}",
+                                        "mapped by ${_beatmap.mapper.username}",
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
                                           fontSize: 11.0,
@@ -216,10 +218,10 @@ class BeatmapInfoWidget extends StatelessWidget {
                           width: 80,
                           padding: EdgeInsets.only(top: 2, bottom: 2),
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.30), spreadRadius: 1)],
+                            boxShadow: [BoxShadow(color: colorOfRankedStatus.withOpacity(0.75), spreadRadius: 1)],
                               color: Colors.black.withOpacity(0.30),),
                           child: Text(
-                            "${_beatmap.rankedStatus}".toUpperCase(),
+                            "${shortRankedStatus}".toUpperCase(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 12.0,
