@@ -37,7 +37,8 @@ class _BeatmapPage extends StatelessWidget {
           try {
             context.read<BeatmapCubit>().loadBeatmap(
                 (_item as Beatmap).beatmapSetMapID,
-                (_item as Beatmap).mapTitle);
+                (_item as Beatmap).mapTitle,
+                (_item as Beatmap).mapper);
           }catch(e){
             context.read<BeatmapCubit>().loadBeatmap(
                 (_item as Scores).beatmapSetMapID,

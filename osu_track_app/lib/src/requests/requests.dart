@@ -1,7 +1,9 @@
 import 'dart:convert' as convert;
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 
+import '../utils/color_contrasts.dart' as my_colors;
 import '../authentication.dart' as auth;
 import '../models/user.dart';
 import '../models/scores.dart';
@@ -53,11 +55,11 @@ Future<bool> getTokenAsAuthorize(String? code) async{
             body: body
         );
         final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
-        print('old token =' + (await UserSecureStorage.getTokenFromStorage())!);
+        // print('old token =' + (await UserSecureStorage.getTokenFromStorage())!);
         await UserSecureStorage.setTokenInStorage(token['access_token']);
         await UserSecureStorage.setRefreshTokenFromStorage(token['refresh_token']);
-        print('updated token = ' + (await UserSecureStorage.getTokenFromStorage())!);
-        print('updated refresh token = ' + (await UserSecureStorage.getRefreshTokenFromStorage())!);
+        print('updated token = ' + token['access_token']);
+        print('updated refresh token = ' + token['refresh_token']);
 
         return true;
       }catch(e) {
@@ -191,7 +193,7 @@ Future <List<News>> getNews(String token) async{
 
 // Beatmap request
 // returns a beatmap object
-Future <Beatmap> getBeatmap(String token, String beatmapID) async{
+Future <Beatmap> getBeatmap(String token, String beatmapID, [User? beatmapMapper]) async{
   final Uri beatmapUrl = Uri.https('osu.ppy.sh', 'api/v2/beatmaps/$beatmapID');
   final Map<String, String> headers = {
     "Content-Type": "application/json",
@@ -202,7 +204,22 @@ Future <Beatmap> getBeatmap(String token, String beatmapID) async{
 
   if (beatmapUrlResponse.statusCode == 200) {
     Beatmap BeatmapObject = Beatmap.fromJson(convert.jsonDecode(beatmapUrlResponse.body));
-    BeatmapObject.mapper = await getUser((await UserSecureStorage.getTokenFromStorage())!, "${BeatmapObject.mapper}", 'osu', true);
+    if (beatmapMapper != null){
+      BeatmapObject.mapper = beatmapMapper;
+      BeatmapObject.shortRankedStatus = "${BeatmapObject.rankedStatus}";
+      BeatmapObject.colorOfRankedStatus = BeatmapObject.rankedStatus == 'ranked' ? Colors.greenAccent : BeatmapObject.rankedStatus == "loved" ? my_colors.Palette.hotPink : BeatmapObject.rankedStatus == "graveyard" ? Colors.black54 : BeatmapObject.rankedStatus == "pending" ? Colors.yellow : BeatmapObject.rankedStatus == "wip" ? Colors.yellow : BeatmapObject.rankedStatus == "approved" ? Colors.yellow : BeatmapObject.rankedStatus == "qualified" ? Colors.green : Colors.black54;
+      if (BeatmapObject.rankedDate != null){
+        BeatmapObject.rankedStatus  = "${BeatmapObject.rankedStatus}: " + "${BeatmapObject.rankedDate}".substring(0, 10);
+      }
+    }
+    else {
+      BeatmapObject.mapper = getUser(token, "${BeatmapObject.mapper}", 'osu', true);
+      BeatmapObject.shortRankedStatus = "${BeatmapObject.rankedStatus}";
+      BeatmapObject.colorOfRankedStatus = BeatmapObject.rankedStatus == 'ranked' ? Colors.greenAccent : BeatmapObject.rankedStatus == "loved" ? my_colors.Palette.hotPink : BeatmapObject.rankedStatus == "graveyard" ? Colors.black54 : BeatmapObject.rankedStatus == "pending" ? Colors.yellow : BeatmapObject.rankedStatus == "wip" ? Colors.yellow : BeatmapObject.rankedStatus == "approved" ? Colors.yellow : BeatmapObject.rankedStatus == "qualified" ? Colors.green : Colors.black54;
+      if (BeatmapObject.rankedDate != null){
+        BeatmapObject.rankedStatus  = "${BeatmapObject.rankedStatus}: " + "${BeatmapObject.rankedDate}".substring(0, 10);
+      }
+    }
     return BeatmapObject;
   }
   else {
@@ -329,8 +346,20 @@ Future <List<Beatmap>> getUserBeatmaps(String token, int userID, String type) as
     List<Beatmap>  myList = List.empty(growable: true);
     for (int i = 0; i < json.length; i++){
       Beatmap BeatmapObject = Beatmap.fromUserFromJson(json[i]);
-      BeatmapObject.mapper = await getUser((await UserSecureStorage.getTokenFromStorage())!, "${BeatmapObject.mapper}", 'osu', true);
+      BeatmapObject.shortRankedStatus = "${BeatmapObject.rankedStatus}";
+      BeatmapObject.colorOfRankedStatus = BeatmapObject.rankedStatus == 'ranked' ? Colors.greenAccent : BeatmapObject.rankedStatus == "loved" ? my_colors.Palette.hotPink : BeatmapObject.rankedStatus == "graveyard" ? Colors.black54 : BeatmapObject.rankedStatus == "pending" ? Colors.yellow : BeatmapObject.rankedStatus == "wip" ? Colors.yellow : BeatmapObject.rankedStatus == "approved" ? Colors.yellow : BeatmapObject.rankedStatus == "qualified" ? Colors.green : Colors.black54;
+      if (BeatmapObject.rankedDate != null){
+        BeatmapObject.rankedStatus  = "${BeatmapObject.rankedStatus}: " + "${BeatmapObject.rankedDate}".substring(0, 10);
+      }
       myList.add(BeatmapObject);
+    }
+    if (type == "favourite") {
+      for (int i = 0; i < myList.length; i++) {
+        myList[i].mapper = getUser(token, "${myList[i].mapper}", 'osu', true);
+      }
+      for (int i = 0; i < myList.length; i++) {
+        myList[i].mapper = await myList[i].mapper;
+      }
     }
     return myList;
   }

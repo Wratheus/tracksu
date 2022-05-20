@@ -14,11 +14,6 @@ class BeatmapCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String shortRankedStatus = "${_beatmap.rankedStatus}";
-    Color colorOfRankedStatus = _beatmap.rankedStatus == 'ranked' ? Colors.greenAccent : _beatmap.rankedStatus == "loved" ? my_colors.Palette.hotPink : _beatmap.rankedStatus == "graveyard" ? Colors.black54 : _beatmap.rankedStatus == "pending" ? Colors.yellow : _beatmap.rankedStatus == "wip" ? Colors.yellow : _beatmap.rankedStatus == "approved" ? Colors.yellow : _beatmap.rankedStatus == "qualified" ? Colors.green : Colors.black54;
-    if (_beatmap.rankedDate != null){
-      _beatmap.rankedStatus  = "${_beatmap.rankedStatus}: " + "${_beatmap.rankedDate}".substring(0, 10);
-    }
 /*    var minuteStr = (_beatmap.beatmapLength ~/ 60).toString().padLeft(2, '0');
     var secondStr = (_beatmap.beatmapLength % 60).toString().padLeft(2, '0');
     var _timeStr = '$minuteStr:$secondStr';
@@ -211,9 +206,9 @@ class BeatmapCardWidget extends StatelessWidget {
                         padding: EdgeInsets.only(top: 2, bottom: 2),
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
                           boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.30), spreadRadius: 1)],
-                          color: colorOfRankedStatus.withOpacity(0.75),),
+                          color: _beatmap.colorOfRankedStatus!.withOpacity(0.75),),
                         child: Text(
-                          "$shortRankedStatus".toUpperCase(),
+                          "${_beatmap.shortRankedStatus}".toUpperCase(),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 12.0,

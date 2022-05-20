@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Beatmap{
   var beatmapSetMapID;
   var beatmapSetID;
@@ -28,6 +30,8 @@ class Beatmap{
   String? submittedDate;
   String? beatmapTags;
   Map<String, dynamic>? failCounts;
+  String? shortRankedStatus;
+  Color? colorOfRankedStatus;
 
   Beatmap({
     required this.beatmapSetMapID,

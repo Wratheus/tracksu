@@ -1,4 +1,6 @@
 // Score includes beatmap class to avoid beatmap request
+import 'package:flutter/material.dart';
+
 class Scores{
   int? scoreId;
   List<dynamic> mods = [];
@@ -26,6 +28,8 @@ class Scores{
   String? mapTitle;
   String? mapperName;
   int? mapperId;
+  String? shortRankedStatus;
+  Color? colorOfRankedStatus;
 
   Scores({
     required this.scoreId,

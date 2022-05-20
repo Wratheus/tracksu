@@ -68,6 +68,9 @@ class _UserListTilesElements extends State<UserListTilesElements> {
       final List<Beatmap> userRankedBeatmaps = await getUserBeatmaps((await UserSecureStorage.getTokenFromStorage())!, userInstance.id, elementType);
       setState(() {
         _userRankedBeatmapInstance = userRankedBeatmaps;
+        for (int i = 0; i<_userRankedBeatmapInstance.length; i++){
+          _userRankedBeatmapInstance[i].mapper = _userInstance;
+        }
         print(_userRankedBeatmapInstance.length);
       });
     }
@@ -75,6 +78,9 @@ class _UserListTilesElements extends State<UserListTilesElements> {
       final List<Beatmap> userGraveyardBeatmaps = await getUserBeatmaps((await UserSecureStorage.getTokenFromStorage())!, userInstance.id, elementType);
       setState(() {
         _userGraveyardBeatmapInstance = userGraveyardBeatmaps;
+        for (int i = 0; i<_userGraveyardBeatmapInstance.length; i++){
+          _userGraveyardBeatmapInstance[i].mapper = _userInstance;
+        }
         print(_userGraveyardBeatmapInstance.length);
       });
     }
@@ -82,6 +88,9 @@ class _UserListTilesElements extends State<UserListTilesElements> {
       final List<Beatmap> userPendingBeatmaps = await getUserBeatmaps((await UserSecureStorage.getTokenFromStorage())!, userInstance.id, elementType);
       setState(() {
         _userPendingBeatmapInstance = userPendingBeatmaps;
+        for (int i = 0; i<_userPendingBeatmapInstance.length; i++){
+          _userPendingBeatmapInstance[i].mapper = _userInstance;
+        }
         print(_userPendingBeatmapInstance.length);
       });
     }
@@ -89,6 +98,9 @@ class _UserListTilesElements extends State<UserListTilesElements> {
       final List<Beatmap> userLovedBeatmaps = await getUserBeatmaps((await UserSecureStorage.getTokenFromStorage())!, userInstance.id, elementType);
       setState(() {
         _userLovedBeatmapInstance = userLovedBeatmaps;
+        for (int i = 0; i<_userLovedBeatmapInstance.length; i++){
+          _userLovedBeatmapInstance[i].mapper = _userInstance;
+        }
         print(_userLovedBeatmapInstance.length);
       });
     }
