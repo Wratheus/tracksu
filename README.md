@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://i.imgur.com/kwUChmG.png" alt="logo" width="400" />
-</p>
-
 ## Available for download in [Play Market ](https://play.google.com/store/apps/details?id=com.osutrack.osu_tracker&hl=ru&gl=US)
 
 <p align="left">
