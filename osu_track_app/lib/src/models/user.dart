@@ -153,7 +153,7 @@ class User{
         pendingBeatmapsCount: json['pending_beatmapset_count'],
         defaultGroup: json['default_group'],
         userGroup: json['group'],
-        userPage: json['page'],
+        userPage: json['page']['html'],
         previousUsernames: json['previous_usernames'],
         levelStatistics: json['statistics']['level'],
         supportLevel: json['support_level'],
