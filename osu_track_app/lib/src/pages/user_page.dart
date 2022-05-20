@@ -81,7 +81,7 @@ class _UserPage extends StatelessWidget {
                       Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            SizedBox(width: 30,),
+                            SizedBox(width: 20,),
                             UserSearchWidget()
                           ]
                       ),

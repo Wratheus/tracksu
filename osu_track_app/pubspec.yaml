@@ -23,6 +23,8 @@ dependencies:
   audioplayers: ^0.20.1
   curved_navigation_bar: ^1.0.3
   flutter_widget_from_html: ^0.8.5
+  fluttericon: ^2.0.0
+  intl: ^0.17.0
 
 flutter_icons:
   android: "launcher_icon"

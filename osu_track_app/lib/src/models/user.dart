@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 class User{
   var avatarURL;
   var defaultGroup;
@@ -12,7 +13,7 @@ class User{
   var defaultCoverURL;
   var joinDate;
   var countryCode;
-  List<dynamic>?monthlyPlayCounts;
+  var monthlyPlayCounts;
   var scoresFirstCount;
   var globalRank;
   var rankedScore;
@@ -29,7 +30,7 @@ class User{
   var amountOfSh;
   var amountOfA;
   var countryRank;
-  List<dynamic>?rankHistory;
+  var rankHistory;
   var kudosu;
   var lastVisit;
   var isRestricted;
@@ -54,8 +55,9 @@ class User{
   var levelStatistics;
   var supportLevel;
   var userAchievments;
+  var occupation;
   var pmFriendsOnly;
-
+  var website;
 
   User({
     this.avatarURL,
@@ -66,6 +68,7 @@ class User{
     this.customCoverURL,
     this.defaultCoverURL,
     this.joinDate,
+    this.title,
     this.countryCode,
     this.monthlyPlayCounts,
     this.scoresFirstCount,
@@ -108,15 +111,17 @@ class User{
     this.twitter,
     this.interests,
     this.location,
+    this.occupation,
     this.mainPlaymode,
     this.playstyle,
-
+    this.website
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+    User instanseUser = User(
         avatarURL: json['avatar_url'],
         id: json['id'],
+        title: json['title'],
         isOnline: json['is_online'],
         username: json['username'],
         defaultCoverURL: json['cover']["url"],
@@ -140,7 +145,7 @@ class User{
         amountOfS: json['statistics']['grade_counts']['s'],
         amountOfA: json['statistics']['grade_counts']['a'],
         countryRank: json['statistics']['country_rank'],
-        rankHistory: json['rankHistory']['data'],
+        rankHistory: json['rankHistory'],
         kudosu: json['kudosu']['total'],
         lastVisit: json['last_visit'],
         postCount: json['post_count'],
@@ -152,7 +157,7 @@ class User{
         lovedBeatmapsCount: json['loved_beatmapset_count'],
         pendingBeatmapsCount: json['pending_beatmapset_count'],
         defaultGroup: json['default_group'],
-        userGroup: json['group'],
+        userGroup: json['groups'],
         userPage: json['page']['html'],
         previousUsernames: json['previous_usernames'],
         levelStatistics: json['statistics']['level'],
@@ -165,9 +170,38 @@ class User{
         twitter: json['twitter'],
         interests: json['interests'],
         location: json['location'],
+        occupation: json['occupation'],
         mainPlaymode: json['playmode'],
-        playstyle: json['playstyle']
+        playstyle: json['playstyle'],
+        website: json['website']
     );
+    if ((instanseUser.userGroup as List).isEmpty == false) {instanseUser.defaultGroup = (instanseUser.userGroup as List)[0]['identifier'];}
+    if (instanseUser.defaultGroup == "default") {instanseUser.defaultGroup = ' ';}
+    if (instanseUser.title == null) {instanseUser.title = ' ';}
+    if (instanseUser.interests == null) {instanseUser.interests = '__________';}
+    if (instanseUser.discord == null) {instanseUser.discord = '__________';}
+    if (instanseUser.website == null) {instanseUser.website = '__________________';}
+    if (instanseUser.location == null) {instanseUser.location = '__________';}
+    if (instanseUser.occupation == null) {instanseUser.occupation = '__________';}
+    if (instanseUser.twitter == null) {instanseUser.twitter = '__________';}
+    if (instanseUser.countryCode == "XX") {instanseUser.countryCode = "__";}
+    if (instanseUser.lastVisit != null) {
+      instanseUser.lastVisit = DateTime.parse(instanseUser.lastVisit);
+      instanseUser.lastVisit  = ((DateFormat('yMMMMd')).format(instanseUser.lastVisit)).toString();
+    }
+    if (instanseUser.lastVisit == null) {instanseUser.lastVisit = " ";}
+    if ("${instanseUser.hitAccuracy}".length > 5 && instanseUser.hitAccuracy != null) {
+      instanseUser.hitAccuracy = "${instanseUser.hitAccuracy}".substring(0,5);}
+    instanseUser.website = instanseUser.website.substring(8);
+    if(instanseUser.globalRank == null){
+      instanseUser.globalRank = "Inactive";
+      instanseUser.countryRank = "Inactive";
+    }
+    else if ("${instanseUser.globalRank}"[0] != "#") {
+      instanseUser.globalRank = "#${instanseUser.globalRank}";
+      instanseUser.countryRank = "#${instanseUser.countryRank}";
+    }
+    return instanseUser;
   }
   factory User.fromMapperFromJson(Map<String, dynamic> json) {
     return User(
