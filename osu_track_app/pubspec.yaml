@@ -22,6 +22,7 @@ dependencies:
   webview_flutter: ^3.0.4
   audioplayers: ^0.20.1
   curved_navigation_bar: ^1.0.3
+  flutter_bbcode: ^1.1.1
 
 flutter_icons:
   android: "launcher_icon"

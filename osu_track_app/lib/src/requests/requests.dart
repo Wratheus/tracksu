@@ -1,7 +1,9 @@
 import 'dart:convert' as convert;
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 
+import '../utils/color_contrasts.dart' as my_colors;
 import '../authentication.dart' as auth;
 import '../models/user.dart';
 import '../models/scores.dart';
@@ -330,6 +332,12 @@ Future <List<Beatmap>> getUserBeatmaps(String token, int userID, String type) as
     for (int i = 0; i < json.length; i++){
       Beatmap BeatmapObject = Beatmap.fromUserFromJson(json[i]);
       BeatmapObject.mapper = await getUser((await UserSecureStorage.getTokenFromStorage())!, "${BeatmapObject.mapper}", 'osu', true);
+      BeatmapObject.shortRankedStatus = "${BeatmapObject.rankedStatus}";
+      BeatmapObject.colorOfRankedStatus = BeatmapObject.rankedStatus == 'ranked' ? Colors.greenAccent : BeatmapObject.rankedStatus == "loved" ? my_colors.Palette.hotPink : BeatmapObject.rankedStatus == "graveyard" ? Colors.black54 : BeatmapObject.rankedStatus == "pending" ? Colors.yellow : BeatmapObject.rankedStatus == "wip" ? Colors.yellow : BeatmapObject.rankedStatus == "approved" ? Colors.yellow : BeatmapObject.rankedStatus == "qualified" ? Colors.green : Colors.black54;
+      if (BeatmapObject.rankedDate != null){
+        BeatmapObject.rankedStatus  = "${BeatmapObject.rankedStatus}: " + "${BeatmapObject.rankedDate}".substring(0, 10);
+      }
+
       myList.add(BeatmapObject);
     }
     return myList;

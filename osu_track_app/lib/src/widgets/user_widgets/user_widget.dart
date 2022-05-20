@@ -747,6 +747,7 @@ class UserInfoWidget extends StatelessWidget {
             ],
           ),
           SizedBox(height: 20),
+
         ]
     );
   }
