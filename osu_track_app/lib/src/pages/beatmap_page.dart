@@ -63,7 +63,6 @@ class _BeatmapPage extends StatelessWidget {
                     slivers: [
                       SliverAppBar(
                         floating: true,
-                        leading: Image.asset('assets/utils/cloud_logo.png'),
                         title: Text("Beatmap",
                           style: TextStyle(
                             fontSize: 24.0,

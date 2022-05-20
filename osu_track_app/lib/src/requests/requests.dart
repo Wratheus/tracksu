@@ -22,7 +22,7 @@ const clientId = 'your id'; */
 // Token Request from user Auth
 // puts token to UserSecureStorage
 Future<bool> getTokenAsAuthorize(String? code) async{
-  String body = "grant_type=authorization_code&client_id=${auth.clientId}&client_secret=${auth.clientSecret}&code=${code}&redirect_uri=https://wratheus.github.io/osu-Track";
+  String body = "grant_type=authorization_code&client_id=${auth.clientId}&client_secret=${auth.clientSecret}&code=${code}&redirect_uri=https://wratheus.github.io/tracksu";
   Map<String, String> headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',

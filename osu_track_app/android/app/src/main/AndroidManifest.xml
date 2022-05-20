@@ -10,7 +10,7 @@
     </queries>
 
    <application
-        android:label="osu! Track"
+        android:label="Tracksu!"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

@@ -25,11 +25,16 @@ dependencies:
   flutter_widget_from_html: ^0.8.5
   fluttericon: ^2.0.0
   intl: ^0.17.0
+  flutter_native_splash: ^2.2.0+1
+
+flutter_native_splash:
+  image: "assets/utils/painted_logo.png"
+  color: "221919"
 
 flutter_icons:
   android: "launcher_icon"
   ios: false
-  image_path: "assets/painted_logo.png"
+  image_path: "assets/utils/painted_logo.png"
 
 dev_dependencies:
   flutter_test:

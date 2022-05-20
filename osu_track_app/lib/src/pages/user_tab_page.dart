@@ -17,7 +17,6 @@ class UserTabPage extends StatelessWidget {
             SliverAppBar(
               floating: true,
               pinned: false,
-              leading: Image.asset('assets/utils/cloud_logo.png'),
               title: Text("User page",
                 style: TextStyle(
                   fontSize: 24.0,

@@ -16,7 +16,6 @@ class RankingsTabPage extends StatelessWidget {
               SliverAppBar(
                 floating: true,
                 pinned: false,
-                leading: Image.asset('assets/utils/cloud_logo.png'),
                 title: Text("Leaderboard",
                   style: TextStyle(
                     fontSize: 24.0,

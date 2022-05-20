@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'OsuTrackApp',
+      title: 'Tracksu',
       theme: ThemeData(
         primarySwatch:  my_colors.Palette.pink,
         backgroundColor: my_colors.Palette.brown,

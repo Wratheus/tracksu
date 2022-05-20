@@ -13,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/osu-Track&response_type=code&scope=public";
+  String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/tracksu&response_type=code&scope=public";
   late WebViewController _webViewController;
   String? code = '0';
 
@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (currentUrl != loginUrl) {
       if (mounted) {
         // error redirect if, restart login url
-        if (currentUrl.startsWith('https://wratheus.github.io/osu-Track')) {
+        if (currentUrl.startsWith('https://wratheus.github.io/tracksu')) {
           RegExp regExpError = RegExp("error=(.*)");
           if (regExpError.hasMatch(currentUrl) == true) {
             setState(() {
@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         }
         // success login redirect
-        if (currentUrl.startsWith('https://wratheus.github.io/osu-Track/?code=')) {
+        if (currentUrl.startsWith('https://wratheus.github.io/tracksu/?code=')) {
           RegExp regExp = RegExp("code=(.*)");
           this.code = regExp.firstMatch(currentUrl)?.group(1);
           if (this.code != null) {
@@ -76,7 +76,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           ),
           backgroundColor: my_colors.Palette.purple,
-          leading: Image.asset('assets/utils/cloud_logo.png'),
         ),
         body: WebView(
           javascriptMode: JavascriptMode.unrestricted,

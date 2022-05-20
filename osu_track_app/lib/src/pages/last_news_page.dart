@@ -29,7 +29,8 @@ class _LastNewsPage extends StatelessWidget {
       context.read<NewsCubit>().informInitial();
         context.read<NewsCubit>().loadNews(); // run Circular progress bar while news is loading
         return Scaffold(
-            appBar: AppBar(backgroundColor: my_colors.Palette.purple,
+            appBar: AppBar(
+                backgroundColor: my_colors.Palette.purple,
                 title: Text("News",
                   style: TextStyle(
                     fontSize: 24.0,
@@ -45,9 +46,9 @@ class _LastNewsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                leading: Image.asset('assets/utils/cloud_logo.png')),
-            backgroundColor: my_colors.Palette.brown.shade100,
-            body: const Center(child: CircularProgressIndicator())
+            ),
+                backgroundColor: my_colors.Palette.brown.shade100,
+                body: const Center(child: CircularProgressIndicator())
         );
       }
       if(state is NewsErrorState){ // Throw error if state is NewsError
@@ -64,7 +65,6 @@ class _LastNewsPage extends StatelessWidget {
                   slivers: [
                     SliverAppBar(
                       floating: true,
-                      leading: Image.asset('assets/utils/cloud_logo.png'),
                       title: Text("News",
                         style: TextStyle(
                           fontSize: 24.0,
