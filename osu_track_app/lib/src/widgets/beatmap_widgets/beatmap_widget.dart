@@ -129,7 +129,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                                       )
                                     ],
                                     image: DecorationImage(
-                                      image: NetworkImage(_beatmap.mapper.avatarURL),
+                                      image: NetworkImage("${_beatmap.mapper.avatarURL}"),
                                       fit: BoxFit.cover,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
