@@ -1,0 +1,65 @@
+name: tracksu
+description: Flutter project disgned for tracking and analyzing osu! statisics provided by osu! API
+
+publish_to: 'none'
+
+version: 1.2.0+5
+
+environment:
+  sdk: ">=2.16.0 <=3.2.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^0.13.4
+  url_launcher: ^6.1.2
+  cupertino_icons: ^1.0.4
+  cached_network_image: ^3.2.1
+  bloc: ^8.0.3
+  flutter_bloc: ^8.0.1
+  flutter_secure_storage: ^5.0.2
+  flutter_launcher_icons: ^0.9.2
+  webview_flutter: ^3.0.4
+  audioplayers: ^0.20.1
+  curved_navigation_bar: ^1.0.3
+  flutter_widget_from_html: ^0.8.5
+  fluttericon: ^2.0.0
+  intl: ^0.17.0
+  flutter_native_splash: ^2.2.0+1
+
+flutter_native_splash:
+  image: "assets/utils/painted_logo.png"
+  color: "221919"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/utils/painted_logo.png"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/icon_mods/
+    - assets/icon_utils/
+    - assets/icon_pack/
+    - assets/icon_game_mods/
+    - assets/icon_country_flags/
+    - assets/icon_score_types/
+    - assets/utils/
+    - assets/models/
+
+  fonts:
+    - family: Exo 2
+      fonts:
+        - asset: assets/fonts/Exo2-VariableFont_wght.ttf
+        - asset: assets/fonts/Exo2-italic-VariableFont_wght.ttf
+          style: italic
+    - family:  MyFlutterApp
+      fonts:
+        - asset: assets/icon_pack/MyFlutterApp.ttf
