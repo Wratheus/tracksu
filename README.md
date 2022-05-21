@@ -1,7 +1,5 @@
-## Available for download in [Play Market ](https://play.google.com/store/apps/details?id=com.osutrack.osu_tracker&hl=ru&gl=US)
-
 <p align="left">
-osu! Track is Dart / Flutter Android app which visualises data provided by osu! API
+Tracksu is Dart / Flutter Android app which visualises data provided by osu! API
 that could be useful for phone users.
 
 
@@ -29,7 +27,6 @@ Rankings stats: users top by PP, top by friends, you can select pages and chose 
 <li>Also on the user's page, you can view same statistics in different mods;
 <li>Added a music player to the maps;
 <li>Fixed the white screen on the authorization page;
-<li>Fixed all (or almost all) labels and texts where there was osu! with a capital letter;
 <li>Added beautiful shadows to widgets and text :) ;
 </ul>
 <b>What we will do in the near future:</b>
@@ -52,11 +49,10 @@ Rankings stats: users top by PP, top by friends, you can select pages and chose 
 
 # Download
 You can find the newest source-code build at the [Releases page ](https://github.com/Wratheus/osu-Track/releases/latest); </br>
-Or you can download apk from [Play Market ](https://play.google.com/store/apps/details?id=com.osutrack.osu_tracker&hl=ru&gl=US); </br>
 # Obtaining osu!api v2 OAuth Client Credentials
 <ol>
 <li>Go to the OAuth section on the account settings page and create a new OAuth Application.</li>
-<li>Give it a name like osu-tracker for example. (You don't need to set a Callback URL)</li>
+<li>Give it a name you want. (You don't need to set a Callback URL)</li>
 <li>Register your Application and copy the ID and Secret into the app.</li>
 </ol>
 <p align="center">
