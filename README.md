@@ -1,7 +1,5 @@
-## Available for download in [Play Market ](https://play.google.com/store/apps/details?id=com.osutrack.osu_tracker&hl=ru&gl=US)
-
 <p align="left">
-osu! Track is Dart / Flutter Android app which visualises data provided by osu! API
+Tracksu is Dart / Flutter Android app which visualises data provided by osu! API
 that could be useful for phone users.
 
 
@@ -18,7 +16,7 @@ Rankings stats: users top by PP, top by friends, you can select pages and chose 
 </p>      
 
 <p align="center">
-  <img src="https://i.imgur.com/igLVQAL.png" alt="application" width="1000" />
+  <img src="https://i.imgur.com/aXik5nt.png" alt="application" width="1000" />
 </p>
 
 # Update log:
@@ -29,34 +27,32 @@ Rankings stats: users top by PP, top by friends, you can select pages and chose 
 <li>Also on the user's page, you can view same statistics in different mods;
 <li>Added a music player to the maps;
 <li>Fixed the white screen on the authorization page;
-<li>Fixed all (or almost all) labels and texts where there was [i]osu![/i] with a capital letter;
 <li>Added beautiful shadows to widgets and text :) ;
 </ul>
 <b>What we will do in the near future:</b>
 <ul>
-<li>Fix bugs that have appeared in different mods : ) ;
-<li>Add info for mappers and created/graveyard/ranked maps, kudosu in profile;
+<li><s>Fix bugs that have appeared in different mods : ) ;</s>
+<li><s>Add info for mappers and created/graveyard/ranked maps, kudosu in profile;</s>
 <li>Add the display information that the user shows about himself in the profile: social networks, interests, a block with his custom info, etc.;
-<li>Try to optimize the user's loading;
-<li>Add a filter by country to the rankings;
-<li>Add diffs switch to the beatmap page;
+<li><s>Try to optimize the user's loading;</s>
+<li><s>Add a filter by country to the rankings;</s>
 </ul>
 <b>We going to try:</b>
 <ul>
 <li>Implementing a map search;
 <li>Adding the playcount and rank charts to the profile;
-<li>Describing most of the errors and replace them with a dialog box, not a separate page.;
+<li><s>Describing most of the errors and replace them with a dialog box, not a separate page.;</s>
 <li>Adding a performance score counter.
+<li>Adding beatmaps difficulties
 </ul>
 </p>
 
 # Download
 You can find the newest source-code build at the [Releases page ](https://github.com/Wratheus/osu-Track/releases/latest); </br>
-Or you can download apk from [Play Market ](https://play.google.com/store/apps/details?id=com.osutrack.osu_tracker&hl=ru&gl=US); </br>
 # Obtaining osu!api v2 OAuth Client Credentials
 <ol>
 <li>Go to the OAuth section on the account settings page and create a new OAuth Application.</li>
-<li>Give it a name like osu-tracker for example. (You don't need to set a Callback URL)</li>
+<li>Give it a name you want. (You don't need to set a Callback URL)</li>
 <li>Register your Application and copy the ID and Secret into the app.</li>
 </ol>
 <p align="center">
