@@ -38,15 +38,22 @@ class UserCubit extends Cubit<UserState> {
       if (isClosed == false) {
         emit(UserLoadingState());
       }
-      final user = await getUserMe((await UserSecureStorage.getTokenFromStorage())!, mode);
+      final user = await getUserMe(
+          (await UserSecureStorage.getTokenFromStorage())!, mode);
       if (isClosed == false) {
         emit(UserLoadedState(user));
       }
       print('User ME(${user.username}) loaded');
-    } catch (e){
+    } catch (e) {
       if (isClosed == false) {
-        emit(UserErrorState('Failed User Load $e'));
+        emit(UserLoadingState());
       }
+      final user = await getUser(
+          (await UserSecureStorage.getTokenFromStorage())!, "Peppy", mode);
+      if (isClosed == false) {
+        emit(UserLoadedState(user));
+      }
+      print('User ME(${user.username}) loaded');
     }
   }
 
