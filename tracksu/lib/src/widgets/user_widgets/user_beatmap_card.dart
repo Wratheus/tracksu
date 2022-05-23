@@ -25,6 +25,11 @@ class BeatmapCardWidget extends StatelessWidget {
         .of(context)
         .size
         .height;
+    final double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+
     return Column(
         children: [
           Container(

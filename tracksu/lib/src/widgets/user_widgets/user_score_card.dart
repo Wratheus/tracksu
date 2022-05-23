@@ -18,7 +18,10 @@ class ScoreCardWidget extends StatelessWidget {
         .of(context)
         .size
         .height;
-
+    final double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     final List<Image> mods_icons = []; // for mods icons
     if (_item.mods != []) {
       for (int i = 0; i < _item.mods.length; i++) {

@@ -144,7 +144,16 @@ class _UserListTilesElements extends State<UserListTilesElements> {
 
   @override
   Widget build(BuildContext context) {
-      return Column(
+    final double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    final double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+
+    return Column(
         children: [
           Row(
             children: [

@@ -11,10 +11,20 @@ class UserInfoWidget extends StatelessWidget {
         _user = user,
         super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
-      return Container(
-        width: 350,
+    final double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    final double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+
+    return Container(
+        width: width/1.2,
         alignment: Alignment.center,
         child: Column(
             children: [
@@ -185,7 +195,7 @@ class UserInfoWidget extends StatelessWidget {
               // User information bloc
               const SizedBox(height: 15.0,),
               Container(
-                width: 350,
+                width: width/1.2,
                 padding: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
                   color: my_colors.Palette.brown.shade200,
