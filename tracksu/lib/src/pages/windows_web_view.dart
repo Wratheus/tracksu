@@ -145,7 +145,7 @@ class _LoginScreenWindowsWebView extends State<LoginScreenWindowsWebView> {
                     },
                   ),
                 ),
-                IconButton(
+/*                IconButton(
                   icon: Icon(Icons.refresh),
                   splashRadius: 20,
                   onPressed: () {
@@ -159,7 +159,7 @@ class _LoginScreenWindowsWebView extends State<LoginScreenWindowsWebView> {
                   onPressed: () {
                     _controller.openDevTools();
                   },
-                )
+                )*/
               ]),
             ),
             Expanded(
@@ -194,7 +194,7 @@ class _LoginScreenWindowsWebView extends State<LoginScreenWindowsWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+/*      floatingActionButton: FloatingActionButton(
         tooltip: _isWebviewSuspended ? 'Resume webview' : 'Suspend webview',
         onPressed: () async {
           if (_isWebviewSuspended) {
@@ -207,7 +207,7 @@ class _LoginScreenWindowsWebView extends State<LoginScreenWindowsWebView> {
           });
         },
         child: Icon(_isWebviewSuspended ? Icons.play_arrow : Icons.pause),
-      ),
+      ),*/
       appBar: AppBar(
         title: Text("Login to osu!...", style: TextStyle(
           fontSize: 22.0,
