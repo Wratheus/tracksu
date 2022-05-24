@@ -73,23 +73,15 @@ class _UserPage extends StatelessWidget {
             child:
             Scaffold(
               backgroundColor: my_colors.Palette.brown.shade100,
-              body: Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 15.0,),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(width: 20,),
-                            UserSearchWidget()
-                          ]
-                      ),
-                      UserInfoWidget(user: state.userInstance),
-                      UserListTilesElements(userInstance: state.userInstance, mode: mode!),
-                    ],
-                  ),
-                ), //user panel Info widget and searchbar
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 15.0,),
+                    UserSearchWidget(),
+                    UserInfoWidget(user: state.userInstance),
+                    UserListTilesElements(userInstance: state.userInstance, mode: mode!),
+                  ],
+                ),
               ),
             ),
             onRefresh: () => context.read<UserCubit>().reloadUser(),

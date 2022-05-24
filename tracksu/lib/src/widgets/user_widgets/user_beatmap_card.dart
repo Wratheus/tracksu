@@ -35,7 +35,7 @@ class BeatmapCardWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.all(10.0),
             padding: EdgeInsets.all(5.0),
-            height: height / 6.0,
+            height: height / 8.0,
             decoration: BoxDecoration(
               color: my_colors.Palette.brown.shade100,
               image: DecorationImage(

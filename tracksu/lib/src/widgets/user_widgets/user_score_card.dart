@@ -41,7 +41,7 @@ class ScoreCardWidget extends StatelessWidget {
       elevation: 6,
       margin: const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
       child: Container(
-        height: height / 7.0,
+        height: height / 12.0,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage("${_item.coversJPG}"),

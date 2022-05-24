@@ -47,6 +47,16 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
 
   @override
   Widget build(BuildContext context) {
+
+    final double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    final double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+
     widget._dropdownValue = widget._filterValue;
     return Container(
       margin: const EdgeInsets.all(20),
@@ -102,7 +112,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                     context.read<RankingsCubit>().loadRankings(widget._countryValue, widget._filterValue, widget._page, widget._mode);
                   })
               ),
-              SizedBox(width: 10,),
+              SizedBox(width: width/35,),
               Text("Friends: ", style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -151,129 +161,131 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                   })),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text("Select page:", style:  TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Exo 2',
-                color: Colors.white,
-                shadows: [
-                  Shadow(
-                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                    offset: Offset(7, 5),
-                    blurRadius: 10,
-                  )
-                ],
-              ),
-              ),
-              SizedBox(width: 10,),
-              Container(
-                  width: 50,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
-                        offset: Offset(7, 5),
-                        spreadRadius: 5,
-                        blurRadius: 10,
-                      )
-                    ],
-                  ),
-                  child: TextField(
-                    textAlign: TextAlign.start,
-                    textAlignVertical: TextAlignVertical.center,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: my_colors.Palette.brown.shade300,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                        borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),
-
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                        borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                        borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),
-                      ),
-                    ),
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Exo 2',
-                      color: Colors.white,
-                      shadows: [
-                        Shadow(
-                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                          offset: Offset(7, 5),
-                          blurRadius: 10,
-                        )
-                      ],
-                    ),
-                    keyboardType: TextInputType.text,
-                    controller: _textController,
-                    onSubmitted: (_) => context.read<RankingsCubit>().loadRankings(widget._countryValue, widget._filterValue, _textController.text.trim(), widget._mode), // filter by page
-                  )
-              ),
-              Spacer(),
-              ElevatedButton(
-                onPressed: () => _OnPressedArrow(widget._countryValue, widget._filterValue, widget._page, widget._mode, "sub"),
-                style: ButtonStyle(
-                  elevation: MaterialStateProperty.all(6.0),
-                  backgroundColor: MaterialStateProperty.all(my_colors.Palette.brown.shade50)
-                ),
-                child: Row(
-                  children: [
-                    Text("Back", style:  TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Exo 2',
-                      color: Colors.white,
-                      shadows: [
-                        Shadow(
-                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                          offset: Offset(7, 5),
-                          blurRadius: 10,
-                        )
-                      ],
-                    ),
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text("Select page:", style:  TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Exo 2',
+                  color: Colors.white,
+                  shadows: [
+                    Shadow(
+                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                      offset: Offset(7, 5),
+                      blurRadius: 10,
                     )
                   ],
                 ),
-              ),
-              Spacer(),
-              ElevatedButton(
-                onPressed: () => _OnPressedArrow(widget._countryValue, widget._filterValue, widget._page, widget._mode, "sum"),
-                style: ButtonStyle(
-                    elevation: MaterialStateProperty.all(6.0),
-                    backgroundColor: MaterialStateProperty.all(my_colors.Palette.brown.shade50)
                 ),
-                child: Row(
-                  children: [
-                    Text("Next", style:  TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Exo 2',
-                      color: Colors.white,
-                      shadows: [
-                        Shadow(
-                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                SizedBox(width: 10,),
+                Container(
+                    width: 50,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
                           offset: Offset(7, 5),
+                          spreadRadius: 5,
                           blurRadius: 10,
                         )
                       ],
                     ),
-                    ),
-                  ],
+                    child: TextField(
+                      textAlign: TextAlign.start,
+                      textAlignVertical: TextAlignVertical.center,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: my_colors.Palette.brown.shade300,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),
+
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),
+                        ),
+                      ),
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Exo 2',
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                            offset: Offset(7, 5),
+                            blurRadius: 10,
+                          )
+                        ],
+                      ),
+                      keyboardType: TextInputType.text,
+                      controller: _textController,
+                      onSubmitted: (_) => context.read<RankingsCubit>().loadRankings(widget._countryValue, widget._filterValue, _textController.text.trim(), widget._mode), // filter by page
+                    )
                 ),
-              ),
-              Spacer()
-            ],
+                SizedBox(width: width/35,),
+                ElevatedButton(
+                  onPressed: () => _OnPressedArrow(widget._countryValue, widget._filterValue, widget._page, widget._mode, "sub"),
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(6.0),
+                    backgroundColor: MaterialStateProperty.all(my_colors.Palette.brown.shade50)
+                  ),
+                  child: Row(
+                    children: [
+                      Text("Back", style:  TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Exo 2',
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                            offset: Offset(7, 5),
+                            blurRadius: 10,
+                          )
+                        ],
+                      ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(width: width/50,),
+                ElevatedButton(
+                  onPressed: () => _OnPressedArrow(widget._countryValue, widget._filterValue, widget._page, widget._mode, "sum"),
+                  style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(6.0),
+                      backgroundColor: MaterialStateProperty.all(my_colors.Palette.brown.shade50)
+                  ),
+                  child: Row(
+                    children: [
+                      Text("Next", style:  TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Exo 2',
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                            offset: Offset(7, 5),
+                            blurRadius: 10,
+                          )
+                        ],
+                      ),
+                      ),
+                    ],
+                  ),
+                ),
+                Spacer()
+              ],
+            ),
           )
         ],
       ),

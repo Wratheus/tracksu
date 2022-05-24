@@ -16,6 +16,14 @@ class RankingsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    final double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     String accuracy = "${_item.hitAccuracy}";
     if (accuracy.length > 5) {
       accuracy = accuracy.substring(0, 5);
@@ -35,32 +43,38 @@ class RankingsWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                  children: [
-                    Container(
-                      width: 80.0,
-                      height: 80.0,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(_item.avatarURL),
-                          fit: BoxFit.cover,
+              Expanded(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(_item.avatarURL),
+                            fit: BoxFit.cover,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              spreadRadius: 2,
+                              blurRadius: 3,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                            offset: Offset(7, 5),
-                            spreadRadius: 2,
-                            blurRadius: 3,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                    ),
-                  ]),
+                    ]),
+              ),
               const SizedBox(width: 5.0,),
-              Expanded(child:
-                Column(
+              Expanded(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -111,57 +125,58 @@ class RankingsWidget extends StatelessWidget {
                     ),
 
                   ]
+                ),
               ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("PP:",
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Exo 2')
+                      ),
+                      Text("Accuracy:",
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Exo 2')
+                      ),
+                      Text("Play count:",
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              color: my_colors.Palette.yellow,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Exo 2')
+                      ),
+                      Text("Max combo:",
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              color: my_colors.Palette.yellow,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Exo 2')
+                      ),
+                      Text("Replay count:",
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              color: my_colors.Palette.yellow,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Exo 2')
+                      ),
+                    ]
               ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Performance points:",
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
-                    ),
-                    Text("Accuracy:",
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
-                    ),
-                    Text("Play count:",
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                            color: my_colors.Palette.yellow,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
-                    ),
-                    Text("Maximum combo:",
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                            color: my_colors.Palette.yellow,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
-                    ),
-                    Text("Replay count:",
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                            color: my_colors.Palette.yellow,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2')
-                    ),
-                  ]
-              ),
-              SizedBox(width: 20),
-              Container(
-                width: 60,
+                ),
+              SizedBox(width: 10),
+              Expanded(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,
