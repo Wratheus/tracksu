@@ -85,6 +85,11 @@ class BeatmapInfoWidget extends StatelessWidget {
             padding: EdgeInsets.all(5.0),
             height: height / 6.0,
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [my_colors.Palette.brown.withOpacity(0.4), my_colors.Palette.purple.withOpacity(0.4)]),
             color: my_colors.Palette.brown.shade100,
             image: DecorationImage(
               image: NetworkImage("${_beatmap.coversJPG}"),
@@ -92,7 +97,6 @@ class BeatmapInfoWidget extends StatelessWidget {
               colorFilter: ColorFilter.mode(
                   Colors.white.withOpacity(0.24), BlendMode.dstATop),
             ),
-              borderRadius: BorderRadius.circular(8.0),
               boxShadow: [
                 BoxShadow(
                   color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
@@ -328,7 +332,11 @@ class BeatmapInfoWidget extends StatelessWidget {
                 padding: EdgeInsets.all(5.0),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(8),
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [my_colors.Palette.brown.withOpacity(0.8), my_colors.Palette.purple.withOpacity(0.8)]),
                   color: my_colors.Palette.brown.shade100,
                   boxShadow: [
                     BoxShadow(

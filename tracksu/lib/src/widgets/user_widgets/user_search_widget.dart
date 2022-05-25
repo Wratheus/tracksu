@@ -22,17 +22,22 @@ class UserSearchWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(left: width/12),
+          margin: EdgeInsets.only(left: width/23),
           alignment: Alignment.center,
-          width: width/2.7,
-          height: height/25,
+          width: width/2.15,
+          height: height/20,
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [my_colors.Palette.brown.withOpacity(1), my_colors.Palette.brown.shade200.withOpacity(1)]),
           boxShadow: [
             BoxShadow(
-              color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
+              color: Colors.black.withOpacity(0.1),
               offset: Offset(7, 5),
-              spreadRadius: 5,
-              blurRadius: 10,
+              spreadRadius: 24,
+              blurRadius: 23,
             )
           ],
         ),
@@ -42,16 +47,16 @@ class UserSearchWidget extends StatelessWidget {
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(1)),
 
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(1)),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(1)),
               ),
               labelText: "Username",
               labelStyle: const TextStyle(

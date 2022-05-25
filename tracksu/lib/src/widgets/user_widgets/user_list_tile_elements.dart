@@ -422,11 +422,9 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                       ],
                     )
                 ),
-                SizedBox(height: 50,)
               ],
             ),
             children: [
-              SizedBox(height: 10),
               _userFavouriteBeatmapLoading == false ? ListView.builder(
                   padding: EdgeInsets.all(0.0),
                   scrollDirection: Axis.vertical,
@@ -467,11 +465,9 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                       ],
                     )
                 ),
-                SizedBox(height: 50,)
               ],
             ),
             children: [
-              SizedBox(height: 10),
               _userRankedBeatmapLoading == false ? ListView.builder(
                   padding: EdgeInsets.all(0.0),
                   scrollDirection: Axis.vertical,
@@ -512,11 +508,9 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                       ],
                     )
                 ),
-                SizedBox(height: 50,)
               ],
             ),
             children: [
-              SizedBox(height: 10),
               _userLovedBeatmapLoading == false ? ListView.builder(
                   padding: EdgeInsets.all(0.0),
                   scrollDirection: Axis.vertical,
@@ -557,11 +551,9 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                       ],
                     )
                 ),
-                SizedBox(height: 50,)
               ],
             ),
             children: [
-              SizedBox(height: 10),
               _userPendingBeatmapLoading == false ? ListView.builder(
                   padding: EdgeInsets.all(0.0),
                   scrollDirection: Axis.vertical,
@@ -602,11 +594,9 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                       ],
                     )
                 ),
-                SizedBox(height: 50,)
               ],
             ),
             children: [
-              SizedBox(height: 10),
               _userGraveyardBeatmapLoading == false ? ListView.builder(
                   padding: EdgeInsets.all(0.0),
                   scrollDirection: Axis.vertical,

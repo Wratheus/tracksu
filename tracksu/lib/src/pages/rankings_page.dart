@@ -35,7 +35,13 @@ class _RankingsPage extends StatelessWidget {
         context.read<RankingsCubit>().informInitial();
         context.read<RankingsCubit>().loadRankings(state.countryValue, state.filterValue, state.page, mode);
         return Scaffold(
-            body: Center(child: CircularProgressIndicator(),),
+            body: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                child: Center(child: CircularProgressIndicator(),)),
             backgroundColor: my_colors.Palette.brown.shade100
         );
     };
@@ -48,23 +54,30 @@ class _RankingsPage extends StatelessWidget {
           backgroundColor: my_colors.Palette.brown.shade100,
           child: Scaffold(
             backgroundColor: my_colors.Palette.brown.shade200,
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  RankingsSearchFiltersWidget(state.filterValue, mode, state.countryList, state.countryValue, state.page),
-                  ListView.builder(
-                    padding: EdgeInsets.all(0.0),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: state.rankingsList.length,
-                    itemBuilder: (context, index){
-                    return InkWell(
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.rankingsList[index].username))),
-                      child: RankingsWidget(item: state.rankingsList[index])
-                  );}
+            body: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    RankingsSearchFiltersWidget(state.filterValue, mode, state.countryList, state.countryValue, state.page),
+                    ListView.builder(
+                      padding: EdgeInsets.all(0.0),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: state.rankingsList.length,
+                      itemBuilder: (context, index){
+                      return InkWell(
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.rankingsList[index].username))),
+                        child: RankingsWidget(item: state.rankingsList[index])
+                    );}
+                  ),
+                  ],
                 ),
-                ],
               ),
             ),
           ),

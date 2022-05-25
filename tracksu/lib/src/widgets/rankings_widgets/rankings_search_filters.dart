@@ -184,6 +184,10 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                     width: 50,
                     height: 30,
                     decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200]),
                       boxShadow: [
                         BoxShadow(
                           color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
@@ -198,7 +202,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: my_colors.Palette.brown.shade300,
+                        fillColor: my_colors.Palette.brown.shade200.withOpacity(0.25),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6),
                           borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),

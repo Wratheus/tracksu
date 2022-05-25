@@ -29,8 +29,14 @@ class NewsWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
       elevation: 6,
       margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 8.0),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 2, bottom: 8, left: 8, right: 8),
+      child: Container(
+        padding: EdgeInsets.only(top: 2, bottom: 8, left: 8, right: 8),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [my_colors.Palette.brown.withOpacity(0.7), my_colors.Palette.purple.withOpacity(0.7)])),
         child: Column(
             children: [
               Row(
@@ -63,6 +69,7 @@ class NewsWidget extends StatelessWidget {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         image: DecorationImage(
+                          opacity: 0.89,
                           image: NetworkImage("${_item.firstImage}"),
                           fit: BoxFit.cover,
                         ),
@@ -87,7 +94,7 @@ class NewsWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(child:
-                    Text("${_item.title}",
+                      Text("${_item.title}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.white,
@@ -111,7 +118,7 @@ class NewsWidget extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20,),
                   Expanded(child:
-                  Text("${_item.author}",
+                    Text("${_item.author}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: my_colors.Palette.yellow,

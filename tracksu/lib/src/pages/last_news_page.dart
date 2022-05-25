@@ -48,7 +48,16 @@ class _LastNewsPage extends StatelessWidget {
                 ),
             ),
                 backgroundColor: my_colors.Palette.brown.shade100,
-                body: const Center(child: CircularProgressIndicator())
+                body: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
         );
       }
       if(state is NewsErrorState){ // Throw error if state is NewsError
@@ -61,46 +70,60 @@ class _LastNewsPage extends StatelessWidget {
           Scaffold(
               backgroundColor:my_colors.Palette.brown.shade200,
               body: Center(
-                child: CustomScrollView(
-                  slivers: [
-                    SliverAppBar(
-                      floating: true,
-                      title: Text("News",
-                        style: TextStyle(
-                          fontSize: 24.0,
-                          color: Colors.white,
-                          fontFamily: 'Exo 2',
-                          fontWeight: FontWeight.bold,
-                          shadows: [
-                            Shadow(
-                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                              offset: Offset(7, 5),
-                              blurRadius: 10,
-                            )
+                child: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverAppBar(
+                        flexibleSpace: Container(
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [my_colors.Palette.purple, my_colors.Palette.purple.shade200]))),
+                        floating: true,
+                        title: Text("News",
+                          style: TextStyle(
+                            fontSize: 24.0,
+                            color: Colors.white,
+                            fontFamily: 'Exo 2',
+                            fontWeight: FontWeight.bold,
+                            shadows: [
+                              Shadow(
+                                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                offset: Offset(7, 5),
+                                blurRadius: 10,
+                              )
+                            ],
+                          ),
+                        ),
+                        backgroundColor: my_colors.Palette.purple,
+                      ),
+                      SliverToBoxAdapter(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 5,),
+                            ListView.builder(
+                                padding: EdgeInsets.all(0.0),
+                                itemCount: state.newsList.length,
+                                physics: NeverScrollableScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                itemBuilder: (context, index){
+                                  return InkWell(
+                                      onTap: () => launchUniversalLink(Uri.parse(state.newsList[index].editURL!)),
+                                      child: NewsWidget(item: state.newsList[index])
+                                  );}
+                            ),
                           ],
                         ),
-                      ),
-                      backgroundColor: my_colors.Palette.purple,
-                    ),
-                    SliverToBoxAdapter(
-                      child: Column(
-                        children: [
-                          ListView.builder(
-                              padding: EdgeInsets.all(0.0),
-                              itemCount: state.newsList.length,
-                              physics: NeverScrollableScrollPhysics(),
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index){
-                                return InkWell(
-                                    onTap: () => launchUniversalLink(Uri.parse(state.newsList[index].editURL!)),
-                                    child: NewsWidget(item: state.newsList[index])
-                                );}
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               )
           ),

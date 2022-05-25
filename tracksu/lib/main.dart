@@ -5,9 +5,6 @@ import 'src/utils/color_contrasts.dart' as my_colors;
 import 'package:flutter/services.dart';
 final navigatorKey = GlobalKey<NavigatorState>();
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MyApp());
 }
 
@@ -21,6 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch:  my_colors.Palette.pink,
         backgroundColor: my_colors.Palette.brown,
       ),
-      home: LoginScreenWindowsWebView(),);
+      home: LoginScreen()
+    );
   }
 }

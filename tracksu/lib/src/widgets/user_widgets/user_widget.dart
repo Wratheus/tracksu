@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../../models/user.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
@@ -23,24 +25,49 @@ class UserInfoWidget extends StatelessWidget {
         .size
         .width;
 
+/*    ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(
+              sigmaX: 16.0,
+              sigmaY: 16.0
+            ),
+            child:
+            Container(
+        padding: EdgeInsets.only(bottom:  10, left:  10, right: 10),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                blurRadius: 24,
+                spreadRadius: 16,
+                color: Colors.black.withOpacity(0.2)
+            )
+          ],
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.center,
+              colors: [Colors.white60.withOpacity(0.05), Colors.white10.withOpacity(0.15)]),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(width: 1.5, color: Colors.white.withOpacity(0.15)),
+        ),*/
     return Column(
       children: [
         Container(
-            width: width/1.2,
+          width: width/1.1,
             child: Column(
                 children: [
                   SizedBox(height: 15.0,),
                   // User avatar rank and country bloc
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
+
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Expanded(
+                                flex: 3,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,6 +79,7 @@ class UserInfoWidget extends StatelessWidget {
                                         image: DecorationImage(
                                           image: NetworkImage(_user.avatarURL),
                                           fit: BoxFit.cover,
+                                          opacity: 1
                                         ),
                                         boxShadow: [
                                           BoxShadow(
@@ -67,8 +95,8 @@ class UserInfoWidget extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(width: 5),
                               Expanded(
+                                flex: 4,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +104,7 @@ class UserInfoWidget extends StatelessWidget {
                                     Text(
                                       "${_user.username}",
                                       style: TextStyle(
-                                        fontSize: 18.0,
+                                        fontSize: 16.0,
                                         shadows: [
                                           Shadow(
                                             color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
@@ -152,15 +180,8 @@ class UserInfoWidget extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                            ]
-                          ),
-                        ),
-                      Expanded(
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text("Last online",
+                              Text("Last online\n${_user.lastVisit}",
+                                  textAlign: TextAlign.right,
                                   style: TextStyle(
                                     color: Colors.amber,
                                     fontSize: 14,
@@ -175,23 +196,8 @@ class UserInfoWidget extends StatelessWidget {
                                     ],
                                   )
                               ),
-                              Text("${_user.lastVisit}",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Exo 2',
-                                    shadows: [
-                                      Shadow(
-                                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                                        offset: Offset(7, 5),
-                                        blurRadius: 10,
-                                      )
-                                    ],
-                                  )
-                              )
                             ]
-                        ),
+                          ),
                       ),
                     ],
                   ),
@@ -201,11 +207,17 @@ class UserInfoWidget extends StatelessWidget {
                     children: [
                       Container(
                         padding: EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
                           color: my_colors.Palette.brown.shade200,
+                          gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [my_colors.Palette.brown.withOpacity(0.5), my_colors.Palette.purple.withOpacity(0.5)]),
                           image: DecorationImage(
                             image: (_user.customCoverURL == null) ? NetworkImage("${_user.defaultCoverURL}") : NetworkImage("${_user.customCoverURL}"),
                             fit: BoxFit.fill,
+                            opacity: 1,
                             colorFilter: ColorFilter.mode(
                                 Colors.white.withOpacity(0.24), BlendMode.dstATop),
                           ),
@@ -866,9 +878,8 @@ class UserInfoWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              width: width/3.5,
+                              width: width/1.3,
                               height: 1,
-                              alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 color: Colors.deepOrangeAccent,
                                 borderRadius: BorderRadius.circular(10),
@@ -952,49 +963,53 @@ class UserInfoWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(width: 20,),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: width/3.5,
-                              height: 1,
-                              decoration: BoxDecoration(
-                                color: Colors.blueAccent,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                                    offset: Offset(7, 5),
-                                    spreadRadius: 2,
-                                    blurRadius: 3,
-                                  )
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 10,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(FontAwesome5.location_arrow, size: 10, color: Colors.white),
-                                Text("  ${_user.location}",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Exo 2',
-                                      shadows: [
-                                        Shadow(
-                                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                                          offset: Offset(7, 5),
-                                          blurRadius: 10,
-                                        )
-                                      ],
+                      ]
+                  ),
+                      SizedBox(height: 10,),
+                      Row(
+                        children: [
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: width/1.5,
+                                height: 1,
+                                decoration: BoxDecoration(
+                                  color: Colors.blueAccent,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      spreadRadius: 2,
+                                      blurRadius: 3,
                                     )
+                                  ],
                                 ),
+                              ),
+                              SizedBox(height: 10,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(FontAwesome5.location_arrow, size: 10, color: Colors.white),
+                                  Text("  ${_user.location}",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Exo 2',
+                                        shadows: [
+                                          Shadow(
+                                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                            offset: Offset(7, 5),
+                                            blurRadius: 10,
+                                          )
+                                        ],
+                                      )
+                                  ),
                               ],
                             ),
                             Row(

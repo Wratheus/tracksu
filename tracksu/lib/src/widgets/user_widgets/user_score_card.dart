@@ -41,8 +41,13 @@ class ScoreCardWidget extends StatelessWidget {
       elevation: 6,
       margin: const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
       child: Container(
-        height: height / 12.0,
+        height: height / 8.0,
         decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [my_colors.Palette.brown.withOpacity(0.4), my_colors.Palette.purple.withOpacity(0.4)]),
           image: DecorationImage(
             image: NetworkImage("${_item.coversJPG}"),
             fit: BoxFit.fill,
@@ -57,7 +62,6 @@ class ScoreCardWidget extends StatelessWidget {
             blurRadius: 2,
             )
           ],
-          borderRadius: BorderRadius.circular(8.0),
         ),
 
         child: Padding(

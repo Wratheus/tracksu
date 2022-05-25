@@ -45,20 +45,25 @@ class BeatmapScoreWidget extends StatelessWidget {
     if (_item.gainedPP == null) {
       _item.gainedPP = 0;
     }
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: my_colors.Palette.hotPink.shade900.withOpacity(0.1),
-            offset: Offset(13, 5),
-            spreadRadius: 0.15,
-            blurRadius: 0.15,
-          )
-        ],
-      ),
-      child: Card(
-        color: my_colors.Palette.brown.shade100,
-        margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
+    return Card(
+      color: my_colors.Palette.brown.shade100,
+      margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
+      child: Container(
+        decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [my_colors.Palette.brown.withOpacity(0.8), my_colors.Palette.purple.withOpacity(0.8)]),
+          boxShadow: [
+            BoxShadow(
+              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+              offset: Offset(7, 5),
+              spreadRadius: 2,
+              blurRadius: 3,
+            )
+          ],
+        ),
         child: Padding(
           padding: const EdgeInsets.all(3.5),
           child: Column(

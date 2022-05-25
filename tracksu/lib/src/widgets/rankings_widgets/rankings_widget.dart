@@ -36,17 +36,24 @@ class RankingsWidget extends StatelessWidget {
     (_item.globalRank != "Inactive") {_item.globalRank = "#${_item.globalRank}";}
     }
     return Card(
-      color: my_colors.Palette.brown.shade200,
-      elevation: 25.0,
+      color: my_colors.Palette.brown,
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
       margin: const EdgeInsets.only(bottom: 8.0, left: 10.0, right: 10.0),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: Container(
+        padding: EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 8),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [my_colors.Palette.brown.withOpacity(0.7), my_colors.Palette.purple.withOpacity(0.7)])),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
+                flex: 3,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,8 +79,8 @@ class RankingsWidget extends StatelessWidget {
                       ),
                     ]),
               ),
-              const SizedBox(width: 5.0,),
               Expanded(
+                flex: 5,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,7 +88,7 @@ class RankingsWidget extends StatelessWidget {
                     Text(
                       "${_item.globalRank}",
                       style: TextStyle(
-                        fontSize: 14.0,
+                        fontSize: 12.0,
                         color: my_colors.Palette.yellow,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
@@ -97,7 +104,7 @@ class RankingsWidget extends StatelessWidget {
                     Text(_item.username,
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 14.0,
+                            fontSize: 12.0,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Exo 2',
                           shadows: [
@@ -109,7 +116,7 @@ class RankingsWidget extends StatelessWidget {
                           ],
                         )
                     ),
-                    const SizedBox(height: 15.0,),
+                    SizedBox(height: 25,),
                     Container(
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -121,13 +128,14 @@ class RankingsWidget extends StatelessWidget {
                           )
                         ],
                       ),
-                      child: Image.asset('assets/icon_country_flags/${_item.countryCode}.png',scale: 3.5),
+                      child: Image.asset('assets/icon_country_flags/${_item.countryCode}.png',scale: 4.5),
                     ),
 
                   ]
                 ),
               ),
                 Expanded(
+                  flex: 3,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,8 +183,8 @@ class RankingsWidget extends StatelessWidget {
                     ]
               ),
                 ),
-              SizedBox(width: 10),
               Expanded(
+                flex: 2,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,

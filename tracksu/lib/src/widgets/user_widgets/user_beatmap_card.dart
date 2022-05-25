@@ -35,8 +35,13 @@ class BeatmapCardWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.all(10.0),
             padding: EdgeInsets.all(5.0),
-            height: height / 8.0,
+            height: height / 7.0,
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [my_colors.Palette.brown.withOpacity(0.4), my_colors.Palette.purple.withOpacity(0.4)]),
               color: my_colors.Palette.brown.shade100,
               image: DecorationImage(
                 image: NetworkImage("${_beatmap.coversJPG}"),
@@ -44,7 +49,6 @@ class BeatmapCardWidget extends StatelessWidget {
                 colorFilter: ColorFilter.mode(
                     Colors.white.withOpacity(0.24), BlendMode.dstATop),
               ),
-              borderRadius: BorderRadius.circular(8.0),
               boxShadow: [
                 BoxShadow(
                   color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
@@ -64,6 +68,7 @@ class BeatmapCardWidget extends StatelessWidget {
                         Row(
                           children: [
                             BeatmapPlayWidget(beatmap: _beatmap),
+                            SizedBox(width: 5),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +94,7 @@ class BeatmapCardWidget extends StatelessWidget {
                                     "by ${_beatmap.artistName}",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      fontSize: 10.0,
+                                      fontSize: 8.0,
                                       color: my_colors.Palette.red,
                                       fontFamily: 'Exo 2',
                                       fontWeight: FontWeight.bold,
@@ -114,8 +119,8 @@ class BeatmapCardWidget extends StatelessWidget {
                             child: Row(
                               children: [
                                 Container(
-                                  width:  45.0,
-                                  height: 45.0,
+                                  width:  35.0,
+                                  height: 35.0,
                                   decoration: BoxDecoration(
                                     boxShadow: [
                                       BoxShadow(
@@ -139,12 +144,12 @@ class BeatmapCardWidget extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      SizedBox(height: 10,),
+                                      SizedBox(height: 8,),
                                       Text(
                                         "Submitted: ${_beatmap.submittedDate}".substring(0, 20),
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
-                                          fontSize: 10.0,
+                                          fontSize: 8.0,
                                           color: Colors.white,
                                           fontFamily: 'Exo 2',
                                           fontWeight: FontWeight.bold,
@@ -161,7 +166,7 @@ class BeatmapCardWidget extends StatelessWidget {
                                         "${_beatmap.rankedStatus}",
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
-                                          fontSize: 10.0,
+                                          fontSize: 8.0,
                                           color: Colors.white,
                                           fontFamily: 'Exo 2',
                                           fontWeight: FontWeight.bold,
@@ -178,7 +183,7 @@ class BeatmapCardWidget extends StatelessWidget {
                                         "mapped by ${_beatmap.mapper.username}",
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
-                                          fontSize: 11.0,
+                                          fontSize: 8.0,
                                           color: Colors.white,
                                           fontFamily: 'Exo 2',
                                           fontWeight: FontWeight.bold,

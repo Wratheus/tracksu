@@ -15,49 +15,56 @@ class ErrorDialogBox extends StatelessWidget {
   Widget build(BuildContext context) {
       return Scaffold(
         backgroundColor:my_colors.Palette.brown.shade100,
-        body: AlertDialog(
-          elevation: 24,
-          backgroundColor:my_colors.Palette.purple,
-            title: Text(_errorMessage,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Exo 2',
-                shadows: [
-                  Shadow(
-                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                    offset: Offset(7, 5),
-                    blurRadius: 10,
-                  )
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => toPreviousPage(context),
-                child: Text("OK", style: TextStyle(
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+          child: AlertDialog(
+            elevation: 24,
+            backgroundColor:my_colors.Palette.purple,
+              title: Text(_errorMessage,
+                textAlign: TextAlign.center,
+                style: TextStyle(
                   color: Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Exo 2',
                   shadows: [
                     Shadow(
-                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                        offset: Offset(7, 5),
-                        blurRadius: 10
-                      )
-                    ]
-                  )
-                ),
-                style: ButtonStyle(
-                  alignment: Alignment.center,
-                  backgroundColor: MaterialStateProperty.all<Color>(my_colors.Palette.pink.shade100),
-                  elevation: MaterialStateProperty.all<double>(20.0),
+                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                      offset: Offset(7, 5),
+                      blurRadius: 10,
+                    )
+                  ],
                 ),
               ),
-            ],
+              actions: [
+                TextButton(
+                  onPressed: () => toPreviousPage(context),
+                  child: Text("OK", style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Exo 2',
+                    shadows: [
+                      Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10
+                        )
+                      ]
+                    )
+                  ),
+                  style: ButtonStyle(
+                    alignment: Alignment.center,
+                    backgroundColor: MaterialStateProperty.all<Color>(my_colors.Palette.pink.shade100),
+                    elevation: MaterialStateProperty.all<double>(20.0),
+                  ),
+                ),
+              ],
+          ),
         ),
       );
     }

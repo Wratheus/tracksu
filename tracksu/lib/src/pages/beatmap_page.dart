@@ -45,7 +45,13 @@ class _BeatmapPage extends StatelessWidget {
                 (_item as Scores).mapTitle);
           }
             return Scaffold(
-              body: const Center(child: CircularProgressIndicator()),
+              body: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [my_colors.Palette.brown, my_colors.Palette.purple])),
+                  child: const Center(child: CircularProgressIndicator())),
               backgroundColor: my_colors.Palette.brown.shade100,);
           }
         if (state is BeatmapErrorState) { // Throw error if state is UserError
@@ -58,49 +64,62 @@ class _BeatmapPage extends StatelessWidget {
             backgroundColor: my_colors.Palette.brown.shade100,
             child: Scaffold(
                 backgroundColor:my_colors.Palette.brown.shade200,
-                body: Center(
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverAppBar(
-                        floating: true,
-                        title: Text("Beatmap",
-                          style: TextStyle(
-                            fontSize: 24.0,
-                            color: Colors.white,
-                            fontFamily: 'Exo 2',
-                            fontWeight: FontWeight.bold,
-                            shadows: [
-                              Shadow(
-                                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                                offset: Offset(7, 5),
-                                blurRadius: 10,
-                              )
-                            ],
+                body: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [my_colors.Palette.brown, my_colors.Palette.purple])),
+                  child: Center(
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverAppBar(
+                          flexibleSpace: Container(
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [my_colors.Palette.purple, my_colors.Palette.purple.shade200]))),
+                          floating: true,
+                          title: Text("Beatmap",
+                            style: TextStyle(
+                              fontSize: 24.0,
+                              color: Colors.white,
+                              fontFamily: 'Exo 2',
+                              fontWeight: FontWeight.bold,
+                              shadows: [
+                                Shadow(
+                                  color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                  offset: Offset(7, 5),
+                                  blurRadius: 10,
+                                )
+                              ],
+                            ),
                           ),
+                          backgroundColor: my_colors.Palette.purple,
                         ),
-                        backgroundColor: my_colors.Palette.purple,
-                      ),
-                      SliverToBoxAdapter(
-                        child: Column(
-                          children: [
-                            BeatmapInfoWidget(beatmap: state.beatmapInstance),
-                            SizedBox(height: 5,),
-                            ListView.builder(
-                                padding: EdgeInsets.all(0.0),
-                                physics: NeverScrollableScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                itemCount: state.beatmapLeaderboard.length,
-                                itemBuilder: (context, index){
-                                  return InkWell(
-                                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.beatmapLeaderboard[index].username))),
-                                      child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
-                                  );}
-                            )
-                          ]
-                        ),
-                      )
-                    ],
+                        SliverToBoxAdapter(
+                          child: Column(
+                            children: [
+                              BeatmapInfoWidget(beatmap: state.beatmapInstance),
+                              SizedBox(height: 5,),
+                              ListView.builder(
+                                  padding: EdgeInsets.all(0.0),
+                                  physics: NeverScrollableScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  itemCount: state.beatmapLeaderboard.length,
+                                  itemBuilder: (context, index){
+                                    return InkWell(
+                                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.beatmapLeaderboard[index].username))),
+                                        child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
+                                    );}
+                              )
+                            ]
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 )
             ),

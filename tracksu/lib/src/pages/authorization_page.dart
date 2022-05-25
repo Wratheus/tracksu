@@ -77,16 +77,23 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           backgroundColor: my_colors.Palette.purple,
         ),
-        body: WebView(
-          javascriptMode: JavascriptMode.unrestricted,
-          initialUrl: loginUrl,
-          onWebViewCreated: (controller) {
-            _webViewController = controller;
-          },
-          onPageFinished: (_) {
-            currentUrlCheck();
-          },
-          backgroundColor: my_colors.Palette.brown.shade200,
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [my_colors.Palette.brown, my_colors.Palette.purple])),
+          child: WebView(
+            javascriptMode: JavascriptMode.unrestricted,
+            initialUrl: loginUrl,
+            onWebViewCreated: (controller) {
+              _webViewController = controller;
+            },
+            onPageFinished: (_) {
+              currentUrlCheck();
+            },
+            backgroundColor: my_colors.Palette.brown.shade200,
+          ),
         )
     );
   }

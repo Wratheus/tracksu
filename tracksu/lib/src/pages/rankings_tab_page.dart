@@ -14,6 +14,12 @@ class RankingsTabPage extends StatelessWidget {
           headerSliverBuilder: (context, value){
             return [
               SliverAppBar(
+                flexibleSpace: Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [my_colors.Palette.purple, my_colors.Palette.purple.shade200]))),
                 floating: true,
                 pinned: false,
                 title: Text("Leaderboard",

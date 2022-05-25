@@ -35,8 +35,15 @@ class _UserPage extends StatelessWidget {
         if (username != null) {
           context.read<UserCubit>().loadUser(username!, mode!);
           return Scaffold(
-            body: Center(
-                child: CircularProgressIndicator()),
+            body: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+              child: Center(
+                  child: CircularProgressIndicator()),
+            ),
             backgroundColor: my_colors.Palette.brown.shade100,
           );
         }
@@ -44,8 +51,15 @@ class _UserPage extends StatelessWidget {
           context.read<UserCubit>().loadUserMe(mode!);
           return RefreshIndicator(child:
             Scaffold(
-              body: Center(
-                  child: CircularProgressIndicator()),
+              body: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                child: Center(
+                    child: CircularProgressIndicator()),
+              ),
               backgroundColor: my_colors.Palette.brown.shade100,
             ),
             onRefresh: () => context.read<UserCubit>().reloadUser(),
@@ -59,8 +73,15 @@ class _UserPage extends StatelessWidget {
       if (state is UserLoadingState) {
         print("Loading User");
         return Scaffold(
-          body: Center(
-              child: CircularProgressIndicator()),
+          body: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+            child: Center(
+                child: CircularProgressIndicator()),
+          ),
           backgroundColor: my_colors.Palette.brown.shade100,
         );
       }
@@ -73,14 +94,21 @@ class _UserPage extends StatelessWidget {
             child:
             Scaffold(
               backgroundColor: my_colors.Palette.brown.shade100,
-              body: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 15.0,),
-                    UserSearchWidget(),
-                    UserInfoWidget(user: state.userInstance),
-                    UserListTilesElements(userInstance: state.userInstance, mode: mode!),
-                  ],
+              body: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 15.0,),
+                      UserSearchWidget(),
+                      UserInfoWidget(user: state.userInstance),
+                      UserListTilesElements(userInstance: state.userInstance, mode: mode!),
+                    ],
+                  ),
                 ),
               ),
             ),
