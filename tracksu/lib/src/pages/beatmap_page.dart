@@ -11,8 +11,8 @@ import '../widgets/beatmap_widgets/beatmap_widget.dart';
 import '../pages/user_tab_page.dart';
 
 class BeatmapPage extends StatelessWidget {
-  final Object _item; // [Score or Beatmap] object from UserPage contains information about map ID and map Name for future requests
-  const BeatmapPage({Key? key, required item}):
+  final Object? _item; // [Score or Beatmap] object from UserPage contains information about map ID and map Name for future requests
+  const BeatmapPage({Key? key, item}):
         _item = item,
         super(key: key);
 
@@ -25,7 +25,7 @@ class BeatmapPage extends StatelessWidget {
 }
 
 class _BeatmapPage extends StatelessWidget {
-  final Object _item;
+  final Object? _item;
   const _BeatmapPage({Key? key, required item}) :
         _item = item,
         super(key: key);
@@ -50,9 +50,9 @@ class _BeatmapPage extends StatelessWidget {
                       gradient: LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: [my_colors.Palette.brown, my_colors.Palette.purple])),
+                          colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
                   child: const Center(child: CircularProgressIndicator())),
-              backgroundColor: my_colors.Palette.brown.shade100,);
+             );
           }
         if (state is BeatmapErrorState) { // Throw error if state is UserError
           return ErrorPage(
@@ -63,13 +63,12 @@ class _BeatmapPage extends StatelessWidget {
           return RefreshIndicator(
             backgroundColor: my_colors.Palette.brown.shade100,
             child: Scaffold(
-                backgroundColor:my_colors.Palette.brown.shade200,
                 body: Container(
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: [my_colors.Palette.brown, my_colors.Palette.purple])),
+                          colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
                   child: Center(
                     child: CustomScrollView(
                       slivers: [

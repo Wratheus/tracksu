@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tracksu/src/pages/home_page.dart';
 
 import '../pages/error_page.dart';
 import '../pages/rankings_tab_page.dart';
@@ -7,7 +8,6 @@ import '../widgets/rankings_widgets/rankings_search_filters.dart';
 import '../pages/cubit/rankings_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 import '../widgets/rankings_widgets/rankings_widget.dart';
-import '../pages/user_tab_page.dart';
 
 class RankingsPage extends StatelessWidget {
   final String? mode;
@@ -72,7 +72,7 @@ class _RankingsPage extends StatelessWidget {
                       itemCount: state.rankingsList.length,
                       itemBuilder: (context, index){
                       return InkWell(
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.rankingsList[index].username))),
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1, username: state.rankingsList[index].username))),
                         child: RankingsWidget(item: state.rankingsList[index])
                     );}
                   ),

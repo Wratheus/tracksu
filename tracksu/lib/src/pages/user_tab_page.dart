@@ -2,11 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:tracksu/src/pages/user_page.dart';
 
 import '../utils/color_contrasts.dart' as my_colors;
+import '../widgets/user_widgets/user_search_widget.dart';
 
-class UserTabPage extends StatelessWidget {
-  final username;
-  const UserTabPage({Key? key, this.username})
-      :super(key: key);
+// ignore: must_be_immutable
+class UserTabPage extends StatefulWidget {
+  String? _username;
+  UserTabPage({Key? key, username})
+      :
+        _username = username,
+        super(key: key);
+
+  @override
+  State<UserTabPage> createState() => _UserTabPageState();
+}
+class _UserTabPageState extends State<UserTabPage> {
+  bool searchWidgetIsOpen = false;
   @override
   Widget build(BuildContext context) {
      return DefaultTabController(
@@ -20,9 +30,10 @@ class UserTabPage extends StatelessWidget {
                       gradient: LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: [my_colors.Palette.purple, my_colors.Palette.purple.shade200]))),
+                          colors: [my_colors.Palette.purple.withOpacity(1), my_colors.Palette.purple.shade200.withOpacity(1)]))),
               floating: true,
               pinned: false,
+              snap: true,
               title: Text("User page",
                 style: TextStyle(
                   fontSize: 24.0,
@@ -38,6 +49,12 @@ class UserTabPage extends StatelessWidget {
                   ],
                 ),
               ),
+              actions: [
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: UserSearchWidget(),
+                )
+              ],
               backgroundColor: my_colors.Palette.purple,
                 bottom: TabBar(
                   labelStyle: TextStyle(
@@ -66,10 +83,10 @@ class UserTabPage extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
-            UserPage(username: username, mode: 'osu'),
-            UserPage(username: username, mode: 'taiko'),
-            UserPage(username: username, mode: 'fruits'),
-            UserPage(username: username, mode: 'mania')
+            UserPage(username: widget._username, mode: 'osu'),
+            UserPage(username: widget._username, mode: 'taiko'),
+            UserPage(username: widget._username, mode: 'fruits'),
+            UserPage(username: widget._username, mode: 'mania')
           ],
         ),
       )

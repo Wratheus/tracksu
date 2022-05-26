@@ -18,7 +18,7 @@ class _LoginScreenWindowsWebView extends State<LoginScreenWindowsWebView> {
   final _textController = TextEditingController();
   final loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/tracksu&response_type=code&scope=public";
   String? code;
-  bool _isWebviewSuspended = false;
+  // bool _isWebviewSuspended = false;
 
   @override
   void initState() {

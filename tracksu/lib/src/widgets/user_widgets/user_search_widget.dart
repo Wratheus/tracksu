@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../pages/user_tab_page.dart';
+import '../../pages/home_page.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
 
 class UserSearchWidget extends StatelessWidget {
@@ -24,14 +24,14 @@ class UserSearchWidget extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(left: width/23),
           alignment: Alignment.center,
-          width: width/2.15,
+          width: width/2.23,
           height: height/20,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [my_colors.Palette.brown.withOpacity(1), my_colors.Palette.brown.shade200.withOpacity(1)]),
+              colors: [my_colors.Palette.purple.shade100.withOpacity(0.6), my_colors.Palette.purple.shade200.withOpacity(0.6)]),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
@@ -47,16 +47,16 @@ class UserSearchWidget extends StatelessWidget {
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(1)),
+                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(0.6)),
 
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(1)),
+                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(0.6)),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(1)),
+                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(0.6)),
               ),
               labelText: "Username",
               labelStyle: const TextStyle(
@@ -80,7 +80,7 @@ class UserSearchWidget extends StatelessWidget {
             keyboardType: TextInputType.text,
             controller: textController,
             // onSubmitted: (_) => context.read<UserCubit>().loadUser(textController.text, 'osu'),
-            onSubmitted: (_) => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: textController.text.trim()))),
+            onSubmitted: (_) => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1, username: textController.text.trim()))),
           )
       )
     ]

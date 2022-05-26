@@ -144,14 +144,14 @@ class _UserListTilesElements extends State<UserListTilesElements> {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery
+/*    final double height = MediaQuery
         .of(context)
         .size
         .height;
     final double width = MediaQuery
         .of(context)
         .size
-        .width;
+        .width;*/
 
     return Column(
         children: [
@@ -319,7 +319,22 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                             item: _userBestScoresInstance[index])
                     );
                   }
-              ) : CircularProgressIndicator(),
+              ) : Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: my_colors.Palette.brown.shade200,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        spreadRadius: 2,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                  child: Center(child: CircularProgressIndicator())),
             ],
           ),
           ExpansionTile(
@@ -362,7 +377,22 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                         child: ScoreCardWidget(
                             item: _userFirstScoresInstance[index])
                     );
-                  }) : CircularProgressIndicator(),
+                  }) : Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: my_colors.Palette.brown.shade200,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        spreadRadius: 2,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                  child: Center(child: CircularProgressIndicator())),
             ],
           ),
           Row(
@@ -439,7 +469,22 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                           beatmap: _userFavouriteBeatmapInstance[index],
                         )
                     );
-                  }) : CircularProgressIndicator(),
+                  }) : Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: my_colors.Palette.brown.shade200,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        spreadRadius: 2,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                  child: Center(child: CircularProgressIndicator())),
             ],
           ),
           // ranked tile
@@ -482,7 +527,22 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                           beatmap: _userRankedBeatmapInstance[index],
                         )
                     );
-                  }) : CircularProgressIndicator(),
+                  }) : Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: my_colors.Palette.brown.shade200,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        spreadRadius: 2,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                  child: Center(child: CircularProgressIndicator())),
             ],
           ),
           // loved Tile
@@ -525,7 +585,22 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                           beatmap: _userLovedBeatmapInstance[index],
                         )
                     );
-                  }) : CircularProgressIndicator(),
+                  }) : Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: my_colors.Palette.brown.shade200,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        spreadRadius: 2,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                  child: Center(child: CircularProgressIndicator())),
             ],
           ),
           // pending tile
@@ -568,7 +643,22 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                           beatmap: _userPendingBeatmapInstance[index],
                         )
                     );
-                  }) : CircularProgressIndicator(),
+                  }) : Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: my_colors.Palette.brown.shade200,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        spreadRadius: 2,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                  child: Center(child: CircularProgressIndicator())),
             ],
           ),
           // graveyard tile
@@ -611,7 +701,22 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                           beatmap: _userGraveyardBeatmapInstance[index],
                         )
                     );
-                  }) : CircularProgressIndicator(),
+                  }) : Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: my_colors.Palette.brown.shade200,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                        offset: Offset(7, 5),
+                        spreadRadius: 2,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                  child: Center(child: CircularProgressIndicator())),
             ],
           ),
         ],

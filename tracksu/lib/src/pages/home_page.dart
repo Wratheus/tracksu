@@ -6,30 +6,38 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // add animat
 import '../utils/color_contrasts.dart' as my_colors;
 import '../pages/last_news_page.dart';
 
-// Home page is navigation bar(News tab selected by default
+// Home page is navigation bar(User page selected by default
+// ignore: must_be_immutable
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
-
+  int? _pageIndex;
+  String? _username;
+  HomePage({Key? key, int? pageIndex, String? username}) :
+        _pageIndex = pageIndex,
+        _username = username,
+        super(key: key);
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState(_pageIndex, _username);
 }
 
-
 class _HomePageState extends State<HomePage> {
-
-  int pageIndex = 0;
+  int? _pageIndex;
+  String? _username;
+  _HomePageState(pageIndex, username) :
+      _pageIndex = pageIndex,
+      _username = username;
   GlobalKey bottomNavigationKey = GlobalKey();
   List<Widget> pageList = <Widget>[
     LastNewsPage(),
     UserTabPage(),
     RankingsTabPage(),
   ];
-
   @override
   Widget build(BuildContext context) {
+    if (_pageIndex == null) _pageIndex = 1; // default pafe is User page
+    if (_username != null) pageList[1] = UserTabPage(username: _username); // if username provided -> open that userpage
       return Scaffold(
         backgroundColor: my_colors.Palette.purple,
-        body: pageList.elementAt(pageIndex),
+        body: pageList.elementAt(_pageIndex!),
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -40,14 +48,14 @@ class _HomePageState extends State<HomePage> {
               height: 50,
               key: bottomNavigationKey,
               backgroundColor: Colors.transparent,
-              buttonBackgroundColor: Colors.brown.shade200,
+              buttonBackgroundColor: Colors.brown.shade600,
               color: Colors.transparent,
               animationDuration: Duration(milliseconds: 450),
               animationCurve: Curves.linear,
               onTap: (value){
                  setState(() {
-                   pageIndex = value;});},
-              index: pageIndex,
+                   _pageIndex = value;});},
+              index: _pageIndex!,
               items: [
                 Image.asset("assets/icon_utils/news.png", scale: 15, color: Colors.white),
                 Image.asset("assets/icon_utils/user.png", scale: 15, color: Colors.white),

@@ -48,10 +48,6 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
   @override
   Widget build(BuildContext context) {
 
-    final double height = MediaQuery
-        .of(context)
-        .size
-        .height;
     final double width = MediaQuery
         .of(context)
         .size
@@ -59,7 +55,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
 
     widget._dropdownValue = widget._filterValue;
     return Container(
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.only(left: 20, right: 20),
       child: Column(
         children: [
           Row(
@@ -80,7 +76,6 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
               DropdownButton(
                   dropdownColor: my_colors.Palette.brown,
                   // countryItem is Iter throw mapped countryList, gave this widget from cubit state
-                  value: widget._dropdownCountryValue,
                   items: widget._countryList.map((countryItem) =>
                       DropdownMenuItem(
                         value: countryItem,
@@ -105,12 +100,13 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                         )
                       )
                   ).toList(),
+                value: widget._dropdownCountryValue,
                   onChanged: (value) => setState(() {
                     widget._dropdownCountryValue = value as Country?;
                     widget._countryValue = value;
                     print("selected : ${widget._dropdownCountryValue}");
                     context.read<RankingsCubit>().loadRankings(widget._countryValue, widget._filterValue, widget._page, widget._mode);
-                  })
+                  }),
               ),
               SizedBox(width: width/35,),
               Text("Friends: ", style: TextStyle(

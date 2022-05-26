@@ -18,10 +18,10 @@ class ScoreCardWidget extends StatelessWidget {
         .of(context)
         .size
         .height;
-    final double width = MediaQuery
+/*    final double width = MediaQuery
         .of(context)
         .size
-        .width;
+        .width;*/
     final List<Image> mods_icons = []; // for mods icons
     if (_item.mods != []) {
       for (int i = 0; i < _item.mods.length; i++) {
@@ -44,10 +44,6 @@ class ScoreCardWidget extends StatelessWidget {
         height: height / 8.0,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [my_colors.Palette.brown.withOpacity(0.4), my_colors.Palette.purple.withOpacity(0.4)]),
           image: DecorationImage(
             image: NetworkImage("${_item.coversJPG}"),
             fit: BoxFit.fill,

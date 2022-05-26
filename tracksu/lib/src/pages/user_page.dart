@@ -5,7 +5,6 @@ import '../pages/user_tab_page.dart';
 import '../pages/cubit/user_cubit.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 import '../pages/error_page.dart';
-import '../widgets/user_widgets/user_search_widget.dart';
 import '../widgets/user_widgets/user_widget.dart';
 import '../widgets/user_widgets/user_list_tile_elements.dart';
 
@@ -77,7 +76,7 @@ class _UserPage extends StatelessWidget {
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+                    end: Alignment.center,
                     colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
             child: Center(
                 child: CircularProgressIndicator()),
@@ -103,8 +102,6 @@ class _UserPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      const SizedBox(height: 15.0,),
-                      UserSearchWidget(),
                       UserInfoWidget(user: state.userInstance),
                       UserListTilesElements(userInstance: state.userInstance, mode: mode!),
                     ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tracksu/src/pages/home_page.dart';
 
 import '../../widgets/beatmap_widgets/beatmap_play_widget.dart';
 import '../../models/beatmap.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
-import '../../pages/user_tab_page.dart';
 
 class BeatmapCardWidget extends StatelessWidget {
   final Beatmap _beatmap;
@@ -25,10 +25,6 @@ class BeatmapCardWidget extends StatelessWidget {
         .of(context)
         .size
         .height;
-    final double width = MediaQuery
-        .of(context)
-        .size
-        .width;
 
     return Column(
         children: [
@@ -38,16 +34,12 @@ class BeatmapCardWidget extends StatelessWidget {
             height: height / 7.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [my_colors.Palette.brown.withOpacity(0.4), my_colors.Palette.purple.withOpacity(0.4)]),
               color: my_colors.Palette.brown.shade100,
               image: DecorationImage(
                 image: NetworkImage("${_beatmap.coversJPG}"),
                 fit: BoxFit.fill,
                 colorFilter: ColorFilter.mode(
-                    Colors.white.withOpacity(0.24), BlendMode.dstATop),
+                    Colors.white.withOpacity(0.34), BlendMode.dstATop),
               ),
               boxShadow: [
                 BoxShadow(
@@ -114,7 +106,7 @@ class BeatmapCardWidget extends StatelessWidget {
                         ),
                         Spacer(),
                         InkWell(
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: _beatmap.mapper.username!))),
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1, username: _beatmap.mapper.username!))),
                           child: Container(
                             child: Row(
                               children: [

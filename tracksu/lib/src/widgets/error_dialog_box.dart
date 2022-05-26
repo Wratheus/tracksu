@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../pages/error_page.dart';
+import '../pages/home_page.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 
 // ignore: must_be_immutable
@@ -69,9 +69,19 @@ class ErrorDialogBox extends StatelessWidget {
       );
     }
   toPreviousPage(context) {
-    Navigator.pop(context, ErrorPage(exceptionPageName: _exceptionPageName, errorMessage: _errorMessage));
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => _exceptionPageName));
+
+    if (_exceptionPageName == "LastNewsPage"){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 0)));
+    }
+    if (_exceptionPageName == "UserTabPage"){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1)));
+    }
+    if (_exceptionPageName == "RankingsTabPage"){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 2)));
+    }
+    else {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 2,)));
+    }
   }
 }
 

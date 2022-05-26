@@ -16,14 +16,6 @@ class RankingsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    final double width = MediaQuery
-        .of(context)
-        .size
-        .width;
     String accuracy = "${_item.hitAccuracy}";
     if (accuracy.length > 5) {
       accuracy = accuracy.substring(0, 5);
@@ -39,7 +31,7 @@ class RankingsWidget extends StatelessWidget {
       color: my_colors.Palette.brown,
       elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-      margin: const EdgeInsets.only(bottom: 8.0, left: 10.0, right: 10.0),
+      margin: EdgeInsets.only(bottom: 8.0, left: 10.0, right: 10.0),
       child: Container(
         padding: EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 8),
         decoration: BoxDecoration(
