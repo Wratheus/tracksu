@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tracksu/src/pages/home_page.dart';
 
 import '../models/beatmap.dart';
 import '../pages/cubit/beatmap_cubit.dart';
@@ -8,7 +9,6 @@ import '../models/scores.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 import '../widgets/beatmap_widgets/beatmap_score_widget.dart';
 import '../widgets/beatmap_widgets/beatmap_widget.dart';
-import '../pages/user_tab_page.dart';
 
 class BeatmapPage extends StatelessWidget {
   final Object? _item; // [Score or Beatmap] object from UserPage contains information about map ID and map Name for future requests
@@ -82,7 +82,7 @@ class _BeatmapPage extends StatelessWidget {
                           floating: true,
                           title: Text("Beatmap",
                             style: TextStyle(
-                              fontSize: 24.0,
+                              fontSize: 22.0,
                               color: Colors.white,
                               fontFamily: 'Exo 2',
                               fontWeight: FontWeight.bold,
@@ -110,7 +110,7 @@ class _BeatmapPage extends StatelessWidget {
                                   itemCount: state.beatmapLeaderboard.length,
                                   itemBuilder: (context, index){
                                     return InkWell(
-                                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserTabPage(username: state.beatmapLeaderboard[index].username))),
+                                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1, username: state.beatmapLeaderboard[index].username))),
                                         child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
                                     );}
                               )

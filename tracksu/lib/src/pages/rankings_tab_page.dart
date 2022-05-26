@@ -24,7 +24,7 @@ class RankingsTabPage extends StatelessWidget {
                 pinned: false,
                 title: Text("Leaderboard",
                   style: TextStyle(
-                    fontSize: 24.0,
+                    fontSize: 22.0,
                     color: Colors.white,
                     fontFamily: 'Exo 2',
                     fontWeight: FontWeight.bold,

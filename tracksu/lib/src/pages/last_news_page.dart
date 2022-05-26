@@ -26,38 +26,38 @@ class _LastNewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewsCubit, NewsState>(builder: (context, state){
       if(state is NewsInitial){
-      context.read<NewsCubit>().informInitial();
+        context.read<NewsCubit>().informInitial();
         context.read<NewsCubit>().loadNews(); // run Circular progress bar while news is loading
         return Scaffold(
             appBar: AppBar(
-                backgroundColor: my_colors.Palette.purple,
-                title: Text("News",
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    color: Colors.white,
-                    fontFamily: 'Exo 2',
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                        offset: Offset(7, 5),
-                        blurRadius: 10,
-                      )
-                    ],
-                  ),
+              backgroundColor: my_colors.Palette.purple,
+              title: Text("News",
+                style: TextStyle(
+                  fontSize: 24.0,
+                  color: Colors.white,
+                  fontFamily: 'Exo 2',
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                      offset: Offset(7, 5),
+                      blurRadius: 10,
+                    )
+                  ],
                 ),
+              ),
             ),
-                backgroundColor: my_colors.Palette.brown.shade100,
-                body: Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                )
+            backgroundColor: my_colors.Palette.brown.shade100,
+            body: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            )
         );
       }
       if(state is NewsErrorState){ // Throw error if state is NewsError
@@ -66,73 +66,79 @@ class _LastNewsPage extends StatelessWidget {
       if(state is NewsLoadedState){ // Reload News if state is NewsReload (wheel page down)
         return RefreshIndicator(
           backgroundColor: my_colors.Palette.brown.shade100,
-          child:
-          Scaffold(
-              backgroundColor:my_colors.Palette.brown.shade200,
-              body: Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverAppBar(
-                        flexibleSpace: Container(
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [my_colors.Palette.purple, my_colors.Palette.purple.shade200]))),
-                        floating: true,
-                        title: Text("News",
-                          style: TextStyle(
-                            fontSize: 24.0,
-                            color: Colors.white,
-                            fontFamily: 'Exo 2',
-                            fontWeight: FontWeight.bold,
-                            shadows: [
-                              Shadow(
-                                color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                                offset: Offset(7, 5),
-                                blurRadius: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                        backgroundColor: my_colors.Palette.purple,
+                  child: NestedScrollView(
+                      body: Scaffold(
                       ),
-                      SliverToBoxAdapter(
-                        child: Column(
-                          children: [
-                            SizedBox(height: 5,),
-                            ListView.builder(
-                                padding: EdgeInsets.all(0.0),
-                                itemCount: state.newsList.length,
-                                physics: NeverScrollableScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                itemBuilder: (context, index){
-                                  return InkWell(
-                                      onTap: () => launchUniversalLink(Uri.parse(state.newsList[index].editURL!)),
-                                      child: NewsWidget(item: state.newsList[index])
-                                  );}
+                      headerSliverBuilder: (context, value) {
+                        return
+                        [
+                          SliverAppBar(
+                            flexibleSpace: Container(
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          my_colors.Palette.purple,
+                                          my_colors.Palette.purple.shade200
+                                        ]))),
+                            floating: true,
+                            title: Text("News",
+                              style: TextStyle(
+                                fontSize: 24.0,
+                                color: Colors.white,
+                                fontFamily: 'Exo 2',
+                                fontWeight: FontWeight.bold,
+                                shadows: [
+                                  Shadow(
+                                    color: my_colors.Palette.hotPink.shade900
+                                        .withOpacity(0.25),
+                                    offset: Offset(7, 5),
+                                    blurRadius: 10,
+                                  )
+                                ],
+                              ),
                             ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              )
+                            backgroundColor: my_colors.Palette.purple,
+                          ),
+                          SliverToBoxAdapter(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 5,),
+                                  ListView.builder(
+                                      padding: EdgeInsets.all(0.0),
+                                      itemCount: state.newsList.length,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      scrollDirection: Axis.vertical,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, index) {
+                                        return InkWell(
+                                            onTap: () =>
+                                                launchUniversalLink(Uri.parse(
+                                                    state.newsList[index]
+                                                        .editURL!)),
+                                            child: NewsWidget(
+                                                item: state.newsList[index])
+                                        );
+                                      }
+                                  ),
+                                ],
+                              ),
+                            ),
+                            ),
+                        ];
+                      }
           ),
-            onRefresh: () => context.read<NewsCubit>().reloadNews(),
+          onRefresh: () => context.read<NewsCubit>().reloadNews(),
         );
       }
       return Container();
     });
   }
 }
-
-

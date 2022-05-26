@@ -80,7 +80,7 @@ class ErrorDialogBox extends StatelessWidget {
       Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 2)));
     }
     else {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 2,)));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1,)));
     }
   }
 }

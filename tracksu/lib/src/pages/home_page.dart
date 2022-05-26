@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tracksu/src/pages/rankings_tab_page.dart';
 import 'package:tracksu/src/pages/user_tab_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // add animated navigation bar
+import 'package:tracksu/src/widgets/drawer_widgets/drawer.dart';
 
 import '../utils/color_contrasts.dart' as my_colors;
 import '../pages/last_news_page.dart';
@@ -33,11 +34,14 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    if (_pageIndex == null) _pageIndex = 1; // default pafe is User page
-    if (_username != null) pageList[1] = UserTabPage(username: _username); // if username provided -> open that userpage
+      if (_pageIndex == null) {
+        _pageIndex = 1;
+      }// default page is User page
+      if (_username != null) pageList[1] = UserTabPage(username: _username); // if username provided -> open that userpage
       return Scaffold(
-        backgroundColor: my_colors.Palette.purple,
-        body: pageList.elementAt(_pageIndex!),
+          drawer: NavigationDrawer(),
+          backgroundColor: my_colors.Palette.purple,
+          body: pageList.elementAt(_pageIndex!),
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -45,24 +49,24 @@ class _HomePageState extends State<HomePage> {
                     end: Alignment.bottomRight,
                     colors: [my_colors.Palette.brown, my_colors.Palette.purple])),
             child: CurvedNavigationBar(
-              height: 50,
-              key: bottomNavigationKey,
-              backgroundColor: Colors.transparent,
-              buttonBackgroundColor: Colors.brown.shade600,
-              color: Colors.transparent,
-              animationDuration: Duration(milliseconds: 450),
-              animationCurve: Curves.linear,
-              onTap: (value){
-                 setState(() {
-                   _pageIndex = value;});},
-              index: _pageIndex!,
-              items: [
-                Image.asset("assets/icon_utils/news.png", scale: 15, color: Colors.white),
-                Image.asset("assets/icon_utils/user.png", scale: 15, color: Colors.white),
-                Image.asset("assets/icon_utils/ranking.png", scale: 15, color: Colors.white),
-              ]
-        ),
+                height: 50,
+                key: bottomNavigationKey,
+                backgroundColor: Colors.transparent,
+                buttonBackgroundColor: Colors.brown.shade600,
+                color: Colors.transparent,
+                animationDuration: Duration(milliseconds: 450),
+                animationCurve: Curves.linear,
+                onTap: (value){
+                  setState(() {
+                    _pageIndex = value;});},
+                index: _pageIndex!,
+                items: [
+                  Image.asset("assets/icon_utils/news.png", scale: 15, color: Colors.white),
+                  Image.asset("assets/icon_utils/user.png", scale: 15, color: Colors.white),
+                  Image.asset("assets/icon_utils/ranking.png", scale: 15, color: Colors.white),
+                ]
+            ),
           )
       );
     }
-  }
+}

@@ -22,24 +22,14 @@ class UserSearchWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(left: width/23),
-          alignment: Alignment.center,
-          width: width/2.23,
+          width: width/2,
           height: height/20,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [my_colors.Palette.purple.shade100.withOpacity(0.6), my_colors.Palette.purple.shade200.withOpacity(0.6)]),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              offset: Offset(7, 5),
-              spreadRadius: 24,
-              blurRadius: 23,
-            )
-          ],
+              colors: [my_colors.Palette.brown.shade100.withOpacity(0.6), my_colors.Palette.brown.shade200.withOpacity(0.6)]),
         ),
           child: TextField(
             textAlign: TextAlign.left,
@@ -47,16 +37,16 @@ class UserSearchWidget extends StatelessWidget {
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(0.6)),
+                borderSide: BorderSide(color: my_colors.Palette.brown.shade200.withOpacity(0.3)),
 
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(0.6)),
+                borderSide: BorderSide(color: my_colors.Palette.brown.shade200.withOpacity(0.3)),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: my_colors.Palette.brown.withOpacity(0.6)),
+                borderSide: BorderSide(color: my_colors.Palette.brown.shade200.withOpacity(0.3)),
               ),
               labelText: "Username",
               labelStyle: const TextStyle(

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:tracksu/src/requests/requests.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../models/user.dart';
 import '../pages/home_page.dart';
 import '../utils/color_contrasts.dart' as my_colors;
+import '../utils/secure_storage.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -13,9 +15,20 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _userMeLoaded = false;
   String loginUrl = "https://osu.ppy.sh/oauth/authorize?client_id=9725&redirect_uri=https://wratheus.github.io/tracksu&response_type=code&scope=public";
   late WebViewController _webViewController;
   String? code = '0';
+
+  Future<bool> loadUserMeToSecureStorage() async {
+    final User userMeInstance = await getUserMe((await UserSecureStorage.getTokenFromStorage())!, "osu");
+    await UserSecureStorage.setUserMeAvatarFromStorage(userMeInstance.avatarURL);
+    await UserSecureStorage.setUserMeUsernameFromStorage(userMeInstance.username);
+    setState(() {
+      _userMeLoaded = true;
+    });
+    return _userMeLoaded;
+  }
 
   @override
   initState() {
@@ -46,11 +59,13 @@ class _LoginScreenState extends State<LoginScreen> {
           if (this.code != null) {
             print("requesting new token");
             await getTokenAsAuthorize(this.code);
-            setState(() {
+            if (await loadUserMeToSecureStorage() == true){ // wait result of func
+              setState(() {
               Navigator.pop(context, LoginScreen());
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => HomePage()));
-            });
+            });}
+            else AsyncSnapshot.waiting(); // if loadUserMeToSecureStorage failed
           };
         }
       }

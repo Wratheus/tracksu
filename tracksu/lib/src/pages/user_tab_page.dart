@@ -24,41 +24,23 @@ class _UserTabPageState extends State<UserTabPage> {
       child: NestedScrollView(
         headerSliverBuilder: (context, value){
           return [
-            SliverAppBar(
-              flexibleSpace: Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [my_colors.Palette.purple.withOpacity(1), my_colors.Palette.purple.shade200.withOpacity(1)]))),
-              floating: true,
-              pinned: false,
-              snap: true,
-              title: Text("User page",
-                style: TextStyle(
-                  fontSize: 24.0,
-                  color: Colors.white,
-                  fontFamily: 'Exo 2',
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                      offset: Offset(7, 5),
-                      blurRadius: 10,
+            SliverOverlapAbsorber(
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              sliver: SliverAppBar(
+                flexibleSpace: Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [my_colors.Palette.purple.withOpacity(1), my_colors.Palette.purple.shade200.withOpacity(1)])
                     )
-                  ],
                 ),
-              ),
-              actions: [
-                Container(
-                  margin: EdgeInsets.all(10),
-                  child: UserSearchWidget(),
-                )
-              ],
-              backgroundColor: my_colors.Palette.purple,
-                bottom: TabBar(
-                  labelStyle: TextStyle(
-                    fontSize: 16.0,
+                floating: true,
+                snap: true,
+                title: Text("User page",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14.0,
                     color: Colors.white,
                     fontFamily: 'Exo 2',
                     fontWeight: FontWeight.bold,
@@ -70,13 +52,37 @@ class _UserTabPageState extends State<UserTabPage> {
                       )
                     ],
                   ),
-                  indicatorColor: my_colors.Palette.hotPink.shade100,
-                  tabs: [
-                    Tab(text: "osu!", icon: Image.asset('assets/icon_game_mods/mode_osu.png',  scale: 10), iconMargin: EdgeInsets.only(bottom: 0)),
-                    Tab(text: "taiko", icon: Image.asset('assets/icon_game_mods/mode_taiko.png', scale: 10), iconMargin: EdgeInsets.only(bottom: 0) ),
-                    Tab(text: "catch", icon: Image.asset('assets/icon_game_mods/mode_fruits.png',  scale: 10), iconMargin: EdgeInsets.only(bottom: 0)),
-                    Tab(text: "mania", icon: Image.asset('assets/icon_game_mods/mode_mania.png',  scale: 10), iconMargin: EdgeInsets.only(bottom: 0))],
                 ),
+                actions: [
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: UserSearchWidget(),
+                  )
+                ],
+                backgroundColor: my_colors.Palette.purple,
+                  bottom: TabBar(
+                    splashBorderRadius: BorderRadius.circular(10),
+                    labelStyle: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.white,
+                      fontFamily: 'Exo 2',
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                          offset: Offset(7, 5),
+                          blurRadius: 10,
+                        )
+                      ],
+                    ),
+                    indicatorColor: my_colors.Palette.hotPink.shade100,
+                    tabs: [
+                      Tab(text: "osu!", icon: Image.asset('assets/icon_game_mods/mode_osu.png',  scale: 10), iconMargin: EdgeInsets.only(bottom: 0)),
+                      Tab(text: "taiko", icon: Image.asset('assets/icon_game_mods/mode_taiko.png', scale: 10), iconMargin: EdgeInsets.only(bottom: 0) ),
+                      Tab(text: "catch", icon: Image.asset('assets/icon_game_mods/mode_fruits.png',  scale: 10), iconMargin: EdgeInsets.only(bottom: 0)),
+                      Tab(text: "mania", icon: Image.asset('assets/icon_game_mods/mode_mania.png',  scale: 10), iconMargin: EdgeInsets.only(bottom: 0))],
+                  ),
+              ),
             )
           ];
         },
