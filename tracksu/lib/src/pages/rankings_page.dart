@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracksu/src/pages/home_page.dart';
+import 'package:tracksu/src/pages/home_page_desktop.dart';
 
 import '../pages/error_page.dart';
 import '../pages/rankings_tab_page.dart';
@@ -72,7 +75,7 @@ class _RankingsPage extends StatelessWidget {
                       itemCount: state.rankingsList.length,
                       itemBuilder: (context, index){
                       return InkWell(
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1, username: state.rankingsList[index].username))),
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: state.rankingsList[index].username) : HomePageDesktop(pageIndex: 1, username: state.rankingsList[index].username))),
                         child: RankingsWidget(item: state.rankingsList[index])
                     );}
                   ),

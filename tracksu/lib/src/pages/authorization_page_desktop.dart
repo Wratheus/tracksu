@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'home_page_desktop.dart';
 
 import '../models/user.dart';
 import '../requests/requests.dart';
 import '../utils/color_contrasts.dart' as my_colors;
 import '../utils/secure_storage.dart';
-import 'home_page.dart';
 
 // only login as guest supported now
 class LoginScreenWindowsWebView extends StatefulWidget {
@@ -36,7 +36,7 @@ class _LoginScreenWindowsWebView extends State<LoginScreenWindowsWebView> {
   void navigateToHomePage() {
     Navigator.pop(context, LoginScreenWindowsWebView());
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => HomePage()));
+        MaterialPageRoute(builder: (context) => HomePageDesktop()));
   }
 
   @override

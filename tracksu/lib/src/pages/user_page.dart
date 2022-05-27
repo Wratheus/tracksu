@@ -85,7 +85,7 @@ class _UserPage extends StatelessWidget {
         );
       }
       if (state is UserLoadedState) {// Reload News if state is UserReload (wheel page down)
-        print(state.userInstance);
+        print("${state.userInstance.username} is loaded");
         return DefaultTabController(
           length: 4,
           child: RefreshIndicator(

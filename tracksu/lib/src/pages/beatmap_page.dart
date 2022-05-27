@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracksu/src/pages/home_page.dart';
+import 'package:tracksu/src/pages/home_page_desktop.dart';
 import 'package:tracksu/src/widgets/drawer_widgets/drawer.dart';
 
 import '../models/beatmap.dart';
@@ -61,7 +64,7 @@ class _BeatmapPage extends StatelessWidget {
               errorMessage: state.errorMessage);
         }
         if (state is BeatmapLoadedState) { // Reload News if state is UserReload (wheel page down)
-          return RefreshIndicator(
+          return (Platform.isIOS || Platform.isAndroid == true) ? RefreshIndicator(
             backgroundColor: my_colors.Palette.brown.shade100,
             child: Scaffold(
               drawer: NavigationDrawer(),
@@ -112,11 +115,75 @@ class _BeatmapPage extends StatelessWidget {
                                   itemCount: state.beatmapLeaderboard.length,
                                   itemBuilder: (context, index){
                                     return InkWell(
-                                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1, username: state.beatmapLeaderboard[index].username))),
+                                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: state.beatmapLeaderboard[index].username) : HomePageDesktop(pageIndex: 1, username: state.beatmapLeaderboard[index].username))),
                                         child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
                                     );}
                               )
                             ]
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+            ),
+            onRefresh: () => context.read<BeatmapCubit>().reloadBeatmap(),
+          ) :
+          RefreshIndicator(
+            backgroundColor: my_colors.Palette.brown.shade100,
+            child: Scaffold(
+                body: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                  child: Center(
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverAppBar(
+                          flexibleSpace: Container(
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [my_colors.Palette.purple, my_colors.Palette.purple.shade200]))),
+                          floating: true,
+                          title: Text("Beatmap",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              color: Colors.white,
+                              fontFamily: 'Exo 2',
+                              fontWeight: FontWeight.bold,
+                              shadows: [
+                                Shadow(
+                                  color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                  offset: Offset(7, 5),
+                                  blurRadius: 10,
+                                )
+                              ],
+                            ),
+                          ),
+                          backgroundColor: my_colors.Palette.purple,
+                        ),
+                        SliverToBoxAdapter(
+                          child: Column(
+                              children: [
+                                BeatmapInfoWidget(beatmap: state.beatmapInstance),
+                                SizedBox(height: 5,),
+                                ListView.builder(
+                                    padding: EdgeInsets.all(0.0),
+                                    physics: NeverScrollableScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    itemCount: state.beatmapLeaderboard.length,
+                                    itemBuilder: (context, index){
+                                      return InkWell(
+                                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: state.beatmapLeaderboard[index].username) : HomePageDesktop(pageIndex: 1, username: state.beatmapLeaderboard[index].username))),
+                                          child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
+                                      );}
+                                )
+                              ]
                           ),
                         )
                       ],
