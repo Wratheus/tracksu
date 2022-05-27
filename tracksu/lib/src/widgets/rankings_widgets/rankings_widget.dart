@@ -45,89 +45,93 @@ class RankingsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                flex: 3,
-                child: Column(
+                flex: 8,
+                child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(_item.avatarURL),
-                            fit: BoxFit.cover,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                              offset: Offset(7, 5),
-                              spreadRadius: 2,
-                              blurRadius: 3,
-                            )
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 80,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(_item.avatarURL),
+                                  fit: BoxFit.cover,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                    offset: Offset(7, 5),
+                                    spreadRadius: 2,
+                                    blurRadius: 3,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
                           ],
-                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${_item.globalRank}",
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: my_colors.Palette.yellow,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Exo 2',
+                                  shadows: [
+                                    Shadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Text(_item.username,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Exo 2',
+                                    shadows: [
+                                      Shadow(
+                                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                        offset: Offset(7, 5),
+                                        blurRadius: 10,
+                                      )
+                                    ],
+                                  )
+                              ),
+                              SizedBox(height: 25,),
+                              Container(
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      spreadRadius: 2,
+                                      blurRadius: 3,
+                                    )
+                                  ],
+                                ),
+                                child: Image.asset('assets/icon_country_flags/${_item.countryCode}.png',scale: 4.5),
+                              ),
+                            ]
                         ),
                       ),
                     ]),
               ),
-              Expanded(
-                flex: 5,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "${_item.globalRank}",
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        color: my_colors.Palette.yellow,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Exo 2',
-                        shadows: [
-                          Shadow(
-                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                            offset: Offset(7, 5),
-                            blurRadius: 10,
-                          )
-                        ],
-                      ),
-                    ),
-                    Text(_item.username,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2',
-                          shadows: [
-                            Shadow(
-                              color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                              offset: Offset(7, 5),
-                              blurRadius: 10,
-                            )
-                          ],
-                        )
-                    ),
-                    SizedBox(height: 25,),
-                    Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                            offset: Offset(7, 5),
-                            spreadRadius: 2,
-                            blurRadius: 3,
-                          )
-                        ],
-                      ),
-                      child: Image.asset('assets/icon_country_flags/${_item.countryCode}.png',scale: 4.5),
-                    ),
-
-                  ]
-                ),
-              ),
                 Expanded(
-                  flex: 3,
+                  flex: 4,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,7 +180,7 @@ class RankingsWidget extends StatelessWidget {
               ),
                 ),
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,

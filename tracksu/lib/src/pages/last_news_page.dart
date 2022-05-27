@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracksu/src/pages/error_page.dart';
+import 'package:tracksu/src/widgets/drawer_widgets/drawer.dart';
 
 import '../pages/cubit/news_cubit.dart';
 import '../utils/url_launch.dart';
@@ -66,75 +67,68 @@ class _LastNewsPage extends StatelessWidget {
       if(state is NewsLoadedState){ // Reload News if state is NewsReload (wheel page down)
         return RefreshIndicator(
           backgroundColor: my_colors.Palette.brown.shade100,
-                  child: NestedScrollView(
-                      body: Scaffold(
+                  child: Scaffold(
+                    drawer: NavigationDrawer(),
+                    appBar: AppBar(
+                      flexibleSpace: Container(
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    my_colors.Palette.purple,
+                                    my_colors.Palette.purple.shade200
+                                  ]))),
+                      title: Text("News",
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          color: Colors.white,
+                          fontFamily: 'Exo 2',
+                          fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900
+                                  .withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ],
+                        ),
                       ),
-                      headerSliverBuilder: (context, value) {
-                        return
-                        [
-                          SliverAppBar(
-                            flexibleSpace: Container(
+                      backgroundColor: my_colors.Palette.purple,
+                    ),
+                    body: SingleChildScrollView(
+                              child: Container(
                                 decoration: BoxDecoration(
                                     gradient: LinearGradient(
                                         begin: Alignment.topLeft,
                                         end: Alignment.bottomRight,
-                                        colors: [
-                                          my_colors.Palette.purple,
-                                          my_colors.Palette.purple.shade200
-                                        ]))),
-                            floating: true,
-                            title: Text("News",
-                              style: TextStyle(
-                                fontSize: 24.0,
-                                color: Colors.white,
-                                fontFamily: 'Exo 2',
-                                fontWeight: FontWeight.bold,
-                                shadows: [
-                                  Shadow(
-                                    color: my_colors.Palette.hotPink.shade900
-                                        .withOpacity(0.25),
-                                    offset: Offset(7, 5),
-                                    blurRadius: 10,
-                                  )
-                                ],
+                                        colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 5,),
+                                    ListView.builder(
+                                        padding: EdgeInsets.all(0.0),
+                                        itemCount: state.newsList.length,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        scrollDirection: Axis.vertical,
+                                        shrinkWrap: true,
+                                        itemBuilder: (context, index) {
+                                          return InkWell(
+                                              onTap: () =>
+                                                  launchUniversalLink(Uri.parse(
+                                                      state.newsList[index]
+                                                          .editURL!)),
+                                              child: NewsWidget(
+                                                  item: state.newsList[index])
+                                          );
+                                        }
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            backgroundColor: my_colors.Palette.purple,
-                          ),
-                          SliverToBoxAdapter(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 5,),
-                                  ListView.builder(
-                                      padding: EdgeInsets.all(0.0),
-                                      itemCount: state.newsList.length,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      scrollDirection: Axis.vertical,
-                                      shrinkWrap: true,
-                                      itemBuilder: (context, index) {
-                                        return InkWell(
-                                            onTap: () =>
-                                                launchUniversalLink(Uri.parse(
-                                                    state.newsList[index]
-                                                        .editURL!)),
-                                            child: NewsWidget(
-                                                item: state.newsList[index])
-                                        );
-                                      }
-                                  ),
-                                ],
-                              ),
-                            ),
-                            ),
-                        ];
-                      }
-          ),
+                              )
+                  ),
           onRefresh: () => context.read<NewsCubit>().reloadNews(),
         );
       }

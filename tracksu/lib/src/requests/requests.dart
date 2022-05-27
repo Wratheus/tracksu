@@ -357,7 +357,7 @@ Future <List<Rankings>> getRankings(String token,  String filter, String page,
 
 Future <List<Beatmap>> getUserBeatmaps(String token, int userID, String type) async {
   final body = {
-    "limit": "10",
+    "limit": "30",
   };
   final Uri userScoresUrl = Uri.https('osu.ppy.sh', 'api/v2/users/$userID/beatmapsets/$type', body);
   final Map<String, String> headers = {

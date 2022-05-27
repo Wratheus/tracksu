@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracksu/src/pages/home_page.dart';
+import 'package:tracksu/src/widgets/drawer_widgets/drawer.dart';
 
 import '../models/beatmap.dart';
 import '../pages/cubit/beatmap_cubit.dart';
@@ -63,6 +64,7 @@ class _BeatmapPage extends StatelessWidget {
           return RefreshIndicator(
             backgroundColor: my_colors.Palette.brown.shade100,
             child: Scaffold(
+              drawer: NavigationDrawer(),
                 body: Container(
                   decoration: BoxDecoration(
                       gradient: LinearGradient(

@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       if (_pageIndex == null) {
         _pageIndex = 1;
       }// default page is User page
-      if (_username != null) pageList[1] = UserTabPage(username: _username); // if username provided -> open that userpage
+      if (_username != null) pageList[1] = UserTabPage(username: _username); // i// f username provided -> open that userpage
       return Scaffold(
           drawer: NavigationDrawer(),
           backgroundColor: my_colors.Palette.purple,
@@ -61,9 +61,9 @@ class _HomePageState extends State<HomePage> {
                     _pageIndex = value;});},
                 index: _pageIndex!,
                 items: [
-                  Image.asset("assets/icon_utils/news.png", scale: 15, color: Colors.white),
-                  Image.asset("assets/icon_utils/user.png", scale: 15, color: Colors.white),
-                  Image.asset("assets/icon_utils/ranking.png", scale: 15, color: Colors.white),
+                  Icon(Icons.newspaper, size: 35, color: Colors.white),
+                  Icon(Icons.person, size: 35, color: Colors.white),
+                  Icon(Icons.leaderboard, size: 35, color: Colors.white),
                 ]
             ),
           )

@@ -48,10 +48,10 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
   @override
   Widget build(BuildContext context) {
 
-    final double width = MediaQuery
+/*    final double width = MediaQuery
         .of(context)
         .size
-        .width;
+        .width;*/
 
     widget._dropdownValue = widget._filterValue;
     return Container(
@@ -108,19 +108,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                     context.read<RankingsCubit>().loadRankings(widget._countryValue, widget._filterValue, widget._page, widget._mode);
                   }),
               ),
-              SizedBox(width: width/35,),
-              Text("Friends: ", style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Exo 2',
-                  shadows: [
-                    Shadow(
-                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                      offset: Offset(7, 5),
-                      blurRadius: 10,
-                    )
-                  ],
-                  color: Colors.white),),
+              SizedBox(width: 10),
               DropdownButton(
                 dropdownColor: my_colors.Palette.brown,
                   value: widget._dropdownValue,
@@ -231,7 +219,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                       onSubmitted: (_) => context.read<RankingsCubit>().loadRankings(widget._countryValue, widget._filterValue, _textController.text.trim(), widget._mode), // filter by page
                     )
                 ),
-                SizedBox(width: width/35,),
+                SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () => _OnPressedArrow(widget._countryValue, widget._filterValue, widget._page, widget._mode, "sub"),
                   style: ButtonStyle(
@@ -257,7 +245,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                     ],
                   ),
                 ),
-                SizedBox(width: width/50,),
+                SizedBox(width: 5),
                 ElevatedButton(
                   onPressed: () => _OnPressedArrow(widget._countryValue, widget._filterValue, widget._page, widget._mode, "sum"),
                   style: ButtonStyle(

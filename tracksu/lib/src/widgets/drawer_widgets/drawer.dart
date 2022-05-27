@@ -1,5 +1,5 @@
+import 'dart:io';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import '../../pages/home_page.dart';
 import '../../utils/color_contrasts.dart' as my_colors;
@@ -10,7 +10,6 @@ class NavigationDrawer extends StatefulWidget {
   String? _userMeUsername;
   NavigationDrawer({Key? key}) :
         super(key: key);
-
   @override
   State<NavigationDrawer> createState() => _NavigationDrawerState();
 }
@@ -31,9 +30,10 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   @override
   Widget build(BuildContext context) {
     getUserFromSecureStorage();
-    return userMeFromStorageLoaded == true ? Drawer(
+    return (userMeFromStorageLoaded == true) ? Drawer(
       backgroundColor: Colors.transparent,
       child: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -70,6 +70,10 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
               filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
               child: Container(
                 decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.black26.withOpacity(0.05)
+                  ),
                     gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -89,7 +93,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 child: Column(
                     children: [
                       CircleAvatar(
-                        radius: 44,
+                        radius: 40,
                         backgroundImage: NetworkImage(widget._userMeAvatar!),
                       ),
                       SizedBox(height: 12,),
@@ -112,18 +116,21 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
             ),
           ),
           );
-
     Widget buildMenuItems(BuildContext context) =>
         ClipRRect(
           borderRadius: BorderRadius.circular(0),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
             child: Container(
-              height: MediaQuery
+              height: (MediaQuery
                   .of(context)
                   .size
-                  .height,
+                  .height ),
               decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 5,
+                      color: Colors.transparent
+                  ),
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -153,6 +160,46 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1))),
                   ),
                   Divider(color: Colors.transparent),
+                  ListTile(
+                    leading: const Icon(Icons.person, color: Colors.white,),
+                    title: Text(
+                      "User",
+                      style: TextStyle(
+                          fontSize: 12.0,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900
+                                  .withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ]
+                      ),
+                    ),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1))
+                    ),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.leaderboard, color: Colors.white,),
+                    title: Text(
+                      "Rankings",
+                      style: TextStyle(
+                          fontSize: 12.0,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              color: my_colors.Palette.hotPink.shade900
+                                  .withOpacity(0.25),
+                              offset: Offset(7, 5),
+                              blurRadius: 10,
+                            )
+                          ]
+                      ),
+                    ),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 2))
+                    ),
+                  ),
                   ListTile(
                     leading: const Icon(Icons.favorite, color: Colors.white,),
                     title: Text(
@@ -250,7 +297,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     ),
                     onTap: () {},
                   ),
-
                 ],
               ),
             ),

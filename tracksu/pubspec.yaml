@@ -46,7 +46,6 @@ flutter:
 
   assets:
     - assets/icon_mods/
-    - assets/icon_utils/
     - assets/icon_pack/
     - assets/icon_game_mods/
     - assets/icon_country_flags/
