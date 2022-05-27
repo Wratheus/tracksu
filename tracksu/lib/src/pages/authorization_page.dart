@@ -21,9 +21,15 @@ class _LoginScreenState extends State<LoginScreen> {
   String? code = '0';
 
   Future<bool> loadUserMeToSecureStorage() async {
-    final User userMeInstance = await getUserMe((await UserSecureStorage.getTokenFromStorage())!, "osu");
+    try{
+      final User userMeInstance = await getUserMe((await UserSecureStorage.getTokenFromStorage())!);
     await UserSecureStorage.setUserMeAvatarFromStorage(userMeInstance.avatarURL);
     await UserSecureStorage.setUserMeUsernameFromStorage(userMeInstance.username);
+    }catch(e){
+      final User userMeInstance = await getUser((await UserSecureStorage.getTokenFromStorage())!, "Peppy"); // if catch error while loading me
+      await UserSecureStorage.setUserMeAvatarFromStorage(userMeInstance.avatarURL);
+      await UserSecureStorage.setUserMeUsernameFromStorage(userMeInstance.username);
+    }
     setState(() {
       _userMeLoaded = true;
     });
@@ -76,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         backgroundColor: my_colors.Palette.brown.shade200,
         appBar: AppBar(
-          title: Text("Login to osu!...", style: TextStyle(
+          title: Text("Login to osu!..", style: TextStyle(
             fontSize: 22.0,
             color: Colors.white,
             fontFamily: 'Exo 2',

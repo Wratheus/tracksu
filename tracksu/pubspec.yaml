@@ -26,7 +26,6 @@ dependencies:
   fluttericon: ^2.0.0
   intl: ^0.17.0
   flutter_native_splash: ^2.2.1
-  webview_windows: ^0.1.8
 
 flutter_native_splash:
   image: "assets/utils/painted_logo.png"

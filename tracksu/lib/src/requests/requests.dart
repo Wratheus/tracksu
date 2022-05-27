@@ -72,6 +72,31 @@ Future<bool> getTokenAsAuthorize(String? code) async{
     throw Exception('Failed to get TOKEN response. Status code = $statusCode');
   }
 }
+//Token request with client credential
+Future<bool> getTokenAsGuestWithClientCredential() async{
+  String body = "grant_type=client_credentials&client_id=${auth.clientId}&client_secret=${auth.clientSecret}&scope=public";
+  Map<String, String> headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
+  };
+  http.Response tokenRequestResponse = await http.post(
+      Uri.https('osu.ppy.sh', '/oauth/token'),
+      headers: headers,
+      body: body
+  );
+  if (tokenRequestResponse.statusCode == 200) {
+    // If the server did return a 200 CREATED response,
+    final token = convert.jsonDecode(tokenRequestResponse.body) as Map<String, dynamic>;
+    await UserSecureStorage.setTokenInStorage(token['access_token']!);
+    print('new request token = ' + token['access_token']);
+    return true;
+  }
+  else {
+    // If the server did not return a 200 CREATED response,
+    var statusCode = tokenRequestResponse.statusCode;
+    throw Exception('Failed to get TOKEN response. Status code = $statusCode');
+  }
+}
 // User request
 // returns a user class object
 Future <User> getUser(String token, String username, [String mode = 'osu', bool mapper = false]) async{
@@ -101,7 +126,7 @@ Future <User> getUser(String token, String username, [String mode = 'osu', bool 
 
 // User request
 // returns a self user class object for logged user
-Future <User> getUserMe(String token, String mode) async{
+Future <User> getUserMe(String token, [String? mode = 'osu']) async{
 
   final Uri userUrl = Uri.https('osu.ppy.sh', 'api/v2/me/$mode');
   final Map<String, String> headers = {

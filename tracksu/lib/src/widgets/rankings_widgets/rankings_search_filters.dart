@@ -62,7 +62,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text("Country: ", style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Exo 2',
                   shadows: [
@@ -81,10 +81,10 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                         value: countryItem,
                         child: Row(
                           children: [
-                            Image.asset('assets/icon_country_flags/${countryItem.code}.png',scale: 4),
+                            Image.asset('assets/icon_country_flags/${countryItem.code}.png',scale: 4.5),
                             SizedBox(width: 10),
                             Text(countryItem.name, style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 10,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Exo 2',
                                 shadows: [
@@ -110,7 +110,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
               ),
               SizedBox(width: width/35,),
               Text("Friends: ", style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Exo 2',
                   shadows: [
@@ -126,7 +126,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                   value: widget._dropdownValue,
                   items: [
                     DropdownMenuItem(child: Text("All", style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
                         shadows: [
@@ -138,7 +138,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                         ],
                         color: Colors.white)), value: "all",),
                     DropdownMenuItem(child: Text("Friends", style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
                         shadows: [
@@ -162,7 +162,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text("Select page:", style:  TextStyle(
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Exo 2',
                   color: Colors.white,
@@ -177,8 +177,8 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                 ),
                 SizedBox(width: 10,),
                 Container(
-                    width: 50,
-                    height: 30,
+                    width: 45,
+                    height: 25,
                     decoration: BoxDecoration(
                               gradient: LinearGradient(
                                   begin: Alignment.topLeft,
@@ -214,7 +214,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                         ),
                       ),
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
                         color: Colors.white,
@@ -241,7 +241,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                   child: Row(
                     children: [
                       Text("Back", style:  TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
                         color: Colors.white,
@@ -267,7 +267,7 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                   child: Row(
                     children: [
                       Text("Next", style:  TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Exo 2',
                         color: Colors.white,
@@ -286,7 +286,8 @@ class _RankingsSearchFiltersWidgetState extends State<RankingsSearchFiltersWidge
                 Spacer()
               ],
             ),
-          )
+          ),
+          SizedBox(height: 10,)
         ],
       ),
     );

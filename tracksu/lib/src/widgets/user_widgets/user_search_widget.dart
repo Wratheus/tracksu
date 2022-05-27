@@ -48,7 +48,7 @@ class UserSearchWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide(color: my_colors.Palette.brown.shade200.withOpacity(0.3)),
               ),
-              labelText: "Username",
+              labelText: "Search",
               labelStyle: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
