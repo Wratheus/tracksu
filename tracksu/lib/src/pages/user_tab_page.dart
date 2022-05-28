@@ -31,32 +31,16 @@ class _UserTabPageState extends State<UserTabPage> {
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [my_colors.Palette.purple.withOpacity(1), my_colors.Palette.purple.shade200.withOpacity(1)])
+                            end: Alignment.topRight,
+                            colors: [my_colors.Palette.brown.withOpacity(0.65), my_colors.Palette.purple.withOpacity(0.65)])
                     )
                 ),
                 floating: true,
                 snap: true,
-                title: Text("User page",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.white,
-                    fontFamily: 'Exo 2',
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                        offset: Offset(7, 5),
-                        blurRadius: 10,
-                      )
-                    ],
-                  ),
-                ),
                 actions: [
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    child: UserSearchWidget(),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        child: UserSearchWidget(),
                   )
                 ],
                 backgroundColor: my_colors.Palette.purple,

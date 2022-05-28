@@ -44,10 +44,10 @@ class NewsWidget extends StatelessWidget {
                   children: [
                     Text("${_item.publishedAt}".substring(0, 10),
                         style: TextStyle(
-                            color: my_colors.Palette.yellow,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2',
+                          color: my_colors.Palette.yellow,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Exo 2',
                           shadows: [
                             Shadow(
                               color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
@@ -94,13 +94,13 @@ class NewsWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(child:
-                      Text("${_item.title}",
+                    Text("${_item.title}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Exo 2',
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Exo 2',
                           shadows: [
                             Shadow(
                               color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
@@ -118,13 +118,13 @@ class NewsWidget extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20,),
                   Expanded(child:
-                    Text("${_item.author}",
+                  Text("${_item.author}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: my_colors.Palette.yellow,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Exo 2',
+                        color: my_colors.Palette.yellow,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Exo 2',
                         shadows: [
                           Shadow(
                             color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
@@ -146,10 +146,10 @@ class NewsWidget extends StatelessWidget {
                   Text("${_item.preview}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Exo 2',
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Exo 2',
                         shadows: [
                           Shadow(
                             color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),

@@ -102,8 +102,8 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [my_colors.Palette.brown, my_colors.Palette.purple])),
+                  end: Alignment.topRight,
+                  colors: [my_colors.Palette.brown.withOpacity(0.65), my_colors.Palette.purple.withOpacity(0.65)])),
           child: WebView(
             javascriptMode: JavascriptMode.unrestricted,
             initialUrl: loginUrl,

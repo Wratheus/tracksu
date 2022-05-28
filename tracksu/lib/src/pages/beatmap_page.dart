@@ -82,8 +82,8 @@ class _BeatmapPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                       begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [my_colors.Palette.purple, my_colors.Palette.purple.shade200]))),
+                                      end: Alignment.topRight,
+                                      colors: [my_colors.Palette.brown.withOpacity(0.65), my_colors.Palette.purple.withOpacity(0.65)]))),
                           floating: true,
                           title: Text("Beatmap",
                             style: TextStyle(
@@ -132,12 +132,13 @@ class _BeatmapPage extends StatelessWidget {
           RefreshIndicator(
             backgroundColor: my_colors.Palette.brown.shade100,
             child: Scaffold(
+              backgroundColor: my_colors.Palette.brown.shade100,
                 body: Container(
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.topRight,
+                        colors: [my_colors.Palette.brown.withOpacity(0.65), my_colors.Palette.purple.withOpacity(0.65)])),
                   child: Center(
                     child: CustomScrollView(
                       slivers: [

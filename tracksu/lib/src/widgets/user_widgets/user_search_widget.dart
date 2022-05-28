@@ -25,7 +25,7 @@ class UserSearchWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: width/2,
+          width: width/1.99,
           height: height/20,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

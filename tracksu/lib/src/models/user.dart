@@ -189,7 +189,7 @@ class User{
       instanseUser.lastVisit = DateTime.parse(instanseUser.lastVisit);
       instanseUser.lastVisit  = ((DateFormat('yMMMMd')).format(instanseUser.lastVisit)).toString();
     }
-    if (instanseUser.lastVisit == null) {instanseUser.lastVisit = " ";}
+    if (instanseUser.lastVisit == null) {instanseUser.lastVisit = "very long ago";}
     if ("${instanseUser.hitAccuracy}".length > 5 && instanseUser.hitAccuracy != null) {
       instanseUser.hitAccuracy = "${instanseUser.hitAccuracy}".substring(0,5);}
     instanseUser.website = instanseUser.website.substring(8);

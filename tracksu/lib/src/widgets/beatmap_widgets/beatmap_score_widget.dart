@@ -88,7 +88,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                               ],
                           ),
                         ),
-                        const SizedBox(width: 5.0,),
+                        const SizedBox(width: 2.0,),
                         Column(
                             children: [
                               Row(
@@ -116,7 +116,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                               ),
                             ]
                         ),
-                        const SizedBox(width: 5.0,),
+                        const SizedBox(width: 2.0,),
                         Expanded(child:
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -137,7 +137,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                                     ],
                                   )
                               ),
-                              const SizedBox(height: 5.0,),
+                              const SizedBox(height: 2.0,),
                               Row(
                                 children: [
                                   Container(
@@ -153,7 +153,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                                     ),
                                     child: Image.asset('assets/icon_country_flags/${_item.countryCode}.png',scale: 5.5),
                                   ),
-                                  const SizedBox(width: 10.0,),
+                                  const SizedBox(width: 3.0,),
                                 ],
                               ),
                             ]
@@ -210,7 +210,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                                   ),
                                 ]
                         ),
-                              const SizedBox(width: 10.0,),
+                              const SizedBox(width: 5.0,),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -251,7 +251,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                         ),
                             ],
                           ),
-                        const SizedBox(width: 15.0,),
+                        const SizedBox(width: 5.0,),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -343,7 +343,7 @@ class BeatmapScoreWidget extends StatelessWidget {
                             )
                           ],
                         ),
-                        const SizedBox(width: 10.0,),
+                        const SizedBox(width: 5.0,),
                     ],
                   ),
                 ],

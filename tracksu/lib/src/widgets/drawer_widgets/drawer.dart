@@ -14,7 +14,7 @@ class NavigationDrawer extends StatefulWidget {
 }
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
-  bool userMeFromStorageLoaded = false;
+  late final bool userMeFromStorageLoaded;
 
   void getUserFromSecureStorage() async {
     String? userMeAvatarInstance = await UserSecureStorage.getUserMeAvatarFromStorage();
@@ -28,16 +28,15 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    getUserFromSecureStorage();
-    return (userMeFromStorageLoaded == true) ? Drawer(
+    if (widget._userMeAvatar == null) getUserFromSecureStorage();
+    return (widget._userMeAvatar != null) ? Drawer(
       backgroundColor: Colors.transparent,
       child: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            buildHeader(context),
-            buildMenuItems(context),
+            BuildDrawer(context),
           ],
         ),
       ),
@@ -45,7 +44,10 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
         margin: EdgeInsets.all(10),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: my_colors.Palette.brown.shade100,
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [my_colors.Palette.purple.withOpacity(0.15), my_colors.Palette.purple.shade200.withOpacity(0.15)]),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -58,7 +60,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
         ),
         child: Center(child: CircularProgressIndicator()));
   }
-    Widget buildHeader(BuildContext context) =>
+    Widget BuildDrawer(BuildContext context) =>
         InkWell(
           onTap: () =>
               Navigator.push(context, MaterialPageRoute(builder: (context) =>
@@ -69,10 +71,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
               filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1,
-                    color: Colors.black26.withOpacity(0.05)
-                  ),
                     gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -110,12 +108,14 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                             ]
                         ),
                       ),
+                      SizedBox(height: 12,),
+                      BuildDrawerContent(context)
                     ]),
               ),
             ),
           ),
           );
-    Widget buildMenuItems(BuildContext context) =>
+    Widget BuildDrawerContent(BuildContext context) =>
         ClipRRect(
           borderRadius: BorderRadius.circular(0),
           child: BackdropFilter(
@@ -126,17 +126,13 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   .size
                   .height ),
               decoration: BoxDecoration(
-                  border: Border.all(
-                      width: 5,
-                      color: Colors.transparent
-                  ),
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [my_colors.Palette.purple.withOpacity(0.15), my_colors.Palette.purple.shade200.withOpacity(0.15)]
                   )
               ),
-              padding: EdgeInsets.all(24),
+              padding: EdgeInsets.all(16),
               child: Wrap(
                 runSpacing: 2,
                 children: [

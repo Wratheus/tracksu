@@ -30,9 +30,15 @@ class _LastNewsPage extends StatelessWidget {
         context.read<NewsCubit>().informInitial();
         context.read<NewsCubit>().loadNews(); // run Circular progress bar while news is loading
         return Scaffold(
+            backgroundColor: my_colors.Palette.brown.shade100,
             appBar: AppBar(
-              backgroundColor: my_colors.Palette.purple,
-              title: Text("News",
+              flexibleSpace: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.topRight,
+                          colors: [my_colors.Palette.brown.withOpacity(0.65), my_colors.Palette.purple.withOpacity(0.65)]))),
+              title: Text("News loading..",
                 style: TextStyle(
                   fontSize: 24.0,
                   color: Colors.white,
@@ -40,21 +46,22 @@ class _LastNewsPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   shadows: [
                     Shadow(
-                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                      color: my_colors.Palette.hotPink.shade900
+                          .withOpacity(0.25),
                       offset: Offset(7, 5),
                       blurRadius: 10,
                     )
                   ],
                 ),
               ),
+              backgroundColor: my_colors.Palette.purple,
             ),
-            backgroundColor: my_colors.Palette.brown.shade100,
             body: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                      end: Alignment.topRight,
+                      colors: [my_colors.Palette.brown.withOpacity(0.65), my_colors.Palette.purple.withOpacity(0.65)])),
               child: Center(
                 child: CircularProgressIndicator(),
               ),
@@ -68,17 +75,15 @@ class _LastNewsPage extends StatelessWidget {
         return RefreshIndicator(
           backgroundColor: my_colors.Palette.brown.shade100,
                   child: Scaffold(
+                      backgroundColor: my_colors.Palette.brown.shade100,
                     drawer: NavigationDrawer(),
                     appBar: AppBar(
                       flexibleSpace: Container(
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
                                   begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    my_colors.Palette.purple,
-                                    my_colors.Palette.purple.shade200
-                                  ]))),
+                                  end: Alignment.topRight,
+                                  colors: [my_colors.Palette.brown.withOpacity(0.65), my_colors.Palette.purple.withOpacity(0.65)]))),
                       title: Text("News",
                         style: TextStyle(
                           fontSize: 24.0,
@@ -102,8 +107,8 @@ class _LastNewsPage extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     gradient: LinearGradient(
                                         begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: [my_colors.Palette.brown, my_colors.Palette.brown.shade200])),
+                                        end: Alignment.topRight,
+                                        colors: [my_colors.Palette.brown.withOpacity(1), my_colors.Palette.purple.withOpacity(1)])),
                                 child: Column(
                                   children: [
                                     SizedBox(height: 5,),

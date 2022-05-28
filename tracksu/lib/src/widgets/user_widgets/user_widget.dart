@@ -25,9 +25,10 @@ class UserInfoWidget extends StatelessWidget {
         .size
         .width;
 
-
-    return (Platform.isIOS || Platform.isAndroid == true) ? Container(
-      width: width/1.1,
+    // Commented code is Desktop version UserPage, work in progress
+// (Platform.isIOS || Platform.isAndroid == true) ?  Container(
+    return Container(
+      width: width/1.05,
       margin: EdgeInsets.all(10),
       child: Column(
         children: [
@@ -40,39 +41,35 @@ class UserInfoWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 100.0,
+                                height: 100.0,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(_user.avatarURL),
+                                    fit: BoxFit.cover,
+                                    opacity: 1
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
+                                      offset: Offset(7, 5),
+                                      spreadRadius: 2,
+                                      blurRadius: 3,
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                              ],
+                            ),
+                            SizedBox(width: 5),
                             Expanded(
                               flex: 3,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 100.0,
-                                    height: 100.0,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage(_user.avatarURL),
-                                        fit: BoxFit.cover,
-                                        opacity: 1
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: my_colors.Palette.hotPink.shade900.withOpacity(0.25),
-                                          offset: Offset(7, 5),
-                                          spreadRadius: 2,
-                                          blurRadius: 3,
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              flex: 4,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
@@ -1041,7 +1038,7 @@ class UserInfoWidget extends StatelessWidget {
           ),
         ],
         ),
-      ) :
+      ); /*:
     Container(
       width: width/1.1,
       margin: EdgeInsets.all(10),
@@ -2043,6 +2040,6 @@ class UserInfoWidget extends StatelessWidget {
           ),
         ],
       ),
-    );
+    );*/
     }
   }

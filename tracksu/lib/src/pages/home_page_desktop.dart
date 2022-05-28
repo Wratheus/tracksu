@@ -36,7 +36,7 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
     RankingsTabPage(),
   ];
   // need to be late final bool userMeFromStorageLoaded; to avoid navigation bug!!!
-  late final bool userMeFromStorageLoaded;
+  bool userMeFromStorageLoaded = false;
   void getUserFromSecureStorage() async {
     String? userMeAvatarInstance = await UserSecureStorage.getUserMeAvatarFromStorage();
     String? userMeUsernameInstance = await UserSecureStorage.getUserMeUsernameFromStorage();
@@ -48,13 +48,13 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
   }
   @override
   Widget build(BuildContext context) {
-    getUserFromSecureStorage();
+      if (widget._userMeAvatar == null) getUserFromSecureStorage();
       if (_pageIndex == null) {
         _pageIndex = 1;
       }// default page is User page
       if (_username != null) pageList[1] = UserTabPage(username: _username); // i// f username provided -> open that userpage
 
-      return (userMeFromStorageLoaded == true) ? Scaffold(
+      return (widget._userMeAvatar != null) ? Scaffold(
           backgroundColor: my_colors.Palette.purple,
           body: Row(
             mainAxisSize: MainAxisSize.max,
@@ -83,7 +83,10 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
           margin: EdgeInsets.all(10),
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: my_colors.Palette.brown.shade100,
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [my_colors.Palette.purple.withOpacity(0.15), my_colors.Palette.purple.shade200.withOpacity(0.15)]),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
@@ -99,9 +102,8 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
     // drawer part
   Widget buildHeader(BuildContext context) =>
       InkWell(
-        onTap: () =>
-            Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                HomePageDesktop(pageIndex: 1, username: widget._userMeUsername))),
+        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 1, username: widget._userMeUsername))
+        ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(0),
           child: BackdropFilter(
@@ -166,7 +168,7 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                 .height ),
             decoration: BoxDecoration(
                 border: Border.all(
-                    width: 5,
+                    width: 1,
                     color: Colors.transparent
                 ),
                 gradient: LinearGradient(
