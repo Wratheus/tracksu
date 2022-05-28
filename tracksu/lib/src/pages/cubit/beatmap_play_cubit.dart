@@ -46,9 +46,9 @@ class BeatmapPlayCubit extends Cubit<BeatmapPlayState> {
     });
   }
   Future<void> pauseBeatmap() async {
-    emit(BeatmapPauseState(_percent));
     await _audioPlayer.pause();
     _timer?.cancel();
+    emit(BeatmapPauseState(_percent));
   }
 
   Future<void> stopBeatmap() async {

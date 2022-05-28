@@ -52,8 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
           RegExp regExpError = RegExp("error=(.*)");
           if (regExpError.hasMatch(currentUrl) == true) {
             setState(() {
-              Navigator.pop(context, LoginScreen());
-              Navigator.push(context,
+              Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => LoginScreen()));
             });
           }
@@ -67,8 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
             await getTokenAsAuthorize(this.code);
             if (await loadUserMeToSecureStorage() == true){ // wait result of func
               setState(() {
-              Navigator.pop(context, LoginScreen());
-              Navigator.push(context,
+              Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => HomePage()));
             });}
             else AsyncSnapshot.waiting(); // if loadUserMeToSecureStorage failed
@@ -82,6 +80,12 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         backgroundColor: my_colors.Palette.brown.shade200,
         appBar: AppBar(
+          flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.topRight,
+                      colors: [my_colors.Palette.brown.withOpacity(0.65), my_colors.Palette.purple.withOpacity(0.65)]))),
           title: Text("Login to osu!..", style: TextStyle(
             fontSize: 22.0,
             color: Colors.white,

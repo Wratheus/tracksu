@@ -75,7 +75,7 @@ class _RankingsPage extends StatelessWidget {
                       itemCount: state.rankingsList.length,
                       itemBuilder: (context, index){
                       return InkWell(
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: state.rankingsList[index].username) : HomePageDesktop(pageIndex: 1, username: state.rankingsList[index].username))),
+                        onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: state.rankingsList[index].username) : HomePageDesktop(pageIndex: 1, username: state.rankingsList[index].username))),
                         child: RankingsWidget(item: state.rankingsList[index])
                     );}
                   ),

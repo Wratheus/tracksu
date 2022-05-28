@@ -102,7 +102,7 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
     // drawer part
   Widget buildHeader(BuildContext context) =>
       InkWell(
-        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 1, username: widget._userMeUsername))
+        onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 1, username: widget._userMeUsername))
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(0),
@@ -197,7 +197,7 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                           )
                         ]
                     ),),
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 1))),
+                  onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 1))),
                 ),
                 Divider(color: Colors.transparent),
                 ListTile(
@@ -217,7 +217,7 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                         ]
                     ),
                   ),
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 1))
+                  onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 1))
                   ),
                 ),
                 ListTile(
@@ -237,7 +237,7 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                         ]
                     ),
                   ),
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 2))
+                  onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 2))
                   ),
                 ),
                 ListTile(
@@ -316,7 +316,7 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                         ]
                     ),
                   ),
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 0))),
+                  onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePageDesktop(pageIndex: 0))),
                 ),
                 ListTile(
                   leading: const Icon(Icons.update, color: Colors.white,),

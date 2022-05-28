@@ -116,7 +116,7 @@ class BeatmapInfoWidget extends StatelessWidget {
                         BeatmapPlayWidget(beatmap: _beatmap),
                         Spacer(),
                         InkWell(
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1, username: _beatmap.mapper.username!))),
+                          onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1, username: _beatmap.mapper.username!))),
                           child: Container(
                             child: Row(
                               children: [

@@ -73,7 +73,7 @@ class UserSearchWidget extends StatelessWidget {
             keyboardType: TextInputType.text,
             controller: textController,
             // onSubmitted: (_) => context.read<UserCubit>().loadUser(textController.text, 'osu'),
-            onSubmitted: (_) => Navigator.push(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: textController.text.trim()) : HomePageDesktop(pageIndex: 1, username: textController.text.trim()))),
+            onSubmitted: (_) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: textController.text.trim()) : HomePageDesktop(pageIndex: 1, username: textController.text.trim()))),
           )
       )
     ]

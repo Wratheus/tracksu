@@ -115,7 +115,7 @@ class _BeatmapPage extends StatelessWidget {
                                   itemCount: state.beatmapLeaderboard.length,
                                   itemBuilder: (context, index){
                                     return InkWell(
-                                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: state.beatmapLeaderboard[index].username) : HomePageDesktop(pageIndex: 1, username: state.beatmapLeaderboard[index].username))),
+                                        onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: state.beatmapLeaderboard[index].username) : HomePageDesktop(pageIndex: 1, username: state.beatmapLeaderboard[index].username))),
                                         child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
                                     );}
                               )
@@ -180,7 +180,7 @@ class _BeatmapPage extends StatelessWidget {
                                     itemCount: state.beatmapLeaderboard.length,
                                     itemBuilder: (context, index){
                                       return InkWell(
-                                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: state.beatmapLeaderboard[index].username) : HomePageDesktop(pageIndex: 1, username: state.beatmapLeaderboard[index].username))),
+                                          onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (Platform.isAndroid || Platform.isIOS == true) ? HomePage(pageIndex: 1, username: state.beatmapLeaderboard[index].username) : HomePageDesktop(pageIndex: 1, username: state.beatmapLeaderboard[index].username))),
                                           child: BeatmapScoreWidget(item: state.beatmapLeaderboard[index], index: index, beatmapItem: state.beatmapInstance,)
                                       );}
                                 )

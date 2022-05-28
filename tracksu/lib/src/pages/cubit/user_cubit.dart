@@ -65,7 +65,7 @@ class UserCubit extends Cubit<UserState> {
  // item is Score type or Beatmap
   Future<void> loadBeatmapFromUser(Object item, BuildContext context) async {
     print(item);
-    Navigator.push(context,
+    Navigator.pushReplacement(context,
         MaterialPageRoute(
             builder: (context) => BeatmapPage(item: item)));
   }

@@ -32,7 +32,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     return (widget._userMeAvatar != null) ? Drawer(
       backgroundColor: Colors.transparent,
       child: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: AlwaysScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -63,7 +63,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     Widget BuildDrawer(BuildContext context) =>
         InkWell(
           onTap: () =>
-              Navigator.push(context, MaterialPageRoute(builder: (context) =>
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>
                   HomePage(pageIndex: 1, username: widget._userMeUsername))),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(0),
@@ -124,7 +124,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
               height: (MediaQuery
                   .of(context)
                   .size
-                  .height ),
+                  .height/1.26),
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
@@ -152,7 +152,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                             )
                           ]
                       ),),
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1))),
+                    onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1))),
                   ),
                   Divider(color: Colors.transparent),
                   ListTile(
@@ -172,7 +172,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                           ]
                       ),
                     ),
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1))
+                    onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1))
                     ),
                   ),
                   ListTile(
@@ -192,7 +192,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                           ]
                       ),
                     ),
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 2))
+                    onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 2))
                     ),
                   ),
                   ListTile(
@@ -271,7 +271,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                           ]
                       ),
                     ),
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 0))),
+                    onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 0))),
                   ),
                   ListTile(
                     leading: const Icon(Icons.update, color: Colors.white,),

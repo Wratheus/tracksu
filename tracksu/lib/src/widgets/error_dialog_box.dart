@@ -71,16 +71,16 @@ class ErrorDialogBox extends StatelessWidget {
   toPreviousPage(context) {
 
     if (_exceptionPageName == "LastNewsPage"){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 0)));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 0)));
     }
     if (_exceptionPageName == "UserTabPage"){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1)));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1)));
     }
     if (_exceptionPageName == "RankingsTabPage"){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 2)));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 2)));
     }
     else {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1,)));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(pageIndex: 1,)));
     }
   }
 }
