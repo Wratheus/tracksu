@@ -49,9 +49,9 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.tracksu"
+        applicationId "com.sgoollreps.tracksu"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 32
         multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

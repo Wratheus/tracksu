@@ -1,4 +1,4 @@
-package com.example.tracksu
+package com.sgoollreps.tracksu
 
 import io.flutter.embedding.android.FlutterActivity
 

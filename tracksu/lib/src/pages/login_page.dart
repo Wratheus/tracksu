@@ -82,11 +82,18 @@ class _LoginPageWidget extends State<LoginPageWidget> {
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
                 colors: [my_colors.Palette.brown.withOpacity(0.25), my_colors.Palette.purple.withOpacity(0.25)]),
-            image: DecorationImage(image: AssetImage('assets/utils/transparent_trigen_phone.png'),
+            image: (Platform.isWindows == true)
+                ? DecorationImage(image: AssetImage('assets/utils/transparent_trigen.png'),
+                opacity: 1,
+                fit: BoxFit.fill,
+                scale: 1)
+            : DecorationImage(
+                image: AssetImage('assets/utils/transparent_trigen_phone.png'),
               opacity: 1,
               fit: BoxFit.fitHeight,
               scale: 1
-            )),
+            )
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
