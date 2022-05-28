@@ -82,25 +82,26 @@ class _LoginPageWidget extends State<LoginPageWidget> {
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
                 colors: [my_colors.Palette.brown.withOpacity(0.25), my_colors.Palette.purple.withOpacity(0.25)]),
-            image: DecorationImage(image: AssetImage('assets/utils/transparent_trigen.png'),
-            fit: BoxFit.fitHeight,
+            image: DecorationImage(image: AssetImage('assets/utils/transparent_trigen_phone.png'),
               opacity: 1,
+              fit: BoxFit.fitHeight,
+              scale: 1
             )),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 100,),
+              SizedBox(height: MediaQuery.of(context).size.height/2.6,),
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                  child: SizedBox(
-                    width: 150,
-                    height: 70,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width/2.5,
+                    height: MediaQuery.of(context).size.height/12,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.white10.withOpacity(0.1))
+                          backgroundColor: MaterialStateProperty.all<Color>(my_colors.Palette.purple)
                       ),
                       onPressed: initLoginAsUser,
                       child: Text(
@@ -127,12 +128,12 @@ class _LoginPageWidget extends State<LoginPageWidget> {
                 borderRadius: BorderRadius.circular(10),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                  child: SizedBox(
-                      width: 200,
-                      height: 70,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    height: MediaQuery.of(context).size.height/12,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.white10.withOpacity(0.1))
+                        backgroundColor: MaterialStateProperty.all<Color>(my_colors.Palette.purple)
                       ),
                       onPressed: initLoginAsGuest,
                       child: Text(
