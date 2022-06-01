@@ -1,7 +1,9 @@
+<p align="center">
+  <img src="https://i.imgur.com/2qgZ0aL.png" alt="application" width="216" />
+</p>
 <p align="left">
 Tracksu is Dart / Flutter Android app which visualises data provided by osu! API
 that could be useful for phone users.
-
 
 <b> Current features:</b></br>
 <ul>
