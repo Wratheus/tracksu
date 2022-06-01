@@ -22,6 +22,7 @@ Displays last news from osu! website;
 <p align="center">
   <img src="https://i.imgur.com/sAJppQf.png" alt="application" width="1000" />
 </p>
+Early desktop support
 <p align="center">
   <img src="https://i.imgur.com/XFytOx1.png" alt="application" width="600" />
 </p>
