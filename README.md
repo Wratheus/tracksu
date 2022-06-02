@@ -36,7 +36,7 @@ Early desktop support
 
 # Update log:
 <p>
-<b>Update (ver 1.2):</b> 🧚
+<b>Update (ver 1.21):</b> 🧚
 <ul>
 <li>Add a filter by country to the rankings;
 <li>Optimize the user's loading;
@@ -44,10 +44,7 @@ Early desktop support
 <li>Add info for mappers and created/graveyard/ranked maps;
 <li>Re-style application by refactoring flex widgets, adding shadows, gradients etc..
 <li>Refactoring code to adaptive for Windows;
-</ul>
-<b>Plans for soon update (ver 1.21):</b> 
-<ul>
-<li>Add IOS adaptive support;
+<li>Added IOS adaptive support;
 </ul>
 <b>What we will probably add in future (for ver 1.3):</b>
 <ul>
