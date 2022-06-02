@@ -7,6 +7,7 @@ that could be useful for phone users.
 
 <b> Current features:</b></br>
 <ul>
+
   <li><b>Leaderboard: </b></br>
   Displays world statistic by performance points. 
   Leaderboard can be filtered by friends or country. 
@@ -20,14 +21,19 @@ beatmap information: map duration, difficulty, combo, AR OD CS HP;
 Displays last news from osu! website;
 </ul>
 </p>      
-
+Android look
 <p align="center">
   <img src="https://i.imgur.com/sAJppQf.png" alt="application" width="1000" />
+</p>
+IOS look alike Android
+<p align="center">
+  <img src="https://i.imgur.com/yEWBVi3.png" alt="application" width="1000" />
 </p>
 Early desktop support
 <p align="center">
   <img src="https://i.imgur.com/XFytOx1.png" alt="application" width="600" />
 </p>
+
 # Update log:
 <p>
 <b>Update (ver 1.2):</b> 🧚
