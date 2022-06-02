@@ -90,7 +90,7 @@ class _LoginPageWidget extends State<LoginPageWidget> {
             : DecorationImage(
                 image: AssetImage('assets/utils/transparent_trigen_phone.png'),
               opacity: 1,
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.fill,
               scale: 1
             )
           ),
@@ -98,14 +98,13 @@ class _LoginPageWidget extends State<LoginPageWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height/2.6,),
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
                   child: Container(
-                    width: MediaQuery.of(context).size.width/2.5,
-                    height: MediaQuery.of(context).size.height/12,
+                    width: 150,
+                    height: 60,
                     child: ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(my_colors.Palette.purple)
@@ -114,7 +113,7 @@ class _LoginPageWidget extends State<LoginPageWidget> {
                       child: Text(
                         "Login",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Exo 2',
                           color: Colors.white,
@@ -136,8 +135,8 @@ class _LoginPageWidget extends State<LoginPageWidget> {
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
                   child: Container(
-                    width: MediaQuery.of(context).size.width/2,
-                    height: MediaQuery.of(context).size.height/12,
+                    width: 230,
+                    height: 70,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(my_colors.Palette.purple)
@@ -146,7 +145,7 @@ class _LoginPageWidget extends State<LoginPageWidget> {
                       child: Text(
                         "Continue as guest",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Exo 2',
                           color: Colors.white,
