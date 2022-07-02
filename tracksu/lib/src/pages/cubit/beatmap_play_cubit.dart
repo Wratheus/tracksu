@@ -23,7 +23,7 @@ class BeatmapPlayCubit extends Cubit<BeatmapPlayState> {
 
 
   Future<void> playBeatmap(String BeatmapID) async {
-    await _audioPlayer.play("https://b.ppy.sh/preview/$BeatmapID.mp3");
+    await _audioPlayer.play(UrlSource("https://b.ppy.sh/preview/$BeatmapID.mp3"));
     if (isClosed == false) {
       emit(BeatmapRunState(_percent));
     }
