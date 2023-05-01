@@ -228,7 +228,6 @@ class _UserListTilesElements extends State<UserListTilesElements> {
                         ),
                         child: HtmlWidget(
                             _userInstance.userPage,
-                            isSelectable: true,
                             textStyle: TextStyle(
                               fontSize: 12.0,
                               color: Colors.white,
