@@ -1,4 +1,4 @@
-## removed from playmarket (reason: outdated)
+## removed from playmarket (reason: outdated playmarket info and deprecated osu api /v)
 
 
 <p align="center">
