@@ -1,3 +1,6 @@
+## removed from playmarket (reason: outdated)
+
+
 <p align="center">
   <img src="https://i.imgur.com/2qgZ0aL.png" alt="application" width="216" />
 </p>
@@ -24,14 +27,6 @@ Displays last news from osu! website;
 Android look
 <p align="center">
   <img src="https://i.imgur.com/sAJppQf.png" alt="application" width="1000" />
-</p>
-IOS look alike Android
-<p align="center">
-  <img src="https://i.imgur.com/yEWBVi3.png" alt="application" width="1000" />
-</p>
-Early desktop support
-<p align="center">
-  <img src="https://i.imgur.com/XFytOx1.png" alt="application" width="600" />
 </p>
 
 # Update log:
